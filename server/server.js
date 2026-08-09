@@ -4,7 +4,7 @@ const coursesRoutes = require("./routes/coursesRoutes");
 const connectDB = require("./config/database");
 const app = express();
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 

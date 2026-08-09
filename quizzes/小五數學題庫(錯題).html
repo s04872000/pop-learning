@@ -1,0 +1,34 @@
+<!doctype html><html><head><meta charset='utf-8'>
+<style>
+body{font-family:Microsoft JhengHei;background:#fff7fb;font-size:22px;max-width:950px;margin:auto;padding:20px}
+.q{background:#fff;border:3px solid pink;border-radius:15px;padding:15px;margin:15px 0}
+textarea{width:98%;height:90px;font-size:20px}
+input{font-size:20px}button{font-size:20px}
+.ok{color:green} .no{color:red}
+</style></head><body><h1>五年級數學題庫</h1>
+<div id='quiz'></div><button onclick='score()'>計算分數</button>
+<button onclick='location.reload()'>重新隨機</button><h2 id='result'></h2>
+<script>
+const qs=[
+{q:'十萬分位數字是5、萬分位數字是7、千分位和百分位數字都是0、十分位數字是8的小數是？',a:'0.80075'},{q:'比1小0.0001的數是？',a:'0.9999'},{q:'1.07 > 1.0□7，□中可以填入哪些數字？（請用,分隔）',a:'0,1,2,3,4,5,6'},{q:'0.599 < 0.□，□中可以填入哪些數字？（請用,分隔）',a:'6,7,8,9'},{q:'8.6763中左邊的6是右邊6的______倍',a:'100'},{q:'媽媽把4.73公升的水，加入0.699公升的檸檬原汁，稀釋後的檸檬汁是幾公升?',a:'5.429'},{q:'牆壁26.913平方公尺，天花板14.2885平方公尺，其中6.875平方公尺刷粉紅色，其餘刷藍色，藍色面積是多少？',a:'34.3265'},{q:'0.9315公升紅茶加入鮮奶，喝掉0.768公升後剩0.3515公升，原本約加入多少公升鮮奶？（四捨五入到小數第1位）',a:'0.3'}];
+qs.sort(()=>Math.random()-0.5);
+const norm=s=>s.replace(/\s/g,'');
+let h='';
+qs.forEach((x,i)=>{
+h+=`<div class="q"><b>第${i+1}題</b><br><br>${x.q}<br><br>
+📝計算區：<br><textarea placeholder="請在這裡寫計算過程"></textarea><br><br>
+答案：<input id="a${i}"> <button onclick="check(${i})">確認</button>
+<div id="m${i}"></div></div>`;
+});
+document.getElementById('quiz').innerHTML=h;
+function check(i){
+ let u=norm(document.getElementById('a'+i).value);
+ let a=norm(qs[i].a);
+ document.getElementById('m'+i).innerHTML=(u===a)?'<span class="ok">😸 正確</span>':'<span class="no">🙀 答錯，答案：'+qs[i].a+'</span>';
+}
+function score(){
+ let c=0;
+ for(let i=0;i<qs.length;i++) if(norm(document.getElementById('a'+i).value)===norm(qs[i].a)) c++;
+ document.getElementById('result').textContent='得分：'+c+'/'+qs.length;
+}
+</script></body></html>

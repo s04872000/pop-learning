@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小五英文單字與句型考卷</title>
+<style>
+body{font-family:Arial,"Noto Sans TC",sans-serif;background:#fff7fb;margin:0;padding:20px;color:#333}
+.container{max-width:900px;margin:auto}
+h1{text-align:center;color:#d85b91}
+.info{background:white;padding:15px;border-radius:12px;margin-bottom:15px}
+.q{background:white;padding:18px;margin:14px 0;border-radius:12px;box-shadow:0 2px 8px #ddd}
+.q h3{margin-top:0;color:#555}
+.option{display:block;padding:8px;margin:5px 0;border-radius:8px}
+button{border:0;border-radius:8px;padding:8px 14px;cursor:pointer}
+.check{background:#e88ab0;color:white;margin-top:8px}
+.result{margin-top:10px;font-weight:bold}
+.correct{color:#168a45}
+.wrong{color:#d33}
+.answer{color:#555;margin-top:5px}
+#score{font-size:22px;font-weight:bold;background:white;padding:15px;border-radius:12px;text-align:center}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>小五英文單字與句型考卷</h1>
+<div class="info">姓名：<input id="studentName">　日期：<input type="date" id="date"></div>
+<div id="quiz"></div>
+<div id="score">目前尚未完成測驗</div>
+</div>
+
+<script>
+const questions = [
+["I am ______ Taiwan.","我來自台灣。",["by","from","across","both"],1],
+["We went to Japan ______ plane.","我們搭飛機去日本。",["by","from","because","many"],0],
+["Taipei is a big ______.","台北是一個大城市。",["country","city","hotel","sea"],1],
+["Japan is a beautiful ______.","日本是一個美麗的國家。",["country","building","people","friend"],0],
+["There are ______ people in the park.","公園裡有很多人。",["many","both","across","full"],0],
+["There are ______ of people in the city.","城市裡有很多人。",["lots","both","because","by"],0],
+["The city is very ______.","這個城市非常擁擠。",["tall","crowded","shining","western"],1],
+["That ______ is very tall.","那棟建築物很高。",["building","country","friend","summer"],0],
+["I like Japan ______ it is beautiful.","我喜歡日本，因為它很漂亮。",["from","because","by","across"],1],
+["Amy is my best ______.","Amy 是我最好的朋友。",["hotel","city","friend","country"],2],
+["「父母」", "",["people","parents","friend","building"],1],
+["「飯店」", "",["hotel","country","city","sea"],0],
+["「旅行」", "",["tell","travel","land","envy"],1],
+["「夢想」", "",["summer","dream","people","building"],1],
+["「夏天」", "",["summer","shining","western","across"],0],
+["「告訴」", "",["travel","tell","took","land"],1],
+["「海」", "",["city","land","sea","country"],2],
+["「充滿……」", "",["lots of","full of","both","across"],1],
+["The hotel is ______ the sea.","這間飯店靠近海邊。",["near","because","both","many"],0],
+["______ of them are my friends.","他們兩個都是我的朋友。",["Many","Both","Full","Lots"],1],
+["The city is ______ people.","這個城市充滿了人。",["full of","both","by","from"],0],
+["We walked ______ the street.","我們走過馬路。",["because","across","from","by"],1],
+["The sun is ______.","太陽正在照耀。",["crowded","shining","tall","full"],1],
+["Kevin wants to see the Eiffel Tower. He wants to go to ______.","Kevin 想去看艾菲爾鐵塔。",["Japan","France","Canada","India"],1],
+["Amy wants to see kangaroos. She wants to go to ______.","Amy 想看袋鼠。",["Australia","Italy","Korea","Mexico"],0],
+["Ben wants to visit the Statue of Liberty. He wants to go to ______.","Ben 想參觀自由女神像。",["Thailand","Japan","the USA","India"],2],
+["My friend is from ______. She speaks Chinese.","我的朋友來自中國。",["France","China","Italy","Australia"],1],
+["We want to visit ______ because we love sushi.","我們想去日本，因為我們喜歡壽司。",["Mexico","Japan","India","Canada"],1],
+["Have you been to Japan? — Yes, ______.","你去過日本嗎？— 有。",["I do.","I am.","I have.","I did."],2],
+["Have you been to Canada? — No, ______.","你去過加拿大嗎？— 沒有。",["I don't.","I haven't.","I'm not.","I didn't."],1],
+["She is from ______ UK.","她來自英國。",["a","an","the","不填"],2],
+["He lives in ______ USA.","他住在美國。",["a","an","the","不填"],2],
+["We ______ a trip to Japan last summer.","我們去年夏天去日本旅行。",["take","takes","took","taking"],2],
+["「我來自台灣。」", "",["I am from Taiwan.","I am by Taiwan.","I am across Taiwan.","I have Taiwan."],0],
+["「我們去年夏天去日本旅行。」", "",["We take a trip to Japan last summer.","We took a trip to Japan last summer.","We taking a trip to Japan last summer.","We takes a trip to Japan last summer."],1],
+["「你去過法國嗎？」", "",["Do you France?","Are you been to France?","Have you been to France?","Did you been France?"],2],
+["「這個城市充滿了人。」", "",["The city is full of people.","The city is many people.","The city is both people.","The city is from people."],0],
+["「我的夢想是環遊世界。」", "",["My dream is to travel around the world.","My dream is traveling the world yesterday.","My dream travel around world.","My dream is travel around the world."],0],
+["I took a trip to Italy with my ______.","我和我的父母去義大利旅行。",["parents","building","country","sea"],0],
+["Please ______ me about your trip.","請告訴我你的旅行。",["travel","tell","took","shining"],1]
+];
+
+let answered=0, score=0;
+
+function render(){
+ const box=document.getElementById("quiz");
+ questions.forEach((q,i)=>{
+   const div=document.createElement("div");
+   div.className="q";
+   let html=`<h3>${i+1}. ${q[0]}</h3>`;
+   if(q[1]) html+=`<div>${q[1]}</div>`;
+   q[2].forEach((op,j)=>{
+     html+=`<label class="option"><input type="radio" name="q${i}" value="${j}"> ${String.fromCharCode(65+j)}. ${op}</label>`;
+   });
+   html+=`<button class="check" onclick="check(${i})">確認答案</button>
+   <div id="r${i}" class="result"></div>`;
+   div.innerHTML=html; box.appendChild(div);
+ });
+}
+
+function check(i){
+ const selected=document.querySelector(`input[name="q${i}"]:checked`);
+ const r=document.getElementById("r"+i);
+ if(!selected){r.innerHTML='<span class="wrong">請先選擇答案！</span>';return;}
+ if(r.dataset.done==="1") return;
+ const chosen=Number(selected.value), ans=questions[i][3];
+ r.dataset.done="1"; answered++;
+ if(chosen===ans){
+   score++;
+   r.innerHTML='<span class="correct">✓ 答對了！</span>';
+ }else{
+   r.innerHTML=`<span class="wrong">✗ 答錯了！</span><div class="answer">答案：${String.fromCharCode(65+ans)}. ${questions[i][2][ans]}</div>`;
+ }
+ document.querySelectorAll(`input[name="q${i}"]`).forEach(x=>x.disabled=true);
+ document.getElementById("score").textContent=`已完成 ${answered} / ${questions.length} 題　｜　目前得分：${score} / ${questions.length}`;
+ if(answered===questions.length){
+   document.getElementById("score").textContent=`測驗完成！ ${score} / ${questions.length} 題答對，得分 ${Math.round(score/questions.length*100)} 分`;
+ }
+}
+render();
+</script>
+</body>
+</html>

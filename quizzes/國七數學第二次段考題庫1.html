@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>七年級數學｜第一次段考複習題</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;padding:20px;background:#fff7fb;color:#333;font-family:Arial,"Noto Sans TC",sans-serif}
+.wrap{max-width:1000px;margin:auto}
+h1{color:#d85b91;text-align:center;margin:5px 0}
+.subtitle{text-align:center;color:#666;margin-bottom:18px}
+.question{background:#fff;border-radius:16px;padding:18px;margin:14px 0;box-shadow:0 2px 8px #ddd}
+.qtitle{font-weight:bold;font-size:18px;margin-bottom:12px}
+.option{display:block;margin:9px 0;line-height:1.6}
+.fraction{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;line-height:1.05;margin:0 3px;min-width:22px}
+.fraction span:first-child{border-bottom:1.5px solid #333;padding:0 5px;min-width:20px}
+.fraction span:last-child{padding:2px 4px 0}
+.mixed{display:inline-flex;align-items:center;gap:3px;vertical-align:middle}
+.answer-area{margin-top:14px}
+.answer-input{width:260px;max-width:100%;padding:10px;border:1px solid #bbb;border-radius:8px;font-size:18px}
+button{border:0;border-radius:9px;padding:9px 16px;margin:6px 4px 0 0;cursor:pointer;font-size:16px;background:#d85b91;color:#fff}
+button:hover{opacity:.9}
+.result{font-weight:bold;font-size:17px;margin-top:9px;min-height:25px}
+.ok{color:#168a45}.wrong{color:#d33}
+.calc{margin-top:12px}
+.calc label{display:block;color:#777;font-weight:bold;margin-bottom:5px}
+.calc textarea{width:100%;min-height:105px;resize:vertical;border:1px dashed #aaa;border-radius:8px;padding:9px;font-size:17px;line-height:28px;background:repeating-linear-gradient(to bottom,#fff 0,#fff 27px,#e7e7e7 28px)}
+.score{position:sticky;top:0;z-index:5;background:#fff0f6;padding:10px;border-radius:10px;text-align:center;font-weight:bold;color:#b64a78;margin-bottom:12px}
+.section{color:#b64a78;font-size:22px;font-weight:bold;margin-top:25px}
+.small{font-size:14px;color:#777}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>📘 七年級數學｜第二次段考互動題庫</h1>
+<div class="subtitle">每一題都可以單獨確認答案；答錯會顯示正確答案。</div>
+<div class="score" id="score">已答對 0 題</div>
+
+<div class="section">一、選擇題</div>
+
+<div class="question">
+<div class="qtitle">1. 下列 9 個數中，是 918 的質因數共有幾個？<br>1、2、3、9、13、17、51、459、918</div>
+<label class="option"><input type="radio" name="q1" value="A"> A. 8</label>
+<label class="option"><input type="radio" name="q1" value="B"> B. 7</label>
+<label class="option"><input type="radio" name="q1" value="C"> C. 5</label>
+<label class="option"><input type="radio" name="q1" value="D"> D. 3</label>
+<div class="calc"><label>✏️ 計算區</label><textarea placeholder="可以在這裡寫計算過程……"></textarea></div>
+<button onclick="checkMC(1,'D')">確認答案</button><div class="result" id="r1"></div>
+</div>
+
+<div class="question">
+<div class="qtitle">2. 下列 4 個數中，是 11 的倍數有幾個？<br>345345、37195、1452、891</div>
+<label class="option"><input type="radio" name="q2" value="A"> A. 4</label>
+<label class="option"><input type="radio" name="q2" value="B"> B. 3</label>
+<label class="option"><input type="radio" name="q2" value="C"> C. 2</label>
+<label class="option"><input type="radio" name="q2" value="D"> D. 1</label>
+<div class="calc"><label>✏️ 計算區</label><textarea placeholder="可以在這裡寫計算過程……"></textarea></div>
+<button onclick="checkMC(2,'B')">確認答案</button><div class="result" id="r2"></div>
+</div>
+
+<div class="question">
+<div class="qtitle">3. 計算 <span class="mixed">9 <span class="fraction"><span>1</span><span>5</span></span></span> × 239 ＋ <span class="mixed">9 <span class="fraction"><span>1</span><span>5</span></span></span> × (－39) ＝？</div>
+<label class="option"><input type="radio" name="q3" value="A"> A. 1840</label>
+<label class="option"><input type="radio" name="q3" value="B"> B. 1480</label>
+<label class="option"><input type="radio" name="q3" value="C"> C. －<span class="mixed">209 <span class="fraction"><span>1</span><span>5</span></span></span></label>
+<label class="option"><input type="radio" name="q3" value="D"> D. <span class="mixed">200 <span class="fraction"><span>1</span><span>5</span></span></span></label>
+<div class="calc"><label>✏️ 計算區</label><textarea placeholder="可以在這裡寫計算過程……"></textarea></div>
+<button onclick="checkMC(3,'A')">確認答案</button><div class="result" id="r3"></div>
+</div>
+
+<div class="question">
+<div class="qtitle">4. 將正整數 N 的所有正因數由小而大排列：1、2、a、b、14、c、49、e、N，則 b＋N 為多少？</div>
+<label class="option"><input type="radio" name="q4" value="A"> A. 102</label>
+<label class="option"><input type="radio" name="q4" value="B"> B. 104</label>
+<label class="option"><input type="radio" name="q4" value="C"> C. 203</label>
+<label class="option"><input type="radio" name="q4" value="D"> D. 210</label>
+<div class="calc"><label>✏️ 計算區</label><textarea placeholder="可以在這裡寫計算過程……"></textarea></div>
+<button onclick="checkMC(4,'C')">確認答案</button><div class="result" id="r4"></div>
+</div>
+
+<div class="question">
+<div class="qtitle">5. 若六位數 12345□ 是 3 的倍數，也是 4 的倍數，則 □ 中可填入的數為何？</div>
+<label class="option"><input type="radio" name="q5" value="A"> A. 9</label>
+<label class="option"><input type="radio" name="q5" value="B"> B. 6</label>
+<label class="option"><input type="radio" name="q5" value="C"> C. 3</label>
+<label class="option"><input type="radio" name="q5" value="D"> D. 0</label>
+<div class="calc"><label>✏️ 計算區</label><textarea placeholder="可以在這裡寫計算過程……"></textarea></div>
+<button onclick="checkMC(5,'B')">確認答案</button><div class="result" id="r5"></div>
+</div>
+
+<div class="question">
+<div class="qtitle">6. 請問 －（<span class="fraction"><span>67</span><span>71</span></span> － <span class="fraction"><span>1</span><span>2</span></span> － <span class="fraction"><span>7</span><span>15</span></span>）＝？</div>
+<label class="option"><input type="radio" name="q6" value="A"> A. －（<span class="fraction"><span>67</span><span>71</span></span> ＋ <span class="fraction"><span>1</span><span>2</span></span>）＋ <span class="fraction"><span>7</span><span>15</span></span></label>
+<label class="option"><input type="radio" name="q6" value="B"> B. <span class="fraction"><span>67</span><span>71</span></span> ＋ <span class="fraction"><span>1</span><span>2</span></span> ＋ <span class="fraction"><span>7</span><span>15</span></span></label>
+<label class="option"><input type="radio" name="q6" value="C"> C. －（<span class="fraction"><span>67</span><span>71</span></span> ＋ <span class="fraction"><span>1</span><span>2</span></span> ＋ <span class="fraction"><span>7</span><span>15</span></span>）</label>
+<label class="option"><input type="radio" name="q6" value="D"> D. －<span class="fraction"><span>67</span><span>71</span></span> ＋ <span class="fraction"><span>1</span><span>2</span></span> ＋ <span class="fraction"><span>7</span><span>15</span></span></label>
+<div class="calc"><label>✏️ 計算區</label><textarea placeholder="可以在這裡寫計算過程……"></textarea></div>
+<button onclick="checkMC(6,'D')">確認答案</button><div class="result" id="r6"></div>
+</div>
+
+<div class="question">
+<div class="qtitle">7. 下列五個數中：2⁴、2×5²、2×5³、2³×3 和 2⁵×5，是 2⁴×5² 的因數共有幾個？</div>
+<label class="option"><input type="radio" name="q7" value="A"> A. 2</label>
+<label class="option"><input type="radio" name="q7" value="B"> B. 3</label>
+<label class="option"><input type="radio" name="q7" value="C"> C. 4</label>
+<label class="option"><input type="radio" name="q7" value="D"> D. 5</label>
+<div class="calc"><label>✏️ 計算區</label><textarea placeholder="可以在這裡寫計算過程……"></textarea></div>
+<button onclick="checkMC(7,'A')">確認答案</button><div class="result" id="r7"></div>
+</div>
+
+<div class="question">
+<div class="qtitle">8. 下列 6 種敘述中，錯誤共有幾個？<br>
+(1) 所有的質數都是奇數。　
+(2) 正整數不是質數就是合數。　
+(3) 任一正整數的因數個數都是偶數個。<br>
+(4) 相異兩質數一定互質。　
+(5) 0 的倒數是 0。　
+(6) 若有兩個整數互質，則這兩個整數都是質數。</div>
+<label class="option"><input type="radio" name="q8" value="A"> A. 6</label>
+<label class="option"><input type="radio" name="q8" value="B"> B. 5</label>
+<label class="option"><input type="radio" name="q8" value="C"> C. 4</label>
+<label class="option"><input type="radio" name="q8" value="D"> D. 3</label>
+<div class="calc"><label>✏️ 計算區</label><textarea placeholder="可以在這裡寫計算過程……"></textarea></div>
+<button onclick="checkMC(8,'B')">確認答案</button><div class="result" id="r8"></div>
+</div>
+
+<div class="question">
+<div class="qtitle">9. 若 a、b、c 為任意三個數，且 a、b、c 皆不為 0，請問錯誤的是？</div>
+<label class="option"><input type="radio" name="q9" value="A"> A. (a＋b)÷c＝a÷c＋b÷c</label>
+<label class="option"><input type="radio" name="q9" value="B"> B. c×(a－b)＝c×a－c×b</label>
+<label class="option"><input type="radio" name="q9" value="C"> C. c÷(a＋b)＝c÷a＋c÷b</label>
+<label class="option"><input type="radio" name="q9" value="D"> D. a÷b÷c＝(a÷b)÷c</label>
+<div class="calc"><label>✏️ 計算區</label><textarea placeholder="可以在這裡寫計算過程……"></textarea></div>
+<button onclick="checkMC(9,'C')">確認答案</button><div class="result" id="r9"></div>
+</div>
+
+<div class="question">
+<div class="qtitle">10. 已知 <span class="fraction"><span>－1</span><span>3</span></span> ＝ <span class="fraction"><span>a</span><span>9</span></span> ＝ <span class="fraction"><span>－5</span><span>b</span></span> ＝ <span class="fraction"><span>10</span><span>c</span></span>，則 a＋b＋c＝？</div>
+<label class="option"><input type="radio" name="q10" value="A"> A. 12</label>
+<label class="option"><input type="radio" name="q10" value="B"> B. －12</label>
+<label class="option"><input type="radio" name="q10" value="C"> C. 18</label>
+<label class="option"><input type="radio" name="q10" value="D"> D. －18</label>
+<div class="calc"><label>✏️ 計算區</label><textarea placeholder="可以在這裡寫計算過程……"></textarea></div>
+<button onclick="checkMC(10,'D')">確認答案</button><div class="result" id="r10"></div>
+</div>
+
+<div class="section">二、填充題</div>
+<p class="small">請輸入答案後按「確認答案」。需要計算時，可以使用每題的計算區。</p>
+
+<div id="fills"></div>
+</div>
+
+<script>
+const fillQuestions=[
+["1","已知六位數 283□32 是 9 的倍數，則 □ 中可填入的數為？","0、9"],
+["2","有兩個連續奇數，它們相乘的結果是 483，這兩個奇數是？","21、23"],
+["3","（96，120，144）的最大公因數，以標準分解式表示。","2^3"],
+["4","［30，45，72］的最小公倍數，以標準分解式表示。","2^3×3^2×5"],
+["5","（2^4×3×5^2，2^3×5^3×7^2，2^3×5^4×7）的最大公因數，以標準分解式表示。","2^3×5^2"],
+["6","［2^4×5^3×11^2，2^2×5^2×7，2^3×5^4×7^2］的最小公倍數，以標準分解式表示。","2^4×5^4×7^2×11^2"],
+["7","計算 3<span class='mixed'> <span class='fraction'><span>5</span><span>13</span></span></span>－[(－<span class='fraction'><span>19</span><span>17</span></span>)－<span class='fraction'><span>21</span><span>13</span></span>]，並化成最簡分數。","6 <span class='fraction'><span>2</span><span>17</span></span>"],
+["8","計算 (－<span class='fraction'><span>1</span><span>3</span></span>)×(<span class='fraction'><span>3</span><span>5</span></span>＋1.5)÷(－<span class='fraction'><span>21</span><span>5</span></span>)，並化成最簡分數。","<span class='fraction'><span>1</span><span>6</span></span>"],
+["9","介於 1～40 的正整數中（包含 1 和 40），有 a 個質數、b 個合數，請問 b－a＝？","15"],
+["10","已知兩正整數 a、b，其中 a×b＝3024、[a、b]＝252，則 a、b 兩數的最大公因數是？","12"],
+["11","a＝－<span class='fraction'><span>2</span><span>5</span></span>，b＝－<span class='fraction'><span>1</span><span>3</span></span>，c＝－<span class='fraction'><span>3</span><span>7</span></span>，請以 a、b、c 表示大小關係。","c<a<b"],
+["12","a＝<span class='fraction'><span>14</span><span>15</span></span>，b＝<span class='fraction'><span>15</span><span>16</span></span>，c＝<span class='fraction'><span>16</span><span>17</span></span>，請以 a、b、c 表示大小關係。","a<b<c"],
+["13","600 公尺的大橋兩側原來每隔 10 公尺裝一盞路燈（橋頭與橋尾未裝），改為每隔 15 公尺裝一盞，兩側不需要拆除的路燈共有多少盞？","38"],
+["14","A 線公車每 10 分鐘一班，B 線每 15 分鐘一班，兩線第一班都在上午 8：00，末班都在晚上 8：00，從第一班到末班同時發車共有多少次？","25"],
+["15","計算 2×(<span class='fraction'><span>1</span><span>2</span></span>＋<span class='fraction'><span>1</span><span>3</span></span>＋<span class='fraction'><span>1</span><span>4</span></span>＋<span class='fraction'><span>1</span><span>5</span></span>)＋(－4)×(<span class='fraction'><span>1</span><span>3</span></span>＋<span class='fraction'><span>1</span><span>4</span></span>＋<span class='fraction'><span>1</span><span>5</span></span>)＋(－6)×(<span class='fraction'><span>1</span><span>4</span></span>＋<span class='fraction'><span>1</span><span>5</span></span>)＋8×<span class='fraction'><span>1</span><span>5</span></span>。","－1 <span class='fraction'><span>2</span><span>3</span></span>"]
+];
+
+function normalize(s){
+ return s.trim().replace(/\s+/g,"").replace(/（/g,"(").replace(/）/g,")").replace(/－/g,"-").replace(/−/g,"-").replace(/×/g,"*").replace(/·/g,"*").replace(/，/g,",").replace(/、/g,",");
+}
+function checkEquivalent(user, ans){
+ const u=normalize(user), a=normalize(ans);
+ if(u===a) return true;
+ const alternatives=a.split("、").map(normalize);
+ if(alternatives.includes(u)) return true;
+ // 允許乘方用 HTML/文字常見寫法
+ const u2=u.replace(/\^/g,"").replace(/²/g,"^2").replace(/³/g,"^3");
+ return alternatives.includes(u2);
+}
+function addFill(i){
+ const [n,q,ans]=fillQuestions[i];
+ const div=document.createElement("div");
+ div.className="question";
+ div.innerHTML=`
+ <div class="qtitle">${n}. ${q}</div>
+ <div class="answer-area">
+   <input class="answer-input" id="f${n}" type="text" placeholder="輸入答案">
+   <br>
+   <button onclick="checkFill('${n}')">確認答案</button>
+   <div class="result" id="fr${n}"></div>
+   <div class="calc"><label>✏️ 計算區</label><textarea placeholder="可以在這裡寫計算過程……"></textarea></div>
+ </div>`;
+ document.getElementById("fills").appendChild(div);
+}
+fillQuestions.forEach((_,i)=>addFill(i));
+
+function checkMC(n,ans){
+ const selected=document.querySelector(`input[name="q${n}"]:checked`);
+ const r=document.getElementById("r"+n);
+ if(!selected){r.textContent="請先選擇答案。";r.className="result wrong";return}
+ if(selected.value===ans){
+   r.textContent="✓ 答對了！";r.className="result ok";
+   selected.disabled=true;
+   document.querySelectorAll(`input[name="q${n}"]`).forEach(x=>x.disabled=true);
+   updateScore();
+ }else{
+   r.textContent=`✗ 答錯了！答案是 ${ans}。`;r.className="result wrong";
+ }
+}
+function checkFill(n){
+ const input=document.getElementById("f"+n);
+ const r=document.getElementById("fr"+n);
+ const ans=fillQuestions[Number(n)-1][2];
+ if(!input.value.trim()){r.textContent="請先輸入答案。";r.className="result wrong";return}
+ if(checkEquivalent(input.value,ans)){
+   r.textContent="✓ 答對了！";r.className="result ok";
+   input.disabled=true;
+   updateScore();
+ }else{
+   r.textContent=`✗ 答錯了！答案是 ${ans.replace(/<[^>]+>/g,"")}。`;r.className="result wrong";
+ }
+}
+function updateScore(){
+ const ok=document.querySelectorAll(".ok").length;
+ document.getElementById("score").textContent=`已答對 ${ok} 題`;
+}
+</script>
+</body>
+</html>

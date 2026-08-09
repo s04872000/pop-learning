@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>心算練習</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:"Microsoft JhengHei",sans-serif;
+
+    background:
+    linear-gradient(
+        135deg,
+        #ffd6ea,
+        #dff6ff,
+        #fff3c4
+    );
+}
+
+.container{
+    width:700px;
+    background:white;
+    border-radius:35px;
+    padding:35px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+}
+
+.cats{
+    font-size:55px;
+}
+
+h1{
+    color:#ff5ca8;
+    font-size:42px;
+    margin:10px 0;
+}
+
+.subtitle{
+    font-size:22px;
+    color:#666;
+    margin-bottom:20px;
+}
+
+.question{
+    font-size:70px;
+    font-weight:bold;
+    color:#444;
+    margin:25px 0;
+}
+
+input{
+    width:220px;
+    font-size:40px;
+    text-align:center;
+    padding:15px;
+    border-radius:20px;
+    border:4px solid #87cefa;
+}
+
+button{
+    margin-top:20px;
+    font-size:28px;
+    padding:15px 35px;
+    border:none;
+    border-radius:20px;
+    background:#ffb347;
+    color:white;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
+.message{
+    margin-top:20px;
+    min-height:60px;
+    font-size:32px;
+    font-weight:bold;
+}
+
+.correct{
+    color:#1ca64c;
+}
+
+.wrong{
+    color:#e53935;
+}
+
+.stats{
+    margin-top:25px;
+    background:#fff9e8;
+    border-radius:20px;
+    padding:20px;
+}
+
+.stats p{
+    font-size:28px;
+    margin:12px;
+}
+
+.footerCats{
+    margin-top:20px;
+    font-size:45px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="cats">
+        🐱 🐾 😺 🐾 🐱
+    </div>
+
+    <h1>心算練習</h1>
+
+    <div class="subtitle">
+        挑戰兩位數 × 一位數！
+    </div>
+
+    <div class="question" id="question">
+        25 × 3
+    </div>
+
+    <input
+        type="number"
+        id="answer"
+        placeholder="答案">
+
+    <br>
+
+    <button onclick="checkAnswer()">
+        🐾 送出答案
+    </button>
+
+    <div class="message" id="message"></div>
+
+    <div class="stats">
+        <p>📝 已作答：<span id="total">0</span> 題</p>
+        <p>⭐ 答對：<span id="correct">0</span> 題</p>
+        <p>🎯 答對率：<span id="accuracy">0</span>%</p>
+        <p>⚡ 平均速度：<span id="avgTime">0</span> 秒</p>
+    </div>
+
+    <div class="footerCats">
+        🐈 🐈‍⬛ 😸 😻 😺 🐈
+    </div>
+
+</div>
+
+<script>
+
+let num1;
+let num2;
+let answer;
+
+let total = 0;
+let correct = 0;
+let totalTime = 0;
+
+let startTime;
+
+const praise = [
+"太厲害了！😺",
+"答對啦！🌟",
+"妳真聰明！🐱",
+"超棒的！🎉",
+"心算高手！🏆",
+"貓咪為妳鼓掌！👏",
+"太強啦！😻"
+];
+
+function newQuestion(){
+
+    num1 = Math.floor(Math.random()*90)+10;
+    num2 = Math.floor(Math.random()*9)+1;
+
+    answer = num1 * num2;
+
+    document.getElementById("question").textContent =
+        `${num1} × ${num2}`;
+
+    document.getElementById("answer").value = "";
+
+    document.getElementById("answer").focus();
+
+    startTime = Date.now();
+}
+
+function checkAnswer(){
+
+    const input =
+        document.getElementById("answer");
+
+    if(input.value===""){
+        return;
+    }
+
+    const userAnswer =
+        Number(input.value);
+
+    const seconds =
+        ((Date.now()-startTime)/1000).toFixed(1);
+
+    total++;
+    totalTime += Number(seconds);
+
+    const msg =
+        document.getElementById("message");
+
+    if(userAnswer===answer){
+
+        correct++;
+
+        const randomPraise =
+            praise[Math.floor(
+                Math.random()*praise.length
+            )];
+
+        msg.innerHTML =
+            `✅ ${randomPraise}<br>用了 ${seconds} 秒`;
+
+        msg.className =
+            "message correct";
+
+    }else{
+
+        msg.innerHTML =
+            `❌ 再試試看！<br>答案是 ${answer}`;
+
+        msg.className =
+            "message wrong";
+    }
+
+    updateStats();
+
+    setTimeout(newQuestion,1500);
+}
+
+function updateStats(){
+
+    document.getElementById("total").textContent =
+        total;
+
+    document.getElementById("correct").textContent =
+        correct;
+
+    document.getElementById("accuracy").textContent =
+        ((correct/total)*100).toFixed(1);
+
+    document.getElementById("avgTime").textContent =
+        (totalTime/total).toFixed(1);
+}
+
+document
+.getElementById("answer")
+.addEventListener("keydown",function(e){
+
+    if(e.key==="Enter"){
+        checkAnswer();
+    }
+});
+
+newQuestion();
+
+</script>
+
+</body>
+</html>

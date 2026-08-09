@@ -1,0 +1,2877 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<title>五年級數學題庫</title>
+<style>
+body{font-family:"Microsoft JhengHei",Arial;max-width:900px;margin:auto;padding:20px;line-height:1.8}
+table{border-collapse:collapse}
+th,td{border:1px solid #333;padding:6px 10px;text-align:center}
+.q{border:1px solid #ccc;border-radius:8px;padding:16px;margin:20px 0}
+.answer{display:none;background:#f5f5f5;padding:8px;margin-top:8px}
+.msg{font-weight:bold}
+label{display:block;margin:6px 0}
+button{margin-top:8px}
+
+.blank{
+    display:inline-block;
+    width:60px;
+    height:24px;
+    border:1px solid #000;
+    vertical-align:middle;
+}
+
+.fill{
+    width:70px;
+    text-align:center;
+    font-size:16px;
+    padding:3px;
+}
+
+.workbox{
+    width:100%;
+    height:180px;
+    border:2px solid #000;
+    font-size:18px;
+    padding:8px;
+    resize:none;
+    box-sizing:border-box;
+    font-family:"Microsoft JhengHei", Arial;
+}
+
+.answerbox{
+    width:80px;
+    text-align:center;
+    font-size:16px;
+}
+
+.frac sup{
+  display:block;
+  border-bottom:1px solid #000;
+  padding:0 2px;
+}
+.frac sub{
+  display:block;
+  padding:0 2px;
+}
+
+.frac{
+    display:inline-flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    vertical-align:middle;
+    margin:0 1px;
+    line-height:1;
+    font-size:0.95em;
+}
+
+.frac .top{
+    border-bottom:2px solid #000;
+    padding:0 3px;
+}
+
+.frac .bottom{
+    padding:0 3px;
+}
+
+.mixed{
+    display:inline-flex;
+    align-items:center;
+    vertical-align:middle;
+}
+
+.mixed .whole{
+    margin-right:2px;
+}
+
+.work{
+    width:100%;
+    height:120px;
+    margin:10px 0;
+    padding:10px;
+    font-size:18px;
+    font-family:微軟正黑體;
+    resize:vertical;
+    border:2px solid #999;
+    border-radius:8px;
+    box-sizing:border-box;
+}
+
+.compareTable{
+    border-collapse:collapse;
+}
+
+.compareTable td{
+    padding:6px 8px;
+    vertical-align:middle;
+}
+
+.compareTable label{
+    display:inline;
+    margin-right:8px;
+}
+
+.topMenu{
+    position:sticky;
+    top:0;
+    z-index:9999;
+
+    background:#ffeaf4;
+    border-bottom:2px solid #ff8fc0;
+
+    padding:8px;
+
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+
+    gap:6px;
+
+    text-align:center;
+}
+
+.topMenu a{
+    display:block;
+
+    background:white;
+    border:2px solid #ffb3d1;
+    border-radius:10px;
+
+    padding:6px 4px;
+
+    font-size:13px;      /* 字縮小 */
+    font-weight:bold;
+
+    color:#d63384;
+    text-decoration:none;
+
+    transition:.2s;
+}
+
+.topMenu a:hover{
+    background:#ffb3d1;
+    color:white;
+}
+</style>
+</head>
+<body>
+<div class="topMenu">
+
+<a href="#unit1">
+單元1 多位小數<br>1-5 34-46 87 89
+</a>
+
+<a href="#unit2">
+單元2 
+因數<br>6-10 47-53 90
+</a>
+
+<a href="#unit3">
+單元3 
+倍數<br>11-17 54-64 91
+</a>
+
+<a href="#unit4">
+單元4 
+分數<br>18-25 65-71 88 92
+</a>
+
+<a href="#unit5">
+單元5 
+多邊形<br>26-33 72-86 93
+</a>
+
+</div>
+<h1>五年級數學題庫</h1>
+
+<div id="unit1"></div>
+<div class="q">
+<h3>第1題</h3>
+<p>67 個 0.0001 怎麼讀？</p>
+<label><input type="radio" name="q1" value="A"> A. 零點零六七</label>
+<label><input type="radio" name="q1" value="B"> B. 零點六十七</label>
+<label><input type="radio" name="q1" value="C"> C. 零點零零六七</label>
+<label><input type="radio" name="q1" value="D"> D. 零點零六十七</label>
+<button onclick="check('q1','m1','a1','b1')">確認答案</button>
+<button id="b1" style="display:none" onclick="showAns('a1')">看答案</button>
+<div id="m1" class="msg"></div>
+<div id="a1" class="answer"><b>正確答案：C</b></div>
+</div>
+
+<div class="q">
+<h3>第2題</h3>
+<p>小數 1.0023，讀作？</p>
+
+<label><input type="radio" name="q2" value="A"> A. 一點零二十三</label>
+<label><input type="radio" name="q2" value="B"> B. 一點零零二十三</label>
+<label><input type="radio" name="q2" value="C"> C. 一點零零二三</label>
+<label><input type="radio" name="q2" value="D"> D. 一點零二三</label>
+<button onclick="check('q2','m2','a2','b2')">確認答案</button>
+<button id="b2" style="display:none" onclick="showAns('a2')">看答案</button>
+<div id="m2" class="msg"></div>
+<div id="a2" class="answer">
+<b>正確答案：C</b>
+</div>
+
+</div>   <!-- 第2題結束 -->
+
+<div class="q">
+<h3>第3題</h3>
+<p>「9.999」，百分位的 9 是個位 9 的幾倍？</p>
+<label><input type="radio" name="q3" value="A"> A. 100 倍</label>
+<label><input type="radio" name="q3" value="B"> B. 1000 倍</label>
+<label>
+<input type="radio" name="q3" value="C">
+C.
+<span class="frac">
+  <sup>1</sup>
+  <sub>100</sub>
+</span>
+倍
+</label>
+
+<label>
+<input type="radio" name="q3" value="D">
+D.
+<span class="frac">
+  <sup>1</sup>
+  <sub>1000</sub>
+</span>
+倍
+</label>
+<button onclick="check('q3','m3','a3','b3')">確認答案</button>
+<button id="b3" style="display:none" onclick="showAns('a3')">看答案</button>
+<div id="m3" class="msg"></div>
+<div id="a3" class="answer"><b>正確答案：C</b></div>
+</div>
+
+<div class="q">
+<h3>第4題</h3>
+<p>3 個 1、20 個 0.1、3 個 0.1、8 個 0.001 合起來是多少？
+</p>
+<label><input type="radio" name="q4" value="A"> A. 3.58</label>
+<label><input type="radio" name="q4" value="B"> B. 3.508</label>
+<label><input type="radio" name="q4" value="C"> C. 5.38</label>
+<label><input type="radio" name="q4" value="D"> D. 5.308</label>
+<button onclick="check('q4','m4','a4','b4')">確認答案</button>
+<button id="b4" style="display:none" onclick="showAns('a4')">看答案</button>
+<div id="m4" class="msg"></div>
+<div id="a4" class="answer"><b>正確答案：D</b><br></div>
+</div>
+
+<div class="q">
+<h3>第5題</h3>
+<p>0.677>0.6□6，□裡不可以填入哪一個數字？？
+</p>
+<label><input type="radio" name="q5" value="A"> A. 5</label>
+<label><input type="radio" name="q5" value="B"> B. 6</label>
+<label><input type="radio" name="q5" value="C"> C. 7</label>
+<label><input type="radio" name="q5" value="D"> D. 8</label>
+<button onclick="check('q5','m5','a5','b5')">確認答案</button>
+<button id="b5" style="display:none" onclick="showAns('a5')">看答案</button>
+<div id="m5" class="msg"></div>
+<div id="a5" class="answer"><b>正確答案：D</b></div>
+</div>
+
+<div id="unit2"></div>
+<div class="q">
+<h3>第6題</h3>
+<p>若某數的所有因數中，最大的因數和最小的因數合起來是 16，某數是多少？
+</p>
+<label><input type="radio" name="q6" value="A"> A. 14</label>
+<label><input type="radio" name="q6" value="B"> B. 15</label>
+<label><input type="radio" name="q6" value="C"> C. 16</label>
+<label><input type="radio" name="q6" value="D"> D. 17</label>
+<button onclick="check('q6','m6','a6','b6')">確認答案</button>
+<button id="b6" style="display:none" onclick="showAns('a6')">看答案</button>
+<div id="m6" class="msg"></div>
+<div id="a6" class="answer"><b>正確答案：B</b><br></div>
+</div>
+
+<div class="q">
+<h3>第7題</h3>
+<p>若一數的最大因數減去最小因數為 49，則該數為多少？
+</p>
+<label><input type="radio" name="q7" value="A"> A. 48</label>
+<label><input type="radio" name="q7" value="B"> B. 49</label>
+<label><input type="radio" name="q7" value="C"> C. 50</label>
+<label><input type="radio" name="q7" value="D"> D. 51</label>
+<button onclick="check('q7','m7','a7','b7')">確認答案</button>
+<button id="b7" style="display:none" onclick="showAns('a7')">看答案</button>
+<div id="m7" class="msg"></div>
+<div id="a7" class="answer"><b>正確答案：C</b><br></div>
+</div>
+
+<div class="q">
+<h3>第8題</h3>
+<p>能同時整除 24 和 68 的整數中，最大和最小的數相差多少？
+</p>
+<label><input type="radio" name="q8" value="A"> A. 3</label>
+<label><input type="radio" name="q8" value="B"> B. 4</label>
+<label><input type="radio" name="q8" value="C"> C. 44</label>
+<label><input type="radio" name="q8" value="D"> D. 92</label>
+<button onclick="check('q8','m8','a8','b8')">確認答案</button>
+<button id="b8" style="display:none" onclick="showAns('a8')">看答案</button>
+<div id="m8" class="msg"></div>
+<div id="a8" class="answer"><b>正確答案：A</b><br></div>
+</div>
+
+<div class="q">
+<h3>第9題</h3>
+
+<p>
+河堤國小五年級的學生共有 108 人，體表會要分組表演〈買冬瓜〉，
+每組的人數要一樣多，但每組人數要在 10～22 人之間，
+請問共有幾種分法？
+</p>
+
+<!-- 計算區 -->
+<textarea class="work" placeholder="請在這裡計算..."></textarea>
+
+<label><input type="radio" name="q9" value="A"> A. 2種</label>
+<label><input type="radio" name="q9" value="B"> B. 3種</label>
+<label><input type="radio" name="q9" value="C"> C. 4種</label>
+<label><input type="radio" name="q9" value="D"> D. 5種</label>
+
+<button onclick="check('q9','m9','a9','b9')">確認答案</button>
+<button id="b9" style="display:none" onclick="showAns('a9')">看答案</button>
+
+<div id="m9" class="msg"></div>
+<div id="a9" class="answer">
+<b>正確答案：A</b><br>
+</div>
+</div>
+
+<div class="q">
+<h3>第10題</h3>
+<p>能同時整除 36 和 48 的整數中，最大和最小的數相差多少？
+</p>
+<label><input type="radio" name="q10" value="A"> A. 9</label>
+<label><input type="radio" name="q10" value="B"> B. 10</label>
+<label><input type="radio" name="q10" value="C"> C. 11</label>
+<label><input type="radio" name="q10" value="D"> D. 12</label>
+<button onclick="check('q10','m10','a10','b10')">確認答案</button>
+<button id="b10" style="display:none" onclick="showAns('a10')">看答案</button>
+<div id="m10" class="msg"></div>
+<div id="a10" class="answer"><b>正確答案：C</b><br></div>
+</div>
+
+<div id="unit3"></div>
+<div class="q">
+<h3>第11題</h3>
+<p>下列關於倍數的敘述，哪一個正確？
+</p>
+<label><input type="radio" name="q11" value="A"> A. 10 和 12 的最小公倍數是 10×12＝120。</label>
+<label><input type="radio" name="q11" value="B"> B. 6 的倍數中，最小的是 12。</label>
+<label><input type="radio" name="q11" value="C"> C. 甲數÷15＝乙數，若甲數和乙數都是整數，則乙數是甲數的倍數。</label>
+<label><input type="radio" name="q11" value="D"> D. 整除算式中，被除數是除數和商的公倍數。
+</label>
+<button onclick="check('q11','m11','a11','b11')">確認答案</button>
+<button id="b11" style="display:none" onclick="showAns('a11')">看答案</button>
+<div id="m11" class="msg"></div>
+<div id="a11" class="answer"><b>正確答案：D</b><br></div>
+</div>
+
+<div class="q">
+<h3>第12題</h3>
+<p>42÷7=6，由此可知？
+</p>
+<label><input type="radio" name="q12" value="A"> A. 6 可以整除 42</label>
+<label><input type="radio" name="q12" value="B"> B. 6 是 42 的倍數</label>
+<label><input type="radio" name="q12" value="C"> C. 7 可以被 42 整除</label>
+<label><input type="radio" name="q12" value="D"> D. 42 是 7 和 8 的倍數</label>
+<button onclick="check('q12','m12','a12','b12')">確認答案</button>
+<button id="b12" style="display:none" onclick="showAns('a12')">看答案</button>
+<div id="m12" class="msg"></div>
+<div id="a12" class="answer"><b>正確答案：A</b><br></div> 
+</div>
+
+<div class="q">
+<h3>第13題</h3>
+<p>已知 a 為 18 和 36 的最小公倍數、b 為 36 的最大因數、c 為 18 的最大因數，請問 a、b、c 的大小關係為何？</p>
+
+<!-- 計算區 -->
+<textarea class="work" placeholder="請在這裡計算..."></textarea>
+
+<label><input type="radio" name="q13" value="A"> A. a>b>c</label>
+<label><input type="radio" name="q13" value="B"> B. a=b>c</label>
+<label><input type="radio" name="q13" value="C"> C. a=c>b</label>
+<label><input type="radio" name="q13" value="D"> D. a＜b＜c</label>
+<button onclick="check('q13','m13','a13','b13')">確認答案</button>
+<button id="b13" style="display:none" onclick="showAns('a13')">看答案</button>
+<div id="m13" class="msg"></div>
+<div id="a13" class="answer"><b>正確答案：B</b><br></div> 
+</div>
+
+<div class="q">
+<h3>第14題</h3>
+<p>甲數為乙數的因數，則乙數為甲數的？
+</p>
+<label><input type="radio" name="q14" value="A"> A. 真分數</label>
+<label><input type="radio" name="q14" value="B"> B. 假分數</label>
+<label><input type="radio" name="q14" value="C"> C. 因數</label>
+<label><input type="radio" name="q14" value="D"> D. 倍數</label>
+<button onclick="check('q14','m14','a14','b14')">確認答案</button>
+<button id="b14" style="display:none" onclick="showAns('a14')">看答案</button>
+<div id="m14" class="msg"></div>
+<div id="a14" class="answer"><b>正確答案：D</b><br></div> 
+</div>
+
+<div class="q">
+<h3>第15題</h3>
+<p>有一四位數 547□，若該數為 2 的倍數，且能被 5 整除，則中的數字會是？
+</p>
+<label><input type="radio" name="q15" value="A"> A. 0</label>
+<label><input type="radio" name="q15" value="B"> B. 2</label>
+<label><input type="radio" name="q15" value="C"> C. 4</label>
+<label><input type="radio" name="q15" value="D"> D. 5</label>
+<button onclick="check('q15','m15','a15','b15')">確認答案</button>
+<button id="b15" style="display:none" onclick="showAns('a15')">看答案</button>
+<div id="m15" class="msg"></div>
+<div id="a15" class="answer"><b>正確答案：A</b><br></div> 
+</div>
+
+<div class="q">
+<h3>第16題</h3>
+<p>下列選項中，何者敘述正確？
+</p>
+<label><input type="radio" name="q16" value="A"> A. 每一個大於 1 的整數，最大的因數都是 1 </label>
+<label><input type="radio" name="q16" value="B"> B. 每一個數的因數，數量都是偶數個</label>
+<label><input type="radio" name="q16" value="C"> C. 7 和 91 的公倍數有 3 個</label>
+<label><input type="radio" name="q16" value="D"> D. 每一個大於 1 的數，都有無限多個倍數</label>
+<button onclick="check('q16','m16','a16','b16')">確認答案</button>
+<button id="b16" style="display:none" onclick="showAns('a16')">看答案</button>
+<div id="m16" class="msg"></div>
+<div id="a16" class="answer"><b>正確答案：D</b><br></div> 
+</div>
+
+<div class="q">
+<h3>第17題</h3>
+<p>關於公因數和公倍數，下面哪一個敘述是錯誤的？
+</p>
+<label><input type="radio" name="q17" value="A"> A. 1 是所有非零整數的公因數</label>
+<label><input type="radio" name="q17" value="B"> B. 兩數的所有公倍數裡，可以找出 1 個最大的數</label>
+<label><input type="radio" name="q17" value="C"> C. 兩數的所有公因數裡，可以找出 1 個最大的數</label>
+<label><input type="radio" name="q17" value="D"> D. 整除算式中，被除數是除數和商的公倍數</label>
+<button onclick="check('q17','m17','a17','b17')">確認答案</button>
+<button id="b17" style="display:none" onclick="showAns('a17')">看答案</button>
+<div id="m17" class="msg"></div>
+<div id="a17" class="answer"><b>正確答案：B</b><br></div> 
+</div>
+
+<div id="unit4"></div>
+<div class="q">
+<h3>第18題</h3>
+<p>有甲、乙兩個分數，甲＜乙，經由通分後，哪一個分數比較大？
+</p>
+<label><input type="radio" name="q18" value="A"> A. 甲</label>
+<label><input type="radio" name="q18" value="B"> B. 乙</label>
+<label><input type="radio" name="q18" value="C"> C. 一樣大</label>
+<label><input type="radio" name="q18" value="D"> D. 無法比較</label>
+<button onclick="check('q18','m18','a18','b18')">確認答案</button>
+<button id="b18" style="display:none" onclick="showAns('a18')">看答案</button>
+<div id="m18" class="msg"></div>
+<div id="a18" class="answer"><b>正確答案：B</b><br></div> 
+</div>
+
+<div class="q">
+<h3>第19題</h3>
+<p>把一個分數的分子和分母同除以一個比 1 大的公因數，得到一個和原來分數相等的分數，這種方法叫做？
+</p>
+<label><input type="radio" name="q19" value="A"> A. 約分</label>
+<label><input type="radio" name="q19" value="B"> B. 擴分</label>
+<label><input type="radio" name="q19" value="C"> C. 通分</label>
+<label><input type="radio" name="q19" value="D"> D. 等分</label>
+<button onclick="check('q19','m19','a19','b19')">確認答案</button>
+<button id="b19" style="display:none" onclick="showAns('a19')">看答案</button>
+<div id="m19" class="msg"></div>
+<div id="a19" class="answer"><b>正確答案：A</b><br></div> 
+</div>
+
+<div class="q">
+<h3>第20題</h3>
+<p>小花拿出一張圖畫紙，先將圖畫紙的[f]2/3[/f]塗上橘色，再將圖畫紙摺成 15 等分，請問塗色的部分會是多少等分？
+
+</p>
+<label><input type="radio" name="q20" value="A"> A. 5</label>
+<label><input type="radio" name="q20" value="B"> B. 10</label>
+<label><input type="radio" name="q20" value="C"> C. 15</label>
+<label><input type="radio" name="q20" value="D"> D. 20</label>
+<button onclick="check('q20','m20','a20','b20')">確認答案</button>
+<button id="b20" style="display:none" onclick="showAns('a20')">看答案</button>
+<div id="m20" class="msg"></div>
+<div id="a20" class="answer"><b>正確答案：B</b><br></div> 
+</div>
+
+<div class="q">
+<h3>第21題</h3>
+<p>
+若[f]23/12[/f]=[m]1 A/24[/m]，則 A 應為？
+</p>
+<label><input type="radio" name="q21" value="A"> A. 46</label>
+<label><input type="radio" name="q21" value="B"> B. 22</label>
+<label><input type="radio" name="q21" value="C"> C. 11</label>
+<label><input type="radio" name="q21" value="D"> D. 1</label>
+<button onclick="check('q21','m21','a21','b21')">確認答案</button>
+<button id="b21" style="display:none" onclick="showAns('a21')">看答案</button>
+<div id="m21" class="msg"></div>
+<div id="a21" class="answer"><b>正確答案：B</b><br></div> 
+</div>
+
+<div class="q">
+<h3>第22題</h3>
+<p>比[f]6/18[/f]大，比[f]5/6[/f]小，分母是 36 的分數有幾個？
+</p>
+
+<!-- 計算區 -->
+<textarea class="work" placeholder="請在這裡計算..."></textarea>
+
+<label><input type="radio" name="q22" value="A"> A. 17 個</label>
+<label><input type="radio" name="q22" value="B"> B. 18 個</label>
+<label><input type="radio" name="q22" value="C"> C. 19 個</label>
+<label><input type="radio" name="q22" value="D"> D. 20 個</label>
+<button onclick="check('q22','m22','a22','b22')">確認答案</button>
+<button id="b22" style="display:none" onclick="showAns('a22')">看答案</button>
+<div id="m22" class="msg"></div>
+<div id="a22" class="answer"><b>正確答案：A</b><br></div> 
+</div>
+
+<div class="q">
+<h3>第23題</h3>
+<p>下面哪一個分數和[f]16/28[/f]一樣大？
+</p>
+<label><input type="radio" name="q23" value="A"> A. [f]24/56[/f]</label>
+<label><input type="radio" name="q23" value="B"> B. [f]12/21[/f]</label>
+<label><input type="radio" name="q23" value="C"> C. [f]12/21[/f]</label>
+<label><input type="radio" name="q23" value="D"> D. [f]32/84[/f]</label>
+<button onclick="check('q23','m23','a23','b23')">確認答案</button>
+<button id="b23" style="display:none" onclick="showAns('a23')">看答案</button>
+<div id="m23" class="msg"></div>
+<div id="a23" class="answer"><b>正確答案：B</b><br></div> 
+</div>
+
+<div class="q">
+<h3>第24題</h3>
+<p>有 36 個橘子裝成一盒禮盒，阿賀有[f]4/12[/f]盒，阿苗有[f]2/3[/f]盒，阿葆有[f]2/6[/f]盒，誰的禮盒橘子數量最多？
+</p>
+
+<!-- 計算區 -->
+<textarea class="work" placeholder="請在這裡計算..."></textarea>
+
+<label><input type="radio" name="q24" value="A"> A. 阿賀</label>
+<label><input type="radio" name="q24" value="B"> B. 阿苗</label>
+<label><input type="radio" name="q24" value="C"> C. 阿葆</label>
+<label><input type="radio" name="q24" value="D"> D. 一樣多</label>
+<button onclick="check('q24','m24','a24','b24')">確認答案</button>
+<button id="b24" style="display:none" onclick="showAns('a24')">看答案</button>
+<div id="m24" class="msg"></div>
+<div id="a24" class="answer"><b>正確答案：B</b><br></div> 
+</div>
+
+<div class="q">
+<h3>第25題</h3>
+<p>下面哪一個分數比[f]2/3[/f]大且比[f]4/5[/f]小？
+</p>
+
+<!-- 計算區 -->
+<textarea class="work" placeholder="請在這裡計算..."></textarea>
+
+<label><input type="radio" name="q25" value="A"> A. [f]3/4[/f]</label>
+<label><input type="radio" name="q25" value="B"> B. [f]5/6[/f]</label>
+<label><input type="radio" name="q25" value="C"> C. [f]9/10[/f]</label>
+<label><input type="radio" name="q25" value="D"> D. [f]1/2[/f]</label>
+<button onclick="check('q25','m25','a25','b25')">確認答案</button>
+<button id="b25" style="display:none" onclick="showAns('a25')">看答案</button>
+<div id="m25" class="msg"></div>
+<div id="a25" class="answer"><b>正確答案：A</b><br></div> 
+</div>
+
+<div id="unit5"></div>
+<div class="q">
+<h3>第26題</h3>
+<p>從學校到郵局，哪一條路線最近？
+</p>
+<label><input type="radio" name="q26" value="A"> A. ㄅ</label>
+<label><input type="radio" name="q26" value="B"> B. ㄆ</label>
+<label><input type="radio" name="q26" value="C"> C. ㄇ</label>
+<label><input type="radio" name="q26" value="D"> D. ㄈ</label>
+
+<div style="text-align:center;margin:20px 0;">
+<svg width="560" height="290" viewBox="0 0 560 290">
+
+    <!-- 左上路線 -->
+    <line x1="90" y1="145" x2="190" y2="40"
+          stroke="black" stroke-width="3"/>
+    <line x1="190" y1="40" x2="470" y2="145"
+          stroke="black" stroke-width="3"/>
+
+    <!-- 右上路線 -->
+    <line x1="90" y1="145" x2="330" y2="40"
+          stroke="black" stroke-width="3"/>
+    <line x1="330" y1="40" x2="470" y2="145"
+          stroke="black" stroke-width="3"/>
+
+    <!-- 中間 -->
+    <line x1="90" y1="145" x2="470" y2="145"
+          stroke="black" stroke-width="3"/>
+
+    <!-- 下方 -->
+    <line x1="90" y1="145" x2="270" y2="255"
+          stroke="black" stroke-width="3"/>
+    <line x1="270" y1="255" x2="470" y2="145"
+          stroke="black" stroke-width="3"/>
+
+    <!-- 學校 -->
+    <text x="20" y="140"
+          font-size="26"
+          font-family="Microsoft JhengHei">學校</text>
+
+    <!-- 郵局 -->
+    <text x="480" y="140"
+          font-size="26"
+          font-family="Microsoft JhengHei">郵局</text>
+
+<!-- ㄇ -->
+<circle cx="150" cy="55" r="24" fill="black"/>
+<text x="150" y="55"
+      fill="white"
+      font-size="28"
+      font-family="Microsoft JhengHei"
+      text-anchor="middle"
+      dominant-baseline="middle">ㄇ</text>
+
+<!-- ㄈ -->
+<circle cx="400" cy="55" r="24" fill="black"/>
+<text x="400" y="55"
+      fill="white"
+      font-size="28"
+      font-family="Microsoft JhengHei"
+      text-anchor="middle"
+      dominant-baseline="middle">ㄈ</text>
+
+<!-- ㄅ -->
+<circle cx="280" cy="145" r="24" fill="black"/>
+<text x="280" y="145"
+      fill="white"
+      font-size="28"
+      font-family="Microsoft JhengHei"
+      text-anchor="middle"
+      dominant-baseline="middle">ㄅ</text>
+
+<!-- ㄆ -->
+<circle cx="225" cy="215" r="24" fill="black"/>
+<text x="225" y="215"
+      fill="white"
+      font-size="28"
+      font-family="Microsoft JhengHei"
+      text-anchor="middle"
+      dominant-baseline="middle">ㄆ</text>
+
+</svg>
+</div>
+
+<button onclick="check('q26','m26','a26','b26')">確認答案</button>
+<button id="b26" style="display:none" onclick="showAns('a26')">看答案</button>
+<div id="m26" class="msg"></div>
+<div id="a26" class="answer"><b>正確答案：A</b><br></div> 
+</div>
+
+<div class="q">
+<h3>第27題</h3>
+<p>有一等腰直角三角形，請問三角形的三個角分別為幾度？
+
+</p>
+<label><input type="radio" name="q27" value="A"> A. 30 度、60 度、90 度。</label>
+<label><input type="radio" name="q27" value="B"> B. 45 度、45 度、90 度。</label>
+<label><input type="radio" name="q27" value="C"> C. 40 度、40 度、100 度。</label>
+<label><input type="radio" name="q27" value="D"> D. 52 度、52 度、76 度。</label>
+<button onclick="check('q27','m27','a27','b27')">確認答案</button>
+<button id="b27" style="display:none" onclick="showAns('a27')">看答案</button>
+<div id="m27" class="msg"></div>
+<div id="a27" class="answer"><b>正確答案：B</b><br></div> 
+</div>
+
+<div class="q">
+<h3>第28題</h3>
+<p>將一個圓對折三次後而成的扇形，其圓心角度數為何？
+</p>
+<label><input type="radio" name="q28" value="A"> A. 30 度</label>
+<label><input type="radio" name="q28" value="B"> B. 45 度</label>
+<label><input type="radio" name="q28" value="C"> C. 90 度</label>
+<label><input type="radio" name="q28" value="D"> D. 120 度</label>
+<button onclick="check('q28','m28','a28','b28')">確認答案</button>
+<button id="b28" style="display:none" onclick="showAns('a28')">看答案</button>
+<div id="m28" class="msg"></div>
+<div id="a28" class="answer"><b>正確答案：B</b><br></div> 
+</div>
+
+<div class="q">
+<h3>第29題</h3>
+<p>有一等腰三角形，已知其中兩邊長分別為 7 公分、14 公分，則第三邊必為幾公分？
+</p>
+<label><input type="radio" name="q29" value="A"> A. 7cm</label>
+<label><input type="radio" name="q29" value="B"> B. 11cm</label>
+<label><input type="radio" name="q29" value="C"> C. 14 cm</label>
+<label><input type="radio" name="q29" value="D"> D. 28 cm</label>
+<button onclick="check('q29','m29','a29','b29')">確認答案</button>
+<button id="b29" style="display:none" onclick="showAns('a29')">看答案</button>
+<div id="m29" class="msg"></div>
+<div id="a29" class="answer"><b>正確答案：C</b><br></div> 
+</div>
+
+<div class="q">
+<h3>第30題</h3>
+<p>關於多邊形的敘述，下列何者正確？<br>
+甲：有一五邊形邊長皆相等，則可稱之為正五邊形。<br>
+乙：正三角形的三個角都是60度。<br>
+丙：米米拿著長度分別為3、4、5公分的吸管，可以排成一三角形。<br>
+丁：有一六邊形每個角的角度皆相等，則可稱之為正六邊形。
+
+</p>
+<label><input type="radio" name="q30" value="A"> A. 甲乙</label>
+<label><input type="radio" name="q30" value="B"> B. 乙丙</label>
+<label><input type="radio" name="q30" value="C"> C. 甲乙丙 </label>
+<label><input type="radio" name="q30" value="D"> D. 甲乙丙丁</label>
+<button onclick="check('q30','m30','a30','b30')">確認答案</button>
+<button id="b30" style="display:none" onclick="showAns('a30')">看答案</button>
+<div id="m30" class="msg"></div>
+<div id="a30" class="answer"><b>正確答案：B</b><br></div> 
+</div>
+
+<div class="q">
+<h3>第31題</h3>
+<p>有一平行四邊形 ABCD，已知∠A 為 60 度，則∠B 是幾度？
+</p>
+<label><input type="radio" name="q31" value="A"> A. 30 度</label>
+<label><input type="radio" name="q31" value="B"> B. 90 度 </label>
+<label><input type="radio" name="q31" value="C"> C. 100 度</label>
+<label><input type="radio" name="q31" value="D"> D. 120 度</label>
+<button onclick="check('q31','m31','a31','b31')">確認答案</button>
+<button id="b31" style="display:none" onclick="showAns('a31')">看答案</button>
+<div id="m31" class="msg"></div>
+<div id="a31" class="answer"><b>正確答案：D</b><br></div> 
+</div>
+
+<div class="q">
+<h3>第32題</h3>
+<p>以下各組竹籤，哪組可以組成三角形？
+</p>
+<label><input type="radio" name="q32" value="A"> A. 4 公分、4 公分、8 公分</label>
+<label><input type="radio" name="q32" value="B"> B. 12 公分、28 公分、15 公分</label>
+<label><input type="radio" name="q32" value="C"> C. 8 公分、10 公分、17 公分</label>
+<label><input type="radio" name="q32" value="D"> D. 10 公分、25 公分、15 公分</label>
+<button onclick="check('q32','m32','a32','b32')">確認答案</button>
+<button id="b32" style="display:none" onclick="showAns('a32')">看答案</button>
+<div id="m32" class="msg"></div>
+<div id="a32" class="answer"><b>正確答案：C</b><br></div> 
+</div>
+
+<div class="q">
+<h3>第33題</h3>
+<p>三角形 ABC，剪掉∠A，剩下四邊形 BCDE，∠A是幾度？
+</p>
+
+<img src="images/q33.png"
+     alt="第33題圖"
+     style="max-width:350px;width:100%;">
+
+<label><input type="radio" name="q33" value="A"> A. 50 度</label>
+<label><input type="radio" name="q33" value="B"> B. 55 度</label>
+<label><input type="radio" name="q33" value="C"> C. 75 度</label>
+<label><input type="radio" name="q33" value="D"> D. 130 度</label>
+<button onclick="check('q33','m33','a33','b33')">確認答案</button>
+<button id="b33" style="display:none" onclick="showAns('a33')">看答案</button>
+<div id="m33" class="msg"></div>
+<div id="a33" class="answer"><b>正確答案：A</b><br></div> 
+</div>
+
+<div class="q">
+<h3>第34題</h3>
+
+<p>
+有甲、乙、丙三條緞帶，長度分別為甲是 1.028 公尺、乙是 0.99 公尺、丙是 1.105 公尺，哪一條繩子最長？
+
+<select id="q34" class="fill">
+    <option value="">請選擇</option>
+    <option value="甲">甲</option>
+    <option value="乙">乙</option>
+    <option value="丙">丙</option>
+</select>
+
+</p>
+
+<button onclick="checkFill('q34','m34','a34','b34')">確認答案</button>
+<button id="b34" style="display:none" onclick="showAns('a34')">看答案</button>
+
+<div id="m34" class="msg"></div>
+
+<div id="a34" class="answer">
+<b>正確答案：丙</b><br>
+比較三個小數：
+<ul>
+    <li>甲：1.028</li>
+    <li>乙：0.990</li>
+    <li>丙：1.105</li>
+</ul>
+因為 <b>1.105 ＞ 1.028 ＞ 0.990</b>，所以最長的是 <b>丙</b>。
+</div>
+</div>
+
+<div class="q">
+<h3>第35題</h3>
+<p>
+43 個 1、50 個 0.1 和 6 個 0.001 合起來是
+<input type="text" id="q35" class="fill">
+</p>
+
+<button onclick="checkFill('q35','m35','a35','b35')">確認答案</button>
+<button id="b35" style="display:none" onclick="showAns('a35')">看答案</button>
+
+<div id="m35" class="msg"></div>
+
+<div id="a35" class="answer">
+<b>正確答案：48.006</b>
+</div>
+</div>
+
+<div class="q">
+<h3>第36題</h3>
+<p>
+20.3558+1.642=
+<input type="text" id="q36" class="fill">
+</p>
+
+<!-- 計算區 -->
+<textarea class="work" placeholder="請在這裡計算..."></textarea>
+
+<button onclick="checkFill('q36','m36','a36','b36')">確認答案</button>
+<button id="b36" style="display:none" onclick="showAns('a36')">看答案</button>
+
+<div id="m36" class="msg"></div>
+
+<div id="a36" class="answer">
+<b>正確答案：21.9978</b>
+</div>
+</div>
+
+<div class="q">
+<h3>第37題</h3>
+<p>
+8.763 是由<input type="text" id="q37" class="fill">個 0.001 所組成的。
+
+</p>
+
+<button onclick="checkFill('q37','m37','a37','b37')">確認答案</button>
+<button id="b37" style="display:none" onclick="showAns('a37')">看答案</button>
+
+<div id="m37" class="msg"></div>
+
+<div id="a37" class="answer">
+<b>正確答案：8763</b>
+</div>
+</div>
+
+<div class="q">
+<h3>第38題</h3>
+<p>
+校外教學結束，為了讓五年光明班的學生留下美好回憶，鮮鮮老師將照片檔傳給回憶印刷的老闆，請老闆印出。已知校園優惠：大張彩印一張為 6.703 元、小張彩印一張為 2.18 元、小張彩印 10 張特惠價為 19.09 元，老闆收取的金額為：先加總，後四捨五入到個位。若鮮鮮老師要使用最優惠的方式印出一張大張彩印照、10 張小張彩印照，請問鮮鮮老師需支付多少錢給老闆？
+<input type="text" id="q38" class="fill">
+</p>
+
+<!-- 計算區 -->
+<textarea class="work" placeholder="請在這裡計算..."></textarea>
+
+<button onclick="checkFill('q38','m38','a38','b38')">確認答案</button>
+<button id="b38" style="display:none" onclick="showAns('a38')">看答案</button>
+
+<div id="m38" class="msg"></div>
+
+<div id="a38" class="answer">
+<b>正確答案：26</b>
+</div>
+</div>
+
+<div class="q">
+<h3>第39題</h3>
+<p>
+日本氣象廳表示，日本今年九月平均氣溫高達 24.91℃，比往年同期上升 2.66℃，創下 1898 年觀測統計以來，125 年的歷史新高。請問往年日本同期的平均氣溫為何？
+<input type="text" id="q39" class="fill">
+</p>
+
+<!-- 計算區 -->
+<textarea class="work" placeholder="請在這裡計算..."></textarea>
+
+<button onclick="checkFill('q39','m39','a39','b39')">確認答案</button>
+<button id="b39" style="display:none" onclick="showAns('a39')">看答案</button>
+
+<div id="m39" class="msg"></div>
+
+<div id="a39" class="answer">
+<b>正確答案：22.25</b>
+</div>
+</div>
+
+<div class="q">
+<h3>第40題</h3>
+
+<p>
+1200 個 0.001 是
+<input type="text" id="q40_1" class="fill">
+
+<button onclick="checkFill('q40_1','m40_1','a40_1','b40_1')">確認</button>
+<button id="b40_1" style="display:none" onclick="showAns('a40_1')">看答案</button>
+
+<span id="m40_1" class="msg"></span>
+，72000 個 0.1 是
+<input type="text" id="q40_2" class="fill">
+
+<button onclick="checkFill('q40_2','m40_2','a40_2','b40_2')">確認</button>
+<button id="b40_2" style="display:none" onclick="showAns('a40_2')">看答案</button>
+
+<span id="m40_2" class="msg"></span>
+
+</p>
+
+<div id="a40_1" class="answer">
+<b>正確答案：1.2</b>
+</div>
+
+<div id="a40_2" class="answer">
+<b>正確答案：7200</b>
+</div>
+
+</div>
+
+<div class="q">
+<h3>第41題</h3>
+<p>
+27 個 1、20 個 0.1、3 個 0.01 和 4 個 0.001 合起來是
+<input type="text" id="q41" class="fill">
+</p>
+
+<button onclick="checkFill('q41','m41','a41','b41')">確認答案</button>
+<button id="b41" style="display:none" onclick="showAns('a41')">看答案</button>
+
+<div id="m41" class="msg"></div>
+
+<div id="a41" class="answer">
+<b>正確答案：29.034</b>
+</div>
+</div>
+
+<div class="q">
+<h3>第42題</h3>
+<p>
+3.05>3.0□8→□可填入的數字有 0、1、2、……、9 中哪些數字？
+<input type="text" id="q42" class="fill">
+</p>
+
+<button onclick="checkFill('q42','m42','a42','b42')">確認答案</button>
+<button id="b42" style="display:none" onclick="showAns('a42')">看答案</button>
+
+<div id="m42" class="msg"></div>
+
+<div id="a42" class="answer">
+<b>正確答案：0,1,2,3,4</b>
+</div>
+</div>
+
+<div class="q">
+<h3>第43題</h3>
+<p>
+42.03－27.3517
+<input type="text" id="q43" class="fill">
+</p>
+
+<!-- 計算區 -->
+<textarea class="work" placeholder="請在這裡計算..."></textarea>
+
+<button onclick="checkFill('q43','m43','a43','b43')">確認答案</button>
+<button id="b43" style="display:none" onclick="showAns('a43')">看答案</button>
+
+<div id="m43" class="msg"></div>
+
+<div id="a43" class="answer">
+<b>正確答案：14.6783</b>
+</div>
+</div>
+
+<div class="q">
+<h3>第44題</h3>
+<p>
+25.4987＋58.2156
+<input type="text" id="q44" class="fill">
+</p>
+
+<!-- 計算區 -->
+<textarea class="work" placeholder="請在這裡計算..."></textarea>
+
+<button onclick="checkFill('q44','m44','a44','b44')">確認答案</button>
+<button id="b44" style="display:none" onclick="showAns('a44')">看答案</button>
+
+<div id="m44" class="msg"></div>
+
+<div id="a44" class="answer">
+<b>正確答案：83.7143</b>
+</div>
+</div>
+
+<div class="q">
+<h3>第45題</h3>
+<p>
+先用四捨五入法分別取概數到小數點後第二位，再算算看。<br>
+90.2826－52.9271 
+<input type="text" id="q45" class="fill">
+</p>
+
+<!-- 計算區 -->
+<textarea class="work" placeholder="請在這裡計算..."></textarea>
+
+<button onclick="checkFill('q45','m45','a45','b45')">確認答案</button>
+<button id="b45" style="display:none" onclick="showAns('a45')">看答案</button>
+
+<div id="m45" class="msg"></div>
+
+<div id="a45" class="answer">
+<b>正確答案：37.35</b>
+</div>
+</div>
+
+<div class="q">
+<h3>第46題</h3>
+<p>
+誠誠為了準備超越顛峰比賽，每天下午會跑 5 公里作為訓練，昨天和今天因為午後雷陣雨影響，分別少跑了 1.527 公里和 0.712 公里，這兩天誠誠一共跑了幾公里？
+<input type="text" id="q46" class="fill">
+</p>
+
+<!-- 計算區 -->
+<textarea class="work" placeholder="請在這裡計算..."></textarea>
+
+<button onclick="checkFill('q46','m46','a46','b46')">確認答案</button>
+<button id="b46" style="display:none" onclick="showAns('a46')">看答案</button>
+
+<div id="m46" class="msg"></div>
+
+<div id="a46" class="answer">
+<b>正確答案：7.761</b>
+</div>
+</div>
+
+<div class="q">
+<h3>第47題</h3>
+<p>
+16、57 和 40 三個數，哪一個數的因數個數最少？
+<input type="text" id="q47" class="fill">
+</p>
+
+<!-- 計算區 -->
+<textarea class="work" placeholder="請在這裡計算..."></textarea>
+
+<button onclick="checkFill('q47','m47','a47','b47')">確認答案</button>
+<button id="b47" style="display:none" onclick="showAns('a47')">看答案</button>
+
+<div id="m47" class="msg"></div>
+
+<div id="a47" class="answer">
+<b>正確答案：57</b>
+</div>
+</div>
+
+<div class="q">
+<h3>第48題</h3>
+<p>
+老師買了 26 枝鉛筆和 91 塊橡皮擦要平分給小朋友，每個小朋友分得的鉛筆一樣多，橡皮擦也一樣多，最多可以分給<input type="text" id="q48" class="fill">個小朋友。
+
+</p>
+
+<!-- 計算區 -->
+<textarea class="work" placeholder="請在這裡計算..."></textarea>
+
+<button onclick="checkFill('q48','m48','a48','b48')">確認答案</button>
+<button id="b48" style="display:none" onclick="showAns('a48')">看答案</button>
+
+<div id="m48" class="msg"></div>
+
+<div id="a48" class="answer">
+<b>正確答案：13</b>
+</div>
+</div>
+
+<div class="q">
+<h3>第49題</h3>
+
+<p>
+18、32 公因數有哪些？
+<input type="text" id="q49_1" class="fill">
+
+<button onclick="checkFill('q49_1','m49_1','a49_1','b49_1')">確認</button>
+<button id="b49_1" style="display:none" onclick="showAns('a49_1')">看答案</button>
+
+<span id="m49_1" class="msg"></span>
+<br>
+最大公因數是多少？
+<input type="text" id="q49_2" class="fill">
+
+<button onclick="checkFill('q49_2','m49_2','a49_2','b49_2')">確認</button>
+<button id="b49_2" style="display:none" onclick="showAns('a49_2')">看答案</button>
+
+<span id="m49_2" class="msg"></span>
+
+</p>
+
+<div id="a49_1" class="answer">
+<b>正確答案：1,2</b>
+</div>
+
+<div id="a49_2" class="answer">
+<b>正確答案：2</b>
+</div>
+
+</div>
+
+<div class="q">
+<h3>第50題</h3>
+<p>
+發光國小這次冬令營有 36 個女生和 54 個男生報名參加，活動分組要讓每一組的男生人數一樣多，女生人數也一樣多，且每組總人數需大於 10 人、小於 20 人，請問若全部分完，可以分成幾組？
+<input type="text" id="q50_1" class="fill">
+
+<button onclick="checkFill('q50_1','m50_1','a50_1','b50_1')">確認</button>
+<button id="b50_1" style="display:none" onclick="showAns('a50_1')">看答案</button>
+
+<span id="m50_1" class="msg"></span>
+每組有幾人？ 
+<input type="text" id="q50_2" class="fill">
+
+<button onclick="checkFill('q50_2','m50_2','a50_2','b50_2')">確認</button>
+<button id="b50_2" style="display:none" onclick="showAns('a50_2')">看答案</button>
+
+<span id="m50_2" class="msg"></span>
+
+</p>
+
+<!-- 計算區 -->
+<textarea class="work" placeholder="請在這裡計算..."></textarea>
+
+<div id="a50_1" class="answer">
+<b>正確答案：6</b>
+</div>
+
+<div id="a50_2" class="answer">
+<b>正確答案：15</b>
+</div>
+
+<button onclick="showExplain('e50')">看詳解</button>
+
+<div id="e50" style="display:none; margin-top:10px;">
+    <img src="./images/q50.png" alt="第50題詳解" style="max-width:100%; border:1px solid #ccc;">
+</div>
+</div>
+
+<div class="q">
+<h3>第51題</h3>
+<p>
+有一張長 96 公分、寬 18 公分的粉彩紙，鮮鮮老師準備將它全部剪成大小一樣的正方形，製作祝福小卡給全班，每張大小須一致，且邊長為整公分，祝福小卡的邊長最大是幾公分？
+<input type="text" id="q51_1" class="fill">
+
+<button onclick="checkFill('q51_1','m51_1','a51_1','b51_1')">確認</button>
+<button id="b51_1" style="display:none" onclick="showAns('a51_1')">看答案</button>
+
+<span id="m51_1" class="msg"></span>
+承上一問，若剪出的小卡剛好能分給全班，則五年光明班有幾位學生？
+<input type="text" id="q51_2" class="fill">
+
+<button onclick="checkFill('q51_2','m51_2','a51_2','b51_2')">確認</button>
+<button id="b51_2" style="display:none" onclick="showAns('a51_2')">看答案</button>
+
+<span id="m51_2" class="msg"></span>
+
+<!-- 計算區 -->
+<textarea class="work" placeholder="請在這裡計算..."></textarea>
+
+</p>
+
+<div id="a51_1" class="answer">
+<b>正確答案：6</b>
+</div>
+
+<div id="a51_2" class="answer">
+<b>正確答案：48</b>
+</div>
+</div>
+
+<div class="q">
+<h3>第52題</h3>
+<p>
+60 有
+<input type="text" id="q52_1" class="fill">
+
+<button onclick="checkFill('q52_1','m52_1','a52_1','b52_1')">確認</button>
+<button id="b52_1" style="display:none" onclick="showAns('a52_1')">看答案</button>
+
+<span id="m52_1" class="msg"></span>
+個因數，最大的因數與最小的因數和是
+<input type="text" id="q52_2" class="fill">
+
+<button onclick="checkFill('q52_2','m52_2','a52_2','b52_2')">確認</button>
+<button id="b52_2" style="display:none" onclick="showAns('a52_2')">看答案</button>
+
+<span id="m52_2" class="msg"></span>
+
+</p>
+
+<div id="a52_1" class="answer">
+<b>正確答案：12</b>
+</div>
+
+<div id="a52_2" class="answer">
+<b>正確答案：61</b>
+</div>
+
+<!-- 計算區 -->
+<textarea class="work" placeholder="請在這裡計算..."></textarea>
+
+</div>
+
+<div class="q">
+<h3>第53題</h3>
+<p>
+為了獎勵大隊接力獲得第一名的學生，青青老師準備了 42 杯珍珠奶茶和 28 份雞排，要 平分給學生。每個人拿到的珍珠奶茶一樣多， 雞排也一樣多，且剛好分完，青青老師可以 平分給幾位學生？(寫出所有可能的答案)
+<input type="text" id="q53" class="fill">
+</p>
+
+<button onclick="checkFill('q53','m53','a53','b53')">確認答案</button>
+<button id="b53" style="display:none" onclick="showAns('a53')">看答案</button>
+
+<div id="m53" class="msg"></div>
+
+<div id="a53" class="answer">
+<b>正確答案：1,2,7,14</b>
+</div>
+
+<!-- 計算區 -->
+<textarea class="work" placeholder="請在這裡計算..."></textarea>
+
+</div>
+
+<div class="q">
+<h3>第54題</h3>
+<p>
+一個修正帶 38 元，老師為小朋友準備了一些修正帶當獎品，只知道不超過 500 元，最多可能是買了<input type="text" id="q54" class="fill">個修正帶。 
+
+</p>
+
+<button onclick="checkFill('q54','m54','a54','b54')">確認答案</button>
+<button id="b54" style="display:none" onclick="showAns('a54')">看答案</button>
+
+<div id="m54" class="msg"></div>
+
+<div id="a54" class="answer">
+<b>正確答案：13</b>
+</div>
+
+<!-- 計算區 -->
+<textarea class="work" placeholder="請在這裡計算..."></textarea>
+
+</div>
+
+<div class="q">
+<h3>第55題</h3>
+<p>
+82□□是一個四位數，且是 5 的倍數，兩個□的數字可以重複，也可以不重複，這個四位數最小是
+<input type="text" id="q55_1" class="fill">
+
+<button onclick="checkFill('q55_1','m55_1','a55_1','b55_1')">確認</button>
+<button id="b55_1" style="display:none" onclick="showAns('a55_1')">看答案</button>
+
+<span id="m55_1" class="msg"></span>
+最大是
+<input type="text" id="q55_2" class="fill">
+
+<button onclick="checkFill('q55_2','m55_2','a55_2','b55_2')">確認</button>
+<button id="b55_2" style="display:none" onclick="showAns('a55_2')">看答案</button>
+
+<span id="m55_2" class="msg"></span>
+
+</p>
+
+<div id="a55_1" class="answer">
+<b>正確答案：8200</b>
+</div>
+
+<div id="a55_2" class="answer">
+<b>正確答案：8295</b>
+</div>
+</div>
+
+<div class="q">
+<h3>第56題</h3>
+<p>
+參加夏令營的學員要分組進行探索活動，每 9 人分一組，或每 15 人分一組，都可以剛好分完，最少有<input type="text" id="q56" class="fill">人參加夏令營。
+</p>
+
+<button onclick="checkFill('q56','m56','a56','b56')">確認答案</button>
+<button id="b56" style="display:none" onclick="showAns('a56')">看答案</button>
+
+<div id="m56" class="msg"></div>
+
+<div id="a56" class="answer">
+<b>正確答案：45</b>
+</div>
+</div>
+
+<div class="q">
+<h3>第57題</h3>
+<p>
+找出 16、20 的最小公倍數，並依序由小到大寫出 3 個公倍數。<br>
+最小公倍數：
+<input type="text" id="q57_1" class="fill">
+
+<button onclick="checkFill('q57_1','m57_1','a57_1','b57_1')">確認</button>
+<button id="b57_1" style="display:none" onclick="showAns('a57_1')">看答案</button>
+
+<span id="m57_1" class="msg"></span>
+<br>16 和 20 的 3 個公倍數： 
+<input type="text" id="q57_2" class="fill">
+
+<button onclick="checkFill('q57_2','m57_2','a57_2','b57_2')">確認</button>
+<button id="b57_2" style="display:none" onclick="showAns('a57_2')">看答案</button>
+
+<span id="m57_2" class="msg"></span>
+
+</p>
+
+<div id="a57_1" class="answer">
+<b>正確答案：80</b>
+</div>
+
+<div id="a57_2" class="answer">
+<b>正確答案：80,160,240</b>
+</div>
+</div>
+
+<div class="q">
+<h3>第58題</h3>
+<p>
+小明的舅舅要結婚了，小明全家人都很開心，打算盛裝出席婚禮現場。除了受邀擔任花童，小明一想到喜宴上的大餐，以及好吃的喜餅和喜糖，就忍不住口水直流。婚禮過後，小明就迫不及待的跟同學分享他在婚禮現場以及喜宴上的所見所聞。<br>
+①喜宴的月分和日期不一樣，日期是 45 和 25 的最大公因數，月分剛好是日期的倍數。請問喜宴是在幾月幾日舉辦的？
+<input type="text" id="q58_1" class="fill">
+
+<button onclick="checkFill('q58_1','m58_1','a58_1','b58_1')">確認答案</button>
+<button id="b58_1" style="display:none" onclick="showAns('a58_1')">看答案</button>
+
+<span id="m58_1" class="msg"></span>
+</p>
+
+<div id="a58_1" class="answer">
+<b>正確答案：10月5日</b>
+</div>
+
+<p>
+②新郎為了讓自己穿上禮服更帥氣，訂婚後每天都會跑 5 公里健身，有兩天因為午後雷陣雨，分別少跑了 1.26 公里和 0.813 公里，這兩天新郎一共跑了幾公里？
+<input type="text" id="q58_2" class="fill">
+
+<button onclick="checkFill('q58_2','m58_2','a58_2','b58_2')">確認答案</button>
+<button id="b58_2" style="display:none" onclick="showAns('a58_2')">看答案</button>
+
+<span id="m58_2" class="msg"></span>
+</p>
+
+<div id="a58_2" class="answer">
+<b>正確答案：7.927</b>
+</div>
+
+<p>
+③新娘為了讓自己穿上禮服更美麗，除了飲食調整，還搭配運動，體重從 51.24 公斤，降為 47.65 公斤，體重大約減少幾公斤？先用四捨五入法分別取概數到小數點後第一位，再算算看。
+<input type="text" id="q58_3" class="fill">
+
+<button onclick="checkFill('q58_3','m58_3','a58_3','b58_3')">確認答案</button>
+<button id="b58_3" style="display:none" onclick="showAns('a58_3')">看答案</button>
+
+<span id="m58_3" class="msg"></span>
+</p>
+
+<div id="a58_3" class="answer">
+<b>正確答案：3.5</b>
+</div>
+
+<p>
+④參加喜宴的人數在 160 人～175 人之間，每桌都剛好坐滿 12 人，請問參加喜宴的賓客有多少人？
+<input type="text" id="q58_4" class="fill">
+
+<button onclick="checkFill('q58_4','m58_4','a58_4','b58_4')">確認答案</button>
+<button id="b58_4" style="display:none" onclick="showAns('a58_4')">看答案</button>
+
+<span id="m58_4" class="msg"></span>
+</p>
+
+<div id="a58_4" class="answer">
+<b>正確答案：168</b>
+</div>
+
+<p>
+⑤爸爸帶回 60 顆喜糖要平分給同事，每位同事拿到的數量要一樣多，且比 4 顆多、比 10 顆少，又剛好分完，可以平分給幾位同事？(寫出所有可能的答案)
+<input type="text" id="q58_5" class="fill">
+
+<button onclick="checkFill('q58_5','m58_5','a58_5','b58_5')">確認答案</button>
+<button id="b58_5" style="display:none" onclick="showAns('a58_5')">看答案</button>
+
+<span id="m58_5" class="msg"></span>
+</p>
+
+<div id="a58_5" class="answer">
+<b>正確答案：10.12</b>
+</div>
+
+<p>
+⑥一個喜餅 600 公克，媽媽帶回三種不同口味的喜餅各一個。雪如吃了[f]5/8[/f]個紅豆牛奶口味的，品芳吃了[f]8/12[/f]個黃金椰子酥口味的，明瑞吃了[f]1/3[/f]個 Q 心麻糬口味的，誰吃的喜餅最多？
+<select id="q58_6" class="fill">
+    <option value="">請選擇</option>
+    <option value="雪如">雪如</option>
+    <option value="品芳">品芳</option>
+    <option value="明瑞">明瑞</option>
+</select>
+
+<button onclick="checkFill('q58_6','m58_6','a58_6','b58_6')">確認答案</button>
+<button id="b58_6" style="display:none" onclick="showAns('a58_6')">看答案</button>
+
+<span id="m58_6" class="msg"></span>
+</p>
+
+<div id="a58_6" class="answer">
+<b>正確答案：品芳</b>
+</div>
+
+<!-- 計算區 -->
+<textarea class="work" placeholder="請在這裡計算..."></textarea>
+
+</div>
+
+<div class="q">
+<h3>第59題</h3>
+<p>
+花花有數張長 6 公分、寬 9 公分的長方形紙卡，要用它們拼出一個正方形，請問正方形最小的邊長為<input type="text" id="q59" class="fill">公分。
+</p>
+
+<button onclick="checkFill('q59','m59','a59','b59')">確認答案</button>
+<button id="b59" style="display:none" onclick="showAns('a59')">看答案</button>
+
+<div id="m59" class="msg"></div>
+
+<div id="a59" class="answer">
+<b>正確答案：18</b>
+</div>
+</div>
+
+<div class="q">
+<h3>第60題</h3>
+<p>
+19 和 38 的公倍數，請從 1 倍開始，依序寫出兩個：
+<input type="text" id="q60" class="fill">
+</p>
+
+<button onclick="checkFill('q60','m60','a60','b60')">確認答案</button>
+<button id="b60" style="display:none" onclick="showAns('a60')">看答案</button>
+
+<div id="m60" class="msg"></div>
+
+<div id="a60" class="answer">
+<b>正確答案：38,76</b>
+</div>
+</div>
+
+<div class="q">
+<h3>第61題</h3>
+<p>
+為了即將到來的園遊會，五年光明班在鮮鮮老師的帶領下，烘烤了 700 多片巧克力豆餅乾，將 13 片餅乾裝一袋，可將餅乾裝完，沒有剩下。請問五年光明班最少烤出幾片餅乾？
+<input type="text" id="q61_1" class="fill">
+
+<button onclick="checkFill('q61_1','m61_1','a61_1','b61_1')">確認</button>
+<button id="b61_1" style="display:none" onclick="showAns('a61_1')">看答案</button>
+
+<span id="m61_1" class="msg"></span>
+最多為幾片？ 
+<input type="text" id="q61_2" class="fill">
+
+<button onclick="checkFill('q61_2','m61_2','a61_2','b61_2')">確認</button>
+<button id="b61_2" style="display:none" onclick="showAns('a61_2')">看答案</button>
+
+<span id="m61_2" class="msg"></span>
+
+</p>
+
+<div id="a61_1" class="answer">
+<b>正確答案：702</b>
+</div>
+
+<div id="a61_2" class="answer">
+<b>正確答案：793</b>
+</div>
+
+<!-- 計算區 -->
+<textarea class="work" placeholder="請在這裡計算..."></textarea>
+
+</div>
+
+<div class="q">
+<h3>第62題</h3>
+<p>
+五年光明班的學生到多福村校外教學，10 點抵達多福村。已知多福村內的遊園車與遊行花車從九點整於同一地點發車。遊園車每 12 分鐘發一班車，遊行花車每 32 分鐘發一班車，若五年光明班的學生想乘坐與遊行花車同時間發車的遊園車，請問最快會是幾點幾分發車？(記得寫出上午或下午)
+<input type="text" id="q62" class="fill">
+</p>
+
+<button onclick="checkFill('q62','m62','a62','b62')">確認答案</button>
+<button id="b62" style="display:none" onclick="showAns('a62')">看答案</button>
+
+<div id="m62" class="msg"></div>
+
+<div id="a62" class="answer">
+<b>正確答案：上午10點36分</b>
+</div>
+
+<!-- 計算區 -->
+<textarea class="work" placeholder="請在這裡計算..."></textarea>
+
+</div>
+
+<div class="q">
+<h3>第63題</h3>
+<p>
+48□□是一個四位數，且是 5 的倍數，兩個□的數字可以重複，也可以不重複，這個四位數最小是 
+<input type="text" id="q63_1" class="fill">
+
+<button onclick="checkFill('q63_1','m63_1','a63_1','b63_1')">確認</button>
+<button id="b63_1" style="display:none" onclick="showAns('a63_1')">看答案</button>
+
+<span id="m63_1" class="msg"></span>
+，最大是 
+<input type="text" id="q63_2" class="fill">
+
+<button onclick="checkFill('q63_2','m63_2','a63_2','b63_2')">確認</button>
+<button id="b63_2" style="display:none" onclick="showAns('a63_2')">看答案</button>
+
+<span id="m63_2" class="msg"></span>
+
+</p>
+
+<div id="a63_1" class="answer">
+<b>正確答案：4800</b>
+</div>
+
+<div id="a63_2" class="answer">
+<b>正確答案：4895</b>
+</div>
+</div>
+
+<div class="q">
+<h3>第64題</h3>
+<p>
+數學天才阿默收集很多彩色彈珠，數量在 100 個～150 個之間，每 12 個一數會剩下 3 個。阿默收集的彩色彈珠最多有幾個？
+<input type="text" id="q64_1" class="fill">
+
+<button onclick="checkFill('q64_1','m64_1','a64_1','b64_1')">確認</button>
+<button id="b64_1" style="display:none" onclick="showAns('a64_1')">看答案</button>
+
+<span id="m64_1" class="msg"></span>
+最少有幾個？ 
+<input type="text" id="q64_2" class="fill">
+
+<button onclick="checkFill('q64_2','m64_2','a64_2','b64_2')">確認</button>
+<button id="b64_2" style="display:none" onclick="showAns('a64_2')">看答案</button>
+
+<span id="m64_2" class="msg"></span>
+
+</p>
+
+<div id="a64_1" class="answer">
+<b>正確答案：147</b>
+</div>
+
+<div id="a64_2" class="answer">
+<b>正確答案：111</b>
+</div>
+
+<!-- 計算區 -->
+<textarea class="work" placeholder="請在這裡計算..."></textarea>
+
+</div>
+
+<div class="q">
+<h3>第65題</h3>
+<p>
+[f]48/56[/f]=[f]□/7[/f]=[f]12/△[/f]<br>□=
+<input type="text" id="q65_1" class="fill">
+
+<button onclick="checkFill('q65_1','m65_1','a65_1','b65_1')">確認</button>
+<button id="b65_1" style="display:none" onclick="showAns('a65_1')">看答案</button>
+
+<span id="m65_1" class="msg"></span>
+<br>△=
+<input type="text" id="q65_2" class="fill">
+
+<button onclick="checkFill('q65_2','m65_2','a65_2','b65_2')">確認</button>
+<button id="b65_2" style="display:none" onclick="showAns('a65_2')">看答案</button>
+
+<span id="m65_2" class="msg"></span>
+
+</p>
+
+<div id="a65_1" class="answer">
+<b>□正確答案：[f]6/7[/f]</b>
+</div>
+
+<div id="a65_2" class="answer">
+<b>△正確答案：[f]12/14[/f]</b>
+</div>
+</div>
+
+<div class="q">
+<h3>第66題</h3>
+<p>
+用分數表示除法的結果，答案是假分數時要換成帶分數。<br>
+①媽媽買了 52 個蘋果派，打算平分給 14 位鄰居，每位鄰居可以分到<input type="text" id="q66_1" class="fill">個蘋果派。
+
+<button onclick="checkFill('q66_1','m66_1','a66_1','b66_1')">確認</button>
+<button id="b66_1" style="display:none" onclick="showAns('a66_1')">看答案</button>
+
+<span id="m66_1" class="msg"></span>
+<br>②5 袋米共重 13 公斤，平均一袋米重<input type="text" id="q66_2" class="fill">公斤。 
+
+
+<button onclick="checkFill('q66_2','m66_2','a66_2','b66_2')">確認</button>
+<button id="b66_2" style="display:none" onclick="showAns('a66_2')">看答案</button>
+
+<span id="m66_2" class="msg"></span>
+
+</p>
+
+<div id="a66_1" class="answer">
+<b>①正確答案：[m]3 10/14[/m]</b>
+</div>
+
+<div id="a66_2" class="answer">
+<b>②正確答案：[m]2 3/5[/m]</b>
+</div>
+
+<!-- 計算區 -->
+<textarea class="work" placeholder="請在這裡計算..."></textarea>
+
+</div>
+
+<div class="q">
+<h3>第67題</h3>
+
+<p>
+鮮鮮老師為了獎勵表現良好的學生，決定去必勝利披薩店訂購學生喜愛的披薩。已知每個口味的披薩大小相同，第一組吃了[m]1 2/6[/m]個海鮮披薩，第二組吃了[f]16/14[/f]個夏威夷披薩，第三組吃了[f]9/8[/f]個瑪格麗特披薩，請問五年光明班哪一組吃的披薩最多？
+
+<select id="q67" class="fill">
+    <option value="">請選擇</option>
+    <option value="第一組">第一組</option>
+    <option value="第二組">第二組</option>
+    <option value="第三組">第三組</option>
+</select>
+</p>
+
+<button onclick="checkFill('q67','m67','a67','b67')">確認答案</button>
+<button id="b67" style="display:none" onclick="showAns('a67')">看答案</button>
+
+<div id="m67" class="msg"></div>
+
+<div id="a67" class="answer">
+<b>正確答案：第一組</b>
+</div>
+
+<!-- 計算區 -->
+<textarea class="work" placeholder="請在這裡計算..."></textarea>
+
+</div>
+
+<div class="q">
+<h3>第68題</h3>
+<p>
+鮮鮮老師在撰寫數學解答時，寫出算式：7÷9=。已知列式無誤。請動動腦，為此算式寫出邏輯合理的題目，並求出正確解答。
+<input type="text" id="q68" class="fill">
+</p>
+
+<button onclick="checkFill('q68','m68','a68','b68')">確認答案</button>
+<button id="b68" style="display:none" onclick="showAns('a68')">看答案</button>
+
+<div id="m68" class="msg"></div>
+
+<div id="a68" class="answer">
+<b>正確答案：7片pizza平分給9位小孩，一人可得幾片?7÷9=7/9</b>
+</div>
+</div>
+
+<div class="q">
+<h3>第69題</h3>
+<p>
+[f]9/24[/f]=[f]□/96[/f]=[f]18/△[/f]<br>□=
+<input type="text" id="q69_1" class="fill">
+
+<button onclick="checkFill('q69_1','m69_1','a69_1','b69_1')">確認</button>
+<button id="b69_1" style="display:none" onclick="showAns('a69_1')">看答案</button>
+
+<span id="m69_1" class="msg"></span>
+<br>△= 
+<input type="text" id="q69_2" class="fill">
+
+
+<button onclick="checkFill('q69_2','m69_2','a69_2','b69_2')">確認</button>
+<button id="b69_2" style="display:none" onclick="showAns('a69_2')">看答案</button>
+
+<span id="m69_2" class="msg"></span>
+
+</p>
+
+<div id="a69_1" class="answer">
+<b>①正確答案：[f]36/96[/f]</b>
+</div>
+
+<div id="a69_2" class="answer">
+<b>②正確答案：[f]18/48[/f]</b>
+</div>
+</div>
+
+<div class="q">
+<h3>第70題</h3>
+
+<p>將下列各組分數，通分成分母一樣大的分數。</p>
+
+<hr>
+<b>第1組</b><br><br>
+
+[f]3/5[/f]
+<input type="text" id="q70_1" class="fill">
+
+<button onclick="checkFill('q70_1','m70_1','a70_1','b70_1')">確認答案</button>
+<button id="b70_1" style="display:none" onclick="showAns('a70_1')">看答案</button>
+
+<span id="m70_1" class="msg"></span>
+
+<br><br>
+
+[f]5/8[/f]
+<input type="text" id="q70_2" class="fill">
+
+<button onclick="checkFill('q70_2','m70_2','a70_2','b70_2')">確認答案</button>
+<button id="b70_2" style="display:none" onclick="showAns('a70_2')">看答案</button>
+
+<span id="m70_2" class="msg"></span>
+
+<div id="a70_1" class="answer">
+<b>正確答案：[f]24/40[/f]</b>
+</div>
+
+<div id="a70_2" class="answer">
+<b>正確答案：[f]25/40[/f]</b>
+</div>
+
+<hr>
+<b>第2組</b><br><br>
+
+[f]7/8[/f]
+<input type="text" id="q70_3" class="fill">
+
+<button onclick="checkFill('q70_3','m70_3','a70_3','b70_3')">確認答案</button>
+<button id="b70_3" style="display:none" onclick="showAns('a70_3')">看答案</button>
+
+<span id="m70_3" class="msg"></span>
+
+<br><br>
+
+[f]5/12[/f]
+<input type="text" id="q70_4" class="fill">
+
+<button onclick="checkFill('q70_4','m70_4','a70_4','b70_4')">確認答案</button>
+<button id="b70_4" style="display:none" onclick="showAns('a70_4')">看答案</button>
+
+<span id="m70_4" class="msg"></span>
+
+<div id="a70_3" class="answer">
+<b>正確答案：[f]21/24[/f]</b>
+</div>
+
+<div id="a70_4" class="answer">
+<b>正確答案：[f]10/24[/f]</b>
+</div>
+
+</div>
+
+<div class="q">
+<h3>第71題</h3>
+
+<p>
+一瓶汽水 600 毫升，嬨嬨喝了[f]5/8[/f]瓶，霜兒喝了[f]7/12[/f]瓶，倫倫喝了[f]4/6[/f]瓶，誰喝的汽水最多？
+
+<select id="q71" class="fill">
+    <option value="">請選擇</option>
+    <option value="嬨嬨">嬨嬨</option>
+    <option value="霜兒">霜兒</option>
+    <option value="倫倫">倫倫</option>
+</select>
+</p>
+
+<button onclick="checkFill('q71','m71','a71','b71')">確認答案</button>
+<button id="b71" style="display:none" onclick="showAns('a71')">看答案</button>
+
+<div id="m71" class="msg"></div>
+
+<div id="a71" class="answer">
+<b>正確答案：倫倫</b>
+</div>
+
+<!-- 計算區 -->
+<textarea class="work" placeholder="請在這裡計算..."></textarea>
+
+</div>
+
+<div class="q">
+<h3>第72題</h3>
+<p>
+一個圓心角 120°的扇形，是幾分之幾圓？答：<input type="text" id="q72" class="fill">圓 
+</p>
+
+<button onclick="checkFill('q72','m72','a72','b72')">確認答案</button>
+<button id="b72" style="display:none" onclick="showAns('a72')">看答案</button>
+
+<div id="m72" class="msg"></div>
+
+<div id="a72" class="answer">
+<b>[f]1/3[/f]</b>
+</div>
+</div>
+
+<div class="q">
+<h3>第73題</h3>
+<p>
+下圖的四邊形中，「★」的角度是幾度？ 
+<input type="text" id="q73" class="fill">
+</p>
+
+<button onclick="checkFill('q73','m73','a73','b73')">確認答案</button>
+<button id="b73" style="display:none" onclick="showAns('a73')">看答案</button>
+
+<div id="m73" class="msg"></div>
+
+<div id="a73" class="answer">
+<b>正確答案：87</b>
+</div>
+<img src="./images/q73.jpg" alt="">
+
+<!-- 計算區 -->
+<textarea class="work" placeholder="請在這裡計算..."></textarea>
+
+</div>
+
+<div class="q">
+<h3>第74題</h3>
+<p>
+下圖中 ∠1  + ∠ 2等於多少度？
+<input type="text" id="q74" class="fill">
+</p>
+
+<button onclick="checkFill('q74','m74','a74','b74')">確認答案</button>
+<button id="b74" style="display:none" onclick="showAns('a74')">看答案</button>
+
+<div id="m74" class="msg"></div>
+
+<div id="a74" class="answer">
+<b>正確答案：132</b>
+</div>
+<img src="./images/q74.jpg" alt="">
+
+<!-- 計算區 -->
+<textarea class="work" placeholder="請在這裡計算..."></textarea>
+</div>
+
+<div class="q">
+<h3>第75題</h3>
+<p>
+畫一個半徑為 3 公分，圓心角為 135°的扇形。
+<input type="text" id="q75" class="fill">
+</p>
+
+<button onclick="checkFill('q75','m75','a75','b75')">確認答案</button>
+<button id="b75" style="display:none" onclick="showAns('a75')">看答案</button>
+
+<div id="m75" class="msg"></div>
+
+<div id="a75" class="answer">
+<b></b>
+</div>
+</div>
+
+<div class="q">
+<h3>第76題</h3>
+<p>
+下面圖形中，鋪色部分是扇形有
+<input type="text" id="q76" class="fill">
+</p>
+
+<button onclick="checkFill('q76','m76','a76','b76')">確認答案</button>
+<button id="b76" style="display:none" onclick="showAns('a76')">看答案</button>
+
+<div id="m76" class="msg"></div>
+
+<div id="a76" class="answer">
+<b>乙,丙</b>
+</div>
+<img src="./images/q76.jpg" alt="">
+</div>
+
+<div class="q">
+<h3>第77題</h3>
+<p>
+下面是一些平面圖形。<br>
+①不是多邊形的有
+
+<input type="text" id="q77_1" class="fill">
+
+<button onclick="checkFill('q77_1','m77_1','a77_1','b77_1')">確認答案</button>
+<button id="b77_1" style="display:none" onclick="showAns('a77_1')">看答案</button>
+
+<span id="m77_1" class="msg"></span>
+</p>
+
+<div id="a77_1" class="answer">
+<b>正確答案：H</b>
+</div>
+
+<p>
+②是八邊形的有
+<input type="text" id="q77_2" class="fill">
+
+<button onclick="checkFill('q77_2','m77_2','a77_2','b77_2')">確認答案</button>
+<button id="b77_2" style="display:none" onclick="showAns('a77_2')">看答案</button>
+
+<span id="m77_2" class="msg"></span>
+</p>
+
+<div id="a77_2" class="answer">
+<b>正確答案：B,E</b>
+</div>
+
+<p>
+③哪一個是正六邊形
+<input type="text" id="q77_3" class="fill">
+
+<button onclick="checkFill('q77_3','m77_3','a77_3','b77_3')">確認答案</button>
+<button id="b77_3" style="display:none" onclick="showAns('a77_3')">看答案</button>
+
+<span id="m77_3" class="msg"></span>
+</p>
+
+<div id="a77_3" class="answer">
+<b>正確答案：D</b>
+</div>
+<img src="./images/q77.jpg" alt="">
+</div>
+
+<div class="q">
+<h3>第78題</h3>
+<p>
+看圖計算，並填入正確答案。
+∠1 為
+<input type="text" id="q78_1" class="fill">
+
+<button onclick="checkFill('q78_1','m78_1','a78_1','b78_1')">確認</button>
+<button id="b78_1" style="display:none" onclick="showAns('a78_1')">看答案</button>
+
+<span id="m78_1" class="msg"></span>
+度，∠2 為<input type="text" id="q78_2" class="fill">度。
+<button onclick="checkFill('q78_2','m78_2','a78_2','b78_2')">確認</button>
+<button id="b78_2" style="display:none" onclick="showAns('a78_2')">看答案</button>
+
+<span id="m78_2" class="msg"></span>
+
+</p>
+
+<div id="a78_1" class="answer">
+<b>正確答案：75</b>
+</div>
+
+<div id="a78_2" class="answer">
+<b>正確答案：60</b>
+</div>
+<img src="./images/q78.jpg" alt="">
+
+</div>
+
+<div class="q">
+<h3>第79題</h3>
+<p>
+鮮鮮老師為 11 月份的壽星準備一個圓形蛋糕，平分後，每一位壽星可分到一個圓心角為 15 度的扇形蛋糕，請問五年光明班 11 月有幾個人生日？ 
+<input type="text" id="q79" class="fill">
+</p>
+
+<button onclick="checkFill('q79','m79','a79','b79')">確認答案</button>
+<button id="b79" style="display:none" onclick="showAns('a79')">看答案</button>
+
+<div id="m79" class="msg"></div>
+
+<div id="a79" class="answer">
+<b>正確答案：24</b>
+</div>
+
+<!-- 計算區 -->
+<textarea class="work" placeholder="請在這裡計算..."></textarea>
+
+</div>
+
+<div class="q">
+<h3>第80題</h3>
+<p>
+去年俄烏戰爭引發糧食通膨，今年 8 月印度限制米出口，更進一步提高菲律賓等糧食仰賴進口國的糧價，使菲律賓米價於九月份已觸及✸年來最高點。已知：四邊形內角和÷24= ✸，請問菲律賓九月份的米價已創下幾年來的新高？
+<input type="text" id="q80" class="fill">
+</p>
+
+<button onclick="checkFill('q80','m80','a80','b80')">確認答案</button>
+<button id="b80" style="display:none" onclick="showAns('a80')">看答案</button>
+
+<div id="m80" class="msg"></div>
+
+<div id="a80" class="answer">
+<b>正確答案：15</b>
+</div>
+<!-- 計算區 -->
+<textarea class="work" placeholder="請在這裡計算..."></textarea>
+</div>
+
+<div class="q">
+<h3>第81題</h3>
+<p>
+右圖鋪色部分是幾分之幾圓的扇形？答：
+<input type="text" id="q81_1" class="fill">
+
+<button onclick="checkFill('q81_1','m81_1','a81_1','b81_1')">確認</button>
+<button id="b81_1" style="display:none" onclick="showAns('a81_1')">看答案</button>
+
+<span id="m81_1" class="msg"></span>
+圓；它的圓心角是<input type="text" id="q81_2" class="fill">度。
+<button onclick="checkFill('q81_2','m81_2','a81_2','b81_2')">確認</button>
+<button id="b81_2" style="display:none" onclick="showAns('a81_2')">看答案</button>
+
+<span id="m81_2" class="msg"></span>
+
+</p>
+
+<div id="a81_1" class="answer">
+<b>正確答案：[f]3/8[/f]</b>
+</div>
+
+<div id="a81_2" class="answer">
+<b>正確答案：135</b>
+</div>
+<img src="./images/q81.jpg" alt="">
+
+<!-- 計算區 -->
+<textarea class="work" placeholder="請在這裡計算..."></textarea>
+
+</div>
+
+<div class="q">
+<h3>第82題</h3>
+<p>
+ABCD 是一個平行四邊形，圖中「★」角是<input type="text" id="q82" class="fill">度。
+
+</p>
+
+<button onclick="checkFill('q82','m82','a82','b82')">確認答案</button>
+<button id="b82" style="display:none" onclick="showAns('a82')">看答案</button>
+
+<div id="m82" class="msg"></div>
+
+<div id="a82" class="answer">
+<b>正確答案：130</b>
+</div>
+<img src="./images/q82.jpg" alt="">
+</div>
+
+<div class="q">
+<h3>第83題</h3>
+<p>
+下圖四邊形中，「★」的角度是幾度？ 
+<input type="text" id="q83" class="fill">
+</p>
+
+<button onclick="checkFill('q83','m83','a83','b83')">確認答案</button>
+<button id="b83" style="display:none" onclick="showAns('a83')">看答案</button>
+
+<div id="m83" class="msg"></div>
+
+<div id="a83" class="answer">
+<b>正確答案：85</b>
+</div>
+<img src="./images/q83.jpg" alt="">
+</div>
+
+<div class="q">
+<h3>第84題</h3>
+<p>
+下圖「★」的角度是幾度？ 
+<input type="text" id="q84" class="fill">
+</p>
+
+<button onclick="checkFill('q84','m84','a84','b84')">確認答案</button>
+<button id="b84" style="display:none" onclick="showAns('a84')">看答案</button>
+
+<div id="m84" class="msg"></div>
+
+<div id="a84" class="answer">
+<b>正確答案：138</b>
+</div>
+<img src="./images/q84.jpg" alt="">
+</div>
+
+<div class="q">
+<h3>第85題</h3>
+<p>
+下圖是 D、E、F、G 四點在△ABC 邊上的位置圖。根據圖中的符號和數據，請問：<br>
+①角 1 是多少度？
+<input type="text" id="q85_1" class="fill">
+
+<button onclick="checkFill('q85_1','m85_1','a85_1','b85_1')">確認</button>
+<button id="b85_1" style="display:none" onclick="showAns('a85_1')">看答案</button>
+
+<span id="m85_1" class="msg"></span>
+<br>②角 2 是多少度？<input type="text" id="q85_2" class="fill">
+<button onclick="checkFill('q85_2','m85_2','a85_2','b85_2')">確認</button>
+<button id="b85_2" style="display:none" onclick="showAns('a85_2')">看答案</button>
+
+<span id="m85_2" class="msg"></span>
+
+</p>
+
+<div id="a85_1" class="answer">
+<b>正確答案：50</b>
+</div>
+
+<div id="a85_2" class="answer">
+<b>正確答案：60</b>
+</div>
+<img src="./images/q85.jpg" alt="">
+</div>
+
+<div class="q">
+<h3>第86題</h3>
+<p>
+畫一個半徑為 3 公分，圓心角為100°的扇形，並標示出半徑及圓心角的位置。
+<input type="text" id="q86" class="fill">
+</p>
+
+<button onclick="checkFill('q86','m86','a86','b86')">確認答案</button>
+<button id="b86" style="display:none" onclick="showAns('a86')">看答案</button>
+
+<div id="m86" class="msg"></div>
+
+<div id="a86" class="answer">
+<b></b>
+</div>
+</div>
+
+<div class="q">
+<h3>第87題</h3>
+
+<table class="compareTable">
+
+<tr>
+<td>①</td>
+<td>3.002</td>
+<td>
+<label><input type="radio" name="q87_1" value=">">＞</label>
+<label><input type="radio" name="q87_1" value="<">＜</label>
+<label><input type="radio" name="q87_1" value="=">＝</label>
+</td>
+<td>三點零零零二</td>
+<td>
+<button onclick="checkRadio('q87_1','>','m87_1','a87_1','b87_1')">確認</button>
+<button id="b87_1" style="display:none" onclick="showAns('a87_1')">看答案</button>
+<span id="m87_1" class="msg"></span>
+</td>
+</tr>
+
+<tr>
+<td>②</td>
+<td>0.9929</td>
+<td>
+<label><input type="radio" name="q87_2" value=">">＞</label>
+<label><input type="radio" name="q87_2" value="<">＜</label>
+<label><input type="radio" name="q87_2" value="=">＝</label>
+</td>
+<td>0.9299</td>
+<td>
+<button onclick="checkRadio('q87_2','>','m87_2','a87_2','b87_2')">確認</button>
+<button id="b87_2" style="display:none" onclick="showAns('a87_2')">看答案</button>
+<span id="m87_2" class="msg"></span>
+</td>
+</tr>
+
+<tr>
+<td>③</td>
+<td>270 個 0.001 合起來</td>
+<td>
+<label><input type="radio" name="q87_3" value=">">＞</label>
+<label><input type="radio" name="q87_3" value="<">＜</label>
+<label><input type="radio" name="q87_3" value="=">＝</label>
+</td>
+<td>2700 個 0.01 合起來</td>
+<td>
+<button onclick="checkRadio('q87_3','<','m87_3','a87_3','b87_3')">確認</button>
+<button id="b87_3" style="display:none" onclick="showAns('a87_3')">看答案</button>
+<span id="m87_3" class="msg"></span>
+</td>
+</tr>
+
+<tr>
+<td>④</td>
+<td>4.004</td>
+<td>
+<label><input type="radio" name="q87_4" value=">">＞</label>
+<label><input type="radio" name="q87_4" value="<">＜</label>
+<label><input type="radio" name="q87_4" value="=">＝</label>
+</td>
+<td>4 個 1 和 4 個 0.001 合起來</td>
+<td>
+<button onclick="checkRadio('q87_4','>','m87_4','a87_4','b87_4')">確認</button>
+<button id="b87_4" style="display:none" onclick="showAns('a87_4')">看答案</button>
+<span id="m87_4" class="msg"></span>
+</td>
+</tr>
+
+<tr>
+<td>⑤</td>
+<td>17.67879</td>
+<td>
+<label><input type="radio" name="q87_5" value=">">＞</label>
+<label><input type="radio" name="q87_5" value="<">＜</label>
+<label><input type="radio" name="q87_5" value="=">＝</label>
+</td>
+<td>17.67988</td>
+<td>
+<button onclick="checkRadio('q87_5','<','m87_5','a87_5','b87_5')">確認</button>
+<button id="b87_5" style="display:none" onclick="showAns('a87_5')">看答案</button>
+<span id="m87_5" class="msg"></span>
+</td>
+</tr>
+
+<tr>
+<td>⑥</td>
+<td>二十點零五六</td>
+<td>
+<label><input type="radio" name="q87_6" value=">">＞</label>
+<label><input type="radio" name="q87_6" value="<">＜</label>
+<label><input type="radio" name="q87_6" value="=">＝</label>
+</td>
+<td>20.06</td>
+<td>
+<button onclick="checkRadio('q87_6','<','m87_6','a87_6','b87_6')">確認</button>
+<button id="b87_6" style="display:none" onclick="showAns('a87_6')">看答案</button>
+<span id="m87_6" class="msg"></span>
+</td>
+</tr>
+
+<tr>
+<td>⑦</td>
+<td>22.700</td>
+<td>
+<label><input type="radio" name="q87_7" value=">">＞</label>
+<label><input type="radio" name="q87_7" value="<">＜</label>
+<label><input type="radio" name="q87_7" value="=">＝</label>
+</td>
+<td>22.7</td>
+<td>
+<button onclick="checkRadio('q87_7','=','m87_7','a87_7','b87_7')">確認</button>
+<button id="b87_7" style="display:none" onclick="showAns('a87_7')">看答案</button>
+<span id="m87_7" class="msg"></span>
+</td>
+</tr>
+
+</table>
+
+<div id="a87_1" class="answer"><b>① 正確答案：＞</b></div>
+<div id="a87_2" class="answer"><b>② 正確答案：＞</b></div>
+<div id="a87_3" class="answer"><b>③ 正確答案：＜</b></div>
+<div id="a87_4" class="answer"><b>④ 正確答案：＞</b></div>
+<div id="a87_5" class="answer"><b>⑤ 正確答案：＜</b></div>
+<div id="a87_6" class="answer"><b>⑥ 正確答案：＜</b></div>
+<div id="a87_7" class="answer"><b>⑦ 正確答案：＝</b></div>
+
+</div>
+
+<div class="q">
+<h3>第88題</h3>
+
+<table class="compareTable">
+
+<tr>
+<td>①</td>
+<td>[f]5/9[/f]+[f]5/9[/f]</td>
+<td>
+<label><input type="radio" name="q88_1" value=">">＞</label>
+<label><input type="radio" name="q88_1" value="<">＜</label>
+<label><input type="radio" name="q88_1" value="=">＝</label>
+</td>
+<td>[f](5×2)/(9×2)[/f]</td>
+<td>
+<button onclick="checkRadio('q88_1','>','m88_1','a88_1','b88_1')">確認</button>
+<button id="b88_1" style="display:none" onclick="showAns('a88_1')">看答案</button>
+<span id="m88_1" class="msg"></span>
+</td>
+</tr>
+
+<tr>
+<td>②</td>
+<td>[f]36/54[/f]</td>
+<td>
+<label><input type="radio" name="q88_2" value=">">＞</label>
+<label><input type="radio" name="q88_2" value="<">＜</label>
+<label><input type="radio" name="q88_2" value="=">＝</label>
+</td>
+<td>[f]8/12[/f]</td>
+<td>
+<button onclick="checkRadio('q88_2','=','m88_2','a88_2','b88_2')">確認</button>
+<button id="b88_2" style="display:none" onclick="showAns('a88_2')">看答案</button>
+<span id="m88_2" class="msg"></span>
+</td>
+</tr>
+
+<tr>
+<td>③</td>
+<td>[f]38/10[/f]</td>
+<td>
+<label><input type="radio" name="q88_3" value=">">＞</label>
+<label><input type="radio" name="q88_3" value="<">＜</label>
+<label><input type="radio" name="q88_3" value="=">＝</label>
+</td>
+<td>[f]57/15[/f]</td>
+<td>
+<button onclick="checkRadio('q88_3','=','m88_3','a88_3','b88_3')">確認</button>
+<button id="b88_3" style="display:none" onclick="showAns('a88_3')">看答案</button>
+<span id="m88_3" class="msg"></span>
+</td>
+</tr>
+
+<tr>
+<td>④</td>
+<td>[f]29/87[/f]</td>
+<td>
+<label><input type="radio" name="q88_4" value=">">＞</label>
+<label><input type="radio" name="q88_4" value="<">＜</label>
+<label><input type="radio" name="q88_4" value="=">＝</label>
+</td>
+<td>[f]17/51[/f]</td>
+<td>
+<button onclick="checkRadio('q88_4','=','m88_4','a88_4','b88_4')">確認</button>
+<button id="b88_4" style="display:none" onclick="showAns('a88_4')">看答案</button>
+<span id="m88_4" class="msg"></span>
+</td>
+</tr>
+
+<tr>
+<td>⑤</td>
+<td>[f]117/153[/f]</td>
+<td>
+<label><input type="radio" name="q88_5" value=">">＞</label>
+<label><input type="radio" name="q88_5" value="<">＜</label>
+<label><input type="radio" name="q88_5" value="=">＝</label>
+</td>
+<td>[f]84/119[/f]</td>
+<td>
+<button onclick="checkRadio('q88_5','>','m88_5','a88_5','b88_5')">確認</button>
+<button id="b88_5" style="display:none" onclick="showAns('a88_5')">看答案</button>
+<span id="m88_5" class="msg"></span>
+</td>
+</tr>
+
+</table>
+
+<div id="a88_1" class="answer"><b>① 正確答案：＞</b></div>
+<div id="a88_2" class="answer"><b>② 正確答案：＝</b></div>
+<div id="a88_3" class="answer"><b>③ 正確答案：＝</b></div>
+<div id="a88_4" class="answer"><b>④ 正確答案：＝</b></div>
+<div id="a88_5" class="answer"><b>⑤ 正確答案：＞</b></div>
+
+</div>
+
+<div class="q">
+<h3>第89題</h3>
+
+<p>
+一個數用四捨五入法取概數到百分位的結果是 <b>5.10</b>，這個數可能是下面哪些小數？在 □ 裡打✔。
+</p>
+
+<label><input type="checkbox" id="q89_1"> 5.105</label><br>
+<label><input type="checkbox" id="q89_2"> 5.099</label><br>
+<label><input type="checkbox" id="q89_3"> 5.1039</label><br><br>
+
+<button onclick="checkQ89()">確認</button>
+<button id="b89" onclick="show89()" style="display:none;">顯示答案</button>
+
+<span id="m89"></span>
+<div id="a89"></div>
+</div>
+
+<script>
+function checkQ89() {
+
+    let c1 = document.getElementById("q89_1").checked;
+    let c2 = document.getElementById("q89_2").checked;
+    let c3 = document.getElementById("q89_3").checked;
+
+    // 正確答案：5.099、5.1039
+    if (!c1 && c2 && c3) {
+        document.getElementById("m89").innerHTML =
+            "<span style='color:green;font-weight:bold;'>✔ 答對了！</span>";
+    } else {
+        document.getElementById("m89").innerHTML =
+            "<span style='color:red;font-weight:bold;'>✘ 答錯了！</span>";
+        document.getElementById("b89").style.display = "inline";
+    }
+}
+
+function show89() {
+    document.getElementById("a89").innerHTML =
+        "<span style='color:blue;'>答案：✔ 5.099、✔ 5.1039</span>";
+}
+</script>
+
+<div class="q">
+<h3>第90題</h3>
+
+<p>
+下列敘述中，正確的請在 □ 裡打✔。
+</p>
+
+<label><input type="checkbox" id="q90_1">
+「45÷15＝3…0」可以說 15 被 45 整除。
+</label><br>
+
+<label><input type="checkbox" id="q90_2">
+56 可以被 2 整除。
+</label><br>
+
+<label><input type="checkbox" id="q90_3">
+17×19＝323，17 和 19 都是 323 的因數。
+</label><br><br>
+
+<button onclick="checkQ90()">確認</button>
+<button id="b90" onclick="show90()" style="display:none;">顯示答案</button>
+
+<span id="m90"></span>
+<div id="a90"></div>
+</div>
+
+<script>
+function checkQ90() {
+
+    let c1 = document.getElementById("q90_1").checked;
+    let c2 = document.getElementById("q90_2").checked;
+    let c3 = document.getElementById("q90_3").checked;
+
+    // 正確答案：第2、3項
+    if (!c1 && c2 && c3) {
+        document.getElementById("m90").innerHTML =
+            "<span style='color:green;font-weight:bold;'>✔ 答對了！</span>";
+    } else {
+        document.getElementById("m90").innerHTML =
+            "<span style='color:red;font-weight:bold;'>✘ 答錯了！</span>";
+        document.getElementById("b90").style.display = "inline";
+    }
+}
+
+function show90() {
+    document.getElementById("a90").innerHTML =
+        "<span style='color:blue;'>答案：✔ 56 可以被 2 整除。<br>✔ 17×19＝323，17 和 19 都是 323 的因數。</span>";
+}
+</script>
+
+<div class="q">
+<h3>第91題</h3>
+
+<p>
+「文新有一些長 6 公分、寬 8 公分的長方形卡片，他想用這些長方形卡片排成正方形，排成的正方形邊長可能是幾公分？」這個題目是要求 6 和 8 的什麼？在正確的 □ 裡打✔。
+</p>
+
+<label><input type="checkbox" id="q91_1"> 公因數</label><br>
+<label><input type="checkbox" id="q91_2"> 公倍數</label><br><br>
+
+<button onclick="checkQ91()">確認</button>
+<button id="b91" onclick="show91()" style="display:none;">顯示答案</button>
+
+<span id="m91"></span>
+<div id="a91"></div>
+</div>
+
+<script>
+function checkQ91() {
+
+    let c1 = document.getElementById("q91_1").checked;
+    let c2 = document.getElementById("q91_2").checked;
+
+    // 正確答案：公倍數
+    if (!c1 && c2) {
+        document.getElementById("m91").innerHTML =
+            "<span style='color:green;font-weight:bold;'>✔ 答對了！</span>";
+    } else {
+        document.getElementById("m91").innerHTML =
+            "<span style='color:red;font-weight:bold;'>✘ 答錯了！</span>";
+        document.getElementById("b91").style.display = "inline";
+    }
+}
+
+function show91() {
+    document.getElementById("a91").innerHTML =
+        "<span style='color:blue;'>答案：✔ 公倍數</span>";
+}
+</script>
+
+<div class="q">
+<h3>第92題</h3>
+
+<p>
+下列各分數中，找出和 <b>30/24</b> 相等的分數，在 □ 裡打✔。
+</p>
+
+<label><input type="checkbox" id="q92_1"> 7/6</label><br>
+<label><input type="checkbox" id="q92_2"> 15/12</label><br>
+<label><input type="checkbox" id="q92_3"> 20/16</label><br><br>
+
+<button onclick="checkQ92()">確認</button>
+<button id="b92" onclick="show92()" style="display:none;">顯示答案</button>
+
+<span id="m92"></span>
+<div id="a92"></div>
+</div>
+
+<script>
+function checkQ92() {
+
+    let c1 = document.getElementById("q92_1").checked;
+    let c2 = document.getElementById("q92_2").checked;
+    let c3 = document.getElementById("q92_3").checked;
+
+    // 正確答案：15/12、20/16
+    if (!c1 && c2 && c3) {
+        document.getElementById("m92").innerHTML =
+            "<span style='color:green;font-weight:bold;'>✔ 答對了！</span>";
+    } else {
+        document.getElementById("m92").innerHTML =
+            "<span style='color:red;font-weight:bold;'>✘ 答錯了！</span>";
+        document.getElementById("b92").style.display = "inline";
+    }
+}
+
+function show92() {
+    document.getElementById("a92").innerHTML =
+        "<span style='color:blue;'>答案：✔ 15/12、✔ 20/16</span>";
+}
+</script>
+
+<div class="q">
+<h3>第93題</h3>
+
+<p>
+下列哪些組的長度組合可以圍成一個三角形？在 □ 裡打✔。
+</p>
+
+<label><input type="checkbox" id="q93_1">
+12 公分、35 公分、20 公分
+</label><br>
+
+<label><input type="checkbox" id="q93_2">
+28 公分、10 公分、37 公分
+</label><br>
+
+<label><input type="checkbox" id="q93_3">
+40 公分、29 公分、12 公分
+</label><br><br>
+
+<button onclick="checkQ93()">確認</button>
+<button id="b93" onclick="show93()" style="display:none;">顯示答案</button>
+
+<span id="m93"></span>
+<div id="a93"></div>
+</div>
+
+<script>
+function checkQ93() {
+
+    let c1 = document.getElementById("q93_1").checked;
+    let c2 = document.getElementById("q93_2").checked;
+    let c3 = document.getElementById("q93_3").checked;
+
+    // 正確答案：第2、3項
+    if (!c1 && c2 && c3) {
+        document.getElementById("m93").innerHTML =
+            "<span style='color:green;font-weight:bold;'>✔ 答對了！</span>";
+    } else {
+        document.getElementById("m93").innerHTML =
+            "<span style='color:red;font-weight:bold;'>✘ 答錯了！</span>";
+        document.getElementById("b93").style.display = "inline";
+    }
+}
+
+function show93() {
+    document.getElementById("a93").innerHTML =
+        "<span style='color:blue;'>答案：✔ 28 公分、10 公分、37 公分<br>✔ 40 公分、29 公分、12 公分</span>";
+}
+</script>
+
+<script>
+function checkFill(id,m,ans,btn){
+
+    let value=document.getElementById(id).value.trim();
+
+    if(value===""){
+        document.getElementById(m).textContent="請先作答";
+        document.getElementById(m).style.color="orange";
+        return;
+    }
+
+    if(value===answers[id]){
+        document.getElementById(m).textContent="✓ 答對";
+        document.getElementById(m).style.color="green";
+    }else{
+        document.getElementById(m).textContent="✗ 答錯";
+        document.getElementById(m).style.color="red";
+        document.getElementById(btn).style.display="inline";
+    }
+
+}
+</script>
+
+<script>
+window.MathJax={tex:{inlineMath:[['\\(','\\)']]}};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+body{font-family:"Microsoft JhengHei",Arial;padding:20px}
+label{display:block;margin:8px 0}
+</style>
+<script>
+// =======================================
+// ⭐⭐⭐ 題目答案設定（只修改這裡）⭐⭐⭐
+// =======================================
+const answers = {
+    q1: "C",
+    q2: "C",
+    q3: "C",
+    q4: "D",
+    q5: "D",
+    q6: "B",
+    q7: "C",
+    q8: "A",
+    q9: "A",
+    q10: "C",
+    q11: "D",
+    q12: "A",
+    q13: "B",
+    q14: "D",
+    q15: "A",
+    q16: "D",
+    q17: "B",
+    q18: "B",
+    q19: "A",
+    q20: "B",
+    q21: "B",
+    q22: "A",
+    q23: "B",
+    q24: "B",
+    q25: "A",
+    q26: "A",
+    q27: "B",
+    q28: "B",
+    q29: "C",
+    q30: "B",
+    q31: "D",
+    q32: "C",
+    q33: "A",
+    q34: "丙",
+    q35: "48.006",
+    q36: "21.9978",
+    q37: "8763",
+    q38: "26",
+    q39: "22.25",
+    q40_1: "1.2",
+    q40_2: "7200",
+    q41: "29.034",
+    q42: "0,1,2,3,4",
+    q43: "14.6783",
+    q44: "83.7143",
+    q45: "37.35",
+    q46: "7.761",
+    q47: "57",
+    q48: "13",
+    q49_1: "1,2",
+    q49_2: "2",
+    q50_1: "6",
+    q50_2: "15",
+    q51_1: "6",
+    q51_2: "48",
+    q52_1: "12",
+    q52_2: "61",
+    q53: "1,2,7,14",
+    q54: "13",
+    q55_1: "8200",
+    q55_2: "8295",
+    q56: "45",
+    q57_1: "80",
+    q57_2: "80,160,240",
+    q58_1: "10月5日",
+    q58_2: "7.927",
+    q58_3: "3.5",
+    q58_4: "168",
+    q58_5: "10,12",
+    q58_6: "品芳",
+    q59: "18",
+    q60: "38,76",
+    q61_1: "702",
+    q61_2: "793",
+    q62: "上午10點36分",
+    q63_1: "4800",
+    q63_2: "4895",
+    q64_1: "147",
+    q64_2: "111",
+    q65_1: "6",
+    q65_2: "14",
+    q66_1: "3 10/14",
+    q66_2: "2 3/5",
+    q67: "第一組",
+    q68: "7片pizza平分給9位小孩，一人可得幾片?7÷9=7/9",
+    q69_1: "36",
+    q69_2: "48",
+    q70_1: "24/40",
+    q70_2: "25/40",
+    q70_3: "21/24",
+    q70_4: "10/24",
+    q71: "倫倫",
+    q72: "1/3",
+    q73: "87",
+    q74: "132",
+    q75: "",
+    q76: "乙,丙",
+    q77_1: "H",
+    q77_2: "B,E",
+    q77_3: "D",
+    q78_1: "75",
+    q78_2: "60",
+    q79: "24",
+    q80: "15",
+    q81_1: "3/8",
+    q81_2: "135",
+    q82: "130",
+    q83: "85",
+    q84: "138",
+    q85_1: "50",
+    q85_2: "60",
+    q86: "",
+    q87_1: ">",
+    q87_2: ">",
+    q87_3: "=",
+    q87_4: ">",
+    q87_5: "<",
+    q87_6: "<",
+    q87_7: "=",
+    q88_1: ">",
+    q88_2: "=",
+    q88_3: "=",
+    q88_4: "=",
+    q88_5: ">",
+    q89: "",
+    q90: "",
+    q91: "",
+    q92: "",
+    q93: ""
+};
+
+function check(n,m,ans,btn){
+let c=document.querySelector('input[name='+n+']:checked');
+if(!c){alert('請先作答');return;}
+if(c.value===answers[n]){document.getElementById(m).textContent='✓ 答對';document.getElementById(m).style.color='green';}
+else{document.getElementById(m).textContent='✗ 答錯';document.getElementById(m).style.color='red';document.getElementById(btn).style.display='inline';}
+}
+function showAns(id){document.getElementById(id).style.display='block';}
+
+function checkQ23(){
+
+    let ans1=document.getElementById("q23_1").value.trim();
+    let ans2=document.getElementById("q23_2").value.trim();
+
+    if(ans1==="327" && ans2==="-336168"){
+        document.getElementById("m23").textContent="✓ 答對";
+        document.getElementById("m23").style.color="green";
+    }else{
+        document.getElementById("m23").textContent="✗ 答錯";
+        document.getElementById("m23").style.color="red";
+        document.getElementById("b23").style.display="inline";
+    }
+}
+
+function convertFraction(){
+
+    document.body.innerHTML=document.body.innerHTML.replace(
+
+        /\[m\]([^ ]+)\s+([^\/\]]+)\/([^\/\]]+)\[\/m\]/g,
+
+        '<span class="mixed">' +
+        '<span class="whole">$1</span>' +
+        '<span class="frac">' +
+        '<span class="top">$2</span>' +
+        '<span class="bottom">$3</span>' +
+        '</span>' +
+        '</span>'
+
+    );
+
+    document.body.innerHTML=document.body.innerHTML.replace(
+
+        /\[f\]([^\/\]]+)\/([^\/\]]+)\[\/f\]/g,
+
+        '<span class="frac">' +
+        '<span class="top">$1</span>' +
+        '<span class="bottom">$2</span>' +
+        '</span>'
+
+    );
+
+}
+
+window.onload=convertFraction;
+
+function checkRadio(name, ans, msgId, ansId, btnId) {
+    const radios = document.getElementsByName(name);
+    let value = "";
+
+    for (let i = 0; i < radios.length; i++) {
+        if (radios[i].checked) {
+            value = radios[i].value;
+            break;
+        }
+    }
+
+    const msg = document.getElementById(msgId);
+
+    if (value === "") {
+        msg.innerHTML = "⚠️ 請先選擇答案";
+        msg.style.color = "orange";
+        return;
+    }
+
+    if (value === ans) {
+        msg.innerHTML = "⭕ 正確！";
+        msg.style.color = "green";
+    } else {
+        msg.innerHTML = "❌ 錯誤";
+        msg.style.color = "red";
+        document.getElementById(btnId).style.display = "inline";
+    }
+}
+
+function showExplain(id){
+    document.getElementById(id).style.display = "block";
+}
+</script>
+
+
+</body>
+</html>

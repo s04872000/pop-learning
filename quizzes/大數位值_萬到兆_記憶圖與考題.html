@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>大數位值視覺記憶與測驗</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;padding:20px;font-family:Arial,"Noto Sans TC",sans-serif;background:#fff7fb;color:#333}
+.wrap{max-width:950px;margin:auto}
+header{background:#fff;padding:20px;border-radius:18px;text-align:center;box-shadow:0 2px 10px #ddd}
+h1{margin:0;color:#d85b91}
+.subtitle{color:#777;margin-top:8px}
+.nav{display:flex;gap:10px;justify-content:center;margin:18px 0;flex-wrap:wrap}
+.nav button{padding:11px 20px;border:0;border-radius:10px;background:#e8e8e8;cursor:pointer;font-size:16px}
+.nav button.active{background:#d85b91;color:white}
+.page{display:none}.page.active{display:block}
+.memory-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.memory-card{background:#fff;border-radius:15px;padding:14px;text-align:center;border:2px solid transparent;cursor:pointer}
+.memory-card:hover,.memory-card.active{border-color:#e88ab0}
+.name{font-size:22px;font-weight:bold;color:#d85b91}
+.number{font-size:19px;margin:8px 0;font-weight:bold;word-break:break-all}
+.zero-count{color:#666}
+.detail{margin-top:18px;background:#fff;padding:22px;border-radius:18px;text-align:center;box-shadow:0 2px 10px #ddd}
+.detail-name{font-size:32px;font-weight:bold;color:#d85b91}
+.detail-number{font-size:30px;font-weight:bold;margin:10px 0;word-break:break-all}
+.zeros{display:flex;justify-content:center;flex-wrap:wrap;gap:6px;margin:15px 0}
+.zero{width:32px;height:32px;border-radius:50%;background:#f0a0c0;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold}
+.memory-rule{background:#fff0f6;padding:15px;border-radius:12px;font-size:20px;font-weight:bold}
+.note{color:#666;margin-top:12px}
+.quiz-box{background:#fff;border-radius:18px;padding:25px;text-align:center;box-shadow:0 2px 10px #ddd}
+.progress{color:#777;margin-bottom:15px}
+.question{font-size:25px;font-weight:bold;margin:22px 0}
+.answer-input{width:220px;padding:11px;border:1px solid #bbb;border-radius:9px;font-size:20px;text-align:center}
+button.action{border:0;border-radius:10px;padding:11px 18px;margin:8px;cursor:pointer;background:#d85b91;color:#fff;font-size:16px}
+button.secondary{background:#777}
+.feedback{min-height:32px;margin:12px;font-weight:bold;font-size:20px}
+.ok{color:#168a45}.wrong{color:#d33}
+.hint{color:#777;font-size:15px}
+@media(max-width:650px){.memory-grid{grid-template-columns:repeat(2,1fr)}.detail-number{font-size:23px}.question{font-size:21px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<h1>🔢 大數位值記憶訓練</h1>
+<div class="subtitle">先看記憶圖，再進入測驗。測驗時看不到答案圖，但可以隨時回去複習。</div>
+</header>
+
+<div class="nav">
+<button id="memoryBtn" class="active">📚 記憶圖</button>
+<button id="quizBtn">📝 進入考題</button>
+</div>
+
+<section id="memoryPage" class="page active">
+<div class="memory-grid" id="memoryGrid"></div>
+<div class="detail">
+<div class="detail-name" id="detailName">100萬</div>
+<div class="detail-number" id="detailNumber">1,000,000</div>
+<div class="zeros" id="zeros"></div>
+<div class="memory-rule" id="memoryRule">100萬＝1,000,000＝6個0</div>
+<div class="note">💡 從「萬」開始：萬是4個0，每往上一個單位，就增加4個0。</div>
+<button class="action" id="startQuiz">記住了，進入考題 →</button>
+</div>
+</section>
+
+<section id="quizPage" class="page">
+<div class="quiz-box">
+<div class="progress" id="progress"></div>
+<div class="question" id="question"></div>
+<input id="answer" class="answer-input" inputmode="numeric" placeholder="輸入 0 的個數">
+<br>
+<button class="action" id="check">確認答案</button>
+<button class="action secondary" id="backMemory">📚 回去看記憶圖</button>
+<div class="feedback" id="feedback"></div>
+<div class="hint">答對會自動進入下一題；答錯會顯示答案，按「下一題」繼續。</div>
+<button class="action" id="next" style="display:none">下一題 →</button>
+</div>
+</section>
+</div>
+
+<script>
+const data=[
+{name:"1萬",number:"10,000",zeros:4},
+{name:"10萬",number:"100,000",zeros:5},
+{name:"100萬",number:"1,000,000",zeros:6},
+{name:"1,000萬",number:"10,000,000",zeros:7},
+{name:"1億",number:"100,000,000",zeros:8},
+{name:"10億",number:"1,000,000,000",zeros:9},
+{name:"100億",number:"10,000,000,000",zeros:10},
+{name:"1,000億",number:"100,000,000,000",zeros:11},
+{name:"1兆",number:"1,000,000,000,000",zeros:12}
+];
+
+const memoryPage=document.getElementById("memoryPage");
+const quizPage=document.getElementById("quizPage");
+const memoryBtn=document.getElementById("memoryBtn");
+const quizBtn=document.getElementById("quizBtn");
+const grid=document.getElementById("memoryGrid");
+const detailName=document.getElementById("detailName");
+const detailNumber=document.getElementById("detailNumber");
+const zeros=document.getElementById("zeros");
+const memoryRule=document.getElementById("memoryRule");
+const question=document.getElementById("question");
+const progress=document.getElementById("progress");
+const answer=document.getElementById("answer");
+const feedback=document.getElementById("feedback");
+const next=document.getElementById("next");
+
+function showPage(page){
+ memoryPage.classList.toggle("active",page==="memory");
+ quizPage.classList.toggle("active",page==="quiz");
+ memoryBtn.classList.toggle("active",page==="memory");
+ quizBtn.classList.toggle("active",page==="quiz");
+ if(page==="quiz") answer.focus();
+}
+
+function showMemory(item){
+ detailName.textContent=item.name;
+ detailNumber.textContent=item.number;
+ zeros.innerHTML="";
+ for(let i=0;i<item.zeros;i++){
+   const z=document.createElement("span");
+   z.className="zero";
+   z.textContent="0";
+   zeros.appendChild(z);
+ }
+ memoryRule.textContent=`${item.name}＝${item.number}＝${item.zeros}個0`;
+}
+
+data.forEach((item,index)=>{
+ const card=document.createElement("div");
+ card.className="memory-card";
+ card.innerHTML=`<div class="name">${item.name}</div><div class="number">${item.number}</div><div class="zero-count">${item.zeros} 個 0</div>`;
+ card.addEventListener("click",()=>{
+   document.querySelectorAll(".memory-card").forEach(c=>c.classList.remove("active"));
+   card.classList.add("active");
+   showMemory(item);
+ });
+ grid.appendChild(card);
+});
+document.querySelectorAll(".memory-card")[2].classList.add("active");
+
+let quizList=[];
+let qIndex=0;
+
+function makeQuiz(){
+ // 每個位值至少考一次，順序打亂
+ quizList=[...data].sort(()=>Math.random()-0.5);
+ qIndex=0;
+ loadQuestion();
+}
+
+function loadQuestion(){
+ const item=quizList[qIndex];
+ progress.textContent=`第 ${qIndex+1} / ${quizList.length} 題`;
+ question.textContent=`「${item.name}」有幾個 0？`;
+ answer.value="";
+ feedback.textContent="";
+ feedback.className="feedback";
+ next.style.display="none";
+ answer.disabled=false;
+ document.getElementById("check").disabled=false;
+ answer.focus();
+}
+
+function checkAnswer(){
+ const item=quizList[qIndex];
+ const value=answer.value.trim();
+ if(value===""){
+   feedback.textContent="請先輸入答案！";
+   feedback.className="feedback wrong";
+   return;
+ }
+ answer.disabled=true;
+ document.getElementById("check").disabled=true;
+ if(Number(value)===item.zeros){
+   feedback.textContent="✓ 答對了！";
+   feedback.className="feedback ok";
+   setTimeout(()=>{
+     qIndex++;
+     if(qIndex<quizList.length) loadQuestion();
+     else finishQuiz();
+   },650);
+ }else{
+   feedback.textContent=`✗ 答錯了！答案是 ${item.zeros} 個 0。`;
+   feedback.className="feedback wrong";
+   next.style.display="inline-block";
+ }
+}
+
+function finishQuiz(){
+ progress.textContent="🎉 全部完成！";
+ question.textContent="你已經完成這一輪記憶測驗！";
+ answer.style.display="none";
+ document.getElementById("check").style.display="none";
+ next.style.display="inline-block";
+ next.textContent="再測一次";
+ feedback.textContent="很棒！可以再複習一次，讓記憶更牢固。";
+ feedback.className="feedback ok";
+}
+
+memoryBtn.addEventListener("click",()=>showPage("memory"));
+quizBtn.addEventListener("click",()=>{showPage("quiz");makeQuiz();});
+document.getElementById("startQuiz").addEventListener("click",()=>{showPage("quiz");makeQuiz();});
+document.getElementById("backMemory").addEventListener("click",()=>showPage("memory"));
+document.getElementById("check").addEventListener("click",checkAnswer);
+next.addEventListener("click",()=>{
+ if(qIndex>=quizList.length-1 && answer.style.display==="none"){
+   answer.style.display="inline-block";
+   document.getElementById("check").style.display="inline-block";
+   makeQuiz();
+ }else{
+   qIndex++;
+   loadQuestion();
+ }
+});
+answer.addEventListener("keydown",e=>{if(e.key==="Enter")checkAnswer();});
+
+showMemory(data[2]);
+</script>
+</body>
+</html>

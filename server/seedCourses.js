@@ -5,7 +5,9 @@ const courses = require("./courses");
 async function seedCourses() {
     try {
         // 連接 MongoDB
-        await mongoose.connect("mongodb://127.0.0.1:27017/pop_learning");
+        await mongoose.connect(
+    process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/pop_learning"
+);
 
         console.log("MongoDB 連線成功！");
 

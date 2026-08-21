@@ -306,13 +306,54 @@
 </style>
 <style>
 .cute-section{max-width:1080px;margin:0 auto;padding:58px 20px 18px;text-align:center}.section-kicker{color:#d95791;font-size:12px;font-weight:900;letter-spacing:.12em;margin-bottom:7px}.section-lead{max-width:720px;margin:0 auto 28px;color:#8b7180;line-height:1.8}.fit-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.fit-card,.case-card,.flow-card{background:#fff;border:2px solid #f2cddd;border-radius:22px;box-shadow:0 7px 18px rgba(217,87,145,.12);transition:.2s}.fit-card{padding:22px 16px}.fit-card:hover,.case-card:hover,.flow-card:hover{transform:translateY(-4px);box-shadow:0 11px 24px rgba(217,87,145,.17)}.fit-icon{width:52px;height:52px;display:grid;place-items:center;margin:0 auto 12px;border-radius:17px;background:#fff0f6;font-size:28px}.fit-card h3,.flow-card h3,.case-card h3{color:#b94d70;margin:0 0 8px;font-weight:900}.fit-card p,.flow-card p,.case-card p{color:#8b7180;line-height:1.75;margin:0;font-size:14px}.flow-grid{max-width:900px;margin:auto;display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.flow-card{padding:18px 12px}.flow-card>span{display:grid;place-items:center;width:42px;height:42px;margin:0 auto 12px;border-radius:50%;background:#ffe0ec;color:#b94d70;font-size:20px;font-weight:900}.case-grid{max-width:900px;margin:auto;display:grid;grid-template-columns:repeat(2,1fr);gap:20px}.case-card{text-align:left;padding:24px}.case-tag{display:inline-block;padding:5px 11px;border-radius:999px;background:#fff0f6;color:#d95791;font-size:12px;font-weight:900;margin-bottom:12px}.case-card p{margin:9px 0}.case-note{color:#9a7d8b;font-size:12px;margin-top:18px}.faq-list{max-width:850px;margin:auto;text-align:left}.faq-list details{background:#fff;border:2px solid #f2cddd;border-radius:18px;margin:10px 0;box-shadow:0 5px 14px rgba(217,87,145,.10);overflow:hidden}.faq-list summary{padding:16px 18px;cursor:pointer;color:#b94d70;font-weight:900;list-style:none}.faq-list summary::-webkit-details-marker{display:none}.faq-list summary:after{content:"＋";float:right;color:#d95791}.faq-list details[open] summary:after{content:"－"}.faq-list details p{margin:0;padding:0 18px 17px;color:#8b7180;line-height:1.8}.learning-category-label{display:inline-block;margin:12px 0 14px;padding:8px 14px;border-radius:999px;background:#fff0f6;color:#b94d70;font-weight:900}@media(max-width:900px){.fit-grid{grid-template-columns:repeat(2,1fr)}.flow-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:650px){.fit-grid,.flow-grid,.case-grid{grid-template-columns:1fr}.cute-section{padding:45px 15px 15px}}
+</style><style>
+/* 學生學習專區：獨立一列，不打亂上方 3×2 學習資源卡片 */
+.student-area-row{
+  display:flex;
+  justify-content:center;
+  margin:18px auto 0;
+}
+.student-area-card{
+  width:min(360px,100%);
+  background:#fff;
+  border:2px solid #f2cddd;
+  border-radius:20px;
+  padding:18px 20px;
+  text-align:center;
+  box-shadow:0 6px 16px rgba(217,87,145,.10);
+}
+.student-area-card .icon{font-size:28px;margin-bottom:5px}
+.student-area-card h3{margin:4px 0 6px;color:#b94d70;font-weight:900;font-size:18px}
+.student-area-card p{margin:0 0 10px;color:#8b7180;font-size:13px;line-height:1.6}
+.student-area-card .quiz-btn{display:inline-block}
+</style><style>
+.student-nav-btn{
+  display:inline-flex!important;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+  padding:8px 14px!important;
+  border-radius:999px!important;
+  background:#d95791!important;
+  color:#fff!important;
+  font-weight:900!important;
+  text-decoration:none!important;
+  box-shadow:0 5px 12px rgba(217,87,145,.18);
+}
+.student-nav-btn:hover{
+  background:#b94d70!important;
+  transform:translateY(-1px);
+}
+@media(max-width:700px){
+  .student-nav-btn{padding:7px 10px!important;font-size:13px!important}
+}
 </style></head>
 <body>
 <header class="navbar">
 <a class="logo" href="#home">🍿 Pop! Learning</a>
 <nav>
 <a href="#home">首頁</a><a href="#about">關於老師</a><a href="#courses">課程</a><a href="#learning">學習專區</a><a href="#contact">聯絡我</a>
-</nav>
+<a href="quizzes/login.html" class="student-nav-btn">👤 學生學習專區</a></nav>
 </header>
 
 <section id="home" class="hero">
@@ -456,8 +497,7 @@
 
 <div class="card resource-card"><div class="icon">🖼️</div><h3>教材圖解</h3><p>整理數學與英文觀念圖解，方便學生課後複習。</p><a class="quiz-btn" href="quizzes/教材圖解.html">查看教材 →</a></div>
 <div class="card resource-card"><div class="icon">🎓</div><h3>國中升學指南</h3><p>整理國中學習與升學相關資訊，提供學生與家長參考。</p><a class="quiz-btn" href="quizzes/國中升學指南.html">查看指南 →</a></div>
-
-
+</div>
 </section>
 
 <section id="learning-cases" class="cute-section"><div class="section-kicker">🌟 LEARNING STORIES</div><h2>🌟 學習案例</h2><div class="case-grid">

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>七年級數學｜6個弱點加強練習</title>
+<style>
+body{font-family:"Microsoft JhengHei",Arial,sans-serif;max-width:1000px;margin:auto;padding:20px;background:#fff7fb;line-height:1.7;color:#333}
+h1{text-align:center;color:#b65f91}
+.subtitle{text-align:center;background:#fff0f7;padding:10px;border-radius:12px;margin-bottom:18px}
+.q{background:#fff;border:1px solid #e6d7df;border-radius:12px;padding:16px;margin:14px 0}
+.q h3{margin:0 0 8px;color:#7d5a70}
+label{display:block;margin:7px 0}
+button{border:0;border-radius:8px;padding:7px 13px;margin:6px 4px 0 0;cursor:pointer}
+.check{background:#d95791;color:#fff}.reset,.retry{background:#ead5e3}
+.fill{width:90px;font-size:17px;padding:4px;text-align:center;border:1px solid #888;border-radius:5px}
+.result{font-weight:bold;margin-top:6px}.wrong{color:#d33}.right{color:#16834b}
+.answer{color:#666;font-weight:normal}.ex{display:block;margin-top:5px;color:#555;font-weight:normal}
+.locked{background:#f2f2f2}.hidden{display:none!important}
+.top{text-align:center;margin-bottom:15px}.summary{text-align:center;font-weight:bold}
+.choice{margin:8px 0}.bottom{text-align:center;margin:20px 0}
+
+.work-area{
+  margin-top:12px;
+  padding:10px 12px;
+  background:#fffafc;
+  border:1px dashed #d8b8c9;
+  border-radius:10px;
+}
+.work-label{
+  display:block;
+  font-size:14px;
+  color:#8a6678;
+  margin-bottom:5px;
+  font-weight:bold;
+}
+.work{
+  width:100%;
+  min-height:100px;
+  box-sizing:border-box;
+  resize:vertical;
+  border:1px solid #d9cbd2;
+  border-radius:7px;
+  padding:7px 9px;
+  font-size:16px;
+  font-family:"Microsoft JhengHei",Arial,sans-serif;
+  background:#fff;
+}
+.work:focus{
+  outline:none;
+  border-color:#b98ba5;
+}
+.work:disabled{
+  background:#f3f3f3;
+  color:#777;
+}
+
+
+.multi-answer{display:flex;flex-wrap:wrap;gap:12px 18px;margin-top:12px;align-items:center}
+.multi-answer label{white-space:nowrap}
+.multi-fill{width:90px}
+
+/* ===== Pop! Learning 統一粉紅主題 ===== */
+:root{
+  --pink:#d95791;
+  --pink-dark:#b94d70;
+  --pink-mid:#ee8fb3;
+  --pink-light:#fff0f6;
+  --pink-bg:#fff7fb;
+  --pink-border:#f2cddd;
+  --pink-shadow:rgba(217,87,145,.13);
+  --text:#5f4d57;
+}
+html,body{
+  background:linear-gradient(135deg,#fff7fb 0%,#ffeaf4 100%) !important;
+  color:var(--text) !important;
+}
+body{
+  font-family:"Microsoft JhengHei","Noto Sans TC",Arial,sans-serif !important;
+}
+h1,h2,h3,.section{
+  color:var(--pink) !important;
+}
+.header,.q,.question,.card,.box,.panel,.score{
+  border-color:var(--pink-border) !important;
+  box-shadow:0 6px 22px var(--pink-shadow) !important;
+}
+.header,.q,.question,.card,.box,.panel{
+  background:#fff !important;
+}
+button{
+  background:var(--pink) !important;
+  color:#fff !important;
+  border:0 !important;
+  border-radius:999px !important;
+  box-shadow:0 3px 9px var(--pink-shadow);
+  font-weight:700;
+}
+button:hover{background:var(--pink-dark) !important;}
+button.secondary,.reset,.retry{
+  background:#f8dce8 !important;
+  color:var(--pink-dark) !important;
+}
+button.danger{
+  background:#d95791 !important;
+}
+input,textarea,select{
+  border-color:var(--pink-border) !important;
+  border-radius:12px !important;
+}
+input:focus,textarea:focus,select:focus{
+  outline:none !important;
+  border-color:var(--pink) !important;
+  box-shadow:0 0 0 3px #ffe2ee !important;
+}
+.calc-box,.calc,.work-area{
+  border-color:#efc6d8 !important;
+}
+.calc-box textarea,.calc textarea,.work{
+  background:repeating-linear-gradient(
+    to bottom,#fff 0,#fff 27px,#f5dfe8 28px
+  ) !important;
+  border-color:#e8bfd1 !important;
+}
+.result,.msg{color:var(--text);}
+.ok,.right{color:#2a9a61 !important;}
+.bad,.wrong{color:#d45563 !important;}
+.answer,.ex{
+  background:#fff0f6 !important;
+  border-color:#f2cddd !important;
+}
+.score{
+  background:#fff0f6 !important;
+  color:var(--pink-dark) !important;
+}
+.subtitle,.sub{
+  color:#806977 !important;
+}
+.locked{
+  background:#f8eef3 !important;
+}
+
+</style>
+</head>
+<body>
+<h1>📚 七年級數學｜弱點加強練習</h1>
+<div class="subtitle">針對原題第1、14、16、17、19、20題的6個弱點，各練1題；另外加入第一次段考第23(2)與第24題的類似題，共8題。</div>
+<div class="top"><button class="reset" onclick="startAll()">🔄 全部重新練習</button></div>
+<div id="questions"></div>
+<div id="bottom" class="bottom"></div>
+<script>
+const questions = [{"type": "choice", "tag": "第1題類型", "q": "老師規定及格分數是70分，小明的數學成績與及格分數相差－6分。小明的數學成績是多少？", "opts": ["A. 64分", "B. 66分", "C. 74分", "D. 76分"], "ans": "A", "ex": "及格分數70分，差距是－6，表示比70分少6分：70－6＝64。"}, {"type": "fill", "tag": "第14題類型", "q": "計算 ∣2 × (1－4)∣ ÷ (－2) × 3 的值為", "ans": "-9", "ex": "先算括號：1－4＝－3；2×(－3)＝－6；絕對值為6；6÷(－2)×3＝－3×3＝－9。"}, {"type": "fill", "tag": "第16題類型", "q": "絕對值小於 6 的整數有幾個？", "ans": "11", "ex": "整數為－5～5，共11個。一般來說，∣x∣＜6 的整數是－5到5。"}, {"type": "fill", "tag": "第17題類型", "q": "某地清晨氣溫是－18°C，中午氣溫升到7°C。中午比清晨高出幾°C？", "ans": "25", "ex": "溫差＝7－(－18)＝7＋18＝25°C。"}, {"type": "fill", "tag": "第19題類型", "q": "有6位同學一起打籃球，從下午3:10打到4:40。每次3人同時上場，且一直輪流上場。平均每人上場幾分鐘？", "ans": "45", "ex": "總時間90分鐘；總人分鐘＝90×3＝270；270÷6＝45分鐘。"}, {"type": "fill", "tag": "第20題類型", "q": "若「☆」的運算規則為 a☆b＝2a＋ab－3，例如：2☆4＝4＋8－3＝9。則 (－3)☆5＝？", "ans": "-24", "ex": "把a＝－3、b＝5代入：2(－3)＋(－3)×5－3＝－6－15－3＝－24。"}, {"type": "fill", "tag": "第23(2)類似題", "q": "計算 176 × (－2002) 的值為", "ans": "-352352", "ex": "把 2002 拆成 2000＋2：176×(－2002)＝－(176×2000＋176×2)＝－(352000＋352)＝－352352。"}, {"type": "multiFill", "tag": "第24題類似題", "q": "在一個測驗中，有 40 道題目，每答對 1 題得 4 分，答錯 1 題扣 2 分，未作答 1 題扣 1 分。若小明只作答 36 題，其中有 31 題答對，則他答錯幾題？未作答幾題？最後得幾分？", "answers": ["5", "4", "110"], "ex": "答錯：36－31＝5題；未作答：40－36＝4題；得分：31×4－5×2－4＝124－10－4＝110分。"}];
+let current = [];
+let results = {};
+
+function shuffle(arr){
+  const a=[...arr];
+  for(let i=a.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+function startAll(){ render(questions,"all"); }
+
+function render(list,mode){
+  document.getElementById("questions").innerHTML="";
+  document.getElementById("bottom").innerHTML="";
+  current=shuffle(list);
+  results={};
+
+  current.forEach((item,i)=>{
+    const n=i+1;
+    const div=document.createElement("div");
+    div.className="q";
+    let body="";
+    if(item.type==="choice"){
+      body=item.opts.map(o=>`<label class="choice"><input type="radio" name="q${n}" value="${o[0]}"> ${o}</label>`).join("");
+    }else if(item.type==="multiFill"){
+      body=item.q + `<div class="multi-answer">
+        <label>答錯：<input class="fill multi-fill" id="q${n}-1" autocomplete="off"> 題</label>
+        <label>未作答：<input class="fill multi-fill" id="q${n}-2" autocomplete="off"> 題</label>
+        <label>得分：<input class="fill multi-fill" id="q${n}-3" autocomplete="off"> 分</label>
+      </div>`;
+    }else{
+      body=item.q + ' <input class="fill" id="q'+n+'" autocomplete="off">';
+    }
+    if(item.type==="choice"){
+      div.innerHTML=`<h3>第${n}題</h3><p>${item.q}</p>${body}
+      <div class="work-area">
+        <span class="work-label">✏️ 計算區（可以寫你的計算過程）</span>
+        <textarea class="work" id="work${n}" placeholder="把計算過程寫在這裡……"></textarea>
+      </div>
+      <button class="check" onclick="check(${n})">送出</button><span class="result" id="r${n}"></span>`;
+    }else{
+      div.innerHTML=`<h3>第${n}題</h3><p>${body}</p>
+      <div class="work-area">
+        <span class="work-label">✏️ 計算區（可以寫你的計算過程）</span>
+        <textarea class="work" id="work${n}" placeholder="把計算過程寫在這裡……"></textarea>
+      </div>
+      <span class="result" id="r${n}"></span>`;
+    }
+    document.getElementById("questions").appendChild(div);
+    if(item.type==="fill"){
+      document.getElementById("q"+n).addEventListener("keydown",e=>{if(e.key==="Enter")check(n)});
+    }else if(item.type==="multiFill"){
+      for(let k=1;k<=3;k++){
+        document.getElementById(`q${n}-${k}`).addEventListener("keydown",e=>{if(e.key==="Enter")check(n)});
+      }
+    }
+  });
+}
+
+function check(n){
+  if(results[n]!==undefined)return;
+  const item=current[n-1];
+  let user="";
+  if(item.type==="choice"){
+    const c=document.querySelector('input[name="q'+n+'"]:checked');
+    if(!c){alert("請先作答");return;}
+    user=c.value;
+  }else if(item.type==="multiFill"){
+    const inputs=[1,2,3].map(k=>document.getElementById(`q${n}-${k}`));
+    const values=inputs.map(x=>x.value.trim());
+    if(values.some(v=>v==="")){alert("請先填完三個答案");return;}
+    user=values.join(",");
+    inputs.forEach(input=>{input.disabled=true;input.classList.add("locked")});
+  }else{
+    const input=document.getElementById("q"+n);
+    user=input.value.trim();
+    if(user===""){alert("請先作答");return;}
+    input.disabled=true;
+    input.classList.add("locked");
+  }
+
+  const work=document.getElementById("work"+n);
+  if(work) work.disabled=true;
+
+  const correct=(item.type==="multiFill" ? item.answers.join(",") : String(item.ans)).trim().toLowerCase();
+  const result=document.getElementById("r"+n);
+  results[n]=(user.toLowerCase().replace(/\\s+/g,"").replace(/，/g,",")===correct.toLowerCase().replace(/\\s+/g,"").replace(/，/g,","));
+
+  if(results[n]){
+    result.className="result right";
+    result.textContent="✓ 答對";
+    document.querySelectorAll('input[name="q'+n+'"]').forEach(x=>x.disabled=true);
+    setTimeout(()=>document.querySelectorAll(".q")[n-1].classList.add("hidden"),180);
+  }else{
+    result.className="result wrong";
+    const answerText=item.type==="multiFill" ? item.answers.join("、") : item.ans;
+    result.innerHTML='✗ 答錯　<span class="answer">答案：'+answerText+'</span><span class="ex">💡 解析：'+item.ex+'</span>';
+    document.querySelectorAll('input[name="q'+n+'"]').forEach(x=>x.disabled=true);
+  }
+  finishCheck();
+}
+
+function finishCheck(){
+  if(Object.keys(results).length!==current.length)return;
+  const wrong=current.filter((_,i)=>results[i+1]===false);
+  const bottom=document.getElementById("bottom");
+  if(wrong.length){
+    const data=JSON.stringify(wrong).replace(/'/g,"&apos;");
+    bottom.innerHTML=`<div>本輪還有 <b>${wrong.length}</b> 題需要加強。</div>
+    <button class="retry" onclick='render(${data},"wrong")'>🎯 只練這次錯題</button>
+    <button class="reset" onclick="startAll()">🔄 再練全部8題</button>`;
+  }else{
+    bottom.innerHTML='<div class="right">🎉 本輪全部答對！</div><button class="reset" onclick="startAll()">🔄 再練全部8題</button>';
+  }
+}
+startAll();
+</script>
+</body>
+</html>

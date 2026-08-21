@@ -1,0 +1,267 @@
+<!doctype html><html><head><meta charset='utf-8'>
+<style>
+body{font-family:Microsoft JhengHei;background:#fff7fb;font-size:22px;max-width:950px;margin:auto;padding:20px}
+.q{background:#fff;border:3px solid pink;border-radius:15px;padding:15px;margin:15px 0}
+textarea{width:98%;height:90px;font-size:20px}
+input{font-size:20px}button{font-size:20px}
+.ok{color:green} .no{color:red} .correct-hidden{display:none}.explain{margin-top:10px;padding:12px;background:#fff8fc;border-radius:10px;line-height:1.6}
+
+.tf-options{display:inline-flex;gap:24px;align-items:center;font-size:26px}
+.tf-options label{cursor:pointer;display:inline-flex;align-items:center;gap:5px}
+.tf-options input{width:20px;height:20px}
+.explain{margin-top:10px;padding:12px;background:#fff8fc;border-radius:10px;line-height:1.6}
+
+.choice-options{display:flex;flex-wrap:wrap;gap:14px 24px;align-items:center;font-size:20px}
+.choice-options label{cursor:pointer;display:inline-flex;align-items:center;gap:5px}
+.choice-options input{width:20px;height:20px}
+
+.visual-btn{margin-top:10px;padding:8px 14px;border:2px solid #f0a8c8;border-radius:10px;background:#fff;color:#a64d78;cursor:pointer;font-size:18px}
+.visual-box{display:none;margin-top:10px;padding:14px;background:#fff;border:2px dashed #e7b4cb;border-radius:12px;font-size:19px}
+.visual-box.show{display:block}
+.diagram-title{font-weight:bold;color:#a64d78;margin-bottom:8px}
+.place-table{border-collapse:collapse;margin:8px 0;font-size:18px}
+.place-table th,.place-table td{border:1px solid #d9b7c8;padding:6px 10px;text-align:center}
+.step{margin:5px 0}
+
+.line-segment{margin:10px 0;padding:6px 0}
+.line-segment svg{display:block;width:100%;max-width:760px;height:auto}
+
+.question-box{font-size:34px;font-weight:800;vertical-align:middle;line-height:1;position:relative;top:-5px;}
+
+/* ===== Pop! Learning 統一粉紅可愛風格 ===== */
+:root{
+  --pop-pink:#d95791;
+  --pop-pink-dark:#b94d70;
+  --pop-pink-light:#fff0f5;
+  --pop-pink-bg:#fff7fb;
+  --pop-border:#f2cddd;
+  --pop-shadow:rgba(217,87,145,.12);
+}
+body{
+  font-family:"Microsoft JhengHei",Arial,sans-serif !important;
+  background:linear-gradient(135deg,#fff7fb 0%,#ffeaf4 100%) !important;
+  color:#5f4d57;
+}
+h1,h2{
+  color:var(--pop-pink) !important;
+  font-weight:900;
+  letter-spacing:.04em;
+}
+h3{
+  color:var(--pop-pink-dark);
+  font-weight:900;
+}
+.container{
+  max-width:900px !important;
+  width:auto !important;
+  background:rgba(255,255,255,.94) !important;
+  border:3px solid #f7d5e5 !important;
+  border-radius:28px !important;
+  box-shadow:0 8px 24px var(--pop-shadow) !important;
+}
+.q{
+  background:linear-gradient(145deg,#fff,#fff7fb) !important;
+  border:2px solid #f7d5e5 !important;
+  border-radius:22px !important;
+  box-shadow:0 5px 14px rgba(217,87,145,.07);
+  transition:transform .18s ease,box-shadow .18s ease;
+}
+.q:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 18px rgba(217,87,145,.11);
+}
+button{
+  background:var(--pop-pink) !important;
+  color:#fff !important;
+  border:0 !important;
+  border-radius:999px !important;
+  padding:9px 17px !important;
+  font-weight:800;
+  cursor:pointer;
+  box-shadow:0 3px 8px rgba(217,87,145,.16);
+}
+button:hover{
+  background:var(--pop-pink-dark) !important;
+}
+input[type="text"],input[type="number"],input[type="search"],textarea,.fill,.answerbox,.workbox,.work{
+  border:2px solid #f2cddd !important;
+  border-radius:12px !important;
+  background:#fff !important;
+  box-sizing:border-box;
+}
+input:focus,textarea:focus{
+  outline:none;
+  border-color:var(--pop-pink) !important;
+  box-shadow:0 0 0 3px #ffe5f0;
+}
+.answer{
+  background:#fff0f5 !important;
+  border:1px solid #f2cddd;
+  border-radius:14px !important;
+  color:var(--pop-pink-dark) !important;
+}
+.explain,.analysis-wrap,.visual-box{
+  background:#fff7fb !important;
+  border:1px solid #f2d6e3;
+  border-radius:14px !important;
+}
+.analysis-title,.diagram-title{
+  color:var(--pop-pink) !important;
+}
+.visual-btn{
+  background:#fff0f5 !important;
+  color:var(--pop-pink-dark) !important;
+  border:2px solid #f2b9d1 !important;
+  border-radius:999px !important;
+}
+.place-table th,.place-table td,table th,table td{
+  border-color:#edc6d7 !important;
+}
+.topMenu{
+  background:#fff0f5 !important;
+  border-bottom:2px solid #f2a9c7 !important;
+  border-radius:0 0 16px 16px;
+}
+.topMenu a{
+  background:#fff !important;
+  border:2px solid #f2b9d1 !important;
+  border-radius:999px !important;
+  color:var(--pop-pink-dark) !important;
+}
+.topMenu a:hover{
+  background:var(--pop-pink) !important;
+  color:#fff !important;
+}
+.msg .ok,.ok{color:#42a66a !important}
+.msg .no,.no{color:#df5c69 !important}
+.correct-hidden{display:none}
+label{cursor:pointer}
+
+</style></head><body><h1>🌸 五年級錯題及類似題題庫</h1>
+<div id='quiz'></div><button onclick='location.reload()'>重新隨機</button><h2 id='result'></h2>
+<script>
+const qs=[{"q": "是非題：0是任意整數的因數。", "a": "錯", "ex": "0不能當作任意整數的因數。因數必須能和另一個整數相乘得到原數；0乘任何整數都只能得到0。", "type": "tf", "id": "q1"}, {"q": "下列哪一個數只有2個因數？", "a": "23", "ex": "只有2個因數的數是質數，因數只有1和本身。23的因數只有1、23。", "type": "choice", "id": "q2", "options": ["21", "23", "57", "87"]}, {"q": "6.4542中，左邊的4是右邊4的幾倍？", "a": "100", "ex": "左邊的4在十分位，右邊的4在千分位。十分位比千分位大100倍。不要看到兩個4就說2倍，也不是20倍。", "type": "fill", "id": "q3"}, {"q": "一塊土地面積是38.625平方公尺，其中有12.4875平方公尺種花，其餘種菜。種菜的面積是多少平方公尺？", "a": "26.1375", "ex": "「其餘」表示剩下的部分，所以要用總面積減掉已經種花的面積：38.625－12.4875＝26.1375。記住：剩下的＝全部－已經有的。", "type": "fill", "id": "q4"}, {"q": "比5小0.0006的數是？", "a": "4.9994", "ex": "「比5小0.0006」就是5－0.0006＝4.9994。", "type": "fill", "id": "q6"}, {"q": "2.06 ＞ 2.0□6，□中可以填入哪些數字？（請用,分隔）", "a": "0,1,2,3,4,5", "ex": "2.06可以寫成2.060。比較2.0□6時，□在百分位；要讓右邊不超過2.060，□只能是0到5。", "type": "fill", "id": "q7"}, {"q": "0.428 ＜ 0.□，□中可以填入哪些數字？（請用,分隔）", "a": "5,6,7,8,9", "ex": "0.428的十分位是4，右邊的十分位必須比4大，所以可以填5、6、7、8、9。", "type": "fill", "id": "q8"}, {"q": "水壺裡有3.86公升的水，又加入0.745公升的果汁，現在共有幾公升？", "a": "4.605", "ex": "「加入」表示增加，所以用加法：3.860＋0.745＝4.605公升。", "type": "fill", "id": "q9"}, {"q": "一壺果汁原有0.934公升，加入稀釋用的牛奶後，喝掉0.618公升，最後剩下0.427公升。原本約加入多少公升牛奶？（四捨五入到小數第1位）", "a": "0.1", "ex": "題目要求先把每個數字四捨五入到小數第1位：0.934→0.9、0.618→0.6、0.427→0.4。再計算：0.4＋0.6－0.9＝0.1公升。", "type": "fill", "id": "q10"}, {"q": "下列哪一個數是90的因數？", "a": "6", "ex": "90÷6＝15，沒有餘數，所以6是90的因數。", "type": "choice", "id": "q12", "options": ["7", "6", "8", "11"]}, {"q": "「68」和「85」這兩個數所有公因數的和是多少？", "a": "18", "ex": "68＝4×17，85＝5×17，所以最大公因數是17。兩數的公因數就是17的因數：1、17。因此1＋17＝18。", "type": "fill", "id": "q13"}, {"q": "老師將48枝原子筆和80枝鉛筆分給班上學生，每人拿到的原子筆一樣多，鉛筆也一樣多。原子筆不夠4枝，鉛筆剩下2枝，班上學生最多有幾人？", "a": "26", "ex": "原子筆不夠4枝：48＋4＝52；鉛筆剩下2枝：80－2＝78。學生人數要同時整除52和78，最大公因數是26，所以最多26人。", "type": "fill", "id": "q14"}, {"q": "水果行將99顆蘋果裝成禮盒，每盒蘋果的個數在5～15顆之間，每盒蘋果的數量一樣多，蘋果剩下3顆，最多裝成幾盒？每盒有幾顆蘋果？", "a": "16,6", "ex": "先扣掉剩下的3顆：99－3＝96。每盒5～15顆，96的符合條件的因數有6、8、12。要裝最多盒，就選每盒最少的6顆：96÷6＝16。答案：16盒，每盒6顆。", "type": "fill", "id": "q15"}, {"q": "麵包店將58個蛋塔和87個餐包裝盒，每盒蛋塔的數量一樣多，餐包的數量也一樣多，剛好裝完。最多可以裝成幾盒？每盒蛋塔和餐包各有幾個？", "a": "29,2,3", "ex": "盒數要同時是58和87的因數。58＝2×29，87＝3×29，最大公因數是29。因此最多29盒；每盒蛋塔58÷29＝2個，每盒餐包87÷29＝3個。", "type": "fill", "id": "q16"}];
+const visuals={
+q1:`<div class="diagram-title">因數的意思</div><div class="step">因數要能「整除」原數：</div><div style="font-size:22px">2 × 3 = 6　→　2、3 都是 6 的因數</div><div class="step">0 × 任何整數都只會得到 0，所以 0 不能當作任意整數的因數。</div>`,
+q2:`<div class="diagram-title">只有 2 個因數 → 質數</div><div style="font-size:22px">23 → 1 × 23</div><div class="step">因數只有 <b>1、23</b>，所以 23 是質數。</div>`,
+q3:`<div class="diagram-title">兩個 4 的位置不同</div><table class="place-table"><tr><th>個位</th><th>十分位</th><th>百分位</th><th>千分位</th></tr><tr><td>6</td><td><b>4</b></td><td>5</td><td><b>4</b></td></tr></table><div class="step">0.4 ÷ 0.004 = <b>100</b>，所以左邊的 4 是右邊的 4 的 100 倍。</div>`,
+q4:`<div class="diagram-title">線段圖：全部 − 種花 ＝ 種菜</div>
+<svg viewBox="0 0 760 210" width="100%" style="max-width:760px">
+  <line x1="70" y1="80" x2="690" y2="80" stroke="#d9a8c0" stroke-width="32" stroke-linecap="round"/>
+  <line x1="70" y1="80" x2="280" y2="80" stroke="#f19ac0" stroke-width="32" stroke-linecap="round"/>
+  <line x1="70" y1="55" x2="70" y2="108" stroke="#555" stroke-width="3"/>
+  <line x1="280" y1="55" x2="280" y2="108" stroke="#555" stroke-width="3"/>
+  <line x1="690" y1="55" x2="690" y2="108" stroke="#555" stroke-width="3"/>
+  <text x="380" y="30" text-anchor="middle" font-size="22">全部：38.625 平方公尺</text>
+  <text x="175" y="145" text-anchor="middle" font-size="20">種花：12.4875</text>
+  <text x="485" y="145" text-anchor="middle" font-size="20">種菜：？</text>
+  <text x="380" y="185" text-anchor="middle" font-size="18">全部分成「種花」和「種菜」兩部分</text>
+</svg>
+<div class="step"><b>看線段圖：</b>全部 − 種花 ＝ 種菜</div>
+<div style="font-size:22px;margin-top:8px"><b>38.625 − 12.4875 ＝ 26.1375</b></div>
+<div class="step">所以種菜的面積是 <b>26.1375 平方公尺</b>。</div>`,
+q6:`<div class="diagram-title">比 5 小 0.0006</div><div style="font-size:24px">5 − 0.0006 = <b>4.9994</b></div><div class="step">在數線上就是從 5 往左移 0.0006。</div>`,
+q7:`<div class="diagram-title">先補成相同位數</div><div style="font-size:24px">2.06 = 2.060</div><div class="step">要讓 2.0□6 小於 2.060，□ 可以是 <b>0、1、2、3、4、5</b>。</div>`,
+q8:`<div class="diagram-title">先比較十分位</div><div style="font-size:24px">0.428　＜　0.□</div><div class="step">左邊十分位是 4，右邊要更大，所以 □ = <b>5、6、7、8、9</b>。</div>`,
+q9:`<div class="diagram-title">小數加法要對齊小數點</div><div style="font-size:24px;font-family:monospace">3.860<br>+0.745<br>──────<br><b>4.605</b></div>`,
+q10:`<div class="diagram-title">先四捨五入，再計算</div><div class="step">0.934 → <b>0.9</b></div><div class="step">0.618 → <b>0.6</b></div><div class="step">0.427 → <b>0.4</b></div><div class="step">加入牛奶＝0.4＋0.6－0.9</div><div style="font-size:22px"><b>＝0.1 公升</b></div>`,
+q12:`<div class="diagram-title">用除法檢查</div><div style="font-size:24px"><b>90 ÷ 6 = 15</b></div><div class="step">沒有餘數 → 6 能整除 90 → <b>6 是 90 的因數</b>。</div>`,
+q13:"<div class='diagram-title'>找共同因數</div><div class='step'>68＝4×17</div><div class='step'>85＝5×17</div><div class='step'>共同因數：1、17</div><div style='font-size:22px'><b>1＋17＝18</b></div>",
+q14:"<div class='diagram-title'>把「不夠」與「剩下」轉換</div><div class='step'>48＋4＝52</div><div class='step'>80－2＝78</div><div class='step'>52和78的最大公因數＝26</div><div style='font-size:22px'><b>最多26人</b></div>",
+q15:"<div class='diagram-title'>先扣掉剩下的3顆</div><div class='step'>99－3＝96</div><div class='step'>每盒5～15顆，可選6、8、12顆。</div><div class='step'>要最多盒 → 每盒最少 → 6顆</div><div style='font-size:22px'><b>96÷6＝16盒</b></div>",
+q16:"<div class='diagram-title'>最多盒數＝最大公因數</div><div class='step'>58＝2×29</div><div class='step'>87＝3×29</div><div class='step'>最大公因數＝29</div><div class='step'>每盒：蛋塔2個、餐包3個</div>"};
+function toggleVisual(id,btn){
+  const box=document.getElementById('v-'+id);
+  if(!box)return;
+  const show=box.classList.toggle('show');
+  btn.textContent=show?'📖 收起解析':'📖 看解析';
+}
+
+qs.sort(()=>Math.random()-0.5);
+const norm=s=>s.replace(/\s/g,'');
+let h='';
+qs.forEach((x,i)=>{
+  let answerUI='';
+  if(x.type==='tf'){
+    answerUI=`<span class="tf-options">
+      <label><input type="radio" name="tf-${x.id}" value="對"> ○</label>
+      <label><input type="radio" name="tf-${x.id}" value="錯"> ✕</label>
+    </span>`;
+  }else if(x.type==='choice'){
+    answerUI=`<span class="choice-options">
+      ${x.options.map((op,j)=>`<label><input type="radio" name="ch-${x.id}" value="${op}">  ${op}</label>`).join('')}
+    </span>`;
+  }else{
+    answerUI=`<input id="a-${x.id}" placeholder="答案">`;
+  }
+
+  const questionText = x.q.replace(/□/g, '<span class="question-box">□</span>');
+  h+=`<div class="q" data-qid="${x.id}">
+    <b>第${i+1}題</b><br><br>${questionText}<br><br>
+    📝 計算空間：<br>
+    <textarea placeholder="請在這裡寫計算過程"></textarea><br><br>
+    答案：${answerUI}
+    <button onclick="checkById('${x.id}')">確認</button>
+    <div id="m-${x.id}"></div>
+  </div>`;
+});
+document.getElementById('quiz').innerHTML=h;
+
+function checkById(id){
+  const x=qs.find(q=>q.id===id);
+  const row=document.querySelector('.q[data-qid="'+id+'"]');
+  if(!x||!row)return;
+  const button=row.querySelector('button'), msg=document.getElementById('m-'+id);
+  if(button.disabled)return;
+
+  let input=null;
+  if(x.type==='tf') input=row.querySelector('input[name="tf-'+id+'"]:checked');
+  else if(x.type==='choice') input=row.querySelector('input[name="ch-'+id+'"]:checked');
+  else input=row.querySelector('input[id="a-'+id+'"]');
+
+  const u=input ? input.value.trim() : '';
+  if(!u){
+    msg.innerHTML='<span class="no">請先選擇或輸入答案</span>';
+    return;
+  }
+
+  button.disabled=true;
+  row.querySelectorAll('input').forEach(el=>el.disabled=true);
+
+  const visual = visuals[x.id] || '';
+  const visualUI = visual
+    ? '<button type="button" class="visual-btn" onclick="toggleVisual(\''+x.id+'\',this)">📖 看解析</button><div id="v-'+x.id+'" class="visual-box">'+visual+'</div>'
+    : '';
+  if(norm(u)===norm(x.a))
+    msg.innerHTML='<span class="ok">😸 正確</span><br><div class="explain">解析：'+x.ex+'</div>'+visualUI;
+  else
+    msg.innerHTML='<span class="no">🙀 答錯，答案：'+x.a+'</span><br><div class="explain">解析：'+x.ex+'</div>'+visualUI;
+}
+
+
+
+document.addEventListener('keydown', function(e){
+  if(e.key !== 'Enter') return;
+
+  const el = e.target;
+
+  // 計算空間按 Enter：只換行，不確認答案
+  if(el && el.tagName === 'TEXTAREA') return;
+
+  // 只有答案區的文字輸入框／單選按鈕可以用 Enter 確認
+  if(!el || !(
+    (el.tagName === 'INPUT' && el.type === 'text') ||
+    (el.tagName === 'INPUT' && el.type === 'radio')
+  )) return;
+
+  const row = el.closest('.q');
+  if(!row) return;
+
+  const button = row.querySelector('button');
+  if(!button || button.disabled) return;
+
+  e.preventDefault();
+  e.stopImmediatePropagation();
+  button.click();
+}, true);
+</script></body></html>

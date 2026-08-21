@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>100、1000減法闖關</title>
+<style>
+body{font-family:Arial;background:#fff7fb;margin:0}
+.card{max-width:700px;margin:40px auto;background:#fff;padding:25px;border-radius:15px;text-align:center;box-shadow:0 0 10px #999}
+#info{display:flex;justify-content:space-between;font-size:24px;margin-bottom:20px}
+#q{font-size:54px}
+#ans{font-size:36px;width:220px;text-align:center}
+#msg{font-size:32px;font-weight:bold;height:40px}
+
+/* ===== Pop! Learning 統一粉紅主題 ===== */
+:root{
+ --pink:#d95791;
+ --pink-dark:#b94d70;
+ --pink-mid:#ee8fb3;
+ --pink-light:#fff0f6;
+ --pink-bg:#fff7fb;
+ --pink-border:#f2cddd;
+ --pink-shadow:rgba(217,87,145,.13);
+ --text:#5f4d57;
+}
+html,body{
+ background:linear-gradient(135deg,#fff7fb 0%,#ffeaf4 100%) !important;
+ color:var(--text) !important;
+}
+body{
+ font-family:"Microsoft JhengHei","Noto Sans TC",Arial,sans-serif !important;
+}
+h1,h2,h3{
+ color:var(--pink) !important;
+}
+button{
+ background:var(--pink) !important;
+ color:#fff !important;
+ border:0 !important;
+ border-radius:999px !important;
+ box-shadow:0 3px 9px var(--pink-shadow);
+ font-weight:700;
+}
+button:hover{background:var(--pink-dark) !important;}
+input,textarea,select{
+ border-color:var(--pink-border) !important;
+ border-radius:12px !important;
+}
+input:focus,textarea:focus,select:focus{
+ outline:none !important;
+ border-color:var(--pink) !important;
+ box-shadow:0 0 0 3px #ffe2ee !important;
+}
+.card,.box,.container,.panel,.quiz-box,.detail,.question,.work-area,.memory-card{
+ border-color:var(--pink-border) !important;
+ box-shadow:0 6px 22px var(--pink-shadow) !important;
+}
+.question,.guide,.rule,.memory-rule,.stats,.answer,.answer:focus,.explain{
+ background:#fff0f6 !important;
+}
+.primary,.action,.pink{background:var(--pink) !important;color:#fff !important;}
+.secondary,.tab:not(.active){background:#f8dce8 !important;color:var(--pink-dark) !important;}
+.tab.active,.nav button.active{background:var(--pink) !important;color:#fff !important;}
+.topbar,.topMenu{background:#fff0f6 !important;border-color:#f2b0cb !important;}
+.topMenu a{border-color:#f2b0cb !important;color:var(--pink-dark) !important;}
+.topMenu a:hover{background:var(--pink) !important;color:#fff !important;}
+.correct,.ok{color:#2a9a61 !important;}
+.wrong{color:#d45563 !important;}
+
+</style>
+</head>
+<body>
+<div class="card">
+<h1>🎯 100、1000減法闖關</h1>
+<div id="info">
+<span id="stage">第1/20題</span>
+<span id="score">⭐0</span>
+<span id="life">❤️❤️❤️</span>
+</div>
+<h2 id="q"></h2>
+<input id="ans" type="number" autofocus>
+<p id="msg"></p>
+<p>按 Enter 作答</p>
+</div>
+<script>
+let score=0,life=3,no=1,q={};
+const Q=document.getElementById('q'),A=document.getElementById('ans'),
+M=document.getElementById('msg'),S=document.getElementById('score'),
+L=document.getElementById('life'),ST=document.getElementById('stage');
+
+function update(){
+S.textContent='⭐'+score;
+L.textContent='❤️'.repeat(life);
+ST.textContent='第'+no+'/20題';
+}
+function newQ(){
+if(no>20){
+document.body.innerHTML='<h1 style="text-align:center;margin-top:80px">🏆 闖關完成！<br>得分：'+score+'/20</h1>';
+return;
+}
+let b;
+if(Math.random()<0.5){b=Math.floor(Math.random()*90)+10;q={t:'100 − '+b+' = ?',a:100-b};}
+else{b=Math.floor(Math.random()*900)+100;q={t:'1000 − '+b+' = ?',a:1000-b};}
+Q.textContent=q.t;A.value='';M.textContent='';update();A.focus();
+}
+function check(){
+if(Number(A.value)===q.a){
+score++;M.textContent='✅ 答對！';no++;
+setTimeout(newQ,500);
+}else{
+life--;M.textContent='❌ 答錯，再試一次！';
+update();
+if(life<=0){
+document.body.innerHTML='<h1 style="text-align:center;margin-top:80px">💔 遊戲結束<br>得分：'+score+'/20</h1>';
+return;
+}
+A.focus();
+}
+}
+A.addEventListener('keydown',e=>{if(e.key==='Enter')check();});
+newQ();
+</script>
+</body>
+</html>

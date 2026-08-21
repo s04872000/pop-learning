@@ -6,3 +6,353 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 25px;
 }
+/* 老師漫畫肖像 */
+.about-image.about-teachers{
+    width:430px;
+    height:250px;
+    flex-shrink:0;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    overflow:visible;
+    background:transparent;
+    padding:0;
+}
+.about-image.about-teachers img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:top center;
+    display:block;
+    border-radius:18px;
+}
+.contact-person-image{
+    object-fit:cover;
+    object-position:top center;
+}
+@media(max-width:700px){
+ .about-image.about-teachers{
+        width:min(100%,430px);
+        height:225px;
+    }
+}
+
+/* 老師姓名與聯絡區塊 */
+.about-image.about-teachers{display:grid;grid-template-columns:1fr 1fr;gap:12px;overflow:visible;background:transparent;padding:0}
+.teacher-portrait{position:relative;background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,.06)}
+.teacher-portrait img{
+    width:100%;
+    height:205px;
+    object-fit:cover;
+    object-position:top center;
+    display:block;
+    border-radius:18px;
+}
+.teacher-name{text-align:center;font-size:21px;font-weight:800;padding:10px 8px 12px}
+.female-name{color:#d9578b}
+.male-name{color:#4c91d9}
+.contact-people{display:flex;flex-direction:column;gap:22px;max-width:1100px;margin:22px auto 0}
+.contact-person{display:grid;grid-template-columns:190px 1fr;gap:20px;align-items:center;padding:18px 22px;border-radius:22px;background:#fff;box-shadow:0 4px 16px rgba(0,0,0,.05)}
+.contact-person-head{text-align:center}
+.contact-person-head img{width:135px;height:145px;object-fit:cover;object-position:top center;border-radius:18px}
+.contact-person-head h3{margin:7px 0 0;font-size:20px}
+.contact-female .contact-person-head h3{color:#d9578b}
+.contact-male .contact-person-head h3{color:#4c91d9}
+.contact-person .contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:0}
+.contact-person .contact-card{margin:0}
+@media(max-width:700px){
+ .about-image.about-teachers{grid-template-columns:1fr 1fr}
+ .teacher-portrait img{height:210px}
+ .teacher-name{font-size:18px}
+ .contact-person{grid-template-columns:1fr}
+ .contact-person .contact-grid{grid-template-columns:1fr}
+}
+
+/* 完整學習管理區塊 */
+.service-model{
+    background:linear-gradient(180deg,#fff8fc 0%,#fff 100%);
+}
+.service-cards{
+    max-width:1100px;
+    margin:24px auto;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+.service-card{
+    background:#fff;
+    border:2px solid #f8dce9;
+    border-radius:20px;
+    padding:22px 18px;
+    text-align:center;
+    box-shadow:0 4px 14px rgba(0,0,0,.04);
+}
+.service-icon{
+    font-size:30px;
+    margin-bottom:8px;
+}
+.service-card h3{
+    color:#d85d91;
+    margin:7px 0 9px;
+}
+.service-card p{
+    margin:0;
+    line-height:1.8;
+    color:#666;
+}
+.service-highlight{
+    max-width:900px;
+    margin:25px auto 15px;
+    padding:16px 20px;
+    border-radius:16px;
+    background:#fff0f6;
+    border:1px solid #f2bfd2;
+    color:#c94f80;
+    line-height:1.8;
+    text-align:center;
+}
+.service-position{
+    max-width:900px;
+    margin:15px auto 0;
+    text-align:center;
+    line-height:1.9;
+    color:#666;
+}
+.service-position strong{
+    color:#d85d91;
+}
+@media(max-width:900px){
+    .service-cards{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:600px){
+    .service-cards{grid-template-columns:1fr}
+    .service-card{padding:18px 15px}
+}
+
+/* 學習流程與家教配合 */
+.learning-flow{
+    background:linear-gradient(180deg,#fff 0%,#fff8fc 100%);
+}
+.flow-steps{
+    max-width:1100px;
+    margin:24px auto;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+}
+.flow-step{
+    position:relative;
+    background:#fff;
+    border:2px solid #f8dce9;
+    border-radius:20px;
+    padding:20px 17px;
+    text-align:center;
+    box-shadow:0 4px 14px rgba(0,0,0,.04);
+}
+.flow-number{
+    position:absolute;
+    top:10px;
+    left:12px;
+    color:#d85d91;
+    font-size:20px;
+    font-weight:800;
+}
+.flow-icon{
+    font-size:30px;
+    margin:4px 0 8px;
+}
+.flow-step h3{
+    color:#d85d91;
+    margin:7px 0 10px;
+}
+.flow-step p{
+    color:#666;
+    line-height:1.8;
+    margin:6px 0;
+    text-align:left;
+}
+.flow-step strong{
+    color:#d85d91;
+}
+.flow-note{
+    max-width:900px;
+    margin:25px auto 0;
+    padding:17px 20px;
+    border-radius:16px;
+    background:#fff0f6;
+    border:1px solid #f2bfd2;
+    color:#c94f80;
+    text-align:center;
+    line-height:1.8;
+}
+@media(max-width:950px){
+    .flow-steps{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:600px){
+    .flow-steps{grid-template-columns:1fr}
+    .flow-step{padding:19px 16px}
+}
+
+/* 學習流程與完整學習管理｜可愛版排版 */
+.learning-flow h2,
+.service-model h2{
+    font-weight:900;
+    letter-spacing:.04em;
+}
+.flow-steps{
+    gap:18px;
+}
+.flow-step{
+    padding:18px 18px 20px;
+    border:2px solid #f7d5e5;
+    border-radius:24px;
+    background:linear-gradient(145deg,#fff 0%,#fff8fc 100%);
+    box-shadow:0 7px 18px rgba(221,105,151,.10);
+}
+.flow-title,
+.service-title{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    min-height:44px;
+    margin-bottom:10px;
+}
+.flow-title .flow-number{
+    position:static;
+    color:#e65c93;
+    font-size:21px;
+    font-weight:900;
+    line-height:1;
+}
+.flow-title .flow-icon{
+    font-size:27px;
+    margin:0;
+    line-height:1;
+}
+.flow-title h3,
+.service-title h3{
+    margin:0;
+    font-size:19px;
+    font-weight:900;
+    color:#d85d91;
+    letter-spacing:.03em;
+    white-space:nowrap;
+}
+.flow-step p{
+    font-size:15px;
+    line-height:1.75;
+}
+.flow-step p strong{
+    display:inline-block;
+    padding:2px 7px;
+    border-radius:999px;
+    background:#ffeaf3;
+}
+.flow-note{
+    border-radius:20px;
+    box-shadow:0 5px 14px rgba(221,105,151,.08);
+}
+.service-cards{
+    gap:18px;
+}
+.service-card{
+    padding:19px 17px;
+    border:2px solid #f7d5e5;
+    border-radius:24px;
+    background:linear-gradient(145deg,#fff 0%,#fff8fc 100%);
+    box-shadow:0 7px 18px rgba(221,105,151,.10);
+    transition:transform .2s ease, box-shadow .2s ease;
+}
+.service-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 22px rgba(221,105,151,.15);
+}
+.service-title{
+    justify-content:flex-start;
+    margin-bottom:9px;
+}
+.service-title .service-icon{
+    font-size:26px;
+    margin:0;
+    line-height:1;
+}
+.service-card p{
+    font-size:15px;
+    line-height:1.75;
+}
+.service-highlight{
+    border-radius:20px;
+    box-shadow:0 5px 14px rgba(221,105,151,.08);
+}
+
+/* 關於老師｜再縮小人物照片 */
+.about-image.about-teachers{
+    width:350px;
+    height:210px;
+    gap:8px;
+}
+.teacher-portrait img{
+    height:170px;
+}
+.teacher-name{
+    font-size:17px;
+    padding:7px 6px 9px;
+}
+
+@media(max-width:700px){
+    .about-image.about-teachers{
+        width:min(100%,350px);
+        height:195px;
+    }
+    .teacher-portrait img{
+        height:155px;
+    }
+    .flow-title h3,
+    .service-title h3{
+        font-size:18px;
+    }
+}
+
+/* 修正完整學習管理卡片結構 */
+.service-cards{
+    max-width:1100px;
+    margin:24px auto;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+    align-items:stretch;
+}
+.service-card{
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    min-height:145px;
+}
+.service-title{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    min-height:44px;
+    margin-bottom:8px;
+}
+.service-title .service-icon{
+    font-size:26px;
+    margin:0;
+    line-height:1;
+}
+.service-title h3{
+    margin:0;
+    white-space:nowrap;
+}
+.service-card > p{
+    margin:0;
+    line-height:1.75;
+}
+@media(max-width:900px){
+    .service-cards{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:600px){
+    .service-cards{grid-template-columns:1fr}
+}

@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>七年級數學第一次段考 JS 題庫</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#fff7fb;color:#333;font-family:Arial,"Noto Sans TC",sans-serif}
+.wrap{width:min(950px,92vw);margin:0 auto;padding:20px 0 80px}
+.header{background:#fff;border-radius:16px;padding:22px;text-align:center;box-shadow:0 2px 10px #ddd;margin-bottom:20px}
+h1{margin:0 0 8px;font-size:28px}
+.sub{color:#666}
+.section{margin:28px 0 10px;color:#d95791}
+.q{width:100%;background:#fff;margin:14px 0;padding:20px;border-radius:14px;box-shadow:0 2px 9px #ddd;text-align:left}
+.q h3{margin:0 0 14px;line-height:1.8;font-size:18px}
+.opt{display:block;padding:8px 4px;margin:3px 0;line-height:1.6}
+button{background:#d95791;color:white;border:0;border-radius:8px;padding:10px 16px;margin-top:10px;cursor:pointer;font-size:15px}
+button.secondary{background:#777}
+button.danger{background:#d9536f}
+.calc-box{margin-top:15px;text-align:left}
+.calc-box label{display:block;font-weight:bold;color:#666;margin-bottom:6px}
+.calc-box textarea{width:100%;height:150px;resize:vertical;padding:10px;border:1px dashed #aaa;border-radius:8px;background:repeating-linear-gradient(to bottom,#fff 0,#fff 27px,#e5e5e5 28px);font-size:17px;line-height:28px}
+.calc-tall textarea{height:180px}
+.answer{display:block;width:min(360px,100%);padding:10px;margin-top:14px;border:1px solid #bbb;border-radius:7px;font-size:17px}
+.result{margin-top:10px;font-weight:bold;line-height:1.6;text-align:left}
+.ok{color:#168a45} .bad{color:#d33} .ans{color:#555}
+.q.wrong{border-left:5px solid #d9536f}
+.q.hidden{display:none}
+.score{position:sticky;bottom:10px;background:#fff;padding:14px;border-radius:12px;box-shadow:0 2px 10px #ccc;text-align:center;font-weight:bold;margin-top:20px;z-index:5}
+.small{font-size:14px;color:#777}
+
+.frac{display:inline-flex;flex-direction:column;vertical-align:middle;line-height:1;text-align:center;margin:0 2px}
+.frac .top{border-bottom:1.5px solid #333;padding:0 3px 2px}
+.frac .bottom{padding:2px 3px 0}
+.overline{text-decoration:overline;text-decoration-thickness:1.5px}
+
+/* ===== Pop! Learning 統一粉紅主題 ===== */
+:root{
+  --pink:#d95791;
+  --pink-dark:#b94d70;
+  --pink-mid:#ee8fb3;
+  --pink-light:#fff0f6;
+  --pink-bg:#fff7fb;
+  --pink-border:#f2cddd;
+  --pink-shadow:rgba(217,87,145,.13);
+  --text:#5f4d57;
+}
+html,body{
+  background:linear-gradient(135deg,#fff7fb 0%,#ffeaf4 100%) !important;
+  color:var(--text) !important;
+}
+body{
+  font-family:"Microsoft JhengHei","Noto Sans TC",Arial,sans-serif !important;
+}
+h1,h2,h3,.section{
+  color:var(--pink) !important;
+}
+.header,.q,.question,.card,.box,.panel,.score{
+  border-color:var(--pink-border) !important;
+  box-shadow:0 6px 22px var(--pink-shadow) !important;
+}
+.header,.q,.question,.card,.box,.panel{
+  background:#fff !important;
+}
+button{
+  background:var(--pink) !important;
+  color:#fff !important;
+  border:0 !important;
+  border-radius:999px !important;
+  box-shadow:0 3px 9px var(--pink-shadow);
+  font-weight:700;
+}
+button:hover{background:var(--pink-dark) !important;}
+button.secondary,.reset,.retry{
+  background:#f8dce8 !important;
+  color:var(--pink-dark) !important;
+}
+button.danger{
+  background:#d95791 !important;
+}
+input,textarea,select{
+  border-color:var(--pink-border) !important;
+  border-radius:12px !important;
+}
+input:focus,textarea:focus,select:focus{
+  outline:none !important;
+  border-color:var(--pink) !important;
+  box-shadow:0 0 0 3px #ffe2ee !important;
+}
+.calc-box,.calc,.work-area{
+  border-color:#efc6d8 !important;
+}
+.calc-box textarea,.calc textarea,.work{
+  background:repeating-linear-gradient(
+    to bottom,#fff 0,#fff 27px,#f5dfe8 28px
+  ) !important;
+  border-color:#e8bfd1 !important;
+}
+.result,.msg{color:var(--text);}
+.ok,.right{color:#2a9a61 !important;}
+.bad,.wrong{color:#d45563 !important;}
+.answer,.ex{
+  background:#fff0f6 !important;
+  border-color:#f2cddd !important;
+}
+.score{
+  background:#fff0f6 !important;
+  color:var(--pink-dark) !important;
+}
+.subtitle,.sub{
+  color:#806977 !important;
+}
+.locked{
+  background:#f8eef3 !important;
+}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="header">
+<h1>七年級數學第一次段考</h1>
+<div class="sub">康軒｜112 學年度第 1 學期第 1 次段考｜共 25 個作答單位</div>
+<div>
+<button onclick="nextWrongRound()">❌ 下一回合只練錯題</button>
+<button class="secondary" onclick="showAll()">📚 顯示全部題目</button>
+<button class="danger" onclick="resetRound()">🔄 重新開始</button>
+</div>
+<p class="small">填充題／計算題：在答案區按 Enter 可直接對答案。每一題都有計算區。</p>
+</div>
+
+<div class="q" data-id="1" data-type="mc">
+      <h3>1. 下列各選項中哪一組的兩數為異號數？</h3>
+      <div class="options"><label class="opt"><input type="radio" name="q1" value="A"> （A）−10，−5</label><label class="opt"><input type="radio" name="q1" value="B"> （B）1 <span class="frac"><span class="top">1</span><span class="bottom">5</span></span>，<span class="frac"><span class="top">6</span><span class="bottom">5</span></span></label><label class="opt"><input type="radio" name="q1" value="C"> （C）2 <span class="frac"><span class="top">1</span><span class="bottom">4</span></span>，−<span class="frac"><span class="top">1</span><span class="bottom">4</span></span></label><label class="opt"><input type="radio" name="q1" value="D"> （D）3.8，＋4.9</label></div>
+      <div class="calc-box"><label>✏️ 計算區</label><textarea placeholder="可以在這裡寫計算過程……"></textarea></div>
+      <button onclick="checkMC(1,'C')">確認答案</button>
+      <div id="r1" class="result"></div>
+    </div>
+    <div class="q" data-id="2" data-type="mc">
+      <h3>2. 在數線上，絕對值小於 4 <span class="frac"><span class="top">7</span><span class="bottom">8</span></span> 的整數一共有多少個？</h3>
+      <div class="options"><label class="opt"><input type="radio" name="q2" value="A"> （A）9</label><label class="opt"><input type="radio" name="q2" value="B"> （B）8</label><label class="opt"><input type="radio" name="q2" value="C"> （C）5</label><label class="opt"><input type="radio" name="q2" value="D"> （D）4</label></div>
+      <div class="calc-box"><label>✏️ 計算區</label><textarea placeholder="可以在這裡寫計算過程……"></textarea></div>
+      <button onclick="checkMC(2,'A')">確認答案</button>
+      <div id="r2" class="result"></div>
+    </div>
+    <div class="q" data-id="3" data-type="mc">
+      <h3>3. 在數線上要畫出 5.25 這一點，可在 5 跟 6 之間最少分成幾個等分？</h3>
+      <div class="options"><label class="opt"><input type="radio" name="q3" value="A"> （A）3</label><label class="opt"><input type="radio" name="q3" value="B"> （B）4</label><label class="opt"><input type="radio" name="q3" value="C"> （C）25</label><label class="opt"><input type="radio" name="q3" value="D"> （D）100</label></div>
+      <div class="calc-box"><label>✏️ 計算區</label><textarea placeholder="可以在這裡寫計算過程……"></textarea></div>
+      <button onclick="checkMC(3,'B')">確認答案</button>
+      <div id="r3" class="result"></div>
+    </div>
+    <div class="q" data-id="4" data-type="mc">
+      <h3>4. 以中午 12 點為基準，若早上 9 點記為 −6，則下午 5 點應記為多少？</h3>
+      <div class="options"><label class="opt"><input type="radio" name="q4" value="A"> （A）＋10</label><label class="opt"><input type="radio" name="q4" value="B"> （B）−10</label><label class="opt"><input type="radio" name="q4" value="C"> （C）＋5</label><label class="opt"><input type="radio" name="q4" value="D"> （D）−5</label></div>
+      <div class="calc-box"><label>✏️ 計算區</label><textarea placeholder="可以在這裡寫計算過程……"></textarea></div>
+      <button onclick="checkMC(4,'A')">確認答案</button>
+      <div id="r4" class="result"></div>
+    </div>
+    <div class="q" data-id="5" data-type="mc">
+      <h3>5. 計算 27÷(−9)×2−54÷(−6)＝？</h3>
+      <div class="options"><label class="opt"><input type="radio" name="q5" value="A"> （A）−6</label><label class="opt"><input type="radio" name="q5" value="B"> （B）−3</label><label class="opt"><input type="radio" name="q5" value="C"> （C）3</label><label class="opt"><input type="radio" name="q5" value="D"> （D）−15</label></div>
+      <div class="calc-box"><label>✏️ 計算區</label><textarea placeholder="可以在這裡寫計算過程……"></textarea></div>
+      <button onclick="checkMC(5,'C')">確認答案</button>
+      <div id="r5" class="result"></div>
+    </div>
+    <div class="q" data-id="6" data-type="mc">
+      <h3>6. 若小明數學考 93 分記為＋8 分，且小華考 83 分記為−2 分，則基準分數是多少分？</h3>
+      <div class="options"><label class="opt"><input type="radio" name="q6" value="A"> （A）80</label><label class="opt"><input type="radio" name="q6" value="B"> （B）70</label><label class="opt"><input type="radio" name="q6" value="C"> （C）85</label><label class="opt"><input type="radio" name="q6" value="D"> （D）60</label></div>
+      <div class="calc-box"><label>✏️ 計算區</label><textarea placeholder="可以在這裡寫計算過程……"></textarea></div>
+      <button onclick="checkMC(6,'C')">確認答案</button>
+      <div id="r6" class="result"></div>
+    </div>
+    <div class="q" data-id="7" data-type="mc">
+      <h3>7. 下列四個選項的算式運算結果何者正確？</h3>
+      <div class="options"><label class="opt"><input type="radio" name="q7" value="A"> （A）−9−(−9)＝−18</label><label class="opt"><input type="radio" name="q7" value="B"> （B）(−24)−(−24)＝0</label><label class="opt"><input type="radio" name="q7" value="C"> （C）−3−3＝0</label><label class="opt"><input type="radio" name="q7" value="D"> （D）(−7)−(−7)＝14</label></div>
+      <div class="calc-box"><label>✏️ 計算區</label><textarea placeholder="可以在這裡寫計算過程……"></textarea></div>
+      <button onclick="checkMC(7,'B')">確認答案</button>
+      <div id="r7" class="result"></div>
+    </div>
+    <div class="q" data-id="8" data-type="mc">
+      <h3>8. 求 100×(−83) 的值與下列哪一個式子的結果相同？</h3>
+      <div class="options"><label class="opt"><input type="radio" name="q8" value="A"> （A）100×(−80)＋100×3</label><label class="opt"><input type="radio" name="q8" value="B"> （B）100×(−80)＋100×(−3)</label><label class="opt"><input type="radio" name="q8" value="C"> （C）100×(−80)＋100×(＋3)</label><label class="opt"><input type="radio" name="q8" value="D"> （D）100×(−80)−100×(−3)</label></div>
+      <div class="calc-box"><label>✏️ 計算區</label><textarea placeholder="可以在這裡寫計算過程……"></textarea></div>
+      <button onclick="checkMC(8,'B')">確認答案</button>
+      <div id="r8" class="result"></div>
+    </div>
+    <div class="q" data-id="9" data-type="mc">
+      <h3>9. |−131|−|−132| 之值為下列何者？</h3>
+      <div class="options"><label class="opt"><input type="radio" name="q9" value="A"> （A）1</label><label class="opt"><input type="radio" name="q9" value="B"> （B）−1</label><label class="opt"><input type="radio" name="q9" value="C"> （C）25</label><label class="opt"><input type="radio" name="q9" value="D"> （D）−25</label></div>
+      <div class="calc-box"><label>✏️ 計算區</label><textarea placeholder="可以在這裡寫計算過程……"></textarea></div>
+      <button onclick="checkMC(9,'B')">確認答案</button>
+      <div id="r9" class="result"></div>
+    </div>
+    <div class="q" data-id="10" data-type="mc">
+      <h3>10. 請問下列何者的運算結果為 −1？</h3>
+      <div class="options"><label class="opt"><input type="radio" name="q10" value="A"> （A）(−1)−(−1)−(−1)</label><label class="opt"><input type="radio" name="q10" value="B"> （B）(−1)＋(−1)＋(−1)</label><label class="opt"><input type="radio" name="q10" value="C"> （C）(−1)×(−1)×(−1)×(−1)</label><label class="opt"><input type="radio" name="q10" value="D"> （D）(−1)÷(−1)÷(−1)</label></div>
+      <div class="calc-box"><label>✏️ 計算區</label><textarea placeholder="可以在這裡寫計算過程……"></textarea></div>
+      <button onclick="checkMC(10,'D')">確認答案</button>
+      <div id="r10" class="result"></div>
+    </div>
+    <div class="q" data-id="11" data-type="mc">
+      <h3>11. 若 56×44＋56×□＝5600，則 □＝？</h3>
+      <div class="options"><label class="opt"><input type="radio" name="q11" value="A"> （A）56</label><label class="opt"><input type="radio" name="q11" value="B"> （B）44</label><label class="opt"><input type="radio" name="q11" value="C"> （C）0</label><label class="opt"><input type="radio" name="q11" value="D"> （D）100</label></div>
+      <div class="calc-box"><label>✏️ 計算區</label><textarea placeholder="可以在這裡寫計算過程……"></textarea></div>
+      <button onclick="checkMC(11,'A')">確認答案</button>
+      <div id="r11" class="result"></div>
+    </div>
+    <div class="q" data-id="12" data-type="mc">
+      <h3>12. 設甲、乙是兩個不相同的整數，且甲數＜0，乙數＜0，則下列何者必為正數？</h3>
+      <div class="options"><label class="opt"><input type="radio" name="q12" value="A"> （A）甲＋乙</label><label class="opt"><input type="radio" name="q12" value="B"> （B）甲−乙</label><label class="opt"><input type="radio" name="q12" value="C"> （C）甲×乙</label><label class="opt"><input type="radio" name="q12" value="D"> （D）|甲|−|乙|</label></div>
+      <div class="calc-box"><label>✏️ 計算區</label><textarea placeholder="可以在這裡寫計算過程……"></textarea></div>
+      <button onclick="checkMC(12,'C')">確認答案</button>
+      <div id="r12" class="result"></div>
+    </div>
+    <div class="q" data-id="13" data-type="mc">
+      <h3>13. 863×(−5)×9×0×(−4)＝？</h3>
+      <div class="options"><label class="opt"><input type="radio" name="q13" value="A"> （A）155340</label><label class="opt"><input type="radio" name="q13" value="B"> （B）−155340</label><label class="opt"><input type="radio" name="q13" value="C"> （C）1553400</label><label class="opt"><input type="radio" name="q13" value="D"> （D）0</label></div>
+      <div class="calc-box"><label>✏️ 計算區</label><textarea placeholder="可以在這裡寫計算過程……"></textarea></div>
+      <button onclick="checkMC(13,'D')">確認答案</button>
+      <div id="r13" class="result"></div>
+    </div>
+<div class="q" data-id="14" data-type="fill">
+      <h3>1. 計算 |25−(−7)|−|(−18)−24| ＝　【　】</h3>
+      <div class="calc-box"><label>✏️ 計算區</label><textarea placeholder="可以在這裡寫計算過程……"></textarea></div>
+      <input class="answer" type="text" id="in14" placeholder="輸入答案">
+      <button onclick="checkFill(14,'−10')">確認答案</button>
+      <div id="r14" class="result"></div>
+    </div>
+    <div class="q" data-id="15" data-type="fill">
+      <h3>2. 計算 89931＋23568−89930＋26432 ＝　【　】</h3>
+      <div class="calc-box"><label>✏️ 計算區</label><textarea placeholder="可以在這裡寫計算過程……"></textarea></div>
+      <input class="answer" type="text" id="in15" placeholder="輸入答案">
+      <button onclick="checkFill(15,'50001')">確認答案</button>
+      <div id="r15" class="result"></div>
+    </div>
+    <div class="q" data-id="16" data-type="fill">
+      <h3>3. 若 |甲|＋8＝26，則甲＝　【　】</h3>
+      <div class="calc-box"><label>✏️ 計算區</label><textarea placeholder="可以在這裡寫計算過程……"></textarea></div>
+      <input class="answer" type="text" id="in16" placeholder="輸入答案">
+      <button onclick="checkFill(16,'±18')">確認答案</button>
+      <div id="r16" class="result"></div>
+    </div>
+    <div class="q" data-id="17" data-type="fill">
+      <h3>4. 計算 (−20)×12345×(−5)×(−2) ＝　【　】</h3>
+      <div class="calc-box"><label>✏️ 計算區</label><textarea placeholder="可以在這裡寫計算過程……"></textarea></div>
+      <input class="answer" type="text" id="in17" placeholder="輸入答案">
+      <button onclick="checkFill(17,'−2469000')">確認答案</button>
+      <div id="r17" class="result"></div>
+    </div>
+    <div class="q" data-id="18" data-type="fill">
+      <h3>5. 計算 56÷(−7)−(−60)÷(−10) ＝　【　】</h3>
+      <div class="calc-box"><label>✏️ 計算區</label><textarea placeholder="可以在這裡寫計算過程……"></textarea></div>
+      <input class="answer" type="text" id="in18" placeholder="輸入答案">
+      <button onclick="checkFill(18,'−14')">確認答案</button>
+      <div id="r18" class="result"></div>
+    </div>
+    <div class="q" data-id="19" data-type="fill">
+      <h3>6. 若甲＝(−2)−(−5)，則甲的相反數為　【　】</h3>
+      <div class="calc-box"><label>✏️ 計算區</label><textarea placeholder="可以在這裡寫計算過程……"></textarea></div>
+      <input class="answer" type="text" id="in19" placeholder="輸入答案">
+      <button onclick="checkFill(19,'−3')">確認答案</button>
+      <div id="r19" class="result"></div>
+    </div>
+    <div class="q" data-id="20" data-type="fill">
+      <h3>7. 數線上有 A(−1)、B(13)、C(11) 三點坐標，求 <span class="overline">AB</span>＋<span class="overline">BC</span> ＝　【　】</h3>
+      <div class="calc-box"><label>✏️ 計算區</label><textarea placeholder="可以在這裡寫計算過程……"></textarea></div>
+      <input class="answer" type="text" id="in20" placeholder="輸入答案">
+      <button onclick="checkFill(20,'16')">確認答案</button>
+      <div id="r20" class="result"></div>
+    </div>
+    <div class="q" data-id="21" data-type="fill">
+      <h3>8. 計算 12＋(−18)÷(−6)−(−5) ＝　【　】</h3>
+      <div class="calc-box"><label>✏️ 計算區</label><textarea placeholder="可以在這裡寫計算過程……"></textarea></div>
+      <input class="answer" type="text" id="in21" placeholder="輸入答案">
+      <button onclick="checkFill(21,'20')">確認答案</button>
+      <div id="r21" class="result"></div>
+    </div>
+    <div class="q" data-id="22" data-type="fill">
+      <h3>9. 在數線上有 A(−7)、B(13) 兩點，則 A、B 兩點的中點坐標為　【　】</h3>
+      <div class="calc-box"><label>✏️ 計算區</label><textarea placeholder="可以在這裡寫計算過程……"></textarea></div>
+      <input class="answer" type="text" id="in22" placeholder="輸入答案">
+      <button onclick="checkFill(22,'3')">確認答案</button>
+      <div id="r22" class="result"></div>
+    </div>
+    <div class="q" data-id="23" data-type="fill">
+      <h3>10. 若小明在數線上原點的左邊 5 個單位處，小凱在小明的右邊 4 個單位處，小美在小凱左邊 3 個單位處，已知他們三人所在位置的坐標分別為 a、b、c，則 a＋b＋c＝　【　】</h3>
+      <div class="calc-box"><label>✏️ 計算區</label><textarea placeholder="可以在這裡寫計算過程……"></textarea></div>
+      <input class="answer" type="text" id="in23" placeholder="輸入答案">
+      <button onclick="checkFill(23,'−10')">確認答案</button>
+      <div id="r23" class="result"></div>
+    </div>
+
+    <div class="q" data-id="24" data-type="fill">
+      <h3>1. 計算下列算式的結果：−654×125−38×(−654)＋(−13)×654</h3>
+      <div class="calc-box calc-tall"><label>✏️ 計算區（計算題請寫完整過程）</label><textarea placeholder="請在這裡寫完整計算過程……"></textarea></div>
+      <input class="answer" type="text" id="in24" placeholder="輸入答案">
+      <button onclick="checkFill(24,'−65400')">確認答案</button>
+      <div id="r24" class="result"></div>
+    </div>
+    <div class="q" data-id="25" data-type="fill">
+      <h3>2. 計算下列算式的結果：|34−43|−(12−30)−[(−1)−2]</h3>
+      <div class="calc-box calc-tall"><label>✏️ 計算區（計算題請寫完整過程）</label><textarea placeholder="請在這裡寫完整計算過程……"></textarea></div>
+      <input class="answer" type="text" id="in25" placeholder="輸入答案">
+      <button onclick="checkFill(25,'30')">確認答案</button>
+      <div id="r25" class="result"></div>
+    </div>
+
+<div class="score" id="score">已完成 0 / 25　｜　答對 0 題　｜　錯題 0 題</div>
+</div>
+
+<script>
+let done=0, score=0;
+let wrong=new Set();
+let completed=new Set();
+let reviewMode=false;
+
+function normalize(s){
+ return s.trim().replace(/\s+/g,'').replace(/,/g,'').replace(/−/g,'-').replace(/－/g,'-').replace(/×/g,'*').replace(/＝/g,'=').toLowerCase();
+}
+function updateScore(){
+ document.getElementById('score').textContent=`已完成 ${done} / 25　｜　答對 ${score} 題　｜　錯題 ${wrong.size} 題`;
+}
+function markWrong(id){
+ wrong.add(String(id));
+ document.querySelector(`.q[data-id="${id}"]`).classList.add('wrong');
+}
+function checkMC(id,correct){
+ if(completed.has(String(id)) && !reviewMode)return;
+ const card=document.querySelector(`.q[data-id="${id}"]`);
+ const result=document.getElementById('r'+id);
+ const selected=document.querySelector(`input[name="q${id}"]:checked`);
+ if(!selected){result.innerHTML='<span class="bad">請先選擇答案！</span>';return;}
+ if(!completed.has(String(id))){completed.add(String(id));done++;}
+ if(selected.value===correct){
+   score++;
+   result.innerHTML='<span class="ok">✓ 答對了！</span>';
+   if(reviewMode){
+      card.classList.remove('wrong');
+      wrong.delete(String(id));
+   }
+ }else{
+   markWrong(id);
+   result.innerHTML='<span class="bad">✗ 答錯了！</span><div class="ans">答案：'+correct+'</div>';
+ }
+ document.querySelectorAll(`input[name="q${id}"]`).forEach(x=>x.disabled=!reviewMode);
+ updateScore();
+}
+function checkFill(id,correct){
+ const key=String(id), card=document.querySelector(`.q[data-id="${id}"]`), input=document.getElementById('in'+id), result=document.getElementById('r'+id);
+ if(completed.has(key) && !reviewMode)return;
+ const value=input.value.trim();
+ if(!value){result.innerHTML='<span class="bad">請先輸入答案！</span>';return;}
+ if(!completed.has(key)){completed.add(key);done++;}
+ if(normalize(value)===normalize(correct)){
+   score++;
+   result.innerHTML='<span class="ok">✓ 答對了！</span>';
+   if(reviewMode){card.classList.remove('wrong');wrong.delete(key);}
+ }else{
+   markWrong(id);
+   result.innerHTML='<span class="bad">✗ 答錯了！</span><div class="ans">答案：'+correct+'</div>';
+ }
+ input.disabled=!reviewMode;
+ updateScore();
+}
+document.addEventListener('keydown',e=>{
+ if(e.key==='Enter' && e.target.matches('input.answer')){
+   e.preventDefault();
+   e.target.closest('.q').querySelector('button').click();
+ }
+});
+function nextWrongRound(){
+ reviewMode=true;
+ document.querySelectorAll('.q').forEach(card=>{
+   const id=card.dataset.id;
+   const isWrong=wrong.has(id);
+   card.classList.toggle('hidden',!isWrong);
+   if(isWrong){
+     // 下一回合只練錯題：徹底清除上一回合的作答與答案
+     const result=card.querySelector('.result');
+     if(result) result.textContent='';
+     card.querySelectorAll('input[type="radio"]').forEach(x=>{
+       x.checked=false;
+       x.disabled=false;
+     });
+     const input=card.querySelector('input.answer');
+     if(input){
+       input.value='';
+       input.disabled=false;
+     }
+     card.querySelectorAll('button').forEach(x=>x.disabled=false);
+   }
+ });
+ window.scrollTo({top:0,behavior:'smooth'});
+ const first=document.querySelector('.q:not(.hidden) input.answer, .q:not(.hidden) input[type="radio"]');
+ if(first)first.focus();
+}
+function showAll(){
+ reviewMode=false;
+ document.querySelectorAll('.q').forEach(card=>{
+   card.classList.remove('hidden');
+   if(completed.has(card.dataset.id)){
+     card.querySelectorAll('input,button').forEach(x=>{
+       if(x.type!=='radio')x.disabled=true;
+     });
+   }
+ });
+}
+function resetRound(){
+ location.reload();
+}
+updateScore();
+</script>
+</body>
+</html>

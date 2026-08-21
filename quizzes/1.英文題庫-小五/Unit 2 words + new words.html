@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Unit 2 健康英文｜文章＋閃卡＋測驗＋圖片句子</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:"Microsoft JhengHei","Noto Sans TC",Arial,sans-serif;background:linear-gradient(135deg,#fff5fa,#ffeaf4);color:#40364a}
+.app{max-width:1100px;margin:auto;padding:20px}header,.screen{background:#fff;border-radius:28px;padding:24px;box-shadow:0 10px 30px #00000012}header{margin-bottom:16px}
+h1{margin:0;color:#d95791}h2{color:#d95791;margin-top:0}.subtitle{color:#766b7d}
+.nav{display:flex;gap:9px;flex-wrap:wrap;margin:14px 0}.nav button{border:0;background:#fff;border-radius:14px;padding:11px 14px;font-weight:800;box-shadow:0 4px 12px #0001}.nav button.active{background:#d95791;color:#fff}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.stat{background:#fff3f8;border-radius:14px;padding:8px 12px;font-weight:800}
+button{font-family:inherit;cursor:pointer}.primary,.pink,.yellow,.secondary{border:0;border-radius:14px;padding:11px 15px;font-weight:800;font-size:16px}
+.primary{background:#d95791;color:#fff}.pink{background:#fff0f5;color:#b94d70}.yellow{background:#fff0f5;color:#b94d70}.secondary{background:#f7e6ef;color:#51475a}
+.hidden{display:none!important}.center{text-align:center}.note{padding:12px 14px;border-radius:14px;background:#fff8fc;margin:10px 0}
+.progress{height:12px;background:#eee;border-radius:99px;overflow:hidden;margin:15px 0}.bar{height:100%;background:#d95791;width:0%;transition:.25s}
+.diagnostic-table{width:100%;border-collapse:collapse;margin-top:15px}.diagnostic-table th,.diagnostic-table td{border:1px solid #edd9e3;padding:10px;text-align:left}.diagnostic-table th{background:#fff3f8}
+.diagnostic-table input{width:100%;max-width:280px;padding:11px;border:2px solid #ddd;border-radius:10px;font-size:19px}
+.ok{color:#158c4d;font-weight:800}.bad{color:#d33;font-weight:800}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}
+.group-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}.group-card{padding:18px;border:2px solid #f3d6e3;border-radius:18px;background:#fff8fc}.word-list{color:#766b7d;line-height:1.8}
+.flashcard{min-height:320px;background:linear-gradient(145deg,#fff9fc,#fff5fa);border:3px solid #f2cddd;border-radius:25px;display:flex;align-items:center;justify-content:center;text-align:center;padding:30px;cursor:pointer;user-select:none}
+.flash-word{font-size:42px;font-weight:900;color:#d95791}.ipa{font-family:"Times New Roman","Noto Sans",sans-serif;font-size:23px;color:#7b6872;margin:7px 0 14px}.flash-zh{font-size:34px;font-weight:900;color:#b94d70}.small{font-size:14px;color:#806f78}
+.bigword{font-size:48px;font-weight:900;margin:22px 0 8px}.options{display:grid;grid-template-columns:repeat(2,1fr);gap:13px;max-width:760px;margin:20px auto}
+.option{border:3px solid #f0d7e4;background:#fff;border-radius:18px;padding:18px;font-size:22px;font-weight:800}.option.correct{background:#ffe9f3;border-color:#d95791}.option.wrong{background:#ffe3e3;border-color:#ef6d6d}
+.feedback{min-height:28px;font-size:20px;font-weight:800;margin:10px}.game-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.game-card{border:0;background:linear-gradient(135deg,#fff,#fff2f8);border-radius:22px;padding:20px;box-shadow:0 5px 15px #0001;text-align:left}.game-card .emoji{font-size:42px}
+.match-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:760px;margin:20px auto}.match-card{height:100px;border:0;border-radius:18px;background:#f8e9f2;font-size:19px;font-weight:800}.match-card.flipped,.match-card.matched{background:#fff;border:3px solid #d95791}
+.holes{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:700px;margin:20px auto}.hole{height:120px;border:0;border-radius:50%;background:#f8e5ef;font-size:24px;font-weight:900}.hole.active{background:#ffe2f0;border:5px solid #d95791}
+.timer{font-size:30px;font-weight:900;color:#d95791}.runway{position:relative;height:240px;background:linear-gradient(#ffeaf4,#fff);border-radius:24px;overflow:hidden;margin:18px 0}.runner{position:absolute;bottom:20px;left:8%;font-size:48px}.obstacle{position:absolute;bottom:20px;right:14%;font-size:48px}
+.scramble{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:18px auto}.letter{border:0;border-radius:12px;background:#f8dce9;padding:12px 15px;font-size:22px;font-weight:900}
+@media(max-width:750px){.group-grid,.game-grid,.options{grid-template-columns:1fr}.diagnostic-table{font-size:15px}.match-grid{grid-template-columns:repeat(3,1fr)}}
+
+.article-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.article-card{background:#fff;border:2px solid #e8d8e0;border-radius:22px;padding:16px;box-shadow:0 5px 15px #0000000d}
+.article-card img{display:block;width:100%;max-height:300px;object-fit:contain;background:#f7fbf9;border-radius:15px;margin-bottom:12px}
+.article-card h3{margin:6px 0;color:#d95791}
+.sentence-box{background:#fff7fb;border:2px solid #f3d6e3;border-radius:18px;padding:16px;margin:14px 0;line-height:1.7}
+.sentence-en{font-size:23px;font-weight:800}
+.sentence-zh{color:#6f6770;margin-top:6px}
+.quiz-image{display:block;max-width:100%;width:520px;height:auto;margin:15px auto;border-radius:16px;border:2px solid #e5dbe0}
+.answer-chip{display:inline-block;padding:5px 9px;background:#fff0f5;border-radius:8px;color:#b94d70;font-weight:800}
+.question-card{background:#fff;border:2px solid #efdde5;border-radius:18px;padding:18px;margin:15px 0}
+.word-badge{display:inline-block;padding:5px 9px;background:#eef8f1;border-radius:8px;color:#3d8b60;font-weight:800}
+@media(max-width:750px){.article-grid{grid-template-columns:1fr}}
+
+.scene-illustration{min-height:165px;background:linear-gradient(135deg,#fff0f7,#fff7fb);border-radius:18px;display:flex;align-items:center;justify-content:center;gap:18px;position:relative;margin-bottom:14px}
+.scene-person{font-size:72px}.scene-symptom{font-size:58px}.scene-label{position:absolute;bottom:10px;right:14px;background:#fff0f5;color:#b94d70;border-radius:10px;padding:5px 10px;font-weight:800}
+.scene-dialogue{background:#fff;border:2px dashed #f3d6e3;border-radius:14px;padding:12px 15px;line-height:1.8}.quiz-scene{max-width:700px;margin:auto}.article-speak{margin-top:10px}
+
+.memorize-answer{color:#e53935;font-weight:900}
+.memorize-note{display:inline-block;margin-top:8px;padding:5px 10px;background:#fff1f1;color:#d93025;border:2px solid #f3a6a6;border-radius:10px;font-weight:800}
+
+.throat-mark{position:absolute;left:50%;top:55%;transform:translate(-50%,-50%);width:22px;height:22px;border:4px solid #e85b64;border-radius:50%;background:#fff0f0}
+
+.tim-person{position:relative}
+.tim-name{position:absolute;left:50%;top:-28px;transform:translateX(-50%);font-size:15px;font-weight:900;color:#b94d70;letter-spacing:1px}
+.cough-lines{font-size:28px;color:#888;transform:translateY(-12px)}
+
+.tissue-cue{font-size:36px;transform:translateY(10px)}
+.sick-cues{font-size:32px;display:flex;gap:8px}
+.lesson-section{margin:18px 0;padding:18px;border:2px solid #efdde5;border-radius:20px;background:#fffafd}.lesson-section h3{color:#d95791}.lesson-section .option:disabled{cursor:default;opacity:.9}.lesson-speak{margin:6px 0 12px}\n.phonics-ipa{font-family:"Times New Roman",serif;font-size:20px;color:#7b6872;font-weight:700;margin-left:4px}.ipa{font-family:"Times New Roman",serif;font-size:20px;color:#7b6872;font-weight:700}
+/* Pop Learning 粉紅風格統一 */
+:root{
+  --pop-pink:#d95791;
+  --pop-pink-dark:#b94d70;
+  --pop-pink-light:#fff0f5;
+  --pop-pink-bg:#fff7fb;
+  --pop-pink-border:#f2cddd;
+}
+body{
+  background:linear-gradient(135deg,#fff7fb,#ffeaf4)!important;
+}
+header,.screen{
+  border:1px solid var(--pop-pink-border);
+}
+.nav button{
+  color:var(--pop-pink-dark);
+}
+.nav button.active,
+.primary{
+  background:var(--pop-pink)!important;
+  color:#fff!important;
+}
+.pink,.yellow,.secondary{
+  background:var(--pop-pink-light)!important;
+  color:var(--pop-pink-dark)!important;
+  border:1px solid #f2cddd!important;
+}
+.group-card,
+.flashcard,
+.game-card,
+.article-card,
+.question-card,
+.lesson-section,
+.sentence-box,
+.scene-dialogue{
+  border-color:var(--pop-pink-border)!important;
+}
+.flashcard{
+  background:linear-gradient(145deg,#fff,#fff4f9)!important;
+}
+.flash-word{
+  color:var(--pop-pink)!important;
+}
+.word-badge{
+  background:#fff0f5!important;
+  color:var(--pop-pink-dark)!important;
+}
+.letter{
+  background:#f8dce9!important;
+  color:#8f4662;
+}
+.match-card,
+.hole{
+  background:#f8e5ef!important;
+}
+.match-card.flipped,
+.match-card.matched,
+.hole.active{
+  border-color:var(--pop-pink)!important;
+  background:#fff!important;
+}
+.runway{
+  background:linear-gradient(#ffeaf4,#fff)!important;
+}
+.scene-illustration{
+  background:linear-gradient(135deg,#fff0f7,#fff9fc)!important;
+}
+</style>
+</head><body><div class="app">
+<header><h1>🌸 Unit 2 健康英文學習樂園</h1><p class="subtitle">先看小文章 → 5個單字閃卡 → 分組測驗 → 全單字測驗 → 圖片情境句子測驗 → 小遊戲。</p>
+<div class="stats"><div class="stat">📚 全部：<span id="totalCount">20</span></div><div class="stat">✅ 已排除：<span id="masteredCount">0</span></div><div class="stat">📕 待學習：<span id="remainingCount">20</span></div><div class="stat">⭐ 遊戲分數：<span id="score">0</span></div></div></header>
+<div class="nav">
+<button class="active" onclick="showArticle(this)">📖 小文章</button>
+<button onclick="showGroups(this)">🧠 5個閃卡</button>
+<button onclick="showDiagnostic(this)">📝 全單字測驗</button>
+<button onclick="showSentenceQuiz(this)">🖼️ 圖片句子測驗</button>
+<button onclick="showLesson(this)">📚 教材</button><button onclick="showGames(this)">🎮 遊戲樂園</button>
+</div>
+<div id="screen" class="screen"></div></div>
+<script>
+const ALL=[{"en": "cold", "zh": "感冒", "pos": "noun", "ipa": "/koʊld/"}, {"en": "cough", "zh": "咳嗽", "pos": "noun", "ipa": "/kɔːf/"}, {"en": "fever", "zh": "發燒", "pos": "noun", "ipa": "/ˈfiːvər/"}, {"en": "headache", "zh": "頭痛", "pos": "noun", "ipa": "/ˈhɛdeɪk/"}, {"en": "stomachache", "zh": "胃痛", "pos": "noun", "ipa": "/ˈstʌməkˌeɪk/"}, {"en": "toothache", "zh": "牙痛", "pos": "noun", "ipa": "/ˈtuːθeɪk/"}, {"en": "runny nose", "zh": "流鼻水", "pos": "noun", "ipa": "/ˌrʌni ˈnoʊz/"}, {"en": "sore throat", "zh": "喉嚨痛", "pos": "noun", "ipa": "/sɔːr θroʊt/"}, {"en": "sick", "zh": "生病的", "pos": "adj", "ipa": "/sɪk/"}, {"en": "doctor", "zh": "醫生", "pos": "noun", "ipa": "/ˈdɑːktər/"}, {"en": "nurse", "zh": "護士", "pos": "noun", "ipa": "/nɜːrs/"}, {"en": "hospital", "zh": "醫院", "pos": "noun", "ipa": "/ˈhɑːspɪtəl/"}, {"en": "Take care.", "zh": "保重", "pos": "phrase", "ipa": "/teɪk kɛr/"}, {"en": "bang", "zh": "砰砰猛擊", "pos": "noun/verb", "ipa": "/bæŋ/"}, {"en": "gong", "zh": "鑼", "pos": "noun", "ipa": "/ɡɔːŋ/"}, {"en": "jug", "zh": "壺；罐", "pos": "noun", "ipa": "/dʒʌɡ/"}, {"en": "hug", "zh": "擁抱", "pos": "noun/verb", "ipa": "/hʌɡ/"}, {"en": "tap", "zh": "輕敲；跳踢踏舞", "pos": "verb/noun", "ipa": "/tæp/"}, {"en": "rap", "zh": "饒舌；敲擊", "pos": "noun/verb", "ipa": "/ræp/"}, {"en": "din", "zh": "嘈雜聲", "pos": "noun", "ipa": "/dɪn/"}];
+const GROUPS=[];
+let mastered=JSON.parse(localStorage.getItem("unit2Mastered")||"[]"), remaining=[], score=Number(localStorage.getItem("unit2Score")||0);
+let flashItems=[],flashIndex=0,flashFlip=false,groupPool=[],groupIndex=0,groupScore=0,groupWrong=[];
+let whackEnd=0,whackActive=-1,whackInterval=null,matchState={},runWord=null,runOpts=null,scrambleWord=null,listenWord=null,listenOpts=null;
+const screen=document.getElementById("screen");
+document.getElementById("score").textContent=score;
+const sync=()=>{remaining=ALL.filter(w=>!mastered.includes(w.en));document.getElementById("masteredCount").textContent=mastered.length;document.getElementById("remainingCount").textContent=remaining.length};
+const save=()=>{localStorage.setItem("unit2Mastered",JSON.stringify(mastered));sync()};
+const addScore=n=>{score+=n;localStorage.setItem("unit2Score",score);document.getElementById("score").textContent=score};
+const nav=btn=>{document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active"));if(btn)btn.classList.add("active")};
+const shuffle=a=>[...a].sort(()=>Math.random()-.5);
+const norm=s=>s.trim().toLowerCase().replace(/[.…。！？]/g,"").replace(/\s+/g," ");
+const esc=s=>String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[m]));
+function speak(text){if(!window.speechSynthesis)return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang="en-US";u.rate=.8;speechSynthesis.speak(u)}
+
+
+function speakLessonText(text){speak(text)}
+function lessonSpeak(btn){
+  speak(btn.getAttribute('data-text') || '');
+}
+
+function showLesson(btn){nav(btn);screen.innerHTML=`<h2>📚 健康英文＋自然拼讀教材</h2><div class="note">先讀懂句子，再看重點文法與字詞。紅字是需要特別記住的內容。</div><div class="lesson-section"><h3>📖 句子重點</h3><div class="sentence-box"><div class="sentence-en memorize-answer">The ball hit me and I fell down.</div><button type="button" class="yellow lesson-speak" onclick="lessonSpeak(this)" data-text="The ball hit me and I fell down.">🔊 聽發音</button><div class="sentence-zh">球打到我，我跌倒了。</div><p><b>fall</b> = 跌倒、掉落 → <b>fall → fell</b></p></div><div class="sentence-box"><div class="sentence-en memorize-answer">That is not what happened.</div><button type="button" class="yellow lesson-speak" onclick="lessonSpeak(this)" data-text="That is not what happened.">🔊 聽發音</button><div class="sentence-zh">事情不是那樣發生的。</div><p><b>what happened</b> = 發生的事情、事情的實際經過；<b>what + 動詞</b> 可表示「……的事情／……的內容」。</p></div><div class="sentence-box"><div class="sentence-en memorize-answer">What’s wrong with you?</div><button type="button" class="yellow lesson-speak" onclick="lessonSpeak(this)" data-text="What’s wrong with you?">🔊 聽發音</button><div class="sentence-zh">你怎麼了？／你哪裡不舒服？</div><p><b>wrong</b> = 有問題的、不對勁的；<b>with you</b> = 在你身上、你的狀況。</p></div><div class="sentence-box"><div class="sentence-en memorize-answer">I’ll have her stay home from school.</div><button type="button" class="yellow lesson-speak" onclick="lessonSpeak(this)" data-text="I’ll have her stay home from school.">🔊 聽發音</button><div class="sentence-zh">我會讓她留在家裡不上學。</div><p><b>have + 人 + 動詞原形</b> = 叫／讓某人做某事；<b>from</b> = 從……、離開……、與……分開。</p></div><div class="sentence-box"><div class="sentence-en memorize-answer">That would be a good idea.</div><button type="button" class="yellow lesson-speak" onclick="lessonSpeak(this)" data-text="That would be a good idea.">🔊 聽發音</button><div class="sentence-zh">那會是個好主意。</div><p><b>would be</b> = 會是；would 可讓語氣比較委婉、客氣。<br><b>大部分助動詞後面都要接原形動詞。</b></p></div><div class="sentence-box"><div class="sentence-en memorize-answer">OK, be sure to take your medicine three times a day after meals.</div><button type="button" class="yellow lesson-speak" onclick="lessonSpeak(this)" data-text="OK, be sure to take your medicine three times a day after meals.">🔊 聽發音</button><div class="sentence-zh">好的，記得飯後一天吃三次藥。</div><p><b>be sure to + 原形動詞</b> = 務必／一定要……</p></div><div class="sentence-box"><div class="sentence-en memorize-answer">Kip gets sick.</div><button type="button" class="yellow lesson-speak" onclick="lessonSpeak(this)" data-text="Kip gets sick.">🔊 聽發音</button><div class="sentence-zh">Kip 生病了。</div><p><b>gets</b> = 變得、變成；get sick = 生病。</p></div><div class="sentence-box"><div class="sentence-en memorize-answer">I can get your cup. I can fill it up.</div><button type="button" class="yellow lesson-speak" onclick="lessonSpeak(this)" data-text="I can get your cup. I can fill it up.">🔊 聽發音</button><div class="sentence-zh">我可以拿你的杯子。我可以把它裝滿。</div><p><b>get</b> = 拿、取得；<b>fill</b> = 裝滿、填滿；<b>fill up</b> = 裝滿。<br><b>fill</b> 是動詞「裝滿」；<b>full</b> 是形容詞「滿的」。<br><b>up</b> 有時有完成、徹底的語感：eat up、drink up、use up、clean up。</p></div><div class="sentence-box"><div class="sentence-en memorize-answer">San went tap, tap. San did a rap.</div><button type="button" class="yellow lesson-speak" onclick="lessonSpeak(this)" data-text="San went tap, tap. San did a rap.">🔊 聽發音</button><div class="sentence-zh">San 輕敲、輕拍；San 做了一段 rap／敲擊。</div><p><b>went</b> = go 的過去式；<b>tap</b> = 輕敲、輕拍；<b>did</b> = do 的過去式；<b>rap</b> = 饒舌／敲擊。</p></div><div class="sentence-box"><div class="sentence-en memorize-answer">Knock, knock, knock. “This is the doc!”</div><button type="button" class="yellow lesson-speak" onclick="lessonSpeak(this)" data-text="Knock, knock, knock. “This is the doc!”">🔊 聽發音</button><div class="sentence-zh">叩、叩、叩。「我是醫生！」</div><p><b>doc</b> = doctor 的口語縮寫。</p></div><div class="sentence-box"><div class="sentence-en memorize-answer">His pals did the trick. Kip is not sick!</div><button type="button" class="yellow lesson-speak" onclick="lessonSpeak(this)" data-text="His pals did the trick. Kip is not sick!">🔊 聽發音</button><div class="sentence-zh">他的朋友們成功了。Kip 沒有生病！</div><p><b>pals</b> = 朋友們；<b>do the trick</b> = 奏效、成功、達到目的。</p></div></div><div class="lesson-section"><h3>🔤 自然拼讀／韻腳</h3><div class="group-grid">
+<div class="group-card"><h3>-ug</h3><div class="word-list">
+<b>jug</b> 壺；罐　<span class="ipa">/dʒʌɡ/</span> <button type="button" class="yellow" onclick="speakLessonText('jug')">🔊</button><br>
+<b>hug</b> 擁抱　<span class="ipa">/hʌɡ/</span> <button type="button" class="yellow" onclick="speakLessonText('hug')">🔊</button></div></div>
+<div class="group-card"><h3>-ap</h3><div class="word-list">
+<b>tap</b> 輕敲；跳踢踏舞　<span class="ipa">/tæp/</span> <button type="button" class="yellow" onclick="speakLessonText('tap')">🔊</button><br>
+<b>rap</b> 饒舌；敲擊　<span class="ipa">/ræp/</span> <button type="button" class="yellow" onclick="speakLessonText('rap')">🔊</button></div></div>
+<div class="group-card"><h3>其他聲音／動作字</h3><div class="word-list">
+<b>bang</b> 砰砰猛擊 <button type="button" class="yellow" onclick="speakLessonText('bang')">🔊</button><br>
+<b>gong</b> 鑼 <button type="button" class="yellow" onclick="speakLessonText('gong')">🔊</button><br>
+<b>din</b> 嘈雜聲 <button type="button" class="yellow" onclick="speakLessonText('din')">🔊</button></div></div>
+</div></div><div class="lesson-section"><h3>🧩 with 的常見用法</h3><div class="group-grid">
+<div class="group-card"><b>和……一起</b><p>I went <b>with</b> my mom. <button type="button" class="yellow" onclick="speakLessonText('I went with my mom.')">🔊</button></p></div>
+<div class="group-card"><b>有、帶有</b><p>a girl <b>with</b> long hair <button type="button" class="yellow" onclick="speakLessonText('a girl with long hair')">🔊</button></p></div>
+<div class="group-card"><b>使用、用</b><p>Cut it <b>with</b> a knife. <button type="button" class="yellow" onclick="speakLessonText('Cut it with a knife.')">🔊</button></p></div>
+<div class="group-card"><b>關於某人的狀況</b><p>What’s wrong <b>with</b> you? <button type="button" class="yellow" onclick="speakLessonText('What’s wrong with you?')">🔊</button></p></div>
+<div class="group-card"><b>對……的態度／關係</b><p>Be careful <b>with</b> the glass. <button type="button" class="yellow" onclick="speakLessonText('Be careful with the glass.')">🔊</button></p></div>
+</div></div><div class="lesson-section"><h3>📝 小測驗</h3>${lessonQuestions.map((q,i)=>`<div class="question-card"><b>${i+1}. ${q.q}</b><div class="options">${q.o.map((x,j)=>`<button class="option" onclick="lessonCheck(this,${j===q.a})">${x}</button>`).join('')}</div></div>`).join('')}</div>`}
+const lessonQuestions=[{q:'fall 的過去式是？',o:['fell','felt','falled','fall'],a:0},{q:'have + 人 + 動詞原形的意思是？',o:['正在做','叫／讓某人做某事','已經做完','可能會做'],a:1},{q:'fill 和 full 哪一個是形容詞「滿的」？',o:['fill','full'],a:1},{q:'What’s wrong with you? 最自然的意思是？',o:['你怎麼了？','你和誰一起？','你從哪裡來？','你在做什麼？'],a:0},{q:'I can fill it up. 中的 it 指什麼？',o:['your cup','medicine','school','doctor'],a:0},{q:'doc 是哪個字的口語縮寫？',o:['doctor','dodgeball','dinner','dollar'],a:0},{q:'do the trick 是什麼意思？',o:['做把戲','奏效／成功','快速離開','大聲說話'],a:1},{q:'哪一組是押韻相近的 -ug 單字？',o:['jug / hug','tap / din','bang / hospital','doctor / cough'],a:0}];
+let lessonWrongQuestions = [];
+
+function lessonCheck(btn,ok){
+  const card=btn.parentElement;
+  const qText = card.parentElement.querySelector('b') ? card.parentElement.querySelector('b').textContent : '';
+  const options=[...card.querySelectorAll('.option')].map(b=>b.textContent);
+  const optionIndex=[...card.querySelectorAll('.option')].indexOf(btn);
+  const correctIndex = ok ? optionIndex : getCorrectLessonIndex(qText);
+  const answer = correctIndex >= 0 ? options[correctIndex] : '';
+  if(!ok && !lessonWrongQuestions.some(x=>x.q===qText)){
+    lessonWrongQuestions.push({q:qText, options:options, answer:answer});
+  }
+  card.querySelectorAll('.option').forEach(b=>b.disabled=true);
+  btn.classList.add(ok?'correct':'wrong');
+  if(!ok && correctIndex >= 0){
+    card.querySelectorAll('.option')[correctIndex].classList.add('correct');
+  }
+  const fb=document.createElement('div');
+  fb.className='feedback '+(ok?'ok':'bad');
+  fb.textContent=ok?'🎉 答對！':'❌ 答錯，這題會加入重新測驗';
+  card.parentElement.appendChild(fb);
+  updateLessonRetryButton();
+}
+
+function getCorrectLessonIndex(qText){
+  const answers={
+    '1. fall 的過去式是？':'fell',
+    '2. 「have + 人 + 動詞原形」的意思是？':'叫／讓某人做某事',
+    '3. fill 和 full 哪一個是形容詞「滿的」？':'full',
+    '4. What’s wrong with you? 最自然的意思是？':'你怎麼了？',
+    '5. 「I can fill it up.」中的 it 指什麼？':'your cup',
+    '6. doc 是哪個字的口語縮寫？':'doctor',
+    '7. do the trick 是什麼意思？':'奏效／成功',
+    '8. 哪一組是押韻相近的 -ug 單字？':'jug / hug'
+  };
+  const ans=answers[qText];
+  if(!ans) return -1;
+  const card=[...document.querySelectorAll('.question-card')].find(c=>c.querySelector('b')?.textContent===qText);
+  if(!card) return -1;
+  return [...card.querySelectorAll('.option')].findIndex(b=>b.textContent===ans);
+}
+
+function updateLessonRetryButton(){
+  let box=document.getElementById('lessonRetryBox');
+  if(!box){
+    box=document.createElement('div');
+    box.id='lessonRetryBox';
+    box.className='center';
+    screen.querySelector('.lesson-section:last-child').appendChild(box);
+  }
+  box.innerHTML=lessonWrongQuestions.length
+    ? '<button class="primary" onclick="retryLessonWrong()">🔄 重新測驗錯題（'+lessonWrongQuestions.length+'題）</button>'
+    : '<div class="note">🎉 目前沒有錯題。</div>';
+}
+
+function retryLessonWrong(){
+  if(!lessonWrongQuestions.length){
+    return;
+  }
+  const wrongSet=lessonWrongQuestions.slice();
+  lessonWrongQuestions=[];
+  let html='<h2>🔄 重新測驗錯題</h2><div class="note">這次只重新測驗上一輪答錯的題目。</div>';
+  wrongSet.forEach((x,idx)=>{
+    window.retryCurrentAnswer=x.answer;
+    html+='<div class="question-card"><b>'+x.q+'</b><div class="options">'
+      x.options.map(o=>'<button class="option" onclick="retryLessonAnswer(this,'+(o===x.answer?'true':'false')+')">'+o+'</button>').join('')+
+      '</div><div class="feedback"></div></div>';
+  });
+  html+='<div class="center"><button class="pink" onclick="showLesson()">📚 回教材</button></div>';
+  screen.innerHTML=html;
+}
+
+function retryLessonAnswer(btn,ok){
+  const card=btn.parentElement;
+  const fb=card.querySelector('.feedback');
+  card.querySelectorAll('.option').forEach(b=>b.disabled=true);
+  btn.classList.add(ok?'correct':'wrong');
+  fb.className='feedback '+(ok?'ok':'bad');
+  fb.textContent=ok?'🎉 答對！':'❌ 答錯，再加入錯題';
+  if(!ok){
+    const qText=card.querySelector('b').textContent;
+    const options=[...card.querySelectorAll('.option')].map(b=>b.textContent);
+    const answer = window.retryCurrentAnswer || '';
+    lessonWrongQuestions.push({q:qText,options:options,answer:answer});
+  }
+  let bottom=document.getElementById('lessonRetryBox2');
+  if(!bottom){
+    bottom=document.createElement('div');
+    bottom.id='lessonRetryBox2';
+    bottom.className='center';
+    card.parentElement.appendChild(bottom);
+  }
+  const btnRetry=document.createElement('button');
+  btnRetry.className='primary';
+  btnRetry.textContent='🔄 再練錯題（'+lessonWrongQuestions.length+'題）';
+  btnRetry.onclick=retryLessonWrong;
+  bottom.innerHTML='';
+  if(lessonWrongQuestions.length) bottom.appendChild(btnRetry);
+}
+
+
+function speakScene(btn){
+  speak(btn.getAttribute('data-text') || '');
+}
+
+function sceneCard(title,tag,en,ans,person,emo,keyword){
+  const speakText = en + ' ' + ans;
+  return '<div class="article-card">'+
+    '<h3>'+tag+' '+title+'</h3>'+
+    '<div class="scene-illustration"><div class="scene-person">'+person+'</div><div class="scene-symptom">'+emo+'</div><div class="scene-label">'+keyword+'</div></div>'+
+    '<div class="sentence-en">'+en+'</div>'+
+    '<div class="sentence-en memorize-answer">'+ans+'</div>'+
+    '<button type="button" class="yellow article-speak" onclick="speakScene(this)" data-text="'+esc(speakText)+'">🔊 聽發音</button>'+
+    '</div>';
+}
+
+function showArticle(btn){
+  nav(btn);
+  screen.innerHTML=
+    '<h2>📖 Unit 2 小文章觀賞</h2>'+
+    '<div class="note">先看情境，再讀句子。可以按 🔊 聽發音，跟著念幾次。</div>'+
+    '<div class="article-grid">'+
+      sceneCard('🗣️','喉嚨痛情境','A: What\'s wrong?','B: I have a sore throat.','🧑','😣','sore throat')+
+      sceneCard('🤧','感冒＋流鼻水','I am sick.','I have a cold with a runny nose.','🤧','💧','cold + runny nose')+
+      sceneCard('😷','咳嗽問答','Does Tim have a cough?','Yes, he does.','👦','😷','cough')+
+      sceneCard('🤒','生病問答','Are they sick?','Yes, they are.','👧👦','🤒','sick')+
+    '</div>'+
+    '<div class="sentence-box"><b>🌟 這一課要會：</b><br>'+
+    'cold、cough、fever、headache、stomachache、toothache、runny nose、sore throat、sick、doctor、nurse、hospital、Take care.<br>'+
+    '基本句型：<span class="memorize-answer">What\'s wrong? / I have ... / Does ... have ...? / Yes, he does. / Are they ...? / Yes, they are.</span></div>';
+}
+
+function showSentenceQuiz(btn){
+  nav(btn);
+  renderSentenceQuiz();
+}
+
+let sentenceQs=[
+  {scene:'throat', q:"看到圖片中的對話，B 的答案是什麼？", opts:["I have a fever.","I have a sore throat.","I have a headache.","I have a cough."], a:"I have a sore throat."},
+  {scene:'throat', q:"A 說「What’s wrong?」是在問什麼？", opts:["你幾歲？","你住哪裡？","怎麼了？","你喜歡什麼？"], a:"怎麼了？"},
+  {scene:'cold', q:"圖片中 I am sick. I have a ______ with a runny nose. 空格應填？", opts:["cough","cold","fever","headache"], a:"cold"},
+  {scene:'cold', q:"runny nose 的中文意思是？", opts:["咳嗽","流鼻水","喉嚨痛","牙痛"], a:"流鼻水"},
+  {scene:'cough', q:"Does Tim have a cough?", opts:["Yes, he is.","No, he isn't.","Yes, he does.","No, he doesn't."], a:"Yes, he does."},
+  {scene:'cough', q:"cough 的中文意思是？", opts:["發燒","咳嗽","感冒","胃痛"], a:"咳嗽"},
+  {scene:'sick', q:"Is he sick?", opts:["Yes, he is.","Yes, he does.","No, he doesn't.","No, they aren't."], a:"Yes, he is."},
+  {scene:'sick', q:"如果問「Is he sick?」，正確的簡短回答要用哪個？", opts:["Yes, he is.","Yes, he does.","Yes, they are.","No, they aren't."], a:"Yes, he is."}
+]
+let sentenceIndex=0,sentenceScore=0,sentenceWrong=[];
+function sceneMarkup(kind){
+  const map={
+    throat:'<div class="scene-illustration"><div class="scene-person">🧑</div><div class="scene-symptom">😣</div><div class="throat-mark">●</div></div><div class="scene-dialogue">人物用手扶著喉嚨，表情看起來不舒服。</div>',
+    cold:'<div class="scene-illustration"><div class="scene-person">🤧</div><div class="scene-symptom">💧</div><div class="tissue-cue">🧻</div></div><div class="scene-dialogue">人物正在擤鼻子，旁邊有紙巾。</div>',
+    cough:'<div class="scene-illustration"><div class="scene-person tim-person">👦<span class="tim-name">TIM</span></div><div class="scene-symptom">😷</div><div class="cough-lines">💨💨</div></div><div class="scene-dialogue">Tim 正在咳嗽。</div>',
+    sick:'<div class="scene-illustration"><div class="scene-person">🧑</div><div class="scene-symptom">🤒</div><div class="sick-cues">🌡️ 🛌</div></div><div class="scene-dialogue">人物發燒並躺在床上休息。</div>'
+  };
+  return map[kind]||'';
+}
+function renderSentenceQuiz(){
+  if(sentenceIndex>=sentenceQs.length){
+    window.sentenceLastWrong=sentenceWrong;
+    screen.innerHTML='<div class="center"><div style="font-size:70px">🎉</div><h2>圖片句子測驗完成！</h2>'+
+      '<p style="font-size:24px">答對 <b>'+sentenceScore+' / '+sentenceQs.length+'</b> 題</p>'+
+      (sentenceWrong.length?
+       '<button class="primary" onclick="retrySentenceWrong()">🔄 只練錯題</button>':
+       '<p>🌟 四張圖片都掌握了！</p>')+
+      '<button class="pink" onclick="showArticle()">📖 回文章</button></div>';
+    return;
+  }
+  const x=sentenceQs[sentenceIndex];
+  screen.innerHTML='<h2>🖼️ 圖片情境測驗（8題）</h2>'+
+    '<div>第 '+(sentenceIndex+1)+' / '+sentenceQs.length+' 題</div>'+
+    '<div class="progress"><div class="bar" style="width:'+((sentenceIndex/sentenceQs.length)*100)+'%"></div></div>'+
+    '<div class="question-card"><div class="quiz-scene">'+sceneMarkup(x.scene)+'</div>'+
+    '<h3>'+x.q+'</h3><div class="options">'+
+    x.opts.map((o,i)=>'<button class="option" onclick="answerSentence('+i+')">'+o+'</button>').join('')+
+    '</div><div id="sentenceFeedback" class="feedback"></div></div>';
+  window.sentenceCurrent=x;
+}
+function answerSentence(i){
+  const x=window.sentenceCurrent,btns=document.querySelectorAll('.option'),fb=document.getElementById('sentenceFeedback');
+  if(x.opts[i]===x.a){
+    btns[i].classList.add('correct'); sentenceScore++; fb.textContent='🎉 答對！';
+  }else{
+    btns[i].classList.add('wrong');
+    const ci=x.opts.indexOf(x.a);
+    if(ci>=0)btns[ci].classList.add('correct');
+    sentenceWrong.push(x);
+    fb.textContent='❌ 正確答案：'+x.a;
+  }
+  setTimeout(()=>{sentenceIndex++;renderSentenceQuiz()},850);
+}
+function startSentenceQuiz(){sentenceQs=ALL_SENTENCE_QS.map(x=>({...x,opts:[...x.opts]}));sentenceIndex=0;sentenceScore=0;sentenceWrong=[];renderSentenceQuiz()}
+function retrySentenceWrong(){sentenceQs=window.sentenceLastWrong.map(x=>({...x,opts:[...x.opts]}));sentenceIndex=0;sentenceScore=0;sentenceWrong=[];renderSentenceQuiz()}
+function showDiagnostic(btn){nav(btn);sync();const rows=ALL.map((w,i)=>`<tr><td>${i+1}</td><td><b>${w.zh}</b></td><td><button type="button" class="yellow" onclick="speak(\'${w.en.replace(/'/g,"\\'")}\')">🔊</button> <input id="diag-${i}" placeholder="輸入英文"></td><td id="diag-msg-${i}"></td></tr>`).join("");
+screen.innerHTML=`<h2>📝 全單字中翻英測驗</h2><div class="note">先把全部單字測一次。可以先按 🔊 聽發音，再輸入英文。答對的可以一鍵排除，之後只練剩下不會的單字。</div><table class="diagnostic-table"><thead><tr><th>#</th><th>中文</th><th>英文</th><th>結果</th></tr></thead><tbody>${rows}</tbody></table><div class="actions"><button class="primary" onclick="checkAllDiagnostic()">✅ 檢查全部</button><button class="yellow" onclick="excludeCorrect()">🚀 一鍵排除全部答對</button><button class="pink" onclick="resetMastered()">↺ 清除排除紀錄</button></div><div id="diag-summary" class="note"></div>`;
+ALL.forEach((_,i)=>document.getElementById("diag-"+i).addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();checkOne(i)}}));updateSummary()}
+function checkOne(i){const input=document.getElementById("diag-"+i),msg=document.getElementById("diag-msg-"+i);if(!input)return false;const ok=norm(input.value)===norm(ALL[i].en)&&input.value.trim()!=="";msg.innerHTML=ok
+  ? '<span class="ok">✓ 答對</span>'
+  : (input.value.trim()
+      ? '<span class="bad">✗ 正確答案：'+esc(ALL[i].en)+'　<span style="color:#7b6872;font-family:"Times New Roman",serif;">'+esc(ALL[i].ipa)+'</span></span>'
+      : '<span class="bad">請輸入</span>');input.style.borderColor=ok?"#42b883":"#ef6d6d";input.dataset.correct=ok?"1":"0";return ok}
+function checkAllDiagnostic(){let c=0;ALL.forEach((_,i)=>{if(checkOne(i))c++});document.getElementById("diag-summary").innerHTML=`這次答對 <b>${c} / ${ALL.length}</b> 題。`}
+function excludeCorrect(){ALL.forEach((w,i)=>{const input=document.getElementById("diag-"+i);if(input&&input.dataset.correct==="1"&&!mastered.includes(w.en))mastered.push(w.en)});save();updateSummary();document.getElementById("diag-summary").innerHTML=`🎉 已排除 <b>${mastered.length}</b> 個，剩下 <b>${remaining.length}</b> 個待學習。`}
+function updateSummary(){const b=document.getElementById("diag-summary");if(b)b.innerHTML=`目前：已排除 <b>${mastered.length}</b> 個｜待學習 <b>${remaining.length}</b> 個`}
+function resetMastered(){mastered=[];save();showDiagnostic()}
+function buildGroups(){const r=ALL.filter(w=>!mastered.includes(w.en)),gs=[];for(let i=0;i<r.length;i+=5)gs.push({title:`第 ${gs.length+1} 組｜${r.slice(i,i+5).length} 個`,items:r.slice(i,i+5)});return gs}
+function showGroups(btn){
+  nav(btn); sync();
+  const gs=buildGroups();
+  window.currentGroups=gs;
+  let cards="";
+  gs.forEach((g,idx)=>{
+    let list=g.items.map(w=>w.en).join("、");
+    cards += '<div class="group-card"><h3>'+g.title+'</h3><div class="word-list">'+list+
+      '</div><div class="actions"><button class="yellow" onclick="startFlashByGroup('+idx+')">🧠 閃卡</button>'+
+      '<button class="primary" onclick="startGroupQuizByGroup('+idx+')">✏️ 測驗</button></div></div>';
+  });
+  screen.innerHTML='<h2>🧠 閃卡＋分組測驗</h2>'+
+    '<div class="note">已排除的單字不會進來。剩下的單字每 5 個一組，最後一組不足 5 個也可以練習。</div>'+
+    (gs.length ? '<div class="group-grid">'+cards+'</div>' :
+      '<div class="center"><h3>🎉 全部都會了！</h3><p>可以去遊戲樂園複習。</p></div>');
+}
+function startFlash(items){flashItems=items;flashIndex=0;flashFlip=false;renderFlash()}
+function startFlashByGroup(i){startFlash(window.currentGroups[i].items)}
+function startGroupQuizByGroup(i){startGroupQuiz(window.currentGroups[i].items)}
+function renderFlash(){
+  const w=flashItems[flashIndex];
+  screen.innerHTML=
+    '<h2>🧠 閃卡背誦</h2>' +
+    '<div class="flashcard" onclick="flipFlash()">' +
+      '<div id="ff">' +
+        '<div class="flash-word">'+esc(w.en)+'</div>' +
+        '<div class="ipa">'+esc(w.ipa)+'</div>' +
+        '<div class="small">👆 點卡片翻面看中文</div>' +
+      '</div>' +
+      '<div id="fb" class="hidden">' +
+        '<div class="flash-zh">'+esc(w.zh)+'</div>' +
+        '<div style="font-size:21px;font-weight:800">'+esc(w.pos)+'</div>' +
+        '<div class="small">👆 再點一下翻回英文</div>' +
+      '</div>' +
+    '</div>' +
+    '<div class="actions">' +
+      '<button class="pink" onclick="prevFlash()">◀ 上一張</button>' +
+      '<button class="yellow" onclick="speakCurrentFlash()">🔊 聽發音</button>' +
+      '<button class="pink" onclick="nextFlash()">下一張 ▶</button>' +
+      '<button class="primary" onclick="startGroupQuiz(flashItems)">✏️ 開始測驗</button>' +
+    '</div>' +
+    '<div class="small center">第 '+(flashIndex+1)+' / '+flashItems.length+' 張</div>';
+}
+function flipFlash(){flashFlip=!flashFlip;document.getElementById("ff").classList.toggle("hidden",flashFlip);document.getElementById("fb").classList.toggle("hidden",!flashFlip)}
+function speakCurrentFlash(){speak(flashItems[flashIndex].en)}
+function nextFlash(){flashIndex=(flashIndex+1)%flashItems.length;flashFlip=false;renderFlash()}
+function prevFlash(){flashIndex=(flashIndex-1+flashItems.length)%flashItems.length;flashFlip=false;renderFlash()}
+function startGroupQuiz(items){groupPool=shuffle(items);groupIndex=0;groupScore=0;groupWrong=[];renderGroupQuiz()}
+function renderGroupQuiz(){
+  if(groupIndex>=groupPool.length){finishGroupQuiz();return}
+  const w=groupPool[groupIndex];
+  screen.innerHTML=
+    '<h2>✏️ 分組中翻英測驗</h2>' +
+    '<div>第 '+(groupIndex+1)+' / '+groupPool.length+' 題　答對：'+groupScore+'</div>' +
+    '<div class="progress"><div class="bar" style="width:'+((groupIndex/groupPool.length)*100)+'%"></div></div>' +
+    '<div class="center"><div class="bigword">'+esc(w.zh)+'</div><p>請寫出英文</p>' +
+    '<input id="gAnswer" style="width:min(430px,95%);padding:13px;font-size:21px;border:2px solid #ddd;border-radius:12px" autocomplete="off">' +
+    '<div class="actions" style="justify-content:center">' +
+    '<button class="primary" onclick="checkGroup()">✔ 對答案</button>' +
+    '<button class="pink" onclick="showGroups()">🧠 回到分組</button></div>' +
+    '<div id="gfb" class="feedback"></div></div>';
+  const x=document.getElementById("gAnswer");
+  x.focus();
+  x.addEventListener("keydown",function(e){
+    if(e.key==="Enter"){e.preventDefault();checkGroup()}
+  });
+}
+function checkGroup(){const x=document.getElementById("gAnswer"),fb=document.getElementById("gfb"),w=groupPool[groupIndex];if(!x.value.trim()){fb.textContent="請輸入答案";return}if(norm(x.value)===norm(w.en)){groupScore++;fb.className="feedback ok";fb.textContent="🎉 答對！";setTimeout(()=>{groupIndex++;renderGroupQuiz()},650)}else{groupWrong.push(w);fb.className="feedback bad";fb.innerHTML="❌ 正確答案：<b>"+esc(w.en)+"</b>";setTimeout(()=>{groupIndex++;renderGroupQuiz()},950)}}
+function finishGroupQuiz(){
+  window.lastWrongGroup=groupWrong;
+  let retry=groupWrong.length ? '<button class="primary" onclick="retryGroupWrong()">🔄 只練錯題</button>' : '<p>🌟 全部答對，可以進下一組！</p>';
+  screen.innerHTML=
+    '<div class="center"><div style="font-size:70px">🏆</div><h2>本組完成！</h2>' +
+    '<p style="font-size:24px">答對 '+groupScore+' / '+groupPool.length+' 題</p>' +
+    '<p>錯題 '+groupWrong.length+' 題</p>'+retry+
+    '<button class="pink" onclick="showGroups()">回到分組</button></div>';
+}
+function retryGroupWrong(){startGroupQuiz(window.lastWrongGroup)}
+function showGames(btn){nav(btn);screen.innerHTML=`<h2>🎮 單字遊戲樂園</h2><p>以目前待學習的健康單字為主；已排除的單字不優先出現。</p><div class="game-grid"><button class="game-card" onclick="gameQuick()"><div class="emoji">🎯</div><h3>快問快答</h3><p>看英文選中文。</p></button><button class="game-card" onclick="gameWhack()"><div class="emoji">🐹</div><h3>英文打地鼠</h3><p>找出正確英文。</p></button><button class="game-card" onclick="gameMatch()"><div class="emoji">🃏</div><h3>記憶翻牌</h3><p>英文和中文配對。</p></button><button class="game-card" onclick="gameRun()"><div class="emoji">🏃</div><h3>單字跑酷</h3><p>選對答案跳過障礙。</p></button><button class="game-card" onclick="gameScramble()"><div class="emoji">🔤</div><h3>拼字重組</h3><p>重新排列字母。</p></button><button class="game-card" onclick="gameListen()"><div class="emoji">🔊</div><h3>聽音選字</h3><p>聽發音選英文。</p></button><button class="game-card" onclick="gameSymptom()"><div class="emoji">🩺</div><h3>症狀配對</h3><p>看中文症狀選出英文單字。</p></button></div>`}
+function gameWords(){const r=ALL.filter(w=>!mastered.includes(w.en));return r.length?r:ALL}
+function opts(correct){return shuffle([correct,...shuffle(gameWords().filter(w=>w.en!==correct.en)).slice(0,3)])}
+let quickSet=[],quickI=0;
+function gameQuick(){quickSet=shuffle(gameWords()).slice(0,10);quickI=0;renderQuick()}
+function renderQuick(){if(quickI>=quickSet.length){screen.innerHTML=`<div class="center"><h2>🎉 快問快答完成！</h2><button class="primary" onclick="gameQuick()">再玩一次</button></div>`;return}const w=quickSet[quickI],o=opts(w);screen.innerHTML=`<h2>🎯 快問快答</h2><div>第 ${quickI+1} / ${quickSet.length} 題</div><div class="center"><div class="bigword">${esc(w.en)}</div><p>中文是什麼？</p><div class="options">${o.map((x,i)=>`<button class="option" onclick="answerQuick(${i})">${esc(x.zh)}</button>`).join("")}</div><div id="qfb" class="feedback"></div></div>`;window.qopts=o;window.qword=w}
+function answerQuick(i){const bs=document.querySelectorAll(".option"),x=qopts[i];if(x.en===qword.en){bs[i].classList.add("correct");addScore(10);document.getElementById("qfb").textContent="🎉 答對！"}else{bs[i].classList.add("wrong");bs[qopts.findIndex(x=>x.en===qword.en)].classList.add("correct");document.getElementById("qfb").textContent=`❌ ${qword.zh}`}setTimeout(()=>{quickI++;renderQuick()},650)}
+function stopWhack(){if(whackInterval)clearInterval(whackInterval);whackInterval=null}
+function gameWhack(){stopWhack();whackEnd=Date.now()+30000;screen.innerHTML=`<h2>🐹 英文打地鼠</h2><div class="center"><div id="wt" class="timer">30</div><p id="wq"></p></div><div class="holes">${[0,1,2,3,4,5].map(i=>`<button id="wh${i}" class="hole" onclick="hitWhack(${i})"></button>`).join("")}</div><div id="wf" class="feedback center"></div>`;nextWhack();whackInterval=setInterval(()=>{const t=Math.max(0,Math.ceil((whackEnd-Date.now())/1000));const el=document.getElementById("wt");if(el)el.textContent=t;if(t<=0){stopWhack();screen.innerHTML=`<div class="center"><h2>⏰ 時間到！</h2><button class="primary" onclick="gameWhack()">再玩一次</button></div>`}},250)}
+function nextWhack(){if(Date.now()>=whackEnd)return;const w=shuffle(gameWords())[0],o=opts(w);whackActive=Math.floor(Math.random()*6);window.whackWord=w;document.getElementById("wq").innerHTML=`請找到：<b>${esc(w.en)}</b>`;for(let i=0;i<6;i++){const h=document.getElementById("wh"+i);h.classList.toggle("active",i===whackActive);h.textContent=i===whackActive?w.en:shuffle(o)[0].en}}
+function hitWhack(i){if(i!==whackActive)return;const h=document.getElementById("wh"+i);if(h.textContent===whackWord.en){addScore(15);document.getElementById("wf").textContent="💥 打中了！";nextWhack()}}
+function gameMatch(){const c=shuffle(gameWords()).slice(0,6);matchState={cards:shuffle(c.flatMap((w,i)=>[{id:i,text:w.en,type:"en"},{id:i,text:w.zh,type:"zh"}])),first:null,second:null,matched:0};matchLock=false;screen.innerHTML=`<h2>🃏 記憶翻牌</h2><div class="center">找出英文＋中文的一對！</div><div class="match-grid">${matchState.cards.map((x,i)=>`<button class="match-card" id="mc${i}" onclick="flipMatch(${i})">❓</button>`).join("")}</div>`}
+function flipMatch(i){if(matchLock)return;const e=document.getElementById("mc"+i);if(e.classList.contains("matched")||e.classList.contains("flipped"))return;e.classList.add("flipped");e.textContent=matchState.cards[i].text;if(matchState.first===null){matchState.first=i;return}matchState.second=i;matchLock=true;setTimeout(()=>{const a=matchState.cards[matchState.first],b=matchState.cards[matchState.second];if(a.id===b.id&&a.type!==b.type){document.getElementById("mc"+matchState.first).classList.add("matched");document.getElementById("mc"+matchState.second).classList.add("matched");matchState.matched++;addScore(25);if(matchState.matched===6)screen.innerHTML=`<div class="center"><h2>🎉 全部配對成功！</h2><button class="primary" onclick="gameMatch()">再玩一次</button></div>`}else{document.getElementById("mc"+matchState.first).classList.remove("flipped");document.getElementById("mc"+matchState.second).classList.remove("flipped");document.getElementById("mc"+matchState.first).textContent="❓";document.getElementById("mc"+matchState.second).textContent="❓"}matchState.first=null;matchState.second=null;matchLock=false},650)}
+function gameRun(){nextRun()}
+function nextRun(){runWord=shuffle(gameWords())[0];runOpts=opts(runWord);screen.innerHTML=`<h2>🏃 單字跑酷</h2><div class="center"><div class="bigword">${esc(runWord.en)}</div></div><div class="runway"><div id="runner" class="runner">🏃</div><div class="obstacle">🪨</div></div><div class="actions" style="justify-content:center">${runOpts.map((x,i)=>`<button class="pink" onclick="answerRun(${i})">${esc(x.zh)}</button>`).join("")}</div><div id="rf" class="feedback center"></div>`}
+function answerRun(i){const f=document.getElementById("rf"),r=document.getElementById("runner");if(runOpts[i].en===runWord.en){r.style.left="78%";addScore(20);f.textContent="✨ 跳過去了！";setTimeout(nextRun,700)}else{f.textContent="❌ "+runWord.zh;setTimeout(nextRun,900)}}
+function gameScramble(){scrambleWord=shuffle(gameWords())[0];const letters=shuffle(scrambleWord.en.replace(/[^a-zA-Z]/g,"").toLowerCase().split(""));window.scrambleAnswer="";screen.innerHTML=`<h2>🔤 拼字重組</h2><div class="center"><div class="meaning">${esc(scrambleWord.zh)}</div><p>把字母拼成英文</p><div id="chosen" class="bigword" style="min-height:60px"></div><div class="scramble">${letters.map((l,i)=>`<button id="let${i}" class="letter" onclick="pickLetter(${i})">${l}</button>`).join("")}</div><button class="primary" onclick="checkScramble()">確認</button><button class="secondary" onclick="gameScramble()">換一題</button><div id="sf" class="feedback"></div></div>`;window.scrambleLetters=letters}
+function pickLetter(i){const b=document.getElementById("let"+i);if(!b||b.disabled)return;b.disabled=true;window.scrambleAnswer+=b.textContent;document.getElementById("chosen").textContent=window.scrambleAnswer}
+function checkScramble(){const f=document.getElementById("sf"),target=scrambleWord.en.replace(/[^a-zA-Z]/g,"").toLowerCase();if(window.scrambleAnswer===target){addScore(30);f.textContent="🎉 答對！";setTimeout(gameScramble,700)}else f.innerHTML=`❌ 答案：<b>${esc(scrambleWord.en)}</b>`}
+
+function gameSymptom(){
+  const w=shuffle(gameWords())[0];
+  const o=opts(w);
+  screen.innerHTML='<h2>🩺 症狀配對</h2><div class="center"><div class="meaning">'+esc(w.zh)+'</div><p>哪一個英文最符合？</p><div class="options">'+o.map((x,i)=>'<button class="option" onclick="symptomAnswer(this,'+i+')">'+esc(x.en)+'</button>').join('')+'</div><div id="symptomFeedback" class="feedback"></div></div>';
+  window.symptomWord=w; window.symptomOpts=o;
+}
+function symptomAnswer(btn,i){
+  const f=document.getElementById("symptomFeedback");
+  if(symptomOpts[i].en===symptomWord.en){
+    btn.classList.add("correct"); addScore(20); f.textContent="🎉 答對！";
+  }else{
+    btn.classList.add("wrong");
+    f.textContent="❌ 正確答案："+symptomWord.en;
+  }
+  setTimeout(gameSymptom,800);
+}
+function gameListen(){listenWord=shuffle(gameWords())[0];listenOpts=opts(listenWord);screen.innerHTML=`<h2>🔊 聽音選字</h2><div class="center"><button class="yellow" onclick="speak('${listenWord.en.replace(/'/g,"\\'")}')">🔊 播放發音</button><p>聽完後選英文：</p><div class="options">${listenOpts.map((x,i)=>`<button class="option" onclick="listenAnswer(this,${i})">${esc(x.en)}</button>`).join("")}</div><div id="lf" class="feedback"></div></div>`}
+function listenAnswer(btn,i){const f=document.getElementById("lf");if(listenOpts[i].en===listenWord.en){btn.classList.add("correct");addScore(20);f.textContent="🎉 答對！"}else{btn.classList.add("wrong");f.textContent=`❌ 正確答案：${listenWord.en}`}setTimeout(gameListen,800)}
+sync();showArticle();
+</script></body></html>

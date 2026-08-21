@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>兩位數偶數÷2填充題</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:#fff7fb;font-family:"Microsoft JhengHei","Segoe UI",sans-serif;color:#4b3d45}
+.container{max-width:760px;margin:auto;padding:30px 18px}
+h1{text-align:center;color:#d65b91;font-size:30px;margin:0 0 8px}
+.subtitle{text-align:center;color:#88717d;margin-bottom:22px}
+.card{background:#fff;border:1px solid #efd9e5;border-radius:24px;padding:28px;box-shadow:0 6px 22px rgba(180,110,145,.14)}
+.top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.progress{font-weight:bold;color:#d65b91}.score{color:#765f6d}
+.question{margin:24px 0 18px;background:#fff3f8;border-radius:20px;padding:38px 15px;text-align:center}
+.expression{font-size:42px;font-weight:800;letter-spacing:2px}
+.answer{width:150px;padding:12px;border:2px solid #e5bfd2;border-radius:12px;font-size:30px;text-align:center;margin:22px auto 8px;outline:none}
+.answer:focus{border-color:#d65b91}
+button{border:0;border-radius:12px;padding:12px 20px;font-size:17px;cursor:pointer;background:#d65b91;color:white;font-weight:bold}
+button.secondary{background:#f3d9e6;color:#8e4164}
+.actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.feedback{text-align:center;min-height:32px;font-weight:bold;margin-top:15px;font-size:18px}
+.correct{color:#26905d}.wrong{color:#d64d61}
+.explain{display:none;margin:16px auto 0;max-width:430px;background:#fff;border:1px solid #efd2df;border-radius:14px;padding:12px;text-align:center}
+.explain.show{display:block}
+.rule{margin-top:22px;padding:15px;border-radius:14px;background:#fffafc;color:#6f5c67;text-align:center;line-height:1.7}
+.finish{text-align:center;padding:20px}.bigscore{font-size:27px;color:#d65b91;font-weight:bold}
+
+/* ===== Pop! Learning 統一粉紅主題 ===== */
+:root{
+ --pink:#d95791;
+ --pink-dark:#b94d70;
+ --pink-mid:#ee8fb3;
+ --pink-light:#fff0f6;
+ --pink-bg:#fff7fb;
+ --pink-border:#f2cddd;
+ --pink-shadow:rgba(217,87,145,.13);
+ --text:#5f4d57;
+}
+html,body{
+ background:linear-gradient(135deg,#fff7fb 0%,#ffeaf4 100%) !important;
+ color:var(--text) !important;
+}
+body{
+ font-family:"Microsoft JhengHei","Noto Sans TC",Arial,sans-serif !important;
+}
+h1,h2,h3{
+ color:var(--pink) !important;
+}
+button{
+ background:var(--pink) !important;
+ color:#fff !important;
+ border:0 !important;
+ border-radius:999px !important;
+ box-shadow:0 3px 9px var(--pink-shadow);
+ font-weight:700;
+}
+button:hover{background:var(--pink-dark) !important;}
+input,textarea,select{
+ border-color:var(--pink-border) !important;
+ border-radius:12px !important;
+}
+input:focus,textarea:focus,select:focus{
+ outline:none !important;
+ border-color:var(--pink) !important;
+ box-shadow:0 0 0 3px #ffe2ee !important;
+}
+.card,.box,.container,.panel,.quiz-box,.detail,.question,.work-area,.memory-card{
+ border-color:var(--pink-border) !important;
+ box-shadow:0 6px 22px var(--pink-shadow) !important;
+}
+.question,.guide,.rule,.memory-rule,.stats,.answer,.answer:focus,.explain{
+ background:#fff0f6 !important;
+}
+.primary,.action,.pink{background:var(--pink) !important;color:#fff !important;}
+.secondary,.tab:not(.active){background:#f8dce8 !important;color:var(--pink-dark) !important;}
+.tab.active,.nav button.active{background:var(--pink) !important;color:#fff !important;}
+.topbar,.topMenu{background:#fff0f6 !important;border-color:#f2b0cb !important;}
+.topMenu a{border-color:#f2b0cb !important;color:var(--pink-dark) !important;}
+.topMenu a:hover{background:var(--pink) !important;color:#fff !important;}
+.correct,.ok{color:#2a9a61 !important;}
+.wrong{color:#d45563 !important;}
+
+</style>
+</head>
+<body>
+<div class="container">
+<h1>➗ 兩位數偶數 ÷ 2</h1>
+<div class="subtitle">填充題練習</div>
+<div class="card">
+<div class="top"><div class="progress" id="progress"></div><div class="score" id="score">答對 0 題</div></div>
+<div id="quiz">
+<div class="question">
+<div class="expression" id="expression"></div>
+<input class="answer" id="answer" type="number" inputmode="numeric" autocomplete="off">
+</div>
+<div class="actions">
+<button id="check">✔ 對答案</button>
+<button class="secondary" id="newGame">🔄 重新開始</button>
+</div>
+<div class="feedback" id="feedback"></div>
+<div class="explain" id="explain"></div>
+<div class="rule">💡 <strong>小提醒：</strong>兩位數偶數可以整除 2，所以答案一定是整數。</div>
+</div>
+<div id="finish" class="finish" style="display:none">
+<div>🎉 全部完成！</div>
+<div class="bigscore" id="finalScore"></div><br>
+<button id="restart">🔄 再測一次</button>
+</div>
+</div>
+</div>
+<script>
+const TOTAL=20;
+let questionNo=0,correct=0,currentNumber=0,locked=false;
+const $=id=>document.getElementById(id);
+function randomEvenTwoDigit(){return 10+Math.floor(Math.random()*45)*2}
+function newQuestion(){
+ locked=false;currentNumber=randomEvenTwoDigit();
+ $("progress").textContent=`第 ${questionNo+1} / ${TOTAL} 題`;
+ $("score").textContent=`答對 ${correct} 題`;
+ $("expression").textContent=`${currentNumber} ÷ 2 = □`;
+ $("answer").value="";$("answer").disabled=false;$("check").disabled=false;
+ $("feedback").textContent="";$("feedback").className="feedback";
+ $("explain").className="explain";$("explain").textContent="";
+ $("answer").focus();
+}
+function checkAnswer(){
+ if(locked)return;
+ if($("answer").value.trim()===""){
+  $("feedback").textContent="請先填入答案。";$("feedback").className="feedback wrong";$("answer").focus();return;
+ }
+ const userAnswer=Number($("answer").value),correctAnswer=currentNumber/2;
+ if(userAnswer===correctAnswer){
+  locked=true;correct++;
+  $("feedback").textContent="✔ 答對了！";$("feedback").className="feedback correct";
+  $("explain").innerHTML=`<strong>${currentNumber} ÷ 2 = ${correctAnswer}</strong><br>${correctAnswer} × 2 = ${currentNumber}`;
+  $("explain").className="explain show";$("score").textContent=`答對 ${correct} 題`;
+  $("answer").disabled=true;$("check").disabled=true;
+  setTimeout(()=>{questionNo++;questionNo>=TOTAL?finish():newQuestion()},800);
+ }else{
+  $("feedback").textContent="✘ 答錯了，再想想看！";$("feedback").className="feedback wrong";
+  $("explain").className="explain";$("explain").textContent="";$("answer").focus();
+ }
+}
+function finish(){
+ $("quiz").style.display="none";$("finish").style.display="block";
+ $("finalScore").textContent=`答對 ${correct} / ${TOTAL} 題（${Math.round(correct/TOTAL*100)}%）`;
+}
+function startGame(){questionNo=0;correct=0;$("quiz").style.display="block";$("finish").style.display="none";newQuestion()}
+$("check").onclick=checkAnswer;
+$("answer").addEventListener("keydown",e=>{if(e.key==="Enter")checkAnswer()});
+$("newGame").onclick=startGame;$("restart").onclick=startGame;
+startGame();
+</script>
+</body>
+</html>

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>角柱與角錐｜構成要素 JS 題庫</title>
+<style>
+:root{--green:#69a987;--light:#eef8f1;--pink:#f7a8c1;--pink2:#fff0f5;--ink:#35433a;--yellow:#fff4bf;}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;background:linear-gradient(135deg,#fff8fb,#eff9f2);color:var(--ink)}
+.container{max-width:920px;margin:auto;padding:22px}
+header{background:white;border-radius:24px;padding:20px 24px;box-shadow:0 5px 18px #00000010;margin-bottom:18px}
+h1{margin:0;color:#438866;font-size:30px}
+.subtitle{margin-top:6px;color:#718077}
+.panel{background:white;border-radius:22px;padding:22px;box-shadow:0 5px 18px #0000000d;margin-bottom:18px}
+.memory{background:var(--light);border:2px solid #b7dcc5}
+.memory h2{margin-top:0;color:#438866}
+.formula-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.formula{background:white;border-radius:16px;padding:15px;border-left:6px solid var(--green)}
+.formula b{display:block;margin-bottom:7px;font-size:18px}
+.example{background:#fffaf0;border-radius:14px;padding:12px;margin-top:14px}
+button{border:0;border-radius:13px;padding:11px 16px;font-size:16px;cursor:pointer;font-weight:700}
+.primary{background:var(--green);color:white}
+.pink{background:var(--pink2);color:#b84e70;border:1px solid #f2b4c8}
+.topbar{display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between;align-items:center}
+.progress{font-weight:700;color:#638070}
+.question{font-size:25px;font-weight:800;line-height:1.5;margin:18px 0}
+input{width:180px;padding:13px;border:2px solid #cbd9d0;border-radius:12px;font-size:22px;text-align:center;outline:none}
+input:focus{border-color:var(--green)}
+.feedback{min-height:60px;margin-top:15px;padding:14px;border-radius:14px;display:none;line-height:1.7}
+.correct{display:block;background:#e9f8ed;color:#287144}
+.wrong{display:block;background:#fff0f0;color:#b34b4b}
+.explain{margin-top:8px;background:#fffdf2;padding:12px;border-radius:12px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.score{font-size:20px;font-weight:800}
+@media(max-width:650px){.formula-grid{grid-template-columns:1fr}h1{font-size:24px}.question{font-size:21px}}
+
+/* ===== Pop! Learning 統一粉紅主題 ===== */
+:root{
+ --pink:#d95791;
+ --pink-dark:#b94d70;
+ --pink-mid:#ee8fb3;
+ --pink-light:#fff0f6;
+ --pink-bg:#fff7fb;
+ --pink-border:#f2cddd;
+ --pink-shadow:rgba(217,87,145,.13);
+ --text:#5f4d57;
+}
+html,body{
+ background:linear-gradient(135deg,#fff7fb 0%,#ffeaf4 100%) !important;
+ color:var(--text) !important;
+}
+body{
+ font-family:"Microsoft JhengHei","Noto Sans TC",Arial,sans-serif !important;
+}
+h1,h2,h3{
+ color:var(--pink) !important;
+}
+button{
+ background:var(--pink) !important;
+ color:#fff !important;
+ border:0 !important;
+ border-radius:999px !important;
+ box-shadow:0 3px 9px var(--pink-shadow);
+ font-weight:700;
+}
+button:hover{background:var(--pink-dark) !important;}
+input,textarea,select{
+ border-color:var(--pink-border) !important;
+ border-radius:12px !important;
+}
+input:focus,textarea:focus,select:focus{
+ outline:none !important;
+ border-color:var(--pink) !important;
+ box-shadow:0 0 0 3px #ffe2ee !important;
+}
+.card,.box,.container,.panel,.quiz-box,.detail,.question,.work-area,.memory-card{
+ border-color:var(--pink-border) !important;
+ box-shadow:0 6px 22px var(--pink-shadow) !important;
+}
+.question,.guide,.rule,.memory-rule,.stats,.answer,.answer:focus,.explain{
+ background:#fff0f6 !important;
+}
+.primary,.action,.pink{background:var(--pink) !important;color:#fff !important;}
+.secondary,.tab:not(.active){background:#f8dce8 !important;color:var(--pink-dark) !important;}
+.tab.active,.nav button.active{background:var(--pink) !important;color:#fff !important;}
+.topbar,.topMenu{background:#fff0f6 !important;border-color:#f2b0cb !important;}
+.topMenu a{border-color:#f2b0cb !important;color:var(--pink-dark) !important;}
+.topMenu a:hover{background:var(--pink) !important;color:#fff !important;}
+.correct,.ok{color:#2a9a61 !important;}
+.wrong{color:#d45563 !important;}
+
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+  <h1>📐 角柱與角錐｜構成要素題庫</h1>
+  <div class="subtitle">先背誦 → 選擇測驗題數 → 作答。作答中隨時可以回到「背誦區」。</div>
+</header>
+
+<section id="memory" class="panel memory">
+  <h2>🧠 背誦區</h2>
+  <div class="formula-grid">
+    <div class="formula">
+      <b>🟩 角柱</b>
+      面數＝底面邊數＋2<br>
+      頂點數＝底面頂點數 × 2<br>
+      邊數＝底面邊數 × 3
+    </div>
+    <div class="formula">
+      <b>🔺 角錐</b>
+      面數＝底面邊數＋1<br>
+      頂點數＝底面頂點數＋1<br>
+      邊數＝底面邊數 × 2
+    </div>
+  </div>
+  <div class="example">
+    <b>📌 快速記：</b><br>
+    角柱：<b>＋2、×2、×3</b><br>
+    角錐：<b>＋1、＋1、×2</b>
+  </div>
+  <div class="actions">
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+    <button class="primary" onclick="startQuiz(28)">📚 完整測驗 28 題</button>
+    <button class="pink" onclick="startQuiz(10)">✏️ 快速測驗 10 題</button>
+  </div>
+  </div>
+</section>
+
+<section id="quiz" class="panel" style="display:none">
+  <div class="topbar">
+    <div class="progress" id="progress"></div>
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+      <div class="score" id="score">得分：0</div>
+      <button id="quizMemoryBtn" class="pink" onclick="showMemory()">🧠 回背誦區</button>
+    </div>
+  </div>
+  <div class="question" id="question"></div>
+  <input id="answer" type="text" inputmode="numeric" autocomplete="off" placeholder="輸入答案">
+  <div id="feedback" class="feedback"></div>
+  <div class="actions">
+    <button id="prevBtn" class="pink" onclick="prevQuestion()">◀ 上一題</button>
+    <button id="checkBtn" class="primary" onclick="checkAnswer()">✔ 對答案</button>
+    <button id="nextBtn" class="pink" onclick="nextQuestion()">下一題 ▶</button>
+  </div>
+</section>
+
+<section id="memoryOverlay" class="panel memory" style="display:none">
+  <div class="topbar">
+    <h2 style="margin:0">🧠 背誦區</h2>
+    <button class="pink" onclick="backToQuiz()">↩ 回到題目</button>
+  </div>
+  <div class="formula-grid" style="margin-top:16px">
+    <div class="formula">
+      <b>🟩 角柱</b>
+      面數＝底面邊數＋2<br>
+      頂點數＝底面頂點數 × 2<br>
+      邊數＝底面邊數 × 3
+    </div>
+    <div class="formula">
+      <b>🔺 角錐</b>
+      面數＝底面邊數＋1<br>
+      頂點數＝底面頂點數＋1<br>
+      邊數＝底面邊數 × 2
+    </div>
+  </div>
+  <div class="example"><b>例：</b>五角柱 → 7 個面、10 個頂點、15 條邊。<br>
+  四角錐 → 5 個面、5 個頂點、8 條邊。</div>
+</section>
+</div>
+
+<script>
+const questions = [{"q": "三角柱有幾個面？", "a": "5", "e": "三角柱的底面是三角形，有 3 個側面，再加上 2 個底面，所以共有 5 個面。"}, {"q": "三角柱有幾個頂點？", "a": "6", "e": "角柱的頂點數＝一個底面頂點數 × 2。三角形有 3 個頂點，所以 3 × 2＝6。"}, {"q": "三角柱有幾條邊？", "a": "9", "e": "角柱的邊數＝一個底面邊數 × 3。三角形有 3 條邊，所以 3 × 3＝9。"}, {"q": "四角柱有幾個面？", "a": "6", "e": "四角柱的面數＝底面邊數＋2＝4＋2＝6。"}, {"q": "四角柱有幾個頂點？", "a": "8", "e": "四角柱的頂點數＝4 × 2＝8。"}, {"q": "四角柱有幾條邊？", "a": "12", "e": "四角柱的邊數＝4 × 3＝12。"}, {"q": "五角柱有幾個面？", "a": "7", "e": "五角柱的面數＝5＋2＝7。"}, {"q": "五角柱有幾個頂點？", "a": "10", "e": "五角柱的頂點數＝5 × 2＝10。"}, {"q": "五角柱有幾條邊？", "a": "15", "e": "五角柱的邊數＝5 × 3＝15。"}, {"q": "底面是六邊形的角柱有幾個面？", "a": "8", "e": "角柱的面數＝底面邊數＋2＝6＋2＝8。"}, {"q": "底面是六邊形的角柱有幾個頂點？", "a": "12", "e": "角柱的頂點數＝6 × 2＝12。"}, {"q": "底面是六邊形的角柱有幾條邊？", "a": "18", "e": "角柱的邊數＝6 × 3＝18。"}, {"q": "四角錐有幾個面？", "a": "5", "e": "角錐的面數＝底面邊數＋1＝4＋1＝5。"}, {"q": "四角錐有幾個頂點？", "a": "5", "e": "角錐的頂點數＝底面頂點數＋1＝4＋1＝5。"}, {"q": "四角錐有幾條邊？", "a": "8", "e": "角錐的邊數＝底面邊數 × 2＝4 × 2＝8。"}, {"q": "底面是五邊形的角錐有幾個面？", "a": "6", "e": "角錐的面數＝5＋1＝6。"}, {"q": "底面是五邊形的角錐有幾個頂點？", "a": "6", "e": "角錐的頂點數＝5＋1＝6。"}, {"q": "底面是五邊形的角錐有幾條邊？", "a": "10", "e": "角錐的邊數＝5 × 2＝10。"}, {"q": "一個角柱有 18 個頂點，它的底面是幾邊形？", "a": "9", "e": "角柱頂點數＝底面頂點數 × 2，所以底面邊數＝18 ÷ 2＝9，是九邊形。"}, {"q": "一個角柱有 12 條邊，它有幾個面？", "a": "6", "e": "角柱邊數＝底面邊數 × 3，所以底面邊數＝12 ÷ 3＝4。面數＝4＋2＝6。"}, {"q": "一個角柱的底面是十二邊形，有幾個面？", "a": "14", "e": "角柱面數＝底面邊數＋2＝12＋2＝14。"}, {"q": "一個角柱的底面是十二邊形，有幾個頂點？", "a": "24", "e": "角柱頂點數＝12 × 2＝24。"}, {"q": "一個角柱的底面是十二邊形，有幾條邊？", "a": "36", "e": "角柱邊數＝12 × 3＝36。"}, {"q": "一個角錐的底面是十二邊形，有幾個面？", "a": "13", "e": "角錐面數＝底面邊數＋1＝12＋1＝13。"}, {"q": "一個角錐的底面是十二邊形，有幾個頂點？", "a": "13", "e": "角錐頂點數＝底面頂點數＋1＝12＋1＝13。"}, {"q": "一個角錐的底面是十二邊形，有幾條邊？", "a": "24", "e": "角錐邊數＝底面邊數 × 2＝12 × 2＝24。"}, {"q": "一個角錐有 14 個頂點，底面是幾邊形？", "a": "13", "e": "角錐頂點數＝底面頂點數＋1，所以底面邊數＝14－1＝13，是十三邊形。"}, {"q": "一個角柱有 18 條邊，底面是幾邊形？", "a": "6", "e": "角柱邊數＝底面邊數 × 3，所以底面邊數＝18 ÷ 3＝6，是六邊形。"}];
+let pool=[], index=0, score=0, checked=false, wrongQuestions=[], answered=[], testCount=28;
+
+function shuffle(arr) {
+  return [...arr].sort(() => Math.random() - 0.5);
+}
+function startQuiz(count=28) {
+  testCount = count;
+  pool=shuffle(questions).slice(0, Math.min(count, questions.length));
+  index=0; score=0; wrongQuestions=[]; answered=new Array(pool.length).fill(false);
+  document.getElementById('memory').style.display='none';
+  document.getElementById('memoryOverlay').style.display='none';
+  document.getElementById('quiz').style.display='block';
+  renderQuestion();
+}
+function updateNextButton() {
+  const btn = document.getElementById('nextBtn');
+  if(!btn) return;
+  btn.style.display = (index < pool.length - 1) ? 'inline-block' : 'none';
+}
+
+function resetCheckButton() {
+  const btn = document.getElementById('checkBtn');
+  if(btn) btn.style.display='inline-block';
+}
+
+function renderQuestion() {
+  const checkBtn = document.getElementById('checkBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const prevBtn = document.getElementById('prevBtn');
+  const quizMemoryBtn = document.getElementById('quizMemoryBtn');
+
+  // 只有「所有題目都已經回答」才算測驗完成。
+  const allAnswered = answered.length > 0 && answered.every(Boolean);
+
+  if(allAnswered && index >= pool.length) {
+    if(checkBtn) checkBtn.style.display='none';
+    if(nextBtn) nextBtn.style.display='none';
+    if(prevBtn) prevBtn.style.display='none';
+    if(quizMemoryBtn) quizMemoryBtn.style.display='none';
+
+    const wrongCount = wrongQuestions.length;
+    const total = pool.length;
+    const rate = Math.round(wrongCount / total * 1000) / 10;
+
+    document.getElementById('progress').textContent='測驗結束';
+    document.getElementById('score').textContent=`得分：${score} / ${total}`;
+    document.getElementById('question').innerHTML='🎉 全部完成！';
+    document.getElementById('answer').style.display='none';
+
+    const fb=document.getElementById('feedback');
+    fb.className='feedback correct';
+
+    let result=`<div style="font-size:22px;font-weight:800;margin-bottom:8px">你答對 <b>${score} / ${total}</b> 題</div>`;
+    result+=`<div>錯 ${wrongCount} 題｜錯誤率 ${rate}%</div>`;
+
+    if(wrongCount===0) {
+      result+=`<div class="explain">🌟 <b>全部答對，不需要重練！</b></div>`;
+    } else if(wrongCount>5) {
+      result+=`<div class="explain">📌 錯超過 5 題，建議先回背誦區複習，再把全部題目重新練習。</div>`;
+    } else {
+      result+=`<div class="explain">📌 錯題不多，可以直接針對錯題加強。</div>`;
+    }
+
+    result+=`<div class="actions" style="margin-top:14px">`;
+    if(wrongCount>0) result+=`<button class="primary" onclick="retryWrong()">只練錯題 (${wrongCount} 題) ↻</button>`;
+    if(wrongCount>5) result+=`<button class="pink" onclick="retryAll()">全部重新練習 (${total} 題) ↻</button>`;
+    result+=`<button class="pink" onclick="showMemory()">🧠 回背誦區</button></div>`;
+
+    fb.innerHTML=result;
+    return;
+  }
+
+  checked = answered[index] || false;
+  if(checkBtn) checkBtn.style.display = checked ? 'none' : 'inline-block';
+  if(quizMemoryBtn) quizMemoryBtn.style.display='inline-block';
+  if(prevBtn) prevBtn.style.display = index > 0 ? 'inline-block' : 'none';
+  if(nextBtn) nextBtn.style.display = index < pool.length-1 ? 'inline-block' : 'none';
+
+  const q=pool[index];
+  document.getElementById('progress').textContent=`第 ${index+1} / ${pool.length} 題`;
+  document.getElementById('score').textContent=`得分：${score}`;
+  document.getElementById('question').textContent=q.q;
+
+  const input=document.getElementById('answer');
+  input.style.display='inline-block';
+  input.value='';
+  input.disabled=false;
+  input.focus();
+
+  const fb=document.getElementById('feedback');
+  fb.className='feedback';
+  fb.innerHTML='';
+
+  // 回到已作答題目時，顯示先前結果。
+  if(answered[index]) {
+    input.value = q.userAnswer || '';
+    input.disabled = true;
+    fb.className = q.isCorrect ? 'feedback correct' : 'feedback wrong';
+    fb.innerHTML = q.isCorrect
+      ? '🎉 <b>答對了！</b> ' + q.e
+      : `❌ <b>答錯了</b>，正確答案是 <b>${q.a}</b>。<div class="explain">📖 ${q.e}</div>`;
+  }
+}
+
+function checkAnswer() {
+  if(index>=pool.length || answered[index]) return;
+
+  const user=document.getElementById('answer').value.trim().replace(/\s/g,'');
+  const q=pool[index], fb=document.getElementById('feedback');
+  checked=true;
+  answered[index]=true;
+  q.userAnswer=user;
+
+  if(user===q.a) {
+    score++;
+    q.isCorrect=true;
+    fb.className='feedback correct';
+    fb.innerHTML='🎉 <b>答對了！</b> ' + q.e;
+    document.getElementById('score').textContent=`得分：${score}`;
+    setTimeout(() => {
+      if(index < pool.length-1) {
+        index++;
+        renderQuestion();
+      } else {
+        // 最後一題答完才顯示完成畫面。
+        index=pool.length;
+        renderQuestion();
+      }
+    }, 700);
+  } else {
+    q.isCorrect=false;
+    if(!wrongQuestions.some(item => item.q === q.q)) wrongQuestions.push(q);
+    fb.className='feedback wrong';
+    fb.innerHTML=`❌ <b>答錯了</b>，正確答案是 <b>${q.a}</b>。<div class="explain">📖 ${q.e}</div>`;
+    document.getElementById('score').textContent=`得分：${score}`;
+    document.getElementById('checkBtn').style.display='none';
+    document.getElementById('answer').disabled=true;
+
+    // 如果這是最後一題，即使答錯也要進入測驗完成畫面。
+    if(index === pool.length - 1) {
+      setTimeout(() => {
+        index = pool.length;
+        renderQuestion();
+      }, 700);
+    }
+  }
+}
+
+function nextQuestion() {
+  if(index < pool.length-1) {
+    index++;
+    renderQuestion();
+  }
+}
+
+function prevQuestion() {
+  if(index > 0) {
+    index--;
+    renderQuestion();
+  }
+}
+
+function retryWrong() {
+  if(wrongQuestions.length === 0) return;
+  pool = shuffle(wrongQuestions);
+  index = 0;
+  score = 0;
+  wrongQuestions = [];
+  answered = new Array(pool.length).fill(false);
+  pool.forEach(q => { delete q.userAnswer; delete q.isCorrect; });
+  document.getElementById('answer').style.display='inline-block';
+  renderQuestion();
+}
+
+function retryAll() {
+  pool = shuffle(questions).slice(0, Math.min(testCount, questions.length));
+  index = 0;
+  score = 0;
+  wrongQuestions = [];
+  answered = new Array(pool.length).fill(false);
+  pool.forEach(q => { delete q.userAnswer; delete q.isCorrect; });
+  document.getElementById('answer').style.display='inline-block';
+  renderQuestion();
+}
+
+function showMemory() {
+  document.getElementById('quiz').style.display='none';
+  document.getElementById('memoryOverlay').style.display='block';
+}
+function backToQuiz() {
+  document.getElementById('memoryOverlay').style.display='none';
+  document.getElementById('quiz').style.display='block';
+  document.getElementById('answer').focus();
+}
+document.getElementById('answer').addEventListener('keydown', e => {
+  if(e.key==='Enter') checkAnswer();
+});
+</script>
+</body>
+</html>

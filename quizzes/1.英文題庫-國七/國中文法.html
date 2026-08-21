@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>國七U1文法題庫</title>
+<style>
+body{font-family:Arial,"Microsoft JhengHei",sans-serif;background:#d8d0df;margin:0;padding:30px 20px;color:#222}
+.quiz{max-width:900px;margin:auto;background:#fff;border-radius:18px;padding:25px;box-shadow:0 4px 14px rgba(0,0,0,.12)}
+h1{text-align:center;font-size:25px}
+.question{margin:22px 0;padding-bottom:18px;border-bottom:1px solid #eee;font-size:19px;line-height:2}
+.num{font-weight:bold;margin-right:7px}
+.sentence{font-weight:bold}
+input{width:105px;height:36px;border:2px solid #ddd;border-radius:7px;font-size:18px;padding:0 8px;margin:0 3px}
+input:focus{outline:none;border-color:#9b87b5}
+button{border:0;border-radius:8px;padding:8px 13px;font-size:15px;cursor:pointer}
+.check{background:#9b87b5;color:#fff;margin-left:6px}
+.speak{background:#f1d8e8;margin-left:6px}
+.result{font-size:16px;font-weight:bold;margin-top:8px}
+.correct{color:#16834b}.wrong{color:#d33b3b}.answer{color:#777;font-size:15px}
+.explanation{display:block;color:#555;font-size:15px;font-weight:normal;line-height:1.6;margin-top:3px}
+.bottom{text-align:center;margin-top:25px}
+#score{font-size:19px;font-weight:bold;margin:12px 0}
+
+/* Pop! Learning 粉紅主題｜與首頁風格一致 */
+:root{
+  --pop-pink:#d95791;
+  --pop-pink-dark:#c94f82;
+  --pop-pink-light:#fff0f6;
+  --pop-pink-bg:#fff7fb;
+  --pop-pink-border:#f5cfe0;
+  --pop-text:#4b3f49;
+  --pop-muted:#7d6f79;
+  --pop-white:#ffffff;
+  --pop-shadow:0 8px 24px rgba(217,87,145,.10);
+}
+body{
+  background:linear-gradient(180deg,#fff7fb 0%,#fff 100%) !important;
+  color:var(--pop-text) !important;
+  font-family:"Noto Sans TC","Microsoft JhengHei",Arial,sans-serif !important;
+}
+h1,h2,h3{
+  color:var(--pop-pink) !important;
+  font-weight:900;
+  letter-spacing:.02em;
+}
+h1{
+  text-align:center;
+  font-size:clamp(26px,4vw,36px);
+}
+button{
+  border:0 !important;
+  border-radius:14px !important;
+  background:var(--pop-pink) !important;
+  color:#fff !important;
+  font-family:inherit !important;
+  font-weight:800 !important;
+  box-shadow:0 4px 10px rgba(217,87,145,.14);
+  transition:transform .15s ease,box-shadow .15s ease;
+}
+button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 7px 15px rgba(217,87,145,.18);
+}
+input,textarea{
+  border:2px solid var(--pop-pink-border) !important;
+  border-radius:12px !important;
+  font-family:inherit !important;
+  background:#fff !important;
+}
+input:focus,textarea:focus{
+  outline:none !important;
+  border-color:var(--pop-pink) !important;
+  box-shadow:0 0 0 3px rgba(217,87,145,.10);
+}
+
+/* 常見題庫卡片 */
+.card,.quiz,.screen,.sec,.q,.question{
+  background:var(--pop-white) !important;
+  border-color:var(--pop-pink-border) !important;
+  border-radius:22px !important;
+  box-shadow:var(--pop-shadow) !important;
+}
+.q,.question{
+  border-width:2px !important;
+}
+.section-description,.subtitle{
+  color:var(--pop-muted) !important;
+}
+
+/* 粉紅次要按鈕 */
+.pink,.secondary,.speak{
+  background:var(--pop-pink-light) !important;
+  color:var(--pop-pink-dark) !important;
+  border:2px solid var(--pop-pink-border) !important;
+}
+.yellow{
+  background:#fff0f6 !important;
+  color:var(--pop-pink-dark) !important;
+  border:2px solid var(--pop-pink-border) !important;
+}
+.primary,.check{
+  background:var(--pop-pink) !important;
+  color:#fff !important;
+}
+
+/* 正確／錯誤仍保留辨識色，但柔和一些 */
+.ok,.correct{
+  color:#198754 !important;
+}
+.bad,.wrong{
+  color:#d84f68 !important;
+}
+.feedback{
+  border-radius:14px !important;
+}
+
+/* 手機版 */
+@media(max-width:700px){
+  body{padding:14px !important}
+}
+
+body{padding:24px 20px !important}
+.quiz{max-width:1000px !important;padding:28px !important}
+.question{background:#fff !important;border:2px solid #f5cfe0 !important;padding:20px !important;border-bottom:2px solid #f5cfe0 !important}
+.sentence{color:#4b3f49}
+.explanation{background:#fff8fc;padding:10px 12px;border-radius:12px;border-left:4px solid #d95791;color:#665a63 !important}
+#score{background:#fff0f6;padding:10px;border-radius:14px;color:#b64a78 !important}
+.bottom{padding-top:10px}
+
+</style>
+</head>
+<body>
+<div class="quiz">
+<h1>📚 國七 U1 文法題庫</h1>
+<div id="questions"></div>
+<div class="bottom">
+<div id="score">目前答對：0 / 20</div>
+<button onclick="resetQuiz()">🔄 重新作答</button>
+</div>
+</div>
+<script>
+const questions = [{"type": "multi", "question": "我覺得我們看電影不要遲到。<br>Let's not ___ ___ for the movie.", "answers": ["be", "late"], "explanation": "💡 Let's not + 原形動詞 =「我們不要……」；be late for + 活動／事情 =「……遲到」。"}, {"type": "multi", "question": "請在大門口等我。<br>Please ___ ___ me ___ the gate.", "answers": ["wait", "for", "at"], "explanation": "💡 Please + 原形動詞；wait for + 人 =「等待某人」；at + 地點 =「在某地」。"}, {"type": "multi", "question": "我們在大考前有時候會緊張。<br>We ___ ___ nervous before a big test.", "answers": ["are", "sometimes"], "explanation": "💡 be 動詞 + 形容詞：are nervous = 很緊張；頻率副詞 sometimes 通常放在 be 動詞後、形容詞前。"}, {"type": "multi", "question": "這裡的天氣冬天通常很冷。<br>The weather here is ___ ___ in winter.", "answers": ["usually", "cold"], "explanation": "💡 usually = 通常，頻率副詞放在 be 動詞後；cold = 寒冷的、冷的。"}, {"type": "multi", "question": "我們的鄰居晚上很少吵鬧。<br>Our neighbors are ___ ___ at night.", "answers": ["seldom", "noisy"], "explanation": "💡 seldom = 很少，頻率副詞放在 be 動詞後；noisy = 吵鬧的。"}, {"type": "multi", "question": "我姊姊早上總是整理床鋪。<br>My sister ___ ___ her bed in the morning.", "answers": ["always", "makes"], "explanation": "💡 always = 總是，頻率副詞通常放在一般動詞前；make one's bed = 整理床鋪。主詞 My sister 是第三人稱單數，所以 make 要變成 makes。"}, {"type": "multi", "question": "Peter 總是準時完成他的作業嗎？<br>___ Peter always ___ his homework on time?", "answers": ["Does", "finish"], "explanation": "💡 一般現在式疑問句：Does + 第三人稱單數主詞 + 原形動詞？所以用 Does Peter always finish……；Does 已經表現第三人稱單數，後面的 finish 要用原形。"}, {"type": "multi", "question": "不要在電影播放時竊竊私語。<br>Don't ___ ___ the movie.", "answers": ["whisper", "during"], "explanation": "💡 Don't + 原形動詞 = 不要……；whisper = 竊竊私語；during + 名詞 = 在……期間，所以 during the movie = 在電影播放期間。"}, {"type": "multi", "question": "那輛腳踏車屬於柔伊。它是她的。<br>That bike ___ ___ Zoe. It is ___.", "answers": ["belongs", "to", "hers"], "explanation": "💡 belong to + 人 = 屬於某人；主詞 That bike 是第三人稱單數，所以 belong 要變成 belongs。hers = 她的，後面不接名詞。"}, {"type": "multi", "question": "你可以在我買這件外套之前給我一些建議嗎？<br>Can you give me ___ ___ ___ ___ before I buy this jacket?", "answers": ["a", "piece", "of", "advice"], "explanation": "💡 advice = 建議，是不可數名詞；不能直接說 a advice。要用 a piece of + 不可數名詞，表示「一則／一條……」；a piece of advice = 一則建議。"}, {"type": "multi", "question": "一位好老師需要多少耐心？<br>___ ___ patience does a good teacher need?", "answers": ["How", "much"], "explanation": "💡 patience = 耐心，是不可數名詞；對不可數名詞的數量提問要用 How much。"}, {"type": "multi", "question": "今天是我的第十三個生日。<br>Today is my ___ birthday.", "answers": ["thirteenth"], "explanation": "💡 表示第幾次生日要用序數；thirteenth = 第十三的。"}, {"type": "multi", "question": "圖書館在六月一日關門。<br>The library closes on the ___ of June.", "answers": ["first"], "explanation": "💡 日期中的「日」要用序數；first = 第一的／一日。"}, {"type": "multi", "question": "這是測驗中的第十二題。<br>This is the ___ question in the quiz.", "answers": ["twelfth"], "explanation": "💡 表示題目的順序要用序數；twelfth = 第十二的。"}, {"type": "multi", "question": "他現在寫英文作文已經不會犯很多錯誤了。<br>He doesn't make ___ mistakes in his English essays anymore.", "answers": ["many"], "explanation": "💡 mistakes 是可數複數名詞；否定句中表示「許多」用 many。"}, {"type": "multi", "question": "這位記者昨晚在電視上分享了一則選舉消息。<br>The reporter shared ___ ___ ___ ___ about the election on TV last night.", "answers": ["a", "piece", "of", "news"], "explanation": "💡 news = 新聞、消息，是不可數名詞；用 a piece of + 不可數名詞表示「一則／一條……」；a piece of news = 一則消息。"}, {"type": "multi", "question": "櫃檯上這裡的起司多少錢？<br>How much is ___ cheese right here on the counter?", "answers": ["this"], "explanation": "💡 cheese 是不可數名詞；指面前、靠近自己的單數事物用 this。"}, {"type": "multi", "question": "這間購物中心附近有一台提款機嗎？<br>Is there ___ ATM near this shopping mall?", "answers": ["an"], "explanation": "💡 ATM 的發音是 /eɪ-tiː-ɛm/，第一個音是母音音，所以用 an：an ATM。"}, {"type": "multi", "question": "我們學校在慈善活動後收到許多捐款。<br>Our school received ___ ___ donations after the charity event.", "answers": ["lots", "of"], "explanation": "💡 donations 是可數複數名詞；lots of = 許多，可以修飾可數複數名詞。"}, {"type": "multi", "question": "桌上有一顆橘子。<br>There is ___ orange on the table.", "answers": ["an"], "explanation": "💡 orange 是母音音開頭的單數可數名詞，所以前面用 an：an orange。"}];
+const done = {};
+let currentQuestions = [];
+
+function shuffle(a){
+  a=[...a];
+  for(let i=a.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+
+function renderQuiz(){
+  const box=document.getElementById("questions");
+  box.innerHTML="";
+  currentQuestions=shuffle(questions);
+  Object.keys(done).forEach(k=>delete done[k]);
+
+  currentQuestions.forEach((item,i)=>{
+    const n=i+1;
+    const d=document.createElement("div");
+    d.className="question";
+
+    let sentence=item.question;
+    item.answers.forEach((ans,j)=>{
+      sentence=sentence.replace("___",'<input id="q'+n+'_'+j+'" autocomplete="off">');
+    });
+
+    d.innerHTML='<span class="num">'+n+'.</span><span class="sentence">'+sentence+
+      '</span><div><button class="check" onclick="checkItem('+n+')">確認</button>'+
+      '<button class="speak" onclick="speakAnswers('+n+')">🔊</button></div>'+
+      '<div id="r'+n+'" class="result"></div>';
+
+    box.appendChild(d);
+  });
+
+  document.getElementById("score").textContent="目前答對：0 / "+questions.length;
+}
+
+function checkItem(n){
+  const item=currentQuestions[n-1];
+  const result=document.getElementById("r"+n);
+  let allCorrect=true;
+  const userAnswers=[];
+
+  item.answers.forEach((ans,j)=>{
+    const input=document.getElementById("q"+n+"_"+j);
+    const value=input.value.trim();
+    userAnswers.push(value);
+    if(value.toLowerCase()!==ans.toLowerCase()){
+      allCorrect=false;
+    }
+  });
+
+  if(allCorrect){
+    result.innerHTML="✓ 答對<br><span class='explanation'>"+item.explanation+"</span>";
+    result.className="result correct";
+    done[n]=true;
+  }else{
+    result.innerHTML='✗ 答錯 <span class="answer">答案：'+item.answers.join(" / ")+
+      '</span><br><span class="explanation">'+item.explanation+"</span>";
+    result.className="result wrong";
+    done[n]=false;
+  }
+  updateScore();
+}
+
+function updateScore(){
+  document.getElementById("score").textContent=
+    "目前答對："+Object.values(done).filter(v=>v).length+
+    " / "+questions.length;
+}
+
+function speakAnswers(n){
+  const item=currentQuestions[n-1];
+  if("speechSynthesis" in window){
+    speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(item.answers.join(" "));
+    u.lang="en-US";
+    u.rate=.85;
+    speechSynthesis.speak(u);
+  }
+}
+
+function resetQuiz(){
+  renderQuiz();
+}
+
+renderQuiz();
+</script>
+</body>
+</html>

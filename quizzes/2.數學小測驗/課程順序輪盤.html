@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>課程順序輪盤</title>
+<style>
+body{margin:0;font-family:"Noto Sans TC",sans-serif;background:#ffeef6;text-align:center}
+h1{color:#e24b91}
+.container{display:flex;justify-content:center;gap:30px;flex-wrap:wrap;padding:20px}
+#wrapper{position:relative;width:640px;height:640px}
+canvas{position:absolute;left:0;top:0}
+.label{
+position:absolute;
+left:50%;top:50%;
+transform-origin:center center;
+font-weight:bold;
+font-size:24px;
+background:rgba(255,255,255,.9);
+padding:4px 10px;
+border-radius:12px;
+box-shadow:0 2px 6px rgba(0,0,0,.15);
+white-space:nowrap;
+}
+.pointer{
+position:absolute;left:50%;top:-5px;transform:translateX(-50%);
+width:0;height:0;border-left:20px solid transparent;border-right:20px solid transparent;border-top:50px solid #ff4d88;
+z-index:5}
+.panel{width:340px;background:#fff;border-radius:18px;padding:20px;box-shadow:0 2px 10px rgba(0,0,0,.15)}
+button{padding:12px 22px;font-size:20px;border:none;border-radius:25px;background:#ff69a8;color:#fff;cursor:pointer;margin:8px}
+button:disabled{background:#ccc;cursor:not-allowed}
+li{text-align:left;font-size:20px;margin:8px 0}
+.manage{margin-top:18px;padding-top:15px;border-top:2px solid #ffe0ec;text-align:left}.manage h3{margin:0 0 10px;color:#d81b60}.manage input{width:100%;box-sizing:border-box;padding:10px;border:1px solid #ddd;border-radius:10px;font-size:16px;margin-bottom:8px}.manage button{font-size:16px;padding:9px 14px;margin:4px 2px}.editRow{display:flex;gap:6px;align-items:center;margin:6px 0}.editRow span{flex:1;word-break:break-word}.editRow button{font-size:14px;padding:6px 9px;margin:0}
+#result{font-size:28px;color:#d81b60;font-weight:bold;min-height:70px}
+
+/* ===== Pop! Learning 統一粉紅主題 ===== */
+:root{
+ --pink:#d95791;
+ --pink-dark:#b94d70;
+ --pink-mid:#ee8fb3;
+ --pink-light:#fff0f6;
+ --pink-bg:#fff7fb;
+ --pink-border:#f2cddd;
+ --pink-shadow:rgba(217,87,145,.13);
+ --text:#5f4d57;
+}
+html,body{
+ background:linear-gradient(135deg,#fff7fb 0%,#ffeaf4 100%) !important;
+ color:var(--text) !important;
+}
+body{
+ font-family:"Microsoft JhengHei","Noto Sans TC",Arial,sans-serif !important;
+}
+h1,h2,h3{
+ color:var(--pink) !important;
+}
+button{
+ background:var(--pink) !important;
+ color:#fff !important;
+ border:0 !important;
+ border-radius:999px !important;
+ box-shadow:0 3px 9px var(--pink-shadow);
+ font-weight:700;
+}
+button:hover{background:var(--pink-dark) !important;}
+input,textarea,select{
+ border-color:var(--pink-border) !important;
+ border-radius:12px !important;
+}
+input:focus,textarea:focus,select:focus{
+ outline:none !important;
+ border-color:var(--pink) !important;
+ box-shadow:0 0 0 3px #ffe2ee !important;
+}
+.card,.box,.container,.panel,.quiz-box,.detail,.question,.work-area,.memory-card{
+ border-color:var(--pink-border) !important;
+ box-shadow:0 6px 22px var(--pink-shadow) !important;
+}
+.question,.guide,.rule,.memory-rule,.stats,.answer,.answer:focus,.explain{
+ background:#fff0f6 !important;
+}
+.primary,.action,.pink{background:var(--pink) !important;color:#fff !important;}
+.secondary,.tab:not(.active){background:#f8dce8 !important;color:var(--pink-dark) !important;}
+.tab.active,.nav button.active{background:var(--pink) !important;color:#fff !important;}
+.topbar,.topMenu{background:#fff0f6 !important;border-color:#f2b0cb !important;}
+.topMenu a{border-color:#f2b0cb !important;color:var(--pink-dark) !important;}
+.topMenu a:hover{background:var(--pink) !important;color:#fff !important;}
+.correct,.ok{color:#2a9a61 !important;}
+.wrong{color:#d45563 !important;}
+
+</style>
+</head>
+<body>
+<h1>🎀 今天上課順序輪盤 🎀</h1>
+<p>全部內容都會上，只是決定今天的進行順序。</p>
+
+<div class="container">
+<div>
+<div id="wrapper">
+<div class="pointer"></div>
+<canvas id="wheel" width="640" height="640"></canvas>
+</div><br>
+<button id="spin">🎡 抽下一個</button>
+</div>
+
+<div class="panel">
+<h2>剩餘內容</h2>
+<ul id="list"></ul>
+<div id="result"></div>
+<button id="done" style="display:none">✅ 完成此項</button>
+<button id="reset">🔄 重置全部</button>
+<div class="manage"><h3>📋 管理課程</h3><input id="newItem" type="text" placeholder="輸入新的課程內容"><button id="add">➕ 新增</button><div id="editList"></div></div>
+</div>
+</div>
+
+<script>
+const original=["作業檢討","小四期末錯題測驗","小五錯題測驗","小五歷屆試題測驗","新課程"];
+let items=[...original],picked=-1,angle=0,spinning=false,audioCtx=null;
+const cvs=document.getElementById("wheel"),ctx=cvs.getContext("2d"),wrap=document.getElementById("wrapper");
+const spinBtn=document.getElementById("spin"),doneBtn=document.getElementById("done"),resetBtn=document.getElementById("reset"),result=document.getElementById("result"),listEl=document.getElementById("list"),newItem=document.getElementById("newItem"),addBtn=document.getElementById("add"),editList=document.getElementById("editList");
+function initAudio(){if(!audioCtx){const AC=window.AudioContext||window.webkitAudioContext;if(AC)audioCtx=new AC()}if(audioCtx&&audioCtx.state==="suspended")audioCtx.resume()}
+function tickSound(){if(!audioCtx)return;const n=audioCtx.currentTime,o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type="sine";o.frequency.setValueAtTime(760,n);o.frequency.exponentialRampToValueAtTime(420,n+.045);g.gain.setValueAtTime(.0001,n);g.gain.exponentialRampToValueAtTime(.08,n+.004);g.gain.exponentialRampToValueAtTime(.0001,n+.055);o.connect(g);g.connect(audioCtx.destination);o.start(n);o.stop(n+.06)}
+function winSound(){if(!audioCtx)return;[660,830,1040].forEach((f,i)=>{const n=audioCtx.currentTime+i*.12,o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type="sine";o.frequency.value=f;g.gain.setValueAtTime(.0001,n);g.gain.exponentialRampToValueAtTime(.12,n+.01);g.gain.exponentialRampToValueAtTime(.0001,n+.18);o.connect(g);g.connect(audioCtx.destination);o.start(n);o.stop(n+.2)})}
+function draw(){ctx.clearRect(0,0,640,640);wrap.querySelectorAll(".label").forEach(e=>e.remove());if(!items.length)return;const cx=320,cy=320,r=300,step=Math.PI*2/items.length;items.forEach((t,i)=>{const a=i*step+angle;ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,r,a,a+step);ctx.closePath();ctx.fillStyle=["#ffd1e8","#ffc1dd","#ffb3d4","#ff9fc8","#ff8aba","#ffcce6"][i%6];ctx.fill();ctx.strokeStyle="#fff";ctx.lineWidth=3;ctx.stroke();const mid=a+step/2,x=cx+Math.cos(mid)*190,y=cy+Math.sin(mid)*190,d=document.createElement("div");d.className="label";d.textContent=t;d.style.left=x+"px";d.style.top=y+"px";d.style.transform="translate(-50%,-50%)";wrap.appendChild(d)});ctx.beginPath();ctx.arc(cx,cy,70,0,Math.PI*2);ctx.fillStyle="#fff";ctx.fill();ctx.lineWidth=5;ctx.strokeStyle="#ff69a8";ctx.stroke();ctx.font="34px sans-serif";ctx.textAlign="center";ctx.fillStyle="#ff4d88";ctx.fillText("🎀",320,333)}
+function updateEditList(){editList.innerHTML="";items.forEach((item,i)=>{const row=document.createElement("div");row.className="editRow";const span=document.createElement("span");span.textContent=item;const e=document.createElement("button");e.textContent="✏️ 編輯";e.type="button";e.onclick=()=>editItem(i);const d=document.createElement("button");d.textContent="🗑️ 刪除";d.type="button";d.onclick=()=>deleteItem(i);row.append(span,e,d);editList.appendChild(row)})}
+function updateList(){listEl.innerHTML="";items.forEach(i=>{const li=document.createElement("li");li.textContent="🌸 "+i;listEl.appendChild(li)});if(!items.length)listEl.innerHTML="<li>🎉 全部完成！</li>";updateEditList();draw()}
+function addItem(){const v=newItem.value.trim();if(!v)return alert("請先輸入課程內容。");if(items.includes(v))return alert("這個課程已經存在。");items.push(v);newItem.value="";picked=-1;result.textContent="";doneBtn.style.display="none";updateList();newItem.focus()}
+function editItem(i){if(spinning)return;const old=items[i],v=prompt("請修改課程內容：",old);if(v===null)return;const n=v.trim();if(!n)return alert("課程內容不能是空白。");if(n!==old&&items.includes(n))return alert("這個課程已經存在。");items[i]=n;if(picked===i)result.innerHTML="🎉 下一個：<br><br>"+n;updateList()}
+function deleteItem(i){if(spinning)return;if(!confirm("確定要刪除「"+items[i]+"」嗎？"))return;items.splice(i,1);if(picked===i){picked=-1;result.textContent="";doneBtn.style.display="none"}else if(picked>i)picked--;updateList()}
+spinBtn.onclick=()=>{if(spinning||!items.length)return;initAudio();spinning=true;spinBtn.disabled=true;addBtn.disabled=true;resetBtn.disabled=true;const target=Math.floor(Math.random()*items.length);picked=target,step=2*Math.PI/items.length;const targetAngle=Math.PI*1.5-(target*step+step/2),start=angle,final=targetAngle+Math.PI*2*5,d=3200,t0=performance.now();let last=angle;function f(now){const p=Math.min((now-t0)/d,1),e=1-Math.pow(1-p,3);angle=start+(final-start)*e;draw();const tickStep=2*Math.PI/items.length;if(Math.abs(angle-last)>=tickStep){tickSound();last=angle}if(p<1)requestAnimationFrame(f);else{angle=((final%(2*Math.PI))+2*Math.PI)%(2*Math.PI);draw();result.innerHTML="🎉 下一個：<br><br>"+items[picked];doneBtn.style.display="inline-block";spinning=false;spinBtn.disabled=false;addBtn.disabled=false;resetBtn.disabled=false;winSound()}}requestAnimationFrame(f)};
+doneBtn.onclick=()=>{if(picked<0||spinning)return;items.splice(picked,1);picked=-1;result.textContent="";doneBtn.style.display="none";updateList()};
+resetBtn.onclick=()=>{if(spinning)return;if(!confirm("確定要把課程恢復成原本的嗎？"))return;items=[...original];picked=-1;angle=0;result.textContent="";doneBtn.style.display="none";updateList()};
+addBtn.onclick=addItem;newItem.onkeydown=e=>{if(e.key==="Enter")addItem()};updateList();
+</script>
+</body>
+</html>

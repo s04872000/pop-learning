@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<title>小四期末錯題練習｜圖片解析版</title>
+
+<style>
+body{
+    font-family:"Microsoft JhengHei",sans-serif;
+    background:#FFF8F8;
+}
+
+.container{
+    width:900px;
+    margin:30px auto;
+    background:#FFFDFD;
+    border:5px solid #FFD6E7;
+    border-radius:25px;
+    padding:30px;
+    box-shadow:0 8px 20px rgba(255,180,200,.5);
+}
+
+h2{
+    text-align:center;
+    color:#FF69B4;
+    font-size:36px;
+}
+
+.q{
+    background:#FFF5FA;
+    border-radius:20px;
+    padding:20px;
+    margin-bottom:30px;
+    border:2px dashed #FFB6C1;
+}
+
+h3{
+    font-size:30px;
+}
+
+p,label{
+    font-size:24px;
+    line-height:2;
+}
+
+button{
+    font-size:22px;
+    padding:6px 14px;
+}
+
+textarea{
+    width:100%;
+    height:110px;
+    font-size:22px;
+    margin-top:10px;
+}
+
+.answer{
+    display:none;
+    color:blue;
+    font-size:24px;
+    margin-top:8px;
+}
+
+.msg{
+    font-size:24px;
+    margin-top:8px;
+}
+
+.frac{
+    display:inline-block;
+    vertical-align:middle;
+    text-align:center;
+    line-height:1;
+    margin:0 2px;
+}
+
+.frac .top{
+    display:block;
+    border-bottom:2px solid #000;
+    padding:0 4px;
+}
+
+.frac .bottom{
+    display:block;
+    padding:0 4px;
+}
+
+.mixed{
+    display:inline-flex;
+    align-items:center;
+    gap:3px;
+}
+
+input[type="text"]{
+    width:180px;
+    height:52px;
+    font-size:26px;
+    text-align:center;
+    border:2px solid #FFB6C1;
+    border-radius:10px;
+    padding:5px 10px;
+    box-sizing:border-box;
+}
+
+.analysis-image{
+    display:block;
+    max-width:100%;
+    width:760px;
+    height:auto;
+    margin:14px auto 0;
+    border-radius:14px;
+    border:2px solid #FFD6E7;
+    box-sizing:border-box;
+}
+.analysis-wrap{
+    margin-top:10px;
+    padding:12px;
+    background:#FFFDFD;
+    border-radius:14px;
+}
+.analysis-title{
+    font-weight:bold;
+    color:#FF69B4;
+    font-size:24px;
+    margin-bottom:8px;
+}
+
+/* ===== Pop! Learning 統一粉紅可愛風格 ===== */
+:root{
+  --pop-pink:#d95791;
+  --pop-pink-dark:#b94d70;
+  --pop-pink-light:#fff0f5;
+  --pop-pink-bg:#fff7fb;
+  --pop-border:#f2cddd;
+  --pop-shadow:rgba(217,87,145,.12);
+}
+body{
+  font-family:"Microsoft JhengHei",Arial,sans-serif !important;
+  background:linear-gradient(135deg,#fff7fb 0%,#ffeaf4 100%) !important;
+  color:#5f4d57;
+}
+h1,h2{
+  color:var(--pop-pink) !important;
+  font-weight:900;
+  letter-spacing:.04em;
+}
+h3{
+  color:var(--pop-pink-dark);
+  font-weight:900;
+}
+.container{
+  max-width:900px !important;
+  width:auto !important;
+  background:rgba(255,255,255,.94) !important;
+  border:3px solid #f7d5e5 !important;
+  border-radius:28px !important;
+  box-shadow:0 8px 24px var(--pop-shadow) !important;
+}
+.q{
+  background:linear-gradient(145deg,#fff,#fff7fb) !important;
+  border:2px solid #f7d5e5 !important;
+  border-radius:22px !important;
+  box-shadow:0 5px 14px rgba(217,87,145,.07);
+  transition:transform .18s ease,box-shadow .18s ease;
+}
+.q:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 18px rgba(217,87,145,.11);
+}
+button{
+  background:var(--pop-pink) !important;
+  color:#fff !important;
+  border:0 !important;
+  border-radius:999px !important;
+  padding:9px 17px !important;
+  font-weight:800;
+  cursor:pointer;
+  box-shadow:0 3px 8px rgba(217,87,145,.16);
+}
+button:hover{
+  background:var(--pop-pink-dark) !important;
+}
+input[type="text"],input[type="number"],input[type="search"],textarea,.fill,.answerbox,.workbox,.work{
+  border:2px solid #f2cddd !important;
+  border-radius:12px !important;
+  background:#fff !important;
+  box-sizing:border-box;
+}
+input:focus,textarea:focus{
+  outline:none;
+  border-color:var(--pop-pink) !important;
+  box-shadow:0 0 0 3px #ffe5f0;
+}
+.answer{
+  background:#fff0f5 !important;
+  border:1px solid #f2cddd;
+  border-radius:14px !important;
+  color:var(--pop-pink-dark) !important;
+}
+.explain,.analysis-wrap,.visual-box{
+  background:#fff7fb !important;
+  border:1px solid #f2d6e3;
+  border-radius:14px !important;
+}
+.analysis-title,.diagram-title{
+  color:var(--pop-pink) !important;
+}
+.visual-btn{
+  background:#fff0f5 !important;
+  color:var(--pop-pink-dark) !important;
+  border:2px solid #f2b9d1 !important;
+  border-radius:999px !important;
+}
+.place-table th,.place-table td,table th,table td{
+  border-color:#edc6d7 !important;
+}
+.topMenu{
+  background:#fff0f5 !important;
+  border-bottom:2px solid #f2a9c7 !important;
+  border-radius:0 0 16px 16px;
+}
+.topMenu a{
+  background:#fff !important;
+  border:2px solid #f2b9d1 !important;
+  border-radius:999px !important;
+  color:var(--pop-pink-dark) !important;
+}
+.topMenu a:hover{
+  background:var(--pop-pink) !important;
+  color:#fff !important;
+}
+.msg .ok,.ok{color:#42a66a !important}
+.msg .no,.no{color:#df5c69 !important}
+.correct-hidden{display:none}
+label{cursor:pointer}
+
+</style>
+
+<script>
+
+function checkRadio(name,ans,msg,btn){
+
+let obj=document.querySelector('input[name="'+name+'"]:checked');
+
+if(!obj){
+document.getElementById(msg).innerHTML="<span style='color:red'>請先作答！</span>";
+return;
+}
+
+if(obj.value==ans){
+document.getElementById(msg).innerHTML="<span style='color:green'>✔ 答對了！</span>";
+}else{
+document.getElementById(msg).innerHTML="<span style='color:red'>✘ 答錯了！</span>";
+document.getElementById(btn).style.display="inline";
+}
+
+}
+
+function showAns(id){
+const box=document.getElementById(id);
+if(!box)return;
+box.style.display="block";
+box.scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+
+</script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>🌸 🐱 小貓數學練習 🐾</h2>
+<p style="text-align:center;font-size:22px;color:#888;">
+答對會越來越厲害喔！🌸
+</p>
+
+<div class="q">
+
+<h3>第1題</h3>
+
+<p>正方形的邊長變成原來的2倍，面積會變為成來的幾倍?</p>
+
+<label><input type="radio" name="q1" value="1">8倍</label>
+<label><input type="radio" name="q1" value="2">6倍</label>
+<label><input type="radio" name="q1" value="3">4倍</label>
+<label><input type="radio" name="q1" value="4">2倍</label>
+
+<button onclick="checkRadio('q1','3','m1','b1')">確認答案</button>
+
+<button id="b1" style="display:none" onclick="showAns('a1')">看答案</button>
+
+<div id="m1" class="msg"></div>
+
+<div id="a1" class="answer"><b>正確答案： 4倍</b></div>
+
+<textarea placeholder="請在這裡計算..."></textarea>
+
+</div>
+
+<div class="q">
+
+<h3>第2題</h3>
+
+<p>在小數10.1的十位分位後面加0，其值?</p>
+
+<label><input type="radio" name="q2" value="1">變大10倍</label><br>
+<label><input type="radio" name="q2" value="2">不變</label><br>
+<label><input type="radio" name="q2" value="3">變小10倍</label><br>
+<label><input type="radio" name="q2" value="4">不一定</label><br><br>
+
+<button onclick="checkRadio('q2','2','m2','b2')">確認答案</button>
+
+<button id="b2" style="display:none" onclick="showAns('a2')">看答案</button>
+
+<div id="m2" class="msg"></div>
+
+<div id="a2" class="answer"><b>正確答案： 不變</b></div>
+
+<textarea placeholder="請在這裡計算..."></textarea>
+
+</div>
+
+<div class="q">
+
+<h3>第3題</h3>
+
+<p>下列敘述何者正確？</p>
+
+<label><input type="radio" name="q3" value="1"> 從凌晨0時0分到下午1時20分，中間經過1小時20分鐘</label><br>
+
+<label><input type="radio" name="q3" value="2"> 計算上午3時到下午4時經過的時間，可以用「4時–3時」得到答案。</label><br>
+
+<label><input type="radio" name="q3" value="3"> 從上午9時到下午9時，中間經過9小時。</label><br>
+
+<label><input type="radio" name="q3" value="4"> 從中午12時到下午2時35分，中間經過2小時35分鐘。</label><br><br>
+
+<button onclick="checkRadio('q3','4','m3','b3')">確認答案</button>
+
+<button id="b3" style="display:none" onclick="showAns('a3')">看答案</button>
+
+<div id="m3" class="msg"></div>
+
+<div id="a3" class="answer"><b>正確答案：</b></div>
+
+<textarea placeholder="請在這裡計算..."></textarea>
+
+</div>
+
+<div class="q">
+
+<h3>第4題</h3>
+
+<p>[f]1/4[/f] ＜ [f]1/A[/f]，A是整數，A可能是哪個選項?</p>
+
+<label><input type="radio" name="q4" value="2">2</label><br>
+
+<label><input type="radio" name="q4" value="4">4</label><br>
+
+<label><input type="radio" name="q4" value="6">6</label><br>
+
+<label><input type="radio" name="q4" value="8">8</label><br><br>
+
+<button onclick="checkRadio('q4','2','m4','b4')">確認答案</button>
+
+<button id="b4" style="display:none" onclick="showAns('a4')">看答案</button>
+
+<div id="m4" class="msg"></div>
+
+<div id="a4" class="answer"><b>正確答案： 2</b></div>
+
+<textarea placeholder="請在這裡計算..."></textarea>
+
+</div>
+
+<div class="q">
+
+<h3>第5題</h3>
+
+<p>用8個白色積木堆成一個正方體，每邊會有幾個白色積木?</p>
+
+<label><input type="radio" name="q5" value="1">1個</label><br>
+
+<label><input type="radio" name="q5" value="2">2個</label><br>
+
+<label><input type="radio" name="q5" value="3">3個</label><br>
+
+<label><input type="radio" name="q5" value="4">4個</label><br><br>
+
+<button onclick="checkRadio('q5','2','m5','b5')">確認答案</button>
+
+<button id="b5" style="display:none" onclick="showAns('a5')">看答案</button>
+
+<div id="m5" class="msg"></div>
+
+<div id="a5" class="answer"><b>正確答案： 2</b></div>
+
+<textarea placeholder="請在這裡計算..."></textarea>
+
+</div>
+
+<div class="q">
+
+<h3>🐱 第6題</h3>
+
+<p>
+將分數化成小數，小數化成分數。<br><br>
+
+1.05公尺＝
+<input type="text" id="q6" class="fill">
+
+<button onclick="checkFill('q6','m6','a6','b6','1 5/100')">
+🐱 確認答案
+</button>
+
+<button id="b6" style="display:none"
+onclick="showAns('a6')">
+📖 看解析圖
+</button>
+
+<div id="m6" class="msg"></div>
+
+<div id="a6" class="answer">
+<b>正確答案：[f]1 5/100[/f]</b>
+</div>
+<textarea placeholder="請在這裡計算..."></textarea>
+</div>
+
+<div class="q">
+
+<h3>🐱 第7題</h3>
+
+<p>
+在 [f]3/10[/f] 到 [f]4/10[/f] 之間，最大的二位小數是
+<input type="text" id="q7_1" class="fill">
+
+，最小的二位小數是
+<input type="text" id="q7_2" class="fill">
+</p>
+
+<button onclick="checkFill2('q7_1','q7_2','m7','a7','b7','0.39','0.31')">
+🐱 確認答案
+</button>
+
+<button id="b7" style="display:none" onclick="showAns('a7')">📖 看解析圖</button>
+
+<div id="m7" class="msg"></div>
+
+<div id="a7" class="answer">
+<b>正確答案：0.39、0.31</b>
+</div>
+<textarea placeholder="請在這裡計算..."></textarea>
+</div>
+
+<div class="q">
+<h3>🐱 第8題</h3>
+<p>
+一塊長8公尺，寬6公尺的長方形草坪，面積是<input type="text" id="q8" class="fill">平方公分。<br><br>
+<button onclick="checkFill('q8','m8','a8','b8','480000')">
+🐱 確認答案
+</button>
+<button id="b8" style="display:none"
+onclick="showAns('a8')">📖 看解析圖</button>
+<div id="m8" class="msg"></div>
+<div id="a8" class="answer">
+<b>正確答案：480000</b>
+
+<div class="analysis-wrap">
+  <div class="analysis-title">📖 觀念圖解</div>
+</div>
+  <img class="analysis-image" src="面積.png" alt="題目解析圖">
+</div>
+<textarea placeholder="請在這裡計算..."></textarea>
+</div>
+
+<div class="q">
+<h3>🐱 第9題</h3>
+<p>
+馬路一旁每隔2.3公尺種1棵樹，第1顆樹和第10棵樹相距<input type="text" id="q9" class="fill">公尺。<br><br>
+<button onclick="checkFill('q9','m9','a9','b9','20.7')">
+🐱 確認答案
+</button>
+<button id="b9" style="display:none"
+onclick="showAns('a9')">
+📖 看解析圖
+</button>
+<div id="m9" class="msg"></div>
+<div id="a9" class="answer">
+<b>正確答案：20.7</b> 
+
+<div class="analysis-wrap">
+  <div class="analysis-title">📖 觀念圖解</div>
+</div>
+  <img class="analysis-image" src="樹間隔.png" alt="題目解析圖">
+</div>
+<textarea placeholder="請在這裡計算..."></textarea>
+</div>
+
+<div class="q">
+<h3>🐱 第10題</h3>
+<p>
+亦心家到學校有1.58公里，每天來回各1次，5天共走了<input type="text" id="q10" class="fill">公里。<br><br>
+<button onclick="checkFill('q10','m10','a10','b10','15.8')">
+🐱 確認答案
+</button>
+<button id="b10" style="display:none"
+onclick="showAns('a10')">📖 看解析圖</button>
+<div id="m10" class="msg"></div>
+<div id="a10" class="answer">
+<b>正確答案：15.8</b> 
+</div>
+<textarea placeholder="請在這裡計算..."></textarea>
+</div>
+
+<div class="q">
+<h3>🐱 第11題</h3>
+<p>
+有一張長方形色紙，周長是200公分。在四個角上，各剪下一個邊長7.6公分的正方形，剪下四個角後，色紙的周長是<input type="text" id="q11" class="fill">公分。<br><br>
+<button onclick="checkFill('q11','m11','a11','b11','200')">
+🐱 確認答案
+</button>
+<button id="b11" style="display:none"
+onclick="showAns('a11')">
+📖 看解析圖
+</button>
+<div id="m11" class="msg"></div>
+<div id="a11" class="answer">
+<b>正確答案：200</b> 
+
+<div class="analysis-wrap">
+  <div class="analysis-title">📖 觀念圖解</div>
+</div>
+  <img class="analysis-image" src="周長剪四個角.png" alt="題目解析圖">
+</div>
+<textarea placeholder="請在這裡計算..."></textarea>
+</div>
+
+<div class="q">
+<h3>🐱 第12題</h3>
+<p>
+水餃1顆7.5元，爸爸吃了28顆，媽媽吃了15顆，小俊吃了7顆，三人吃水餃共花了多少元?<input type="text" id="q12" class="fill"><br><br>
+<button onclick="checkFill('q12','m12','a12','b12','375')">
+🐱 確認答案
+</button>
+<button id="b12" style="display:none"
+onclick="showAns('a12')">📖 看解析圖</button>
+<div id="m12" class="msg"></div>
+<div id="a12" class="answer">
+<b>正確答案：375</b> 
+</div>
+<textarea placeholder="請在這裡計算..."></textarea>
+</div>
+
+<div class="q">
+<h3>🐱 第13題</h3>
+<p>
+爸爸今天上午8時40分進到公司，離開公司時，發現再經過25分鐘就是下午8時，爸爸今天待在公司幾小時幾分鐘?<input type="text" id="q13" class="fill"><br><br>
+<button onclick="checkFill('q13','m13','a13','b13','10小時55分鐘')">
+🐱 確認答案
+</button>
+<button id="b13" style="display:none"
+onclick="showAns('a13')">
+📖 看解析圖
+</button>
+<div id="m13" class="msg"></div>
+<div id="a13" class="answer">
+<b>正確答案：10小時55分鐘</b> 
+
+<div class="analysis-wrap">
+  <div class="analysis-title">📖 觀念圖解</div>
+</div>
+  <img class="analysis-image" src="時間.png" alt="題目解析圖">
+</div>
+<textarea placeholder="請在這裡計算..."></textarea>
+</div>
+
+<div class="q">
+<h3>🐱 第14題</h3>
+<p>
+長方形花圃的長是23公尺，如果每1平方公尺可以放置6盆薄荷，共可放2070盆薄荷。這個花圃的面積是幾平方公尺?<input type="text" id="q14_1" class="fill">這個花圃的寬是幾公尺?
+<input type="text" id="q14_2" class="fill">
+</p>
+
+<button onclick="checkFill2('q14_1','q14_2','m14','a14','b14','345','15')">
+🐱 確認答案
+</button>
+
+<button id="b14" style="display:none" onclick="showAns('a14')">
+📖 看解析圖
+</button>
+
+<div id="m14" class="msg"></div>
+
+<div id="a14" class="answer">
+<b>正確答案：345、15</b>
+
+<div class="analysis-wrap">
+  <div class="analysis-title">📖 觀念圖解</div>
+</div>
+  <img class="analysis-image" src="花圃.png" alt="題目解析圖">
+</div>
+<textarea placeholder="請在這裡計算..."></textarea>
+</div>
+
+<div class="q">
+
+<h3>第15題</h3>
+
+<p>正方形的邊長變成原來的3倍，面積會變成原來的幾倍？</p>
+
+<label><input type="radio" name="q15" value="1">3倍</label>
+<label><input type="radio" name="q15" value="2">6倍</label>
+<label><input type="radio" name="q15" value="3">9倍</label>
+<label><input type="radio" name="q15" value="4">12倍</label>
+
+<button onclick="checkRadio('q15','3','m15','b15')">確認答案</button>
+
+<button id="b15" style="display:none" onclick="showAns('a15')">看答案</button>
+
+<div id="m15" class="msg"></div>
+
+<div id="a15" class="answer"><b>正確答案： 9倍</b></div>
+
+<textarea placeholder="請在這裡計算..."></textarea>
+
+</div>
+
+<div class="q">
+
+<h3>第16題</h3>
+
+<p>在小數 25.08 的十分位後面加上一個0，它的值會？</p>
+
+<label><input type="radio" name="q16" value="1">變大</label><br>
+<label><input type="radio" name="q16" value="2">變小</label><br>
+<label><input type="radio" name="q16" value="3">不變</label><br>
+<label><input type="radio" name="q16" value="4">無法判斷</label><br><br>
+
+<button onclick="checkRadio('q16','3','m16','b16')">確認答案</button>
+
+<button id="b16" style="display:none" onclick="showAns('a16')">看答案</button>
+
+<div id="m16" class="msg"></div>
+
+<div id="a16" class="answer"><b>正確答案： 不變</b></div>
+
+<textarea placeholder="請在這裡計算..."></textarea>
+
+</div>
+
+<div class="q">
+
+<h3>第17題</h3>
+
+<p>下列敘述何者正確？</p>
+
+<label><input type="radio" name="q17" value="1"> 從上午7時20分到上午9時20分，中間經過3小時。</label><br>
+
+<label><input type="radio" name="q17" value="2"> 從下午1時到下午5時，中間經過4小時。</label><br>
+
+<label><input type="radio" name="q17" value="3"> 從晚上8時到晚上11時，中間經過2小時。</label><br>
+
+<label><input type="radio" name="q17" value="4"> 從上午10時30分到中午12時，中間經過30分鐘。</label><br><br>
+
+<button onclick="checkRadio('q17','2','m17','b17')">確認答案</button>
+
+<button id="b17" style="display:none" onclick="showAns('a17')">看答案</button>
+
+<div id="m17" class="msg"></div>
+
+<div id="a17" class="answer"><b>正確答案：</b>
+<div class="analysis-wrap">
+  <div class="analysis-title">📖 觀念圖解</div>
+</div>
+  <img class="analysis-image" src="認識時間.png" alt="題目解析圖">
+</div>
+
+<textarea placeholder="請在這裡計算..."></textarea>
+
+</div>
+
+<div class="q">
+
+<h3>第18題</h3>
+
+<p>[f]1/8[/f] ＜ [f]1/A[/f]，A是整數，A可能是哪個選項?</p>
+
+<label><input type="radio" name="q18" value="1">7</label><br>
+
+<label><input type="radio" name="q18" value="2">8</label><br>
+
+<label><input type="radio" name="q18" value="3">9</label><br>
+
+<label><input type="radio" name="q18" value="4">10</label><br><br>
+
+<button onclick="checkRadio('q18','1','m18','b18')">確認答案</button>
+
+<button id="b18" style="display:none" onclick="showAns('a18')">看答案</button>
+
+<div id="m18" class="msg"></div>
+
+<div id="a18" class="answer"><b>正確答案：</b></div>
+
+<textarea placeholder="請在這裡計算..."></textarea>
+
+</div>
+
+<div class="q">
+
+<h3>第19題</h3>
+
+<p>用27個白色積木堆成一個正方體，每邊會有幾個白色積木?</p>
+
+<label><input type="radio" name="q19" value="1">2個</label><br>
+
+<label><input type="radio" name="q19" value="2">3個</label><br>
+
+<label><input type="radio" name="q19" value="3">4個</label><br>
+
+<label><input type="radio" name="q19" value="4">9個</label><br><br>
+
+<button onclick="checkRadio('q19','2','m19','b19')">確認答案</button>
+
+<button id="b19" style="display:none" onclick="showAns('a19')">看答案</button>
+
+<div id="m19" class="msg"></div>
+
+<div id="a19" class="answer"><b>正確答案：</b></div>
+
+<textarea placeholder="請在這裡計算..."></textarea>
+
+</div>
+
+<div class="q">
+
+<h3>🐱 第20題</h3>
+
+<p>
+將分數化成小數，小數化成分數。<br><br>
+
+[f]7/20[/f]＝<input type="text" id="20_1" class="fill">
+<br>0.75＝
+<input type="text" id="20_2" class="fill">
+</p>
+
+<button onclick="checkFill2('20_1','20_2','m20','a20','b20','0.35','3/4')">
+🐱 確認答案
+</button>
+
+<button id="b20" style="display:none" onclick="showAns('a20')">
+📖 看解析圖
+</button>
+
+<div id="m20" class="msg"></div>
+
+<div id="a20" class="answer">
+<b>正確答案：0.35、[f]3/4[/f]</b>
+
+<div class="analysis-wrap">
+  <div class="analysis-title">📖 觀念圖解</div>
+</div>
+  <img class="analysis-image" src="分數與小數的轉換.png" alt="題目解析圖">
+</div>
+<textarea placeholder="請在這裡計算..."></textarea>
+</div>
+
+<div class="q">
+
+<h3>🐱 第21題</h3>
+
+<p>
+在520到620之間，最大的二位小數是
+<input type="text" id="21_1" class="fill">
+
+，最小的二位小數是
+<input type="text" id="21_2" class="fill">
+</p>
+
+<button onclick="checkFill2('21_1','21_2','m21','a21','b21','619.99','520.01')">
+🐱 確認答案
+</button>
+
+<button id="b21" style="display:none" onclick="showAns('a21')">📖 看解析圖</button>
+
+<div id="m21" class="msg"></div>
+
+<div id="a21" class="answer">
+<b>正確答案：619.99、520.01</b>
+</div>
+<textarea placeholder="請在這裡計算..."></textarea>
+</div>
+
+<div class="q">
+<h3>🐱 第22題</h3>
+<p>
+一塊長12公尺、寬9公尺的長方形草地，面積是<input type="text" id="q22" class="fill">平方公分。<br><br>
+<button onclick="checkFill('q22','m22','a22','b22','1080000')">
+🐱 確認答案
+</button>
+<button id="b22" style="display:none"
+onclick="showAns('a22')">📖 看解析圖</button>
+<div id="m22" class="msg"></div>
+<div id="a22" class="answer">
+<b>正確答案：1080000</b>
+
+<div class="analysis-wrap">
+  <div class="analysis-title">📖 觀念圖解</div>
+</div>
+  <img class="analysis-image" src="面積.png" alt="題目解析圖">
+</div>
+<textarea placeholder="請在這裡計算..."></textarea>
+</div>
+
+<div class="q">
+<h3>🐱 第23題</h3>
+<p>
+公園步道每隔1.8公尺放一張椅子，第1張椅子和第15張椅子相距<input type="text" id="q23" class="fill">公尺。<br><br>
+<button onclick="checkFill('q23','m23','a23','b23','25.2')">
+🐱 確認答案
+</button>
+<button id="b23" style="display:none"
+onclick="showAns('a23')">
+📖 看解析圖
+</button>
+<div id="m23" class="msg"></div>
+<div id="a23" class="answer">
+<b>正確答案：25.2</b> 
+
+<div class="analysis-wrap">
+  <div class="analysis-title">📖 觀念圖解</div>
+</div>
+  <img class="analysis-image" src="樹間隔.png" alt="題目解析圖">
+</div>
+<textarea placeholder="請在這裡計算..."></textarea>
+</div>
+
+<div class="q">
+<h3>🐱 第24題</h3>
+<p>
+小安家到圖書館有2.35公里，每天來回各1次，共走6天，一共走了<input type="text" id="q24" class="fill">公里。<br><br>
+<button onclick="checkFill('q24','m24','a24','b24','28.2')">
+🐱 確認答案
+</button>
+<button id="b24" style="display:none"
+onclick="showAns('a24')">📖 看解析圖</button>
+<div id="m24" class="msg"></div>
+<div id="a24" class="answer">
+<b>正確答案：28.2</b> 
+</div>
+<textarea placeholder="請在這裡計算..."></textarea>
+</div>
+
+<div class="q">
+<h3>🐱 第25題</h3>
+<p>
+一張長方形紙的周長是240公分。四個角各剪下一個邊長6.5公分的正方形，剪完後周長是<input type="text" id="q25" class="fill">公分。<br><br>
+<button onclick="checkFill('q25','m25','a25','b25','240')">
+🐱 確認答案
+</button>
+<button id="b25" style="display:none"
+onclick="showAns('a25')">
+📖 看解析圖
+</button>
+<div id="m25" class="msg"></div>
+<div id="a25" class="answer">
+<b>正確答案：240</b> 
+
+<div class="analysis-wrap">
+  <div class="analysis-title">📖 觀念圖解</div>
+</div>
+  <img class="analysis-image" src="周長剪四個角.png" alt="題目解析圖">
+</div>
+<textarea placeholder="請在這裡計算..."></textarea>
+</div>
+
+<div class="q">
+<h3>🐱 第26題</h3>
+<p>
+麵包一個18元，爸爸買12個，媽媽買8個，妹妹買5個。三人共花多少元？<input type="text" id="q26" class="fill"><br><br>
+<button onclick="checkFill('q26','m26','a26','b26','450')">
+🐱 確認答案
+</button>
+<button id="b26" style="display:none"
+onclick="showAns('a26')">📖 看解析圖</button>
+<div id="m26" class="msg"></div>
+<div id="a26" class="answer">
+<b>正確答案：450</b> 
+</div>
+<textarea placeholder="請在這裡計算..."></textarea>
+</div>
+
+<div class="q">
+<h3>🐱 第27題</h3>
+<p>
+爸爸上午7時35分進公司，離開公司時發現再過40分鐘就是下午7時。爸爸今天在公司待了幾小時幾分鐘？<input type="text" id="q27" class="fill"><br><br>
+<button onclick="checkFill('q27','m27','a27','b27','10小時45分鐘')">
+🐱 確認答案
+</button>
+<button id="b27" style="display:none"
+onclick="showAns('a27')">
+📖 看解析圖
+</button>
+<div id="m27" class="msg"></div>
+<div id="a27" class="answer">
+<b>正確答案：10小時45分鐘</b> 
+
+<div class="analysis-wrap">
+  <div class="analysis-title">📖 觀念圖解</div>
+</div>
+  <img class="analysis-image" src="時間.png" alt="題目解析圖">
+</div>
+<textarea placeholder="請在這裡計算..."></textarea>
+</div>
+
+<div class="q">
+<h3>🐱 第28題</h3>
+<p>
+一塊長方形菜園的長是28公尺，每1平方公尺可以種8株番茄，一共種了3136株番茄。菜園面積是多少平方公尺？<input type="text" id="q28_1" class="fill">菜園的寬是多少公尺？
+<input type="text" id="q28_2" class="fill">
+</p>
+
+<button onclick="checkFill2('q28_1','q28_2','m28','a28','b28','392','14')">
+🐱 確認答案
+</button>
+
+<button id="b28" style="display:none" onclick="showAns('a28')">
+📖 看解析圖
+</button>
+
+<div id="m28" class="msg"></div>
+
+<div id="a28" class="answer">
+<b>正確答案：392、14</b>
+
+<div class="analysis-wrap">
+  <div class="analysis-title">📖 觀念圖解</div>
+</div>
+  <img class="analysis-image" src="花圃.png" alt="題目解析圖">
+</div>
+<textarea placeholder="請在這裡計算..."></textarea>
+</div>
+
+</div>
+
+<script>
+  function renderFractions(){
+
+    document.body.innerHTML=document.body.innerHTML.replace(
+        /\[f\](.*?)\[\/f\]/g,
+        function(match,text){
+
+            text=text.trim();
+
+            // 帶分數
+            let mixed=text.match(/^(.+?)\s+(.+?)\/(.+)$/);
+
+            if(mixed){
+
+                return `
+                <span class="mixed">
+                    <span>${mixed[1]}</span>
+                    <span class="frac">
+                        <span class="top">${mixed[2]}</span>
+                        <span class="bottom">${mixed[3]}</span>
+                    </span>
+                </span>`;
+            }
+
+            // 一般分數
+            let frac=text.match(/^(.+?)\/(.+)$/);
+
+            if(frac){
+
+                return `
+                <span class="frac">
+                    <span class="top">${frac[1]}</span>
+                    <span class="bottom">${frac[2]}</span>
+                </span>`;
+            }
+
+            return text;
+        }
+    );
+
+}
+
+
+// 填充題可直接按 Enter 對答案
+document.addEventListener("keydown", function(e){
+    if(e.key !== "Enter") return;
+
+    const input = e.target;
+    if(input.tagName !== "INPUT" || input.type !== "text") return;
+
+    e.preventDefault();
+
+    const question = input.closest(".q");
+    if(!question) return;
+
+    // 找到本題的「確認答案」按鈕並直接執行
+    const confirmButton = Array.from(question.querySelectorAll("button"))
+        .find(btn => btn.textContent.includes("確認答案"));
+
+    if(confirmButton) confirmButton.click();
+});
+
+window.onload=renderFractions;
+
+function checkFill(id,msg,ans,btn,rightAnswer){
+
+    let user=document.getElementById(id).value.trim();
+
+    if(user==""){
+        document.getElementById(msg).innerHTML="<span style='color:red'>請先作答！</span>";
+        return;
+    }
+
+    if(user==rightAnswer){
+
+        document.getElementById(msg).innerHTML="<span style='color:green'>✔ 答對了！😺</span>";
+
+    }else{
+
+        document.getElementById(msg).innerHTML="<span style='color:red'>✘ 答錯了！🙀</span>";
+        document.getElementById(btn).style.display="inline";
+
+    }
+
+}
+
+function checkFill2(id1,id2,msg,ans,btn,right1,right2){
+
+    let user1=document.getElementById(id1).value.trim();
+    let user2=document.getElementById(id2).value.trim();
+
+    if(user1=="" || user2==""){
+        document.getElementById(msg).innerHTML="<span style='color:red'>請先作答！</span>";
+        return;
+    }
+
+    if(user1==right1 && user2==right2){
+
+        document.getElementById(msg).innerHTML="<span style='color:green'>✔ 答對了！😺</span>";
+
+    }else{
+
+        document.getElementById(msg).innerHTML="<span style='color:red'>✘ 答錯了！🙀</span>";
+        document.getElementById(btn).style.display="inline";
+
+    }
+
+}
+</script>
+</body>
+</html>

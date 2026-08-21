@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<title>七年級數學題庫</title>
+<style>
+body{font-family:"Microsoft JhengHei",Arial;max-width:900px;margin:auto;padding:20px;line-height:1.8}
+table{border-collapse:collapse}
+th,td{border:1px solid #333;padding:6px 10px;text-align:center}
+.q{border:1px solid #ccc;border-radius:8px;padding:16px;margin:20px 0}
+.answer{display:none;background:#f5f5f5;padding:8px;margin-top:8px}
+.msg{font-weight:bold}
+label{display:block;margin:6px 0}
+button{margin-top:8px}
+
+.blank{
+    display:inline-block;
+    width:60px;
+    height:24px;
+    border:1px solid #000;
+    vertical-align:middle;
+}
+
+.fill{
+    width:70px;
+    text-align:center;
+    font-size:16px;
+    padding:3px;
+}
+
+.workbox{
+    width:100%;
+    height:180px;
+    border:2px solid #000;
+    font-size:18px;
+    padding:8px;
+    resize:none;
+    box-sizing:border-box;
+    font-family:"Microsoft JhengHei", Arial;
+}
+
+.answerbox{
+    width:80px;
+    text-align:center;
+    font-size:16px;
+}
+</style>
+</head>
+<body>
+<h1>七年級數學題庫</h1>
+
+<div class="q">
+<h3>第1題</h3>
+<table>
+<tr><th>科目</th><th>國文</th><th>英文</th><th>數學</th><th>理化</th><th>歷史</th><th>地理</th><th>公民</th></tr>
+<tr><th>和及格分數的差距</th><td>+11</td><td>+3</td><td>-4</td><td>-5</td><td>+13</td><td>+18</td><td>+20</td></tr>
+</table>
+<p>若導師訂的及格分數是80分，則數學科的平均分數為多少？</p>
+<label><input type="radio" name="q1" value="A"> A. 74分</label>
+<label><input type="radio" name="q1" value="B"> B. 76分</label>
+<label><input type="radio" name="q1" value="C"> C. 82分</label>
+<label><input type="radio" name="q1" value="D"> D. 84分</label>
+<button onclick="check('q1','m1','a1','b1')">確認答案</button>
+<button id="b1" style="display:none" onclick="showAns('a1')">看答案</button>
+<div id="m1" class="msg"></div>
+<div id="a1" class="answer"><b>正確答案：B. 76分</b><br>解析：80－4＝76。</div>
+</div>
+
+<div class="q">
+<h3>第2題</h3>
+<p>如圖，★的位置所代表的數是多少？</p>
+<svg width="520" height="120">
+<line x1="20" y1="55" x2="500" y2="55" stroke="black" stroke-width="2"/>
+<polygon points="500,55 492,51 492,59" fill="black"/>
+
+<!-- 整數刻度 -->
+<line x1="60" y1="45" x2="60" y2="65" stroke="black"/>
+<line x1="100" y1="45" x2="100" y2="65" stroke="black"/>
+<line x1="140" y1="45" x2="140" y2="65" stroke="black"/>
+<line x1="180" y1="45" x2="180" y2="65" stroke="black"/>
+<line x1="220" y1="45" x2="220" y2="65" stroke="black"/>
+<line x1="260" y1="45" x2="260" y2="65" stroke="black"/>
+<line x1="300" y1="45" x2="300" y2="65" stroke="black"/>
+<line x1="340" y1="45" x2="340" y2="65" stroke="black"/>
+
+<!-- -3 到 -2 四等分 -->
+<line x1="150" y1="48" x2="150" y2="62" stroke="black"/>
+<line x1="160" y1="48" x2="160" y2="62" stroke="black"/>
+<line x1="170" y1="48" x2="170" y2="62" stroke="black"/>
+
+<!-- ★ 改到 -2¼：位於 -2 與 -3 間靠近 -2 的四分之一 -->
+<text x="170" y="22" text-anchor="middle" font-size="24">★</text>
+<line x1="170" y1="26" x2="170" y2="55" stroke="black" stroke-dasharray="4 3"/>
+
+<!-- 原題只標 0、1 -->
+<text x="260" y="88">0</text>
+<text x="300" y="88">1</text>
+</svg>
+
+<label><input type="radio" name="q2" value="A"> A. -2.1</label>
+
+<label><input type="radio" name="q2" value="B">
+B. \( -3\frac{3}{4} \)
+</label>
+
+<label><input type="radio" name="q2" value="C">
+C. \( -2\frac{3}{4} \)
+</label>
+
+<label><input type="radio" name="q2" value="D">
+D. \( -2\frac{1}{4} \)
+</label>
+<button onclick="check('q2','m2','a2','b2')">確認答案</button>
+<button id="b2" style="display:none" onclick="showAns('a2')">看答案</button>
+<div id="m2" class="msg"></div>
+<div id="a2" class="answer">
+<b>正確答案：D. \( -2\frac{1}{4} \)</b>
+</div>
+
+</div>   <!-- 第2題結束 -->
+
+<div class="q">
+<h3>第3題</h3>
+<p>下列關於正負號的使用，何者錯誤？</p>
+<label><input type="radio" name="q3" value="A"> A. 若宇昕家在臺中北方 100 公里處，記為+100，則臺中南方 100 公里處，應記為(-100)</label>
+<label><input type="radio" name="q3" value="B"> B. 若娃娃右耳的耳環重 1 公克，記為+1，則媠媠左耳的耳環重 1 公克，應記為(-1)</label>
+<label><input type="radio" name="q3" value="C"> C. 若翌鳴的體重增加 2 公斤，記為+2，則翌鳴的體重減輕 2 公斤，應記為(-2)</label>
+<label><input type="radio" name="q3" value="D"> D. 若在甲地依順時針方向旋轉 10 度，記為+10，則在甲地依逆時針方向旋轉 10 度，應記為(-10)</label>
+<button onclick="check('q3','m3','a3','b3')">確認答案</button>
+<button id="b3" style="display:none" onclick="showAns('a3')">看答案</button>
+<div id="m3" class="msg"></div>
+<div id="a3" class="answer"><b>正確答案：B</b><br>解析：正負號用來表示具有相反意義的量，例如方向（北、南）、變化（增加、減少）或旋轉方向（順時針、逆時針）等，因此 A、C、D 都可以用正負表示。而 B 選項中的左耳和右耳只是位置不同，重量都是 1 公克，並沒有相反的意義，所以不能把左耳的耳環重量記為 −1，因此 B 為正確答案。</div>
+</div>
+
+<div class="q">
+<h3>第4題</h3>
+<p>數線上有隻金龜子在某一點上，先向左移 6 單位，再向右移 8 單位，又向左移 3 單位，最後停在表示-6 的點上，則此隻金龜子最初位置表示的數是多少？
+</p>
+<label><input type="radio" name="q4" value="A"> A. -5</label>
+<label><input type="radio" name="q4" value="B"> B. -6</label>
+<label><input type="radio" name="q4" value="C"> C. -7</label>
+<label><input type="radio" name="q4" value="D"> D. -8</label>
+<button onclick="check('q4','m4','a4','b4')">確認答案</button>
+<button id="b4" style="display:none" onclick="showAns('a4')">看答案</button>
+<div id="m4" class="msg"></div>
+<div id="a4" class="answer"><b>正確答案：B</b><br></div>
+</div>
+
+<div class="q">
+<h3>第5題</h3>
+<p>若a = –3，b = 8，則下列何式的結果會最小？
+</p>
+<label><input type="radio" name="q5" value="A"> A. ∣ a+b ∣</label>
+<label><input type="radio" name="q5" value="B"> B. ∣ a–b ∣</label>
+<label><input type="radio" name="q5" value="C"> C.  ∣ a ∣ – ∣ b ∣</label>
+<label><input type="radio" name="q5" value="D"> D.  ∣ a ∣ + ∣ b ∣</label>
+<button onclick="check('q5','m5','a5','b5')">確認答案</button>
+<button id="b5" style="display:none" onclick="showAns('a5')">看答案</button>
+<div id="m5" class="msg"></div>
+<div id="a5" class="answer"><b>正確答案：C</b><br>解析：A、B 都有絕對值，因此計算結果一定是0 或正數</div>
+</div>
+
+<div class="q">
+<h3>第6題</h3>
+<p>若甲數是比 3.2 小的最大整數，乙數是比–1.5 大的最小整數，則甲 + 乙 = ？
+</p>
+<label><input type="radio" name="q6" value="A"> A. 1</label>
+<label><input type="radio" name="q6" value="B"> B. 2</label>
+<label><input type="radio" name="q6" value="C"> C. 3</label>
+<label><input type="radio" name="q6" value="D"> D. 4</label>
+<button onclick="check('q6','m6','a6','b6')">確認答案</button>
+<button id="b6" style="display:none" onclick="showAns('a6')">看答案</button>
+<div id="m6" class="msg"></div>
+<div id="a6" class="answer"><b>正確答案：B</b><br></div>
+</div>
+
+<div class="q">
+<h3>第7題</h3>
+<p>若a、b、c 是任意的正整數，則下列哪一個數一定是負數？
+</p>
+<label><input type="radio" name="q7" value="A"> A. (–a)×(–b)</label>
+<label><input type="radio" name="q7" value="B"> B. (–a)÷(–b)</label>
+<label><input type="radio" name="q7" value="C"> C. (–a)<sup>3</sup>×(–b)<sup>2</sup></label>
+<label><input type="radio" name="q7" value="D"> D. (–a)<sup>3</sup>×(–b)<sup>5</sup></label>
+<button onclick="check('q7','m7','a7','b7')">確認答案</button>
+<button id="b7" style="display:none" onclick="showAns('a7')">看答案</button>
+<div id="m7" class="msg"></div>
+<div id="a7" class="answer"><b>正確答案：C</b><br></div>
+</div>
+
+<div class="q">
+<h3>第8題</h3>
+<p>若a + (–5) = –7，b – (–8) = 12，(–5)×c= 25，d ÷ (–3) = 2，則a、b、c、d 中哪一個最小？
+</p>
+<label><input type="radio" name="q8" value="A"> A. a</label>
+<label><input type="radio" name="q8" value="B"> B. b</label>
+<label><input type="radio" name="q8" value="C"> C. c</label>
+<label><input type="radio" name="q8" value="D"> D. d</label>
+<button onclick="check('q8','m8','a8','b8')">確認答案</button>
+<button id="b8" style="display:none" onclick="showAns('a8')">看答案</button>
+<div id="m8" class="msg"></div>
+<div id="a8" class="answer"><b>正確答案：D</b><br></div>
+</div>
+
+<div class="q">
+<h3>第9題</h3>
+<p>下列各數中，何者為最小的數？
+</p>
+<label><input type="radio" name="q9" value="A"> A. 3.8 × 10<sup>–4</sup></label>
+<label><input type="radio" name="q9" value="B"> B. 2.5 × 10<sup>–5</sup></label>
+<label><input type="radio" name="q9" value="C"> C. 4 × 10<sup>–6</sup></label>
+<label><input type="radio" name="q9" value="D"> D. 0.0000042</label>
+<button onclick="check('q9','m9','a9','b9')">確認答案</button>
+<button id="b9" style="display:none" onclick="showAns('a9')">看答案</button>
+<div id="m9" class="msg"></div>
+<div id="a9" class="answer"><b>正確答案：C</b><br></div>
+</div>
+
+<div class="q">
+<h3>第10題</h3>
+<p>若一光年大約是9.46 × 10<sup>15</sup> 公尺，則將9.46 × 10<sup>15</sup>展開後共有多少個 0？
+</p>
+<label><input type="radio" name="q10" value="A"> A. 13 個</label>
+<label><input type="radio" name="q10" value="B"> B. 14 個</label>
+<label><input type="radio" name="q10" value="C"> C. 15 個</label>
+<label><input type="radio" name="q10" value="D"> D. 16 個</label>
+<button onclick="check('q10','m10','a10','b10')">確認答案</button>
+<button id="b10" style="display:none" onclick="showAns('a10')">看答案</button>
+<div id="m10" class="msg"></div>
+<div id="a10" class="answer"><b>正確答案：A</b><br></div>
+</div>
+
+<div class="q">
+<h3>第11題</h3>
+<p>計算2023 × 47 + 2023 × (–43) – 2023 × 4 = ？
+</p>
+<label><input type="radio" name="q11" value="A"> A. 0</label>
+<label><input type="radio" name="q11" value="B"> B. 2023</label>
+<label><input type="radio" name="q11" value="C"> C. 20230</label>
+<label><input type="radio" name="q11" value="D"> D. 202300</label>
+<button onclick="check('q11','m11','a11','b11')">確認答案</button>
+<button id="b11" style="display:none" onclick="showAns('a11')">看答案</button>
+<div id="m11" class="msg"></div>
+<div id="a11" class="answer"><b>正確答案：A</b><br></div>
+</div>
+
+<div class="q">
+<h3>第12題</h3>
+<p>數線上 A、B 兩點的距離是 5，如果 A 點所表示的數之絕對值為 3，那麼下列哪一個不可能是 B 點所表示的數？
+</p>
+<label><input type="radio" name="q12" value="A"> A. –8</label>
+<label><input type="radio" name="q12" value="B"> B. –2</label>
+<label><input type="radio" name="q12" value="C"> C. 8</label>
+<label><input type="radio" name="q12" value="D"> D. 4</label>
+<button onclick="check('q12','m12','a12','b12')">確認答案</button>
+<button id="b12" style="display:none" onclick="showAns('a12')">看答案</button>
+<div id="m12" class="msg"></div>
+<div id="a12" class="answer"><b>正確答案：D</b><br></div> 
+</div>
+
+<div class="q">
+<h3>第13題</h3>
+
+<p>
+–5、3、–(–7) 的相反數分別為 p、q、r，則 p＋q＋r＝
+<input type="text" id="q13" class="fill">
+</p>
+
+<button onclick="checkFill('q13','m13','a13','b13')">確認答案</button>
+<button id="b13" style="display:none" onclick="showAns('a13')">看答案</button>
+
+<div id="m13" class="msg"></div>
+
+<div id="a13" class="answer">
+<b>正確答案：-5</b>
+</div>
+</div>
+
+<div class="q">
+<h3>第14題</h3>
+<p>
+計算∣ 3 × (1–3) ∣ ÷ (–3) × 2 的值為
+<input type="text" id="q14" class="fill">
+</p>
+<button onclick="checkFill('q14','m14','a14','b14')">確認答案</button>
+<button id="b14" style="display:none" onclick="showAns('a14')">看答案</button>
+<div id="m14" class="msg"></div>
+<div id="a14" class="answer">
+<b>正確答案：-4<br>解析：6÷(−3)×2=−2×2=−4</b>
+</div>
+</div>
+
+<div class="q">
+<h3>第15題</h3>
+<p>
+在數線上有A(–3)、B(7)、C(x) 三點，若C 為AB 的中點，則x =
+<input type="text" id="q15" class="fill">
+</p>
+<button onclick="checkFill('q15','m15','a15','b15')">確認答案</button>
+<button id="b15" style="display:none" onclick="showAns('a15')">看答案</button>
+<div id="m15" class="msg"></div>
+<div id="a15" class="answer">
+<b>正確答案：2</b>
+</div>
+</div>
+
+<div class="q">
+<h3>第16題</h3>
+<p>
+絕對值小於 8 的整數有
+<input type="text" id="q16" class="fill">個。
+</p>
+<button onclick="checkFill('q16','m16','a16','b16')">確認答案</button>
+<button id="b16" style="display:none" onclick="showAns('a16')">看答案</button>
+<div id="m16" class="msg"></div>
+<div id="a16" class="answer">
+<b>正確答案：15</b>
+</div>
+</div>
+
+<div class="q">
+<h3>第17題</h3>
+<p>
+雅庫茨克位於西伯利亞共和國，由於地理位置十分靠近北極，被稱為是世界上最寒冷的城市。跨年夜雅庫茨克的氣溫達到–72°C，而當天臺北市的氣溫是15°C，則當天臺北市的氣溫比雅庫茨克的氣溫高出
+<input type="text" id="q17" class="fill"> 度。
+</p>
+<button onclick="checkFill('q17','m17','a17','b17')">確認答案</button>
+<button id="b17" style="display:none" onclick="showAns('a17')">看答案</button>
+<div id="m17" class="msg"></div>
+<div id="a17" class="answer">
+<b>正確答案：87</b>
+</div>
+</div>
+
+<div class="q">
+<h3>第18題</h3>
+<p>
+計算765 – (–2345) – (2346 + 766) 的值為
+<input type="text" id="q18" class="fill">
+</p>
+<button onclick="checkFill('q18','m18','a18','b18')">確認答案</button>
+<button id="b18" style="display:none" onclick="showAns('a18')">看答案</button>
+<div id="m18" class="msg"></div>
+<div id="a18" class="answer">
+<b>正確答案：-2</b>
+</div>
+</div>
+
+<div class="q">
+<h3>第19題</h3>
+<p>
+2022 杭州亞運賽事火熱展開，璐箴看完羽球男團 8 強賽事後，決定約同學去打羽球。已知有 7 位同學一起去打羽球，從下午 2:55 一直打到下午 5:15。若這段時間內，他們一直玩雙打（即須 4 人同時上場），則平均一個人的上場時間為
+<input type="text" id="q19" class="fill">分鐘。
+</p>
+<button onclick="checkFill('q19','m19','a19','b19')">確認答案</button>
+<button id="b19" style="display:none" onclick="showAns('a19')">看答案</button>
+<div id="m19" class="msg"></div>
+<div id="a19" class="answer">
+<b>正確答案：80<br>解析：2小時20分鐘=140分鐘<br>140×4=560 人分鐘<br>560÷7=80分鐘</b>
+</div>
+</div>
+
+<div class="q">
+<h3>第20題</h3>
+<p>
+若「☆」是一個新的運算符號，其運算規則為a☆b = –4a + ab + 1，例如：2☆(–5) = –4 × 2 + 2 × (–5) + 1 = –17。則(–4)☆3 =
+<input type="text" id="q20" class="fill">
+</p>
+<button onclick="checkFill('q20','m20','a20','b20')">確認答案</button>
+<button id="b20" style="display:none" onclick="showAns('a20')">看答案</button>
+<div id="m20" class="msg"></div>
+<div id="a20" class="answer">
+<b>正確答案：5</b>
+</div>
+</div>
+
+<div class="q">
+<h3>第21題</h3>
+<p>
+時序進入秋季，開始吹起東北季風。台電表示，在東北季風助攻下，9 月 26 日下午觀測到整體風力發電達到 167 萬瓩歷史新高。已知 1 瓩等於 1000 瓦，試問 167 萬瓩以科學記號表示應為
+<input type="text" id="q21" class="fill">瓦。
+</p>
+<button onclick="checkFill('q21','m21','a21','b21')">確認答案</button>
+<button id="b21" style="display:none" onclick="showAns('a21')">看答案</button>
+<div id="m21" class="msg"></div>
+<div id="a21" class="answer">
+<b>正確答案：1.67*10^9</b>
+</div>
+</div>
+
+<div class="q">
+<h3>第22題</h3>
+
+<p>
+若 7020 × 10<sup>2</sup> = 7.02 × 10<sup>a</sup> = 0.0702 × 10<sup>b</sup>，
+則 a + b =
+<input type="text" id="q22" class="fill">
+</p>
+
+<p><b></b></p>
+
+<textarea class="workbox" placeholder=""></textarea>
+
+<button onclick="checkFill('q22','m22','a22','b22')">確認答案</button>
+<button id="b22" style="display:none" onclick="showAns('a22')">看答案</button>
+
+<div id="m22" class="msg"></div>
+
+<div id="a22" class="answer">
+<b>正確答案：12</b>
+</div>
+
+</div>
+
+<div class="q">
+<h3>第23題</h3>
+<p>(1) 148－2<sup>3</sup> × [15－(－3)<sup>2</sup>]＋5</p>
+
+<textarea class="workbox"></textarea>
+
+<p>
+答案：
+<input type="text" id="q23_1" class="answerbox">
+</p>
+
+<button onclick="checkFill('q23_1','m23_1','a23_1','b23_1')">確認答案</button>
+<button id="b23_1" style="display:none" onclick="showAns('a23_1')">看答案</button>
+
+<div id="m23_1" class="msg"></div>
+
+<div id="a23_1" class="answer">
+<b>正確答案：105<br>解析：=148-8×(15-9)+5<br>
+=148-8×6+5<br>
+=148-48+5<br>
+=100+5<br>
+=105</b>
+</div>
+
+<p>(2) 168 × (－2001)</p>
+
+<textarea class="workbox"></textarea>
+
+<p>
+答案：
+<input type="text" id="q23_2" class="answerbox">
+</p>
+
+<button onclick="checkFill('q23_2','m23_2','a23_2','b23_2')">確認答案</button>
+<button id="b23_2" style="display:none" onclick="showAns('a23_2')">看答案</button>
+
+<div id="m23_2" class="msg"></div>
+
+<div id="a23_2" class="answer">
+<b>正確答案：-336168</b>
+</div>
+</div>
+
+<div class="q">
+
+<h3>第24題</h3>
+
+<p>
+在一個測驗中，有 30 道題目，每答對 1 題可得 4 分，答錯不僅不給分還要扣 2 分，未作答則扣 1 分。若潘妮只作答 28 題，其中有 25 題答對，回答下列問題：
+</p>
+
+<p>(1) 潘妮答錯的題目有多少題？</p>
+<p>(2) 潘妮未作答的題目有多少題？</p>
+<p>(3) 潘妮的測驗得分為多少分？</p>
+
+<p><b>計算：</b></p>
+
+<textarea class="workbox"></textarea>
+
+<p>
+(1) 答案：
+<input type="text" id="q24_1" class="answerbox">
+
+<button onclick="checkFill('q24_1','m24_1','a24_1','b24_1')">確認答案</button>
+<button id="b24_1" style="display:none" onclick="showAns('a24_1')">看答案</button>
+</p>
+
+<div id="m24_1" class="msg"></div>
+
+<div id="a24_1" class="answer">
+<b>正確答案：3</b>
+</div>
+
+<p>
+(2) 答案：
+<input type="text" id="q24_2" class="answerbox">
+
+<button onclick="checkFill('q24_2','m24_2','a24_2','b24_2')">確認答案</button>
+<button id="b24_2" style="display:none" onclick="showAns('a24_2')">看答案</button>
+</p>
+
+<div id="m24_2" class="msg"></div>
+
+<div id="a24_2" class="answer">
+<b>正確答案：2</b>
+</div>
+
+<p>
+(3) 答案：
+<input type="text" id="q24_3" class="answerbox">
+
+<button onclick="checkFill('q24_3','m24_3','a24_3','b24_3')">確認答案</button>
+<button id="b24_3" style="display:none" onclick="showAns('a24_3')">看答案</button>
+</p>
+
+<div id="m24_3" class="msg"></div>
+
+<div id="a24_3" class="answer">
+<b>正確答案：92</b>
+</div>
+
+</div>
+
+
+<script>
+function checkFill(id,m,ans,btn){
+
+    let value=document.getElementById(id).value.trim();
+
+    if(value===""){
+        document.getElementById(m).textContent="請先作答";
+        document.getElementById(m).style.color="orange";
+        return;
+    }
+
+    if(value===answers[id]){
+        document.getElementById(m).textContent="✓ 答對";
+        document.getElementById(m).style.color="green";
+    }else{
+        document.getElementById(m).textContent="✗ 答錯";
+        document.getElementById(m).style.color="red";
+        document.getElementById(btn).style.display="inline";
+    }
+
+}
+</script>
+
+<script>
+window.MathJax={tex:{inlineMath:[['\\(','\\)']]}};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+body{font-family:"Microsoft JhengHei",Arial;padding:20px}
+label{display:block;margin:8px 0}
+
+/* ===== Pop! Learning 統一粉紅主題 ===== */
+:root{
+  --pink:#d95791;
+  --pink-dark:#b94d70;
+  --pink-mid:#ee8fb3;
+  --pink-light:#fff0f6;
+  --pink-bg:#fff7fb;
+  --pink-border:#f2cddd;
+  --pink-shadow:rgba(217,87,145,.13);
+  --text:#5f4d57;
+}
+html,body{
+  background:linear-gradient(135deg,#fff7fb 0%,#ffeaf4 100%) !important;
+  color:var(--text) !important;
+}
+body{
+  font-family:"Microsoft JhengHei","Noto Sans TC",Arial,sans-serif !important;
+}
+h1,h2,h3,.section{
+  color:var(--pink) !important;
+}
+.header,.q,.question,.card,.box,.panel,.score{
+  border-color:var(--pink-border) !important;
+  box-shadow:0 6px 22px var(--pink-shadow) !important;
+}
+.header,.q,.question,.card,.box,.panel{
+  background:#fff !important;
+}
+button{
+  background:var(--pink) !important;
+  color:#fff !important;
+  border:0 !important;
+  border-radius:999px !important;
+  box-shadow:0 3px 9px var(--pink-shadow);
+  font-weight:700;
+}
+button:hover{background:var(--pink-dark) !important;}
+button.secondary,.reset,.retry{
+  background:#f8dce8 !important;
+  color:var(--pink-dark) !important;
+}
+button.danger{
+  background:#d95791 !important;
+}
+input,textarea,select{
+  border-color:var(--pink-border) !important;
+  border-radius:12px !important;
+}
+input:focus,textarea:focus,select:focus{
+  outline:none !important;
+  border-color:var(--pink) !important;
+  box-shadow:0 0 0 3px #ffe2ee !important;
+}
+.calc-box,.calc,.work-area{
+  border-color:#efc6d8 !important;
+}
+.calc-box textarea,.calc textarea,.work{
+  background:repeating-linear-gradient(
+    to bottom,#fff 0,#fff 27px,#f5dfe8 28px
+  ) !important;
+  border-color:#e8bfd1 !important;
+}
+.result,.msg{color:var(--text);}
+.ok,.right{color:#2a9a61 !important;}
+.bad,.wrong{color:#d45563 !important;}
+.answer,.ex{
+  background:#fff0f6 !important;
+  border-color:#f2cddd !important;
+}
+.score{
+  background:#fff0f6 !important;
+  color:var(--pink-dark) !important;
+}
+.subtitle,.sub{
+  color:#806977 !important;
+}
+.locked{
+  background:#f8eef3 !important;
+}
+
+</style>
+<script>
+// =======================================
+// ⭐⭐⭐ 題目答案設定（只修改這裡）⭐⭐⭐
+// =======================================
+const answers = {
+    q1: "B",
+    q2: "D",
+    q3: "B",
+    q4: "A",
+    q5: "C",
+    q6: "B",
+    q7: "C",
+    q8: "D",
+    q9: "C",
+    q10: "A",
+    q11: "A",
+    q12: "D",
+    q13: "-5",
+    q14: "-4",
+    q15: "2",
+    q16: "15",
+    q17: "87",
+    q18: "-2",
+    q19: "80",
+    q20: "5",
+    q21: "1.67*10^9",
+    q22: "12",
+    q23_1: "105",
+    q23_2: "-336168",
+    q24_1: "3",
+    q24_2: "2",
+    q24_3: "92",
+};
+
+function check(n,m,ans,btn){
+let c=document.querySelector('input[name='+n+']:checked');
+if(!c){alert('請先作答');return;}
+if(c.value===answers[n]){document.getElementById(m).textContent='✓ 答對';document.getElementById(m).style.color='green';}
+else{document.getElementById(m).textContent='✗ 答錯';document.getElementById(m).style.color='red';document.getElementById(btn).style.display='inline';}
+}
+function showAns(id){document.getElementById(id).style.display='block';}
+
+function checkQ23(){
+
+    let ans1=document.getElementById("q23_1").value.trim();
+    let ans2=document.getElementById("q23_2").value.trim();
+
+    if(ans1==="327" && ans2==="-336168"){
+        document.getElementById("m23").textContent="✓ 答對";
+        document.getElementById("m23").style.color="green";
+    }else{
+        document.getElementById("m23").textContent="✗ 答錯";
+        document.getElementById("m23").style.color="red";
+        document.getElementById("b23").style.display="inline";
+    }
+}
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>數學心算練習</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#fff7fb;
+    text-align:center;
+    padding:20px;
+}
+
+.container{
+    max-width:700px;
+    margin:auto;
+    background:white;
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 0 15px rgba(0,0,0,.15);
+}
+
+h1{
+    color:#1565c0;
+}
+
+select,input,button{
+    font-size:24px;
+    padding:10px;
+    margin:10px;
+}
+
+#question{
+    font-size:48px;
+    font-weight:bold;
+    color:#d84315;
+    margin:30px 0;
+}
+
+#result{
+    font-size:30px;
+    min-height:50px;
+    font-weight:bold;
+}
+
+.stats{
+    font-size:24px;
+    margin-top:20px;
+    line-height:1.8;
+}
+
+/* ===== Pop! Learning 統一粉紅主題 ===== */
+:root{
+ --pink:#d95791;
+ --pink-dark:#b94d70;
+ --pink-mid:#ee8fb3;
+ --pink-light:#fff0f6;
+ --pink-bg:#fff7fb;
+ --pink-border:#f2cddd;
+ --pink-shadow:rgba(217,87,145,.13);
+ --text:#5f4d57;
+}
+html,body{
+ background:linear-gradient(135deg,#fff7fb 0%,#ffeaf4 100%) !important;
+ color:var(--text) !important;
+}
+body{
+ font-family:"Microsoft JhengHei","Noto Sans TC",Arial,sans-serif !important;
+}
+h1,h2,h3{
+ color:var(--pink) !important;
+}
+button{
+ background:var(--pink) !important;
+ color:#fff !important;
+ border:0 !important;
+ border-radius:999px !important;
+ box-shadow:0 3px 9px var(--pink-shadow);
+ font-weight:700;
+}
+button:hover{background:var(--pink-dark) !important;}
+input,textarea,select{
+ border-color:var(--pink-border) !important;
+ border-radius:12px !important;
+}
+input:focus,textarea:focus,select:focus{
+ outline:none !important;
+ border-color:var(--pink) !important;
+ box-shadow:0 0 0 3px #ffe2ee !important;
+}
+.card,.box,.container,.panel,.quiz-box,.detail,.question,.work-area,.memory-card{
+ border-color:var(--pink-border) !important;
+ box-shadow:0 6px 22px var(--pink-shadow) !important;
+}
+.question,.guide,.rule,.memory-rule,.stats,.answer,.answer:focus,.explain{
+ background:#fff0f6 !important;
+}
+.primary,.action,.pink{background:var(--pink) !important;color:#fff !important;}
+.secondary,.tab:not(.active){background:#f8dce8 !important;color:var(--pink-dark) !important;}
+.tab.active,.nav button.active{background:var(--pink) !important;color:#fff !important;}
+.topbar,.topMenu{background:#fff0f6 !important;border-color:#f2b0cb !important;}
+.topMenu a{border-color:#f2b0cb !important;color:var(--pink-dark) !important;}
+.topMenu a:hover{background:var(--pink) !important;color:#fff !important;}
+.correct,.ok{color:#2a9a61 !important;}
+.wrong{color:#d45563 !important;}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🧮 心算練習</h1>
+
+<select id="mode">
+    <option value="99">九九乘法表</option>
+    <option value="square">11~20平方</option>
+    <option value="2x">2 × 2位數</option>
+    <option value="3x">3 × 2位數</option>
+    <option value="4x">4 × 2位數</option>
+    <option value="5x">5 × 2位數</option>
+    <option value="11x2">11 × 2位數</option>
+    <option value="12x">12 × 1~10</option>
+    <option value="25x">25 × 1~40</option>
+</select>
+
+<div id="question"></div>
+
+<input
+type="number"
+id="answer"
+placeholder="輸入答案">
+
+<br>
+
+<button onclick="checkAnswer()">送出</button>
+
+<div id="result"></div>
+
+<div class="stats">
+    <div>總題數：<span id="total">0</span></div>
+    <div>答對題數：<span id="correct">0</span></div>
+    <div>答對率：<span id="rate">0</span>%</div>
+</div>
+
+</div>
+
+<script>
+
+let answer = 0;
+let total = 0;
+let correct = 0;
+
+function random(min,max){
+    return Math.floor(Math.random()*(max-min+1))+min;
+}
+
+function generateQuestion(){
+
+    const mode =
+    document.getElementById("mode").value;
+
+    let a,b;
+
+    switch(mode){
+
+        case "99":
+            a=random(1,9);
+            b=random(1,9);
+            break;
+
+        case "square":
+            a=random(11,20);
+            b=a;
+            break;
+
+        case "2x":
+            a=2;
+            b=random(10,99);
+            break;
+
+        case "3x":
+            a=3;
+            b=random(10,99);
+            break;
+
+        case "4x":
+            a=4;
+            b=random(10,99);
+            break;
+
+        case "5x":
+            a=5;
+            b=random(10,99);
+            break;
+
+        case "11x2":
+            a=11;
+            b=random(10,99);
+            break;
+
+        case "12x":
+            a=12;
+            b=random(1,10);
+            break;
+
+        case "25x":
+            a=25;
+            b=random(1,40);
+            break;
+    }
+
+    answer = a * b;
+
+    document.getElementById("question").innerHTML =
+        `${a} × ${b} = ?`;
+
+    document.getElementById("answer").value = "";
+    document.getElementById("answer").focus();
+}
+
+function checkAnswer(){
+
+    const userAnswer =
+        Number(document.getElementById("answer").value);
+
+    total++;
+
+    if(userAnswer === answer){
+
+        correct++;
+
+        document.getElementById("result").innerHTML =
+            "✅ 答對了！";
+
+    }else{
+
+        document.getElementById("result").innerHTML =
+            `❌ 答錯了！答案是 ${answer}`;
+    }
+
+    updateStats();
+
+    setTimeout(generateQuestion,800);
+}
+
+function updateStats(){
+
+    document.getElementById("total").innerText =
+        total;
+
+    document.getElementById("correct").innerText =
+        correct;
+
+    let rate =
+        total === 0
+        ? 0
+        : ((correct / total) * 100).toFixed(1);
+
+    document.getElementById("rate").innerText =
+        rate;
+}
+
+document.getElementById("mode")
+.addEventListener("change",generateQuestion);
+
+document.getElementById("answer")
+.addEventListener("keydown",function(e){
+
+    if(e.key==="Enter"){
+        checkAnswer();
+    }
+
+});
+
+generateQuestion();
+
+</script>
+
+</body>
+</html>

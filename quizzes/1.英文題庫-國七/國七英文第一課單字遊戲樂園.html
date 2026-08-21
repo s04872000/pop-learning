@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>英文單字遊戲樂園</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:"Microsoft JhengHei",Arial,sans-serif;background:linear-gradient(135deg,#fff0f7,#eee9ff);color:#40364a}
+button{font-family:inherit;cursor:pointer}
+.app{max-width:1100px;margin:auto;padding:22px}
+header{background:#fff;border-radius:28px;padding:24px 28px;box-shadow:0 10px 30px #00000012;margin-bottom:18px}
+h1{margin:0 0 6px;color:#d95791}
+.subtitle{margin:0;color:#766b7d}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.stat{background:#fff3f8;border-radius:14px;padding:8px 14px;font-weight:700}
+.nav{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.nav button{border:0;background:white;border-radius:16px;padding:12px 16px;box-shadow:0 4px 12px #00000010;font-weight:700;color:#65596c}
+.nav button.active{background:#d95791;color:white}
+.screen{background:#fff;border-radius:28px;padding:28px;min-height:520px;box-shadow:0 10px 30px #00000012}
+h2{margin-top:0;color:#d95791}
+.center{text-align:center}
+.bigword{font-size:48px;font-weight:900;margin:30px 0 10px;color:#493d52}
+.meaning{font-size:24px;font-weight:700;margin:15px}
+.options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;max-width:700px;margin:25px auto}
+.option{border:3px solid #f1d8e4;background:#fff;border-radius:20px;padding:20px;font-size:22px;font-weight:800;transition:.15s}
+.option:hover{transform:translateY(-3px);border-color:#d95791}
+.option.correct{background:#dcf8e7;border-color:#42b883}
+.option.wrong{background:#ffe1e1;border-color:#ef6b6b}
+.primary{border:0;border-radius:16px;padding:13px 22px;background:#d95791;color:white;font-size:17px;font-weight:800}
+.secondary{border:0;border-radius:16px;padding:13px 22px;background:#eee8f3;color:#51475a;font-size:17px;font-weight:800}
+.progress{height:14px;background:#eee;border-radius:99px;overflow:hidden;margin:16px 0}
+.bar{height:100%;background:#d95791;width:0%;transition:.3s}
+.feedback{min-height:30px;font-size:20px;font-weight:800;margin:10px}
+.game-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.game-card{border:0;background:linear-gradient(135deg,#fff,#fff2f8);border-radius:22px;padding:22px;text-align:left;box-shadow:0 5px 15px #00000010}
+.game-card .emoji{font-size:42px}
+.game-card h3{margin:10px 0 5px}
+.game-card p{margin:0 0 14px;color:#766b7d}
+.holes{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:650px;margin:25px auto}
+.hole{height:120px;border:0;border-radius:50%;background:#eee5ef;font-size:26px;font-weight:900}
+.hole.active{background:#ffe3f0;border:5px solid #d95791}
+.timer{font-size:30px;font-weight:900;color:#d95791}
+.match-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:760px;margin:20px auto}
+.card{height:110px;border:0;border-radius:18px;background:#f8e9f2;font-size:20px;font-weight:800}
+.card.flipped,.card.matched{background:#fff;border:3px solid #d95791}
+.runway{position:relative;height:260px;background:linear-gradient(#dff5ff,#fff);border-radius:25px;overflow:hidden;margin:20px 0}
+.runner{position:absolute;bottom:25px;left:8%;font-size:48px}
+.obstacle{position:absolute;bottom:25px;right:15%;font-size:48px}
+.run-options{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.run-options button{padding:14px 25px;border:0;border-radius:16px;background:#f4e1eb;font-weight:800;font-size:19px}
+@media(max-width:700px){.game-grid{grid-template-columns:1fr}.options{grid-template-columns:1fr}.match-grid{grid-template-columns:repeat(3,1fr)}}
+
+/* Pop! Learning 粉紅主題｜與首頁風格一致 */
+:root{
+  --pop-pink:#d95791;
+  --pop-pink-dark:#c94f82;
+  --pop-pink-light:#fff0f6;
+  --pop-pink-bg:#fff7fb;
+  --pop-pink-border:#f5cfe0;
+  --pop-text:#4b3f49;
+  --pop-muted:#7d6f79;
+  --pop-white:#ffffff;
+  --pop-shadow:0 8px 24px rgba(217,87,145,.10);
+}
+body{
+  background:linear-gradient(180deg,#fff7fb 0%,#fff 100%) !important;
+  color:var(--pop-text) !important;
+  font-family:"Noto Sans TC","Microsoft JhengHei",Arial,sans-serif !important;
+}
+h1,h2,h3{
+  color:var(--pop-pink) !important;
+  font-weight:900;
+  letter-spacing:.02em;
+}
+h1{
+  text-align:center;
+  font-size:clamp(26px,4vw,36px);
+}
+button{
+  border:0 !important;
+  border-radius:14px !important;
+  background:var(--pop-pink) !important;
+  color:#fff !important;
+  font-family:inherit !important;
+  font-weight:800 !important;
+  box-shadow:0 4px 10px rgba(217,87,145,.14);
+  transition:transform .15s ease,box-shadow .15s ease;
+}
+button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 7px 15px rgba(217,87,145,.18);
+}
+input,textarea{
+  border:2px solid var(--pop-pink-border) !important;
+  border-radius:12px !important;
+  font-family:inherit !important;
+  background:#fff !important;
+}
+input:focus,textarea:focus{
+  outline:none !important;
+  border-color:var(--pop-pink) !important;
+  box-shadow:0 0 0 3px rgba(217,87,145,.10);
+}
+
+/* 常見題庫卡片 */
+.card,.quiz,.screen,.sec,.q,.question{
+  background:var(--pop-white) !important;
+  border-color:var(--pop-pink-border) !important;
+  border-radius:22px !important;
+  box-shadow:var(--pop-shadow) !important;
+}
+.q,.question{
+  border-width:2px !important;
+}
+.section-description,.subtitle{
+  color:var(--pop-muted) !important;
+}
+
+/* 粉紅次要按鈕 */
+.pink,.secondary,.speak{
+  background:var(--pop-pink-light) !important;
+  color:var(--pop-pink-dark) !important;
+  border:2px solid var(--pop-pink-border) !important;
+}
+.yellow{
+  background:#fff0f6 !important;
+  color:var(--pop-pink-dark) !important;
+  border:2px solid var(--pop-pink-border) !important;
+}
+.primary,.check{
+  background:var(--pop-pink) !important;
+  color:#fff !important;
+}
+
+/* 正確／錯誤仍保留辨識色，但柔和一些 */
+.ok,.correct{
+  color:#198754 !important;
+}
+.bad,.wrong{
+  color:#d84f68 !important;
+}
+.feedback{
+  border-radius:14px !important;
+}
+
+/* 手機版 */
+@media(max-width:700px){
+  body{padding:14px !important}
+}
+
+.app{max-width:1150px !important;padding:24px !important}
+header,.screen{border:2px solid #f5cfe0 !important}
+header{background:linear-gradient(145deg,#fff,#fff0f6) !important}
+.stat{background:#fff0f6 !important;color:#b64a78 !important;border:1px solid #f5cfe0}
+.nav button{border:2px solid #f5cfe0 !important;background:#fff !important}
+.nav button.active{background:#d95791 !important;color:#fff !important}
+.game-card{background:linear-gradient(145deg,#fff,#fff0f6) !important;border:2px solid #f5cfe0 !important}
+.option{border-color:#f5cfe0 !important}
+.option.correct{background:#e9f8ef !important;border-color:#72c997 !important}
+.option.wrong{background:#fff0f2 !important;border-color:#ee8b9b !important}
+.runway{background:linear-gradient(#fff0f6,#fff) !important;border:2px solid #f5cfe0}
+.hole.active{background:#ffe0ed !important;border-color:#d95791 !important}
+.card{background:#fff8fc !important}
+.card.flipped,.card.matched{border-color:#d95791 !important}
+
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+<h1>🌸 英文單字遊戲樂園</h1>
+<p class="subtitle">把單字變成遊戲！答題、打地鼠、翻牌、跑酷一起學。</p>
+<div class="stats">
+<div class="stat">⭐ 分數：<span id="score">0</span></div>
+<div class="stat">❤️ 生命：<span id="lives">3</span></div>
+<div class="stat">🔥 連續答對：<span id="combo">0</span></div>
+<div class="stat">🏆 最高分：<span id="best">0</span></div>
+</div>
+</header>
+
+<div class="nav">
+<button class="active" onclick="showHome(this)">🏠 遊戲大廳</button>
+<button onclick="startQuiz(this)">🎯 快問快答</button>
+<button onclick="startWhack(this)">🐹 打地鼠</button>
+<button onclick="startMatch(this)">🃏 翻牌配對</button>
+<button onclick="startRun(this)">🏃 單字跑酷</button>
+</div>
+
+<div id="screen" class="screen"></div>
+</div>
+
+<script>
+const words=[
+["handsome","英俊的"],["new","新的"],["classmate","同學"],["young","年輕的"],
+["woman","女人"],["very","非常"],["beautiful","美麗的"],["too","也"],
+["Nice to meet you.","很高興認識你。"],["cousin","堂表兄弟姐妹"],["really","真的；實在"],
+["year(s) old …","歲"],["I see.","我知道了。"],["singer","歌手"],["office worker","上班族"],
+["housewife","家庭主婦"],["police officer","警察"],["writer","作家"],["uncle","叔伯；舅舅"],
+["aunt","阿姨；姑姑"],["wife","妻子"],["daughter","女兒"],["husband","丈夫"],["son","兒子"],
+["dear","親愛的"],["family","家庭；家人"],["elementary school","國小"],
+["junior high school","國中"],["baby","嬰兒；年幼的"],["actor","男演員"],["actress","女演員"],
+["driver","司機"],["cute","可愛的"],["friendly","友善的"],["take care of","照顧"],
+["grow up","長大"],["come true","實現"]
+];
+
+let score=0,lives=3,combo=0,best=Number(localStorage.bestEnglishGame||0);
+let weak=JSON.parse(localStorage.weakEnglishWords||"{}");
+let quizIndex=0,quizWords=[],locked=false,whackTimer,whackInterval,whackActive=-1,whackEnd=0;
+let matchCards=[],firstCard=null,secondCard=null,matchLock=false,matched=0;
+let runWord=null;
+
+const screen=document.getElementById("screen");
+document.getElementById("best").textContent=best;
+
+function stats(){document.getElementById("score").textContent=score;document.getElementById("lives").textContent=lives;document.getElementById("combo").textContent=combo;document.getElementById("best").textContent=best}
+function addScore(n){score+=n;if(score>best){best=score;localStorage.bestEnglishGame=best}stats()}
+function wrong(word){
+ combo=0;lives--;weak[word]=(weak[word]||0)+1;localStorage.weakEnglishWords=JSON.stringify(weak);stats();
+ if(lives<=0){setTimeout(gameOver,300)}
+}
+function gameOver(){screen.innerHTML=`<div class="center"><div style="font-size:70px">💫</div><h2>遊戲結束！</h2><p style="font-size:25px">本次分數：<b>${score}</b></p><button class="primary" onclick="resetGame()">再玩一次</button></div>`}
+function resetGame(){score=0;lives=3;combo=0;stats();showHome()}
+
+function showHome(btn){
+ if(btn)nav(btn);
+ clearIntervals();
+ const weakList=Object.keys(weak).sort((a,b)=>weak[b]-weak[a]).slice(0,5);
+ screen.innerHTML=`<h2>🎮 選一個遊戲開始吧！</h2>
+ <div class="game-grid">
+ <button class="game-card" onclick="startQuiz()"><div class="emoji">🎯</div><h3>快問快答</h3><p>選出正確中文，連續答對可以 COMBO！</p><span>開始 →</span></button>
+ <button class="game-card" onclick="startWhack()"><div class="emoji">🐹</div><h3>英文打地鼠</h3><p>看到正確答案就趕快點下去！</p><span>開始 →</span></button>
+ <button class="game-card" onclick="startMatch()"><div class="emoji">🃏</div><h3>記憶翻牌</h3><p>把英文和中文配成一對。</p><span>開始 →</span></button>
+ <button class="game-card" onclick="startRun()"><div class="emoji">🏃</div><h3>單字跑酷</h3><p>選對答案，讓角色越過障礙！</p><span>開始 →</span></button>
+ </div>
+ <hr style="border:0;border-top:1px solid #eee;margin:28px 0">
+ <h2>📕 我的弱點單字</h2>
+ ${weakList.length?weakList.map(w=>`<p>⚠️ <b>${w}</b>　錯 ${weak[w]} 次</p>`).join(""):"<p>目前還沒有錯題，太棒了！🎉</p>"}
+ <button class="secondary" onclick="clearWeak()">清除錯題紀錄</button>`;
+}
+function nav(btn){document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active"));btn.classList.add("active")}
+function clearIntervals(){clearInterval(whackInterval);clearTimeout(whackTimer)}
+
+function pick(arr){return arr[Math.floor(Math.random()*arr.length)]}
+function choices(correct,n=4){
+ let pool=words.filter(x=>x[0]!==correct[0]).sort(()=>Math.random()-.5).slice(0,n-1);
+ return [correct,...pool].sort(()=>Math.random()-.5);
+}
+
+function startQuiz(btn){
+ if(btn)nav(btn);clearIntervals();locked=false;quizIndex=0;
+ quizWords=[...words].sort(()=>Math.random()-.5).slice(0,10);
+ renderQuiz();
+}
+function renderQuiz(){
+ if(quizIndex>=quizWords.length){finishQuiz();return}
+ const w=quizWords[quizIndex], opts=choices(w);
+ screen.innerHTML=`<h2>🎯 快問快答</h2><div>第 ${quizIndex+1} / ${quizWords.length} 題</div>
+ <div class="progress"><div class="bar" style="width:${quizIndex/quizWords.length*100}%"></div></div>
+ <div class="center"><div class="bigword">${w[0]}</div><p>這個單字是什麼意思？</p>
+ <div class="options">${opts.map((o,i)=>`<button class="option" onclick="answerQuiz(${i})">${o[1]}</button>`).join("")}</div>
+ <div id="feedback" class="feedback"></div></div>`;
+ window.currentQuizOpts=opts;window.currentQuizWord=w;
+}
+function answerQuiz(i){
+ if(locked)return;locked=true;
+ const w=currentQuizWord,chosen=currentQuizOpts[i], buttons=document.querySelectorAll(".option");
+ if(chosen[0]===w[0]){
+  buttons[i].classList.add("correct");combo++;addScore(10+combo*2);document.getElementById("feedback").textContent="🎉 答對了！";
+ }else{
+  buttons[i].classList.add("wrong");buttons[currentQuizOpts.findIndex(x=>x[0]===w[0])].classList.add("correct");
+  wrong(w[0]);document.getElementById("feedback").textContent=`❌ 答案是：${w[1]}`;
+ }
+ setTimeout(()=>{quizIndex++;locked=false;if(lives>0)renderQuiz()},800);
+}
+function finishQuiz(){screen.innerHTML=`<div class="center"><div style="font-size:70px">🏆</div><h2>10 題完成！</h2><p style="font-size:24px">現在分數：<b>${score}</b></p><button class="primary" onclick="startQuiz()">再挑戰一次</button></div>`}
+
+function startWhack(btn){
+ if(btn)nav(btn);clearIntervals();whackEnd=Date.now()+30000;
+ screen.innerHTML=`<h2>🐹 英文打地鼠</h2><div class="center"><div class="timer" id="whackTime">30</div><p id="whackQuestion"></p></div><div class="holes">${[0,1,2,3,4,5].map(i=>`<button class="hole" id="hole${i}" onclick="hitHole(${i})"></button>`).join("")}</div><div class="center"><p id="whackFeedback"></p></div>`;
+ nextWhack();
+ whackInterval=setInterval(()=>{let s=Math.max(0,Math.ceil((whackEnd-Date.now())/1000));document.getElementById("whackTime").textContent=s;if(s<=0){clearIntervals();finishWhack()}},250);
+}
+function nextWhack(){
+ if(Date.now()>=whackEnd)return;
+ const w=pick(words);window.whackWord=w;whackActive=Math.floor(Math.random()*6);
+ const opts=choices(w);
+ document.getElementById("whackQuestion").innerHTML=`請找到：<b>${w[1]}</b>`;
+ for(let i=0;i<6;i++){let h=document.getElementById("hole"+i);h.classList.toggle("active",i===whackActive);h.textContent=i===whackActive?w[0]:pick(opts)[0]}
+}
+function hitHole(i){
+ if(i!==whackActive)return;
+ if(document.getElementById("hole"+i).textContent===whackWord[0]){
+  combo++;addScore(15+combo);document.getElementById("whackFeedback").textContent="💥 打中了！";
+  nextWhack();
+ }
+}
+function finishWhack(){screen.innerHTML=`<div class="center"><div style="font-size:70px">🐹</div><h2>時間到！</h2><p style="font-size:25px">目前分數：<b>${score}</b></p><button class="primary" onclick="startWhack()">再打一次</button></div>`}
+
+function startMatch(btn){
+ if(btn)nav(btn);clearIntervals();matched=0;firstCard=null;secondCard=null;matchLock=false;
+ let chosen=[...words].sort(()=>Math.random()-.5).slice(0,6);
+ matchCards=chosen.flatMap((w,i)=>[{id:i,text:w[0],type:"en"},{id:i,text:w[1],type:"zh"}]).sort(()=>Math.random()-.5);
+ screen.innerHTML=`<h2>🃏 記憶翻牌</h2><div class="center"><p>找出英文和中文的一對！</p></div>
+ <div class="match-grid">${matchCards.map((c,i)=>`<button class="card" id="card${i}" onclick="flipCard(${i})">❓</button>`).join("")}</div>`;
+}
+function flipCard(i){
+ if(matchLock)return;let el=document.getElementById("card"+i);if(el.classList.contains("flipped")||el.classList.contains("matched"))return;
+ const c=matchCards[i];el.classList.add("flipped");el.textContent=c.text;
+ if(!firstCard){firstCard={i,c};return}
+ secondCard={i,c};matchLock=true;
+ setTimeout(()=>{
+  if(firstCard.c.id===secondCard.c.id&&firstCard.c.type!==secondCard.c.type){
+   document.getElementById("card"+firstCard.i).classList.add("matched");document.getElementById("card"+secondCard.i).classList.add("matched");
+   matched++;addScore(25);combo++;
+   if(matched===6)setTimeout(()=>{screen.innerHTML=`<div class="center"><div style="font-size:70px">🎉</div><h2>全部配對成功！</h2><button class="primary" onclick="startMatch()">再玩一次</button></div>`},300);
+  }else{
+   document.getElementById("card"+firstCard.i).classList.remove("flipped");document.getElementById("card"+secondCard.i).classList.remove("flipped");
+   document.getElementById("card"+firstCard.i).textContent="❓";document.getElementById("card"+secondCard.i).textContent="❓";
+   combo=0;stats();
+  }
+  firstCard=null;secondCard=null;matchLock=false;
+ },650);
+}
+
+function startRun(btn){
+ if(btn)nav(btn);clearIntervals();nextRun();
+}
+function nextRun(){
+ runWord=pick(words);let opts=choices(runWord);
+ screen.innerHTML=`<h2>🏃 單字跑酷</h2>
+ <div class="center"><p>選出正確答案，讓小跑者跳過障礙！</p><div class="bigword">${runWord[0]}</div></div>
+ <div class="runway"><div class="runner" id="runner">🏃</div><div class="obstacle">🪨</div></div>
+ <div class="run-options">${opts.map((o,i)=>`<button onclick="answerRun(${i})">${o[1]}</button>`).join("")}</div>
+ <div class="center"><p id="runFeedback"></p></div>`;
+ window.runOpts=opts;
+}
+function answerRun(i){
+ const chosen=runOpts[i],r=document.getElementById("runner"),f=document.getElementById("runFeedback");
+ if(chosen[0]===runWord[0]){
+  r.style.transition=".5s";r.style.left="78%";combo++;addScore(20+combo);
+  f.textContent="✨ 跳過去了！";setTimeout(nextRun,700);
+ }else{
+  r.textContent="💥";wrong(runWord[0]);f.textContent=`❌ 正確答案：${runWord[1]}`;
+  setTimeout(()=>{if(lives>0)nextRun()},900);
+ }
+}
+function clearWeak(){weak={};localStorage.removeItem("weakEnglishWords");showHome()}
+
+showHome();
+</script>
+</body>
+</html>

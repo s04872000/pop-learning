@@ -5,6 +5,305 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Pop! Learning｜個人家教</title>
 <link rel="stylesheet" href="style.css">
+
+<style>
+/* 聯絡我｜Pop! Learning 粉紅可愛卡片 */
+.contact{padding-bottom:70px}
+.contact-people{max-width:920px;margin:25px auto;display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.cute-contact-card{background:linear-gradient(145deg,#fff,#fff5fa);border:2px solid #f4d3e1;border-radius:26px;padding:22px;box-shadow:0 8px 22px rgba(217,87,145,.10);transition:.2s}
+.cute-contact-card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(217,87,145,.16)}
+.contact-person-head{display:flex;align-items:center;gap:16px;padding-bottom:16px;margin-bottom:14px;border-bottom:1px dashed #f0bfd3}
+.contact-person-head img{width:92px;height:92px;object-fit:cover;object-position:top center;border-radius:22px;border:3px solid #f6d6e4;background:#fff0f6}
+.contact-person-head h3{margin:0 0 6px;color:#d95791;font-size:22px;font-weight:900}
+.contact-role{margin:0;color:#967584;font-size:14px}
+.contact-info-list{display:flex;flex-direction:column;gap:9px}
+.contact-info-item{display:flex;align-items:center;gap:11px;padding:11px 13px;border-radius:15px;background:#fff0f6;color:#6c5661;text-decoration:none;border:1px solid #f4d7e3;transition:.18s}
+.contact-info-item:hover{background:#ffe2ee;transform:translateX(3px)}
+.contact-info-item>span:first-child{width:30px;text-align:center;font-size:21px}
+.contact-info-item>span:last-child{display:flex;flex-direction:column;line-height:1.35;overflow-wrap:anywhere}
+.contact-info-item small{color:#d95791;font-weight:800;font-size:11px;letter-spacing:.06em}
+.contact-bottom-note{max-width:760px;margin:25px auto 0;padding:14px 18px;border-radius:18px;background:#fff0f6;color:#8a6878;border:1px solid #f3d1df}
+@media(max-width:700px){.contact-people{grid-template-columns:1fr}.cute-contact-card{padding:18px}}
+</style>
+
+<style>
+/* ===== 聯絡我｜重新整理版 ===== */
+.contact{
+  padding:20px 0 70px;
+}
+.contact h2{
+  margin-bottom:8px;
+}
+.contact-intro{
+  color:#806977;
+  margin:0 0 28px;
+}
+.contact-people{
+  max-width:880px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:24px;
+}
+.cute-contact-card{
+  background:#fff;
+  border:2px solid #f4d3e1;
+  border-radius:26px;
+  padding:22px;
+  box-shadow:0 7px 20px rgba(217,87,145,.10);
+}
+.contact-person-head{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:15px;
+  padding:4px 0 17px;
+  margin-bottom:15px;
+  border-bottom:1px dashed #efbfd2;
+}
+.contact-person-head img{
+  width:82px;
+  height:82px;
+  object-fit:cover;
+  object-position:top center;
+  border-radius:20px;
+  border:3px solid #f7d6e4;
+  background:#fff0f6;
+  flex:none;
+}
+.contact-person-title{
+  text-align:left;
+}
+.contact-person-title h3{
+  margin:0 0 6px;
+  color:#d95791;
+  font-size:22px;
+  line-height:1.25;
+  font-weight:900;
+}
+.contact-person-title p{
+  margin:0;
+  color:#967584;
+  font-size:14px;
+}
+.contact-info-list{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:9px;
+}
+.contact-info-item{
+  min-width:0;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:10px 13px;
+  border-radius:14px;
+  background:#fff3f8;
+  border:1px solid #f3d4e2;
+  color:#6c5661;
+  text-decoration:none;
+  transition:transform .16s ease,background .16s ease;
+}
+.contact-info-item:hover{
+  background:#ffe6f0;
+  transform:translateY(-1px);
+}
+.contact-info-icon{
+  width:30px;
+  flex:none;
+  text-align:center;
+  font-size:20px;
+}
+.contact-info-item span:last-child{
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  line-height:1.3;
+}
+.contact-info-item small{
+  color:#d95791;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.08em;
+}
+.contact-info-item b{
+  color:#65525d;
+  font-size:14px;
+  font-weight:600;
+  overflow-wrap:anywhere;
+}
+.contact-bottom-note{
+  max-width:700px;
+  margin:24px auto 0;
+  padding:13px 18px;
+  border-radius:18px;
+  background:#fff0f6;
+  border:1px solid #f3d1df;
+  color:#8a6878;
+}
+@media(max-width:700px){
+  .contact-people{grid-template-columns:1fr;max-width:460px}
+  .cute-contact-card{padding:19px}
+}
+</style>
+
+<style>
+/* ===== 聯絡我｜精簡整齊版 ===== */
+.contact{
+  padding:20px 0 70px;
+}
+.contact h2{
+  margin-bottom:8px;
+}
+.contact-intro{
+  color:#806977;
+  margin:0 0 28px;
+}
+.contact-people{
+  max-width:880px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:24px;
+}
+.cute-contact-card{
+  background:#fff;
+  border:2px solid #f4d3e1;
+  border-radius:26px;
+  padding:22px;
+  box-shadow:0 7px 20px rgba(217,87,145,.10);
+}
+.contact-person-head{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:15px;
+  padding:4px 0 17px;
+  margin-bottom:15px;
+  border-bottom:1px dashed #efbfd2;
+}
+.contact-person-head img{
+  width:82px;
+  height:82px;
+  object-fit:cover;
+  object-position:top center;
+  border-radius:20px;
+  border:3px solid #f7d6e4;
+  background:#fff0f6;
+  flex:none;
+}
+.contact-person-title{
+  text-align:left;
+}
+.contact-person-title h3{
+  margin:0 0 6px;
+  color:#d95791;
+  font-size:22px;
+  line-height:1.25;
+  font-weight:900;
+}
+.contact-person-title p{
+  margin:0;
+  color:#967584;
+  font-size:14px;
+  white-space:nowrap;
+}
+.contact-info-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+}
+.contact-info-item{
+  min-width:0;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:9px 11px;
+  border-radius:14px;
+  background:#fff3f8;
+  border:1px solid #f3d4e2;
+  color:#6c5661;
+  text-decoration:none;
+  transition:transform .16s ease,background .16s ease;
+}
+.contact-info-item:hover{
+  background:#ffe6f0;
+  transform:translateY(-1px);
+}
+.contact-info-icon{
+  width:25px;
+  flex:none;
+  text-align:center;
+  font-size:18px;
+}
+.contact-info-item span:last-child{
+  min-width:0;
+  display:flex;
+  align-items:baseline;
+  gap:6px;
+  line-height:1.25;
+}
+.contact-info-item small{
+  color:#d95791;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.05em;
+  white-space:nowrap;
+}
+.contact-info-item b{
+  color:#65525d;
+  font-size:13px;
+  font-weight:600;
+  white-space:nowrap;
+}
+.contact-email{
+  grid-column:1 / -1;
+  justify-content:center;
+}
+.contact-email span:last-child{
+  justify-content:center;
+}
+.contact-bottom-note{
+  width:fit-content;
+  max-width:90%;
+  margin:25px auto 0;
+  padding:13px 22px;
+  border-radius:18px;
+  background:#fff0f6;
+  border:1px solid #f3d1df;
+  color:#8a6878;
+  text-align:center;
+}
+@media(max-width:700px){
+  .contact-people{
+    grid-template-columns:1fr;
+    max-width:460px;
+  }
+}
+@media(max-width:460px){
+  .contact-info-grid{
+    grid-template-columns:1fr;
+  }
+  .contact-email{
+    grid-column:auto;
+  }
+  .contact-person-title p{
+    white-space:normal;
+  }
+}
+</style>
+
+<style>
+/* 聯絡我底部提示：強制整個區塊水平置中 */
+.contact .contact-bottom-note{
+  display:block !important;
+  width:100% !important;
+  max-width:700px !important;
+  margin:25px auto 0 !important;
+  box-sizing:border-box !important;
+  text-align:center !important;
+}
+</style>
 </head>
 <body>
 <header class="navbar">
@@ -34,8 +333,95 @@
 </div>
 </section>
 
+<section id="learning-flow" class="learning-flow">
+<h2>📚 學習流程與家教配合</h2>
+<p class="section-description">完整的學習，不只是在課堂上聽老師講解，而是由四個環節形成一個循環。</p>
+
+<div class="flow-steps">
+<div class="flow-step">
+<div class="flow-title"><span class="flow-number">①</span><span class="flow-icon">👩‍🏫</span><h3>上課學習</h3></div>
+<p><strong>老師負責教，學生負責學。</strong></p>
+<p>老師會盡可能協助學生理解觀念、建立基礎；學生則需要維持良好的學習態度與身心狀態。上課前保持良好的精神狀態，也是學習的一部分。</p>
+</div>
+
+<div class="flow-step">
+<div class="flow-title"><span class="flow-number">②</span><span class="flow-icon">✏️</span><h3>練題</h3></div>
+<p><strong>把課堂上的理解，透過練習確認是否真正學會。</strong></p>
+<p>練題主要由學生負責，目的在於鞏固上課所學。多數學生仍需要透過練習確認自己的理解程度。</p>
+</div>
+
+<div class="flow-step">
+<div class="flow-title"><span class="flow-number">③</span><span class="flow-icon">✓</span><h3>對答案</h3></div>
+<p><strong>寫完不是結束，確認對錯才是下一步。</strong></p>
+<p>完成作業後主動確認對錯，看到錯題會想知道「為什麼錯」，並先嘗試查閱解答、自行訂正，能讓學生自行解決一部分問題。</p>
+<p>對國中生會較明確要求；小五以上則逐步培養這項習慣。</p>
+</div>
+
+<div class="flow-step">
+<div class="flow-title"><span class="flow-number">④</span><span class="flow-icon">💡</span><h3>檢討</h3></div>
+<p><strong>找出錯誤原因，真正把問題弄懂。</strong></p>
+<p>對完答案後，可以先自行思考錯誤原因，或參考解答理解解題過程。仍不理解的題目，再於課堂或 LINE 群組提問，由老師進一步協助。</p>
+</div>
+</div>
+
+<div class="flow-note">
+<strong>🌱 上課是老師的責任，練習與確認是學生的成長，檢討則是師生共同完成的學習循環。</strong>
+</div>
+</section>
+
+
+<section id="service-model" class="service-model">
+<h2>🌷 不只是上課｜完整學習管理</h2>
+<p class="section-description">除了實體教學，也提供完整的課前、課後與學習追蹤服務，讓家教不只是單次上課，而是陪伴孩子穩定學習。</p>
+
+<div class="service-cards">
+<div class="service-card">
+<div class="service-title"><span class="service-icon">📅</span><h3>課前提醒</h3></div>
+<p>每次上課前一天提醒上課時間，並協助掌握學校行事曆與段考時程。</p>
+</div>
+
+<div class="service-card">
+<div class="service-title"><span class="service-icon">📚</span><h3>課後學習資源</h3></div>
+<p>提供歷屆考題與補充題目，搭配課程進行複習與加強。</p>
+</div>
+
+<div class="service-card">
+<div class="service-title"><span class="service-icon">💬</span><h3>LINE 課後服務</h3></div>
+<p>提供 LINE 群組課後提問與解題，協助孩子處理課後遇到的問題。</p>
+</div>
+
+<div class="service-card">
+<div class="service-title"><span class="service-icon">👩‍👩‍👧</span><h3>親師溝通與學習追蹤</h3></div>
+<p>持續關注孩子的學習狀況、作業完成度與學習習慣，並與家長討論。</p>
+</div>
+
+<div class="service-card">
+<div class="service-title"><span class="service-icon">🧾</span><h3>每月課程對帳</h3></div>
+<p>每月整理鐘點費與課程時數，讓家長清楚掌握上課狀況。</p>
+</div>
+</div>
+
+<div class="service-highlight">
+<strong>⭐ LINE 群組內的課後提問、解題與學習服務，皆為實體課程的附加服務，不另收費。</strong>
+</div>
+
+<div class="service-position">
+相較於以單次上課為主的家教服務，我更重視<strong>長期、穩定且系統化的學習管理</strong>，除了教學本身，也同步關注孩子的學習習慣、作業完成度、課後追蹤與親師溝通。
+</div>
+</section>
+
+
 <section id="about" class="about">
-<div class="about-image">👩‍🏫</div>
+<div class="about-image about-teachers">
+<div class="teacher-portrait">
+<img src="images/teacher-female-cartoon.png" alt="音符老師漫畫肖像">
+<div class="teacher-name female-name">🎵 音符老師</div>
+</div>
+<div class="teacher-portrait">
+<img src="images/teacher-male-cartoon.png" alt="劉老師漫畫肖像">
+<div class="teacher-name male-name">⭐ 劉老師</div>
+</div>
+</div>
 <div class="about-text"><p class="small-title">ABOUT TEACHER</p><h2>關於老師</h2>
 <p>我希望家教不只是陪孩子把作業寫完，而是找出孩子真正卡住的地方。</p>
 <p>透過觀念講解、圖像、例題與反覆練習，讓孩子慢慢建立自己的學習方法。</p>
@@ -55,18 +441,60 @@
 <div class="card"><div class="icon">🔤</div><h3>英文題庫</h3><p>單字、文法、句型與閱讀練習。</p><a class="quiz-btn" href="quizzes/english.html">開始練習 →</a></div>
 <div class="card"><div class="icon">🔢</div><h3>小學數學</h3><p>從基礎觀念到應用題的互動練習。</p><a class="quiz-btn" href="quizzes/elementary-math.html">開始練習 →</a></div>
 <div class="card"><div class="icon">📐</div><h3>國中數學</h3><p>正負數、代數、方程式等互動題庫。</p><a class="quiz-btn" href="quizzes/junior-math.html">開始練習 →</a></div>
-<div class="card"><div class="icon">🔬</div><h3>國中理化實驗大全</h3><p>收錄 136 個國中理化實驗，點擊即可搜尋 YouTube 實驗影片。</p><a class="quiz-btn" href="./quizzes/理化.html">查看實驗 →</a></div>
+<div class="card"><div class="icon">🔬</div><h3>國中理化實驗大全</h3><p>收錄 136 個國中理化實驗，點擊即可搜尋 YouTube 實驗影片。</p><a class="quiz-btn" href="quizzes/4.國中理化實驗大全.html">查看實驗 →</a></div>
 </div>
 
 </section>
 
 <section id="contact" class="contact">
-<h2>📩 聯絡我</h2><p>想了解課程或詢問家教時段，歡迎聯絡。</p>
-<div class="contact-grid">
-<div class="contact-card"><span>💬</span><h3>LINE</h3><p>s04872000<br>icq617</p></div>
-<div class="contact-card"><span>✉️</span><h3>E-mail</h3><p><a href="mailto:s04872000@yahoo.com.tw">s04872000@yahoo.com.tw</a><br><a href="mailto:icq617@gmail.com">icq617@gmail.com</a></p></div>
-<div class="contact-card"><span>📞</span><h3>電話</h3><p><a href="tel:0933107492">0933-107-492</a><br><a href="tel:0911203771">0911-203-771</a></p></div>
+<h2>📩 聯絡我</h2>
+<p class="contact-intro">有任何課程問題，歡迎和我們聯絡 💗</p>
+
+<div class="contact-people">
+  <div class="cute-contact-card">
+    <div class="contact-person-head">
+      <img src="images/teacher-female-cartoon.png" alt="音符老師漫畫肖像">
+      <div class="contact-person-title">
+        <h3>🎵 音符老師</h3>
+        <p>數學・英文家教</p>
+      </div>
+    </div>
+    <div class="contact-info-grid">
+      <a href="https://line.me/ti/p/~s04872000" target="_blank" class="contact-info-item">
+        <span class="contact-info-icon">💬</span><span><small>LINE</small><b>s04872000</b></span>
+      </a>
+      <a href="tel:0933107492" class="contact-info-item">
+        <span class="contact-info-icon">📞</span><span><small>電話</small><b>0933-107-492</b></span>
+      </a>
+      <a href="mailto:s04872000@yahoo.com.tw" class="contact-info-item contact-email">
+        <span class="contact-info-icon">✉️</span><span><small>E-mail</small><b>s04872000@yahoo.com.tw</b></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="cute-contact-card">
+    <div class="contact-person-head">
+      <img src="images/teacher-male-cartoon.png" alt="劉老師漫畫肖像">
+      <div class="contact-person-title">
+        <h3>⭐ 劉老師</h3>
+        <p>數學・理化・生物家教</p>
+      </div>
+    </div>
+    <div class="contact-info-grid">
+      <a href="https://line.me/ti/p/~icq617" target="_blank" class="contact-info-item">
+        <span class="contact-info-icon">💬</span><span><small>LINE</small><b>icq617</b></span>
+      </a>
+      <a href="tel:0911203771" class="contact-info-item">
+        <span class="contact-info-icon">📞</span><span><small>電話</small><b>0911-203-771</b></span>
+      </a>
+      <a href="mailto:icq617@gmail.com" class="contact-info-item contact-email">
+        <span class="contact-info-icon">✉️</span><span><small>E-mail</small><b>icq617@gmail.com</b></span>
+      </a>
+    </div>
+  </div>
 </div>
+
+<p class="contact-bottom-note">🌷 歡迎先聯絡我們了解課程內容與適合的上課方式。</p>
 </section>
 
 <footer>© 2026 Pop! Learning<br>Personal Tutoring & Learning</footer>

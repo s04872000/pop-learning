@@ -1,0 +1,200 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>英文單字分組題庫</title>
+<style>
+body{margin:0;background:#fff7fb;font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;color:#37423b}.wrap{max-width:900px;margin:auto;padding:20px}
+.card{background:white;border-radius:22px;padding:22px;margin:15px 0;box-shadow:0 5px 20px #0001}h1{color:#4d9a70}h2{color:#4d9a70}
+.groups,.words{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.group,.word{padding:15px;border-radius:16px;background:#f4faf6;border:2px solid #d9ebdf}
+button{padding:11px 16px;border:0;border-radius:12px;font-weight:bold;font-size:16px;cursor:pointer}.primary{background:#69aa88;color:white}.pink{background:#fff0f5;color:#b94d70}.yellow{background:#fff3c2;color:#745f00}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}.hidden{display:none !important}.q{font-size:25px;font-weight:bold;margin:22px 0}
+input{width:min(430px,95%);padding:13px;border:2px solid #ccd9d0;border-radius:12px;font-size:20px}.feedback{display:none;padding:13px;margin-top:13px;border-radius:12px}.ok{display:block;background:#e9f8ed}.bad{display:block;background:#fff0f0}
+@media(max-width:650px){.groups,.words{grid-template-columns:1fr}}
+.flashcard{min-height:280px;background:linear-gradient(145deg,#fff9fc,#f3fbf5);border:3px solid #d6eadc;border-radius:25px;display:flex;align-items:center;justify-content:center;text-align:center;padding:25px;cursor:pointer;user-select:none}.flashWord{font-size:38px;font-weight:900;color:#4d9a70}.flashZh{font-size:32px;font-weight:900;color:#b94d70}.ipa{font-size:21px;color:#65736b;margin:6px 0 12px;font-family:"Times New Roman","Noto Sans",sans-serif}.small{color:#7b8780;font-size:14px}
+/* Pop! Learning 粉紅主題｜與首頁風格一致 */
+:root{
+  --pop-pink:#d95791;
+  --pop-pink-dark:#c94f82;
+  --pop-pink-light:#fff0f6;
+  --pop-pink-bg:#fff7fb;
+  --pop-pink-border:#f5cfe0;
+  --pop-text:#4b3f49;
+  --pop-muted:#7d6f79;
+  --pop-white:#ffffff;
+  --pop-shadow:0 8px 24px rgba(217,87,145,.10);
+}
+body{
+  background:linear-gradient(180deg,#fff7fb 0%,#fff 100%) !important;
+  color:var(--pop-text) !important;
+  font-family:"Noto Sans TC","Microsoft JhengHei",Arial,sans-serif !important;
+}
+h1,h2,h3{
+  color:var(--pop-pink) !important;
+  font-weight:900;
+  letter-spacing:.02em;
+}
+h1{
+  text-align:center;
+  font-size:clamp(26px,4vw,36px);
+}
+button{
+  border:0 !important;
+  border-radius:14px !important;
+  background:var(--pop-pink) !important;
+  color:#fff !important;
+  font-family:inherit !important;
+  font-weight:800 !important;
+  box-shadow:0 4px 10px rgba(217,87,145,.14);
+  transition:transform .15s ease,box-shadow .15s ease;
+}
+button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 7px 15px rgba(217,87,145,.18);
+}
+input,textarea{
+  border:2px solid var(--pop-pink-border) !important;
+  border-radius:12px !important;
+  font-family:inherit !important;
+  background:#fff !important;
+}
+input:focus,textarea:focus{
+  outline:none !important;
+  border-color:var(--pop-pink) !important;
+  box-shadow:0 0 0 3px rgba(217,87,145,.10);
+}
+
+/* 常見題庫卡片 */
+.card,.quiz,.screen,.sec,.q,.question{
+  background:var(--pop-white) !important;
+  border-color:var(--pop-pink-border) !important;
+  border-radius:22px !important;
+  box-shadow:var(--pop-shadow) !important;
+}
+.q,.question{
+  border-width:2px !important;
+}
+.section-description,.subtitle{
+  color:var(--pop-muted) !important;
+}
+
+/* 粉紅次要按鈕 */
+.pink,.secondary,.speak{
+  background:var(--pop-pink-light) !important;
+  color:var(--pop-pink-dark) !important;
+  border:2px solid var(--pop-pink-border) !important;
+}
+.yellow{
+  background:#fff0f6 !important;
+  color:var(--pop-pink-dark) !important;
+  border:2px solid var(--pop-pink-border) !important;
+}
+.primary,.check{
+  background:var(--pop-pink) !important;
+  color:#fff !important;
+}
+
+/* 正確／錯誤仍保留辨識色，但柔和一些 */
+.ok,.correct{
+  color:#198754 !important;
+}
+.bad,.wrong{
+  color:#d84f68 !important;
+}
+.feedback{
+  border-radius:14px !important;
+}
+
+/* 手機版 */
+@media(max-width:700px){
+  body{padding:14px !important}
+}
+
+.wrap{max-width:1000px !important;padding:24px !important}
+.card{padding:24px !important}
+.groups,.words{gap:16px !important}
+.group,.word{background:#fff8fc !important;border:2px solid #f5cfe0 !important;border-radius:18px !important}
+.flashcard{background:linear-gradient(145deg,#fff,#fff0f6) !important;border:3px solid #f5cfe0 !important}
+.flashWord{color:#d95791 !important}
+.flashZh{color:#c94f82 !important}
+.ipa{color:#7d6f79 !important}
+
+</style></head><body><div class="wrap">
+<section class="card"><h1>📚 英文單字｜每 5 個一組</h1><p>依難易度由易到難排列，先背誦，再測驗。</p></section>
+<section id="home" class="card"><h2>選擇單字組</h2><div id="groups" class="groups"></div></section>
+<section id="memory" class="card hidden">
+<h2>🧠 閃卡背誦區</h2>
+<p id="mt"></p>
+<div class="flashcard" onclick="flipCard()">
+  <div id="flashFront">
+    <div class="flashWord" id="flashWord"></div>
+    <div class="ipa" id="ipa"></div>
+    <div class="small">👆 點一下卡片翻面看中文</div>
+  </div>
+  <div id="flashBack" class="hidden">
+    <div class="flashZh" id="flashZh"></div>
+    <div class="flashPos" id="flashPos"></div>
+    <div class="small">👆 點一下卡片翻回英文</div>
+  </div>
+</div>
+<div class="actions">
+<button class="pink" onclick="prevCard()">◀ 上一張</button>
+<button class="yellow" onclick="speakCurrent()">🔊 聽發音</button>
+<button class="pink" onclick="nextCard()">下一張 ▶</button>
+</div>
+<div class="small" id="cardCount"></div>
+<div class="actions">
+<button class="primary" onclick="start()">開始 5 題測驗 ▶</button>
+<button class="pink" onclick="home()">← 選其他組</button>
+</div>
+</section>
+<section id="quiz" class="card hidden"><div><b id="progress"></b>　<b id="score"></b></div><div id="question" class="q"></div><input id="answer" placeholder="輸入英文單字或片語"><div id="feedback" class="feedback"></div><div class="actions"><button id="prev" class="pink" onclick="prev()">◀ 上一題</button><button id="check" class="primary" onclick="check()">✔ 對答案</button><button id="next" class="pink" onclick="next()">下一題 ▶</button><button class="pink" onclick="memory()">🧠 回背誦區</button></div></section>
+<section id="result" class="card hidden"><h2>🎉 測驗完成！</h2><div id="resultText"></div><div class="actions"><button id="wrongBtn" class="primary" onclick="retryWrong()">只練錯題</button><button class="pink" onclick="memory()">🧠 回背誦區</button><button class="pink" onclick="home()">← 選其他組</button></div></section>
+</div>
+<script>
+const groups=[{"title": "第1組｜基礎字詞", "items": [{"en": "year(s) old …", "zh": "歲", "pos": "句型"}, {"en": "very", "zh": "非常", "pos": "adv"}, {"en": "too", "zh": "也", "pos": "adv"}, {"en": "new", "zh": "新的", "pos": "adj"}, {"en": "young", "zh": "年輕的", "pos": "adj"}]}, {"title": "第2組｜家庭與人物", "items": [{"en": "cute", "zh": "可愛的", "pos": "adj"}, {"en": "dear", "zh": "親愛的", "pos": "adj"}, {"en": "family", "zh": "家庭；家人", "pos": "noun"}, {"en": "baby", "zh": "嬰兒；年幼的", "pos": "noun / adj"}, {"en": "uncle", "zh": "叔伯；舅舅", "pos": "noun"}]}, {"title": "第3組｜職業人物", "items": [{"en": "aunt", "zh": "阿姨；姑姑", "pos": "noun"}, {"en": "wife", "zh": "妻子", "pos": "noun"}, {"en": "son", "zh": "兒子", "pos": "noun"}, {"en": "daughter", "zh": "女兒", "pos": "noun"}, {"en": "husband", "zh": "丈夫", "pos": "noun"}]}, {"title": "第4組｜形容與描述", "items": [{"en": "cousin", "zh": "堂表兄弟姐妹", "pos": "noun"}, {"en": "classmate", "zh": "同學", "pos": "noun"}, {"en": "woman", "zh": "女人；複數 women", "pos": "noun"}, {"en": "singer", "zh": "歌手", "pos": "noun"}, {"en": "writer", "zh": "作家", "pos": "noun"}]}, {"title": "第5組｜家庭學校", "items": [{"en": "actor", "zh": "男演員", "pos": "noun"}, {"en": "actress", "zh": "女演員", "pos": "noun"}, {"en": "driver", "zh": "司機", "pos": "noun"}, {"en": "office worker", "zh": "上班族", "pos": "noun"}, {"en": "housewife", "zh": "家庭主婦", "pos": "noun"}]}, {"title": "第6組｜人物進階", "items": [{"en": "police officer", "zh": "警察", "pos": "noun"}, {"en": "elementary school", "zh": "國小", "pos": "noun"}, {"en": "junior high school", "zh": "國中", "pos": "noun"}, {"en": "handsome", "zh": "英俊的", "pos": "adj"}, {"en": "beautiful", "zh": "美麗的", "pos": "adj"}]}, {"title": "第7組｜實用句子", "items": [{"en": "friendly", "zh": "友善的", "pos": "adj"}, {"en": "really", "zh": "真的；實在", "pos": "adv"}, {"en": "Nice to meet you.", "zh": "很高興認識你。", "pos": "句子"}, {"en": "I see.", "zh": "我知道了。", "pos": "句子"}, {"en": "take care of", "zh": "照顧", "pos": "片語"}]}, {"title": "第8組｜常用片語", "items": [{"en": "grow up", "zh": "長大", "pos": "片語"}, {"en": "come true", "zh": "實現", "pos": "片語"}]}];let gi=0,pool=[],i=0,score=0,wrong=[],checked=false;
+const $=x=>document.getElementById(x);const sh=a=>[...a].sort(()=>Math.random()-.5);
+function renderGroups(){$("groups").innerHTML=groups.map((g,n)=>`<div class="group"><h3>${g.title}</h3><div>${g.items.map(x=>x.en).join("、")}</div><div class="actions"><button class="yellow" onclick="openMemory(${n})">🧠 先背這組</button></div></div>`).join("")}
+let cardIndex=0, cardFlipped=false;
+const ipaMap={"year(s) old …": "/jɪrz oʊld/", "very": "/ˈvɛri/", "too": "/tuː/", "new": "/nuː/", "young": "/jʌŋ/", "cute": "/kjuːt/", "dear": "/dɪr/", "family": "/ˈfæməli/", "baby": "/ˈbeɪbi/", "uncle": "/ˈʌŋkəl/", "aunt": "/ænt/", "wife": "/waɪf/", "son": "/sʌn/", "daughter": "/ˈdɔːtər/", "husband": "/ˈhʌzbənd/", "cousin": "/ˈkʌzən/", "classmate": "/ˈklæsmeɪt/", "woman": "/ˈwʊmən/", "singer": "/ˈsɪŋər/", "writer": "/ˈraɪtər/", "actor": "/ˈæktər/", "actress": "/ˈæktrəs/", "driver": "/ˈdraɪvər/", "office worker": "/ˈɔːfɪs ˌwɜːrkər/", "housewife": "/ˈhaʊswaɪf/", "police officer": "/pəˈliːs ˌɔːfɪsər/", "elementary school": "/ˌɛləˈmɛntri skuːl/", "junior high school": "/ˌdʒuːniər haɪ skuːl/", "handsome": "/ˈhænsəm/", "beautiful": "/ˈbjuːtəfəl/", "friendly": "/ˈfrɛndli/", "really": "/ˈriːəli/", "Nice to meet you.": "/naɪs tə miːt juː/", "I see.": "/aɪ siː/", "take care of": "/teɪk kɛr əv/", "grow up": "/ɡroʊ ʌp/", "come true": "/kʌm truː/"};
+function updateCard(){
+  const q=groups[gi].items[cardIndex];
+  document.getElementById("flashWord").textContent=q.en;
+  document.getElementById("ipa").textContent=ipaMap[q.en] || "";
+  document.getElementById("flashZh").textContent=q.zh;
+  document.getElementById("flashPos").textContent=q.pos;
+  document.getElementById("cardCount").textContent=`第 ${cardIndex+1} / ${groups[gi].items.length} 張`;
+  document.getElementById("flashFront").classList.remove("hidden");
+  document.getElementById("flashBack").classList.add("hidden");
+  cardFlipped=false;
+}
+function openMemory(n){
+  gi=n; cardIndex=0;
+  document.getElementById("home").classList.add("hidden");
+  document.getElementById("quiz").classList.add("hidden");
+  document.getElementById("result").classList.add("hidden");
+  document.getElementById("memory").classList.remove("hidden");
+  document.getElementById("mt").textContent=groups[n].title+"｜每張卡一個單字";
+  updateCard();
+}
+function flipCard(){
+  cardFlipped=!cardFlipped;
+  document.getElementById("flashFront").classList.toggle("hidden",cardFlipped);
+  document.getElementById("flashBack").classList.toggle("hidden",!cardFlipped);
+}
+function nextCard(){cardIndex=(cardIndex+1)%groups[gi].items.length;updateCard();}
+function prevCard(){cardIndex=(cardIndex-1+groups[gi].items.length)%groups[gi].items.length;updateCard();}
+function speakCurrent(){
+  const text=groups[gi].items[cardIndex].en;
+  if(window.speechSynthesis){
+    speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(text);
+    u.lang="en-US"; u.rate=.78;
+    speechSynthesis.speak(u);
+  }
+}
+function start(){pool=sh(groups[gi].items);i=0;score=0;wrong=[];$("memory").classList.add("hidden");$("quiz").classList.remove("hidden");render()}
+function render(){if(i>=pool.length)return finish();checked=false;$("progress").textContent=`第 ${i+1} / ${pool.length} 題`;$("score").textContent=`答對：${score}`;$("question").textContent=`請寫出「${pool[i].zh}」的英文：`;$("answer").value="";$("answer").disabled=false;$("feedback").className="feedback";$("feedback").innerHTML="";$("check").style.display="inline-block";$("prev").style.display=i?"inline-block":"none";$("next").style.display=i<pool.length-1?"inline-block":"none";$("answer").focus()}
+function check(){if(checked)return;let q=pool[i],u=$("answer").value.trim().toLowerCase().replace(/[.…。]/g,""),t=q.en.toLowerCase().replace(/[.…。]/g,"");checked=true;$("answer").disabled=true;$("check").style.display="none";if(u===t){score++;$("feedback").className="feedback ok";$("feedback").innerHTML=`🎉 答對！<b>${q.en}</b>`;setTimeout(()=>{i++;render()},650)}else{wrong.push(q);$("feedback").className="feedback bad";$("feedback").innerHTML=`❌ 答錯了<br>正確答案：<b>${q.en}</b>`;}}
+function next(){if(i<pool.length-1){i++;render()}}function prev(){if(i>0){i--;render()}}
+function finish(){$("quiz").classList.add("hidden");$("result").classList.remove("hidden");let e=Math.round((pool.length-score)/pool.length*1000)/10;$("resultText").innerHTML=`<p style="font-size:22px"><b>${score} / ${pool.length}</b> 題答對</p><p>錯誤率：<b>${e}%</b></p><p>${wrong.length?"📌 建議再練習錯題。":"🌟 全部答對，可以進入下一組！"}</p>`;$("wrongBtn").style.display=wrong.length?"inline-block":"none"}
+function retryWrong(){if(!wrong.length)return;pool=sh(wrong);i=0;score=0;wrong=[];$("result").classList.add("hidden");$("quiz").classList.remove("hidden");render()}
+function memory(){openMemory(gi)}function home(){$("memory").classList.add("hidden");$("quiz").classList.add("hidden");$("result").classList.add("hidden");$("home").classList.remove("hidden")}
+$("answer").addEventListener("keydown",e=>{if(e.key==="Enter")check()});renderGroups();
+</script></body></html>

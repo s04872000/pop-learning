@@ -180,12 +180,12 @@ footer{
 <body>
 <header>
 <h1>🔬 國中理化實驗大全</h1>
-<p class="subtitle">共 136 個實驗｜點擊即可開啟 YouTube 搜尋</p>
+<p class="subtitle">共 139 個實驗｜點擊即可開啟 YouTube 搜尋</p>
 <div class="toolbar">
 <input id="search" type="search" placeholder="搜尋實驗，例如：密度、浮力、歐姆定律…">
 <button id="clear">清除搜尋</button>
 </div>
-<p class="count" id="count">顯示 136 個實驗</p>
+<p class="count" id="count">顯示 139 個實驗</p>
 </header>
 <main>
 <section class="unit"><h2>一、基本測量</h2><div class="grid"><article class="card" data-search="一、基本測量 長度的測量">
@@ -733,6 +733,11 @@ footer{
           <div class="info"><h3>燃燒與氧化</h3><p>十五 · 九年級常見化學實驗</p></div>
           <a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%90%86%E5%8C%96+%E7%87%83%E7%87%92%E8%88%87%E6%B0%A7%E5%8C%96+%E5%AF%A6%E9%A9%97" target="_blank" rel="noopener">▶ YouTube</a>
         </article></div></section>
+<section class="unit"><h2>十六、顯微鏡與科學探究</h2><div class="grid">
+<article class="card" data-search="十六、顯微鏡與科學探究 複式顯微鏡 顯微鏡"><div class="num">137</div><div class="info"><h3>複式顯微鏡</h3><p>十六 · 顯微鏡與科學探究</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%90%86%E5%8C%96+%E8%A4%87%E5%BC%8F%E9%A1%AF%E5%BE%AE%E9%8F%A1+%E5%AF%A6%E9%A9%97" target="_blank" rel="noopener">▶ YouTube</a></article>
+<article class="card" data-search="十六、顯微鏡與科學探究 解剖顯微鏡 顯微鏡"><div class="num">138</div><div class="info"><h3>解剖顯微鏡</h3><p>十六 · 顯微鏡與科學探究</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%90%86%E5%8C%96+%E8%A7%A3%E5%89%96%E9%A1%AF%E5%BE%AE%E9%8F%A1+%E5%AF%A6%E9%A9%97" target="_blank" rel="noopener">▶ YouTube</a></article>
+<article class="card" data-search="十六、顯微鏡與科學探究 科學方法 科學探究"><div class="num">139</div><div class="info"><h3>科學方法</h3><p>十六 · 顯微鏡與科學探究</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%90%86%E5%8C%96+%E7%A7%91%E5%AD%B8%E6%96%B9%E6%B3%95+%E5%AF%A6%E9%A9%97" target="_blank" rel="noopener">▶ YouTube</a></article>
+</div></section>
 <div class="empty" id="empty">找不到符合的實驗 😅</div>
 </main>
 <footer>YouTube 按鈕會直接搜尋「國中理化＋實驗名稱」，不固定指定單一影片。</footer>
@@ -755,7 +760,7 @@ function filter(){
    const any=[...u.querySelectorAll('.card')].some(c=>c.style.display!=='none');
    u.style.display=any?'block':'none';
  });
- count.textContent=`顯示 ${visible} / 136 個實驗`;
+ count.textContent=`顯示 ${visible} / 139 個實驗`;
  empty.style.display=visible?'none':'block';
 }
 input.addEventListener('input',filter);

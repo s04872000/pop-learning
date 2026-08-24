@@ -77,9 +77,22 @@ async function loadCourses() {
 
     const response = await fetch("/api/courses");
 
-    const courses = await response.json();
+const courses = await response.json();
 
-    const courseList = document.getElementById("courseList");
+const order = [
+    "國小數學",
+    "國小英文",
+    "國中數學",
+    "國中英文",
+    "國中生物",
+    "國中理化"
+];
+
+courses.sort((a, b) => {
+    return order.indexOf(a.name) - order.indexOf(b.name);
+});
+
+const courseList = document.getElementById("courseList");
 
     courses.forEach(course => {
 
@@ -91,9 +104,9 @@ card.innerHTML = `
     <div class="icon">${course.icon}</div>
     <h3>${course.name}</h3>
     <p>${course.description}</p>
-    <button onclick='showCourse(${JSON.stringify(course.name)}, ${JSON.stringify(course.description)}, ${JSON.stringify(course.details)})'>
-    了解課程
-</button>
+    <button onclick='showCourse(${JSON.stringify(course.name)}, ${JSON.stringify(course.description)}, [])'>
+        了解課程
+    </button>
 `;
 
         courseList.appendChild(card);
@@ -101,3 +114,53 @@ card.innerHTML = `
 }
 
 loadCourses();
+// 聯絡表單
+const contactForm = document.getElementById("contactForm");
+
+if (contactForm) {
+    contactForm.addEventListener("submit", async function (e) {
+
+        e.preventDefault();
+
+        const result = document.getElementById("contactResult");
+
+        const data = {
+            name: document.getElementById("contactName").value.trim(),
+            phone: document.getElementById("contactPhone").value.trim(),
+            email: document.getElementById("contactEmail").value.trim(),
+            subject: document.getElementById("contactSubject").value,
+            message: document.getElementById("contactMessage").value.trim()
+        };
+
+        try {
+
+            const response = await fetch("/api/contacts", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            });
+
+            const resultData = await response.json();
+
+            if (!response.ok) {
+                throw new Error(resultData.message || "送出失敗");
+            }
+
+            result.textContent = "✅ 已收到您的詢問，我們會盡快與您聯絡！";
+            result.style.color = "#c74376";
+
+            contactForm.reset();
+
+        } catch (error) {
+
+            console.error(error);
+
+            result.textContent =
+                "❌ 送出失敗，請稍後再試或直接使用 LINE 聯絡我們。";
+
+            result.style.color = "#d33";
+        }
+    });
+}

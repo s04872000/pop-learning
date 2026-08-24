@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const coursesRoutes = require("./routes/coursesRoutes");
+const contactsRoutes = require("./routes/contactsRoutes");
 const connectDB = require("./config/database");
 const app = express();
 
@@ -17,6 +18,7 @@ app.use(express.static(path.join(__dirname, "..")));
 
 // 課程 API
 app.use("/api/courses", coursesRoutes);
+app.use("/api/contacts", contactsRoutes);
 
 
 // 測試 API

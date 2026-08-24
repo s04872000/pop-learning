@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Pop! Learning｜個人家教</title>
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="contact-form.css">
 
 <style>
 /* 聯絡我｜Pop! Learning 粉紅可愛卡片 */
@@ -555,6 +556,37 @@
   </div>
 </div>
 
+<div class="contact-form-box">
+  <h3>💌 線上詢問課程</h3>
+  <p>留下資料，我們會盡快與您聯絡 💗</p>
+
+  <form id="contactForm">
+    <input type="text" id="contactName" placeholder="姓名" required>
+
+    <input type="tel" id="contactPhone" placeholder="電話">
+
+    <input type="email" id="contactEmail" placeholder="Email">
+
+<select id="contactSubject">
+  <option value="">請選擇詢問科目</option>
+  <option value="國小數學">國小數學</option>
+  <option value="國小英文">國小英文</option>
+  <option value="國中數學">國中數學</option>
+  <option value="國中英文">國中英文</option>
+  <option value="國中生物">國中生物</option>
+  <option value="國中理化">國中理化</option>
+  <option value="其他">其他</option>
+</select>
+
+    <textarea id="contactMessage"
+      placeholder="請留下想詢問的內容，例如：年級、希望上課時間、想詢問的科目等"
+      required></textarea>
+
+    <button type="submit" class="btn main-btn">💌 送出詢問</button>
+
+    <p id="contactResult"></p>
+  </form>
+</div>
 <p class="contact-bottom-note">🌷 歡迎先聯絡我們了解課程內容與適合的上課方式。</p>
 </section>
 

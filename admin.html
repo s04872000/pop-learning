@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pop! Learning｜後台管理</title>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;background:#fff7fb;color:#333}
+  header{background:#fff;padding:18px 28px;box-shadow:0 2px 12px rgba(0,0,0,.08);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
+  header h1{margin:0;color:#c74376;font-size:24px}
+  header a{color:#c74376;text-decoration:none;font-weight:700}
+  .wrap{max-width:1100px;margin:28px auto;padding:0 18px}
+  .card{background:#fff;border:1px solid #efdce5;border-radius:18px;padding:22px;margin-bottom:20px;box-shadow:0 4px 16px rgba(100,45,70,.06)}
+  .title{font-size:21px;font-weight:700;color:#b83f73;margin:0 0 16px}
+  .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+  label{font-weight:700;font-size:14px;color:#666}
+  input,textarea,select{width:100%;margin-top:6px;border:1px solid #ddd;border-radius:10px;padding:10px 12px;font:inherit;background:#fff}
+  textarea{min-height:90px;resize:vertical}
+  .full{grid-column:1/-1}
+  .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+  button{border:0;border-radius:10px;padding:10px 16px;cursor:pointer;font:inherit}
+  .primary{background:#d94f87;color:#fff}
+  .secondary{background:#eee;color:#444}
+  .danger{background:#f6dfe5;color:#a52d4f}
+  .status{margin-top:12px;padding:10px 12px;border-radius:10px;display:none}
+  .ok{display:block;background:#eaf8ef;color:#267042}
+  .err{display:block;background:#fff0f0;color:#b52f3a}
+  table{width:100%;border-collapse:collapse}
+  th,td{padding:12px 10px;border-bottom:1px solid #eee;text-align:left;vertical-align:top}
+  th{color:#b83f73;background:#fff7fb}
+  .mini{padding:7px 10px;font-size:14px;margin-right:5px}
+  .empty{text-align:center;color:#888;padding:30px}
+  #loginScreen{position:fixed;inset:0;background:#fff7fb;display:flex;align-items:center;justify-content:center;z-index:100}
+  .login-card{width:min(420px,92%);background:#fff;border:1px solid #efdce5;border-radius:20px;padding:30px;box-shadow:0 8px 30px rgba(100,45,70,.12);text-align:center}
+  .login-card h2{color:#b83f73;margin-top:0}
+  .login-card input{margin-bottom:10px}
+  .login-error{display:none;color:#b52f3a;background:#fff0f0;padding:9px;border-radius:9px;margin-top:10px}
+  #adminApp{display:none}
+  @media(max-width:700px){
+    .grid{grid-template-columns:1fr}
+    .full{grid-column:auto}
+    table{display:block;overflow-x:auto;white-space:nowrap}
+  }
+</style>
+</head>
+<body>
+
+<section id="loginScreen">
+  <div class="login-card">
+    <div style="font-size:42px">🔐</div>
+    <h2>Pop! Learning 後台登入</h2>
+    <input id="loginUser" placeholder="管理員帳號" autocomplete="username">
+    <input id="loginPass" type="password" placeholder="密碼" autocomplete="current-password">
+    <button class="primary" style="width:100%;margin-top:6px" onclick="login()">登入後台</button>
+    <div id="loginError" class="login-error">帳號或密碼錯誤</div>
+    <p style="color:#888;font-size:13px;margin-bottom:0">專題展示版登入</p>
+  </div>
+</section>
+
+<div id="adminApp">
+
+<header>
+  <h1>📚 Pop! Learning｜後台管理</h1>
+  <div style="display:flex;gap:12px;align-items:center">
+    <a href="index.html">← 回前台</a>
+    <button class="danger mini" onclick="logout()">🚪 登出</button>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="card">
+    <h2 class="title" id="formTitle">➕ 新增課程</h2>
+
+    <form id="courseForm">
+      <input type="hidden" id="courseId">
+
+      <div class="grid">
+        <div>
+          <label>課程名稱
+            <input id="name" required placeholder="例如：國小六年級數學">
+          </label>
+        </div>
+
+        <div>
+          <label>科目
+            <input id="subject" placeholder="例如：數學">
+          </label>
+        </div>
+
+        <div>
+          <label>老師
+            <input id="teacher" placeholder="例如：Melody老師">
+          </label>
+        </div>
+
+        <div>
+          <label>價格
+            <input id="price" type="number" min="0" placeholder="例如：800">
+          </label>
+        </div>
+
+        <div>
+          <label>上課時間
+            <input id="schedule" placeholder="例如：週六 10:00～12:00">
+          </label>
+        </div>
+
+        <div>
+          <label>狀態
+            <select id="status">
+              <option value="招生中">招生中</option>
+              <option value="額滿">額滿</option>
+              <option value="暫停招生">暫停招生</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="full">
+          <label>課程介紹
+            <textarea id="description" placeholder="輸入課程內容、適合對象等"></textarea>
+          </label>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="primary" type="submit">💾 儲存課程</button>
+        <button class="secondary" type="button" onclick="resetForm()">清除／新增</button>
+      </div>
+
+      <div id="formMessage" class="status"></div>
+    </form>
+  </section>
+
+  <section class="card">
+    <h2 class="title">📋 課程列表</h2>
+    <div id="listMessage" class="status"></div>
+
+    <div style="overflow-x:auto">
+      <table>
+        <thead>
+          <tr>
+            <th>課程名稱</th>
+            <th>科目</th>
+            <th>老師</th>
+            <th>價格</th>
+            <th>時間</th>
+            <th>狀態</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody id="courseList">
+          <tr><td colspan="7" class="empty">載入中……</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+</div>
+
+<script>
+const API = "/api/courses";
+let courses = [];
+
+function showMessage(id, text, type="ok"){
+  const el = document.getElementById(id);
+  el.textContent = text;
+  el.className = "status " + type;
+}
+
+function resetForm(){
+  document.getElementById("courseForm").reset();
+  document.getElementById("courseId").value = "";
+  document.getElementById("formTitle").textContent = "➕ 新增課程";
+}
+
+function getFormData(){
+  const name = document.getElementById("name").value.trim();
+  const description = document.getElementById("description").value.trim();
+  const subject = document.getElementById("subject").value.trim();
+
+  const iconMap = {
+    "數學": "🔢",
+    "英文": "🔤",
+    "生物": "🧬",
+    "理化": "⚗️",
+    "自然": "🔬",
+    "國文": "📖"
+  };
+
+  const iconKey = Object.keys(iconMap).find(key =>
+    subject.includes(key) || name.includes(key)
+  );
+
+  const data = {
+    name,
+    icon: iconKey ? iconMap[iconKey] : "📚",
+    description: description || "課程介紹",
+    // 課程介紹已經顯示在前台，先不把同一段文字重複放進 details
+    details: []
+  };
+
+  return data;
+}
+
+async function loadCourses(){
+  try{
+    const res = await fetch(API);
+    if(!res.ok) throw new Error("HTTP " + res.status);
+    const data = await res.json();
+    courses = Array.isArray(data) ? data : (data.courses || data.data || []);
+    renderCourses();
+  }catch(err){
+    document.getElementById("courseList").innerHTML =
+      '<tr><td colspan="7" class="empty">無法讀取課程資料，請確認後端伺服器已啟動。</td></tr>';
+    showMessage("listMessage", "讀取失敗：" + err.message, "err");
+  }
+}
+
+function renderCourses(){
+  const tbody = document.getElementById("courseList");
+  if(!courses.length){
+    tbody.innerHTML = '<tr><td colspan="7" class="empty">目前沒有課程資料</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = courses.map((c,i) => {
+    const id = c._id || c.id || i;
+    return `
+      <tr>
+        <td>${esc(c.name ?? c.title ?? "")}</td>
+        <td>${esc(c.subject ?? "")}</td>
+        <td>${esc(c.teacher ?? "")}</td>
+        <td>${esc(c.price ?? "")}</td>
+        <td>${esc(c.schedule ?? c.time ?? "")}</td>
+        <td>${esc(c.status ?? "")}</td>
+        <td>
+          <button class="secondary mini" onclick="editCourse(${i})">✏️ 修改</button>
+          <button class="danger mini" onclick="deleteCourse('${String(id).replace(/'/g,"\\'")}')">🗑️ 刪除</button>
+        </td>
+      </tr>
+    `;
+  }).join("");
+}
+
+function esc(value){
+  return String(value)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+function editCourse(index){
+  const c = courses[index];
+  document.getElementById("courseId").value = c._id || c.id || "";
+  document.getElementById("name").value = c.name ?? c.title ?? "";
+  document.getElementById("subject").value = c.subject ?? "";
+  document.getElementById("teacher").value = c.teacher ?? "";
+  document.getElementById("price").value = c.price ?? "";
+  document.getElementById("schedule").value = c.schedule ?? c.time ?? "";
+  document.getElementById("status").value = c.status ?? "招生中";
+  document.getElementById("description").value = c.description ?? "";
+  document.getElementById("formTitle").textContent = "✏️ 修改課程";
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
+document.getElementById("courseForm").addEventListener("submit", async (e)=>{
+  e.preventDefault();
+
+  const id = document.getElementById("courseId").value;
+  const payload = getFormData();
+
+  try{
+    const url = id ? `${API}/${encodeURIComponent(id)}` : API;
+    const method = id ? "PUT" : "POST";
+
+    const res = await fetch(url,{
+      method,
+      headers: {"Content-Type":"application/json"},
+      body: JSON.stringify(payload)
+    });
+
+    const text = await res.text();
+    let data = {};
+    try{ data = text ? JSON.parse(text) : {}; }catch{}
+
+    if(!res.ok) throw new Error(data.message || text || ("HTTP " + res.status));
+
+    showMessage("formMessage", id ? "課程修改成功！" : "課程新增成功！", "ok");
+    resetForm();
+    
+const ADMIN_USER = "admin";
+const ADMIN_PASS = "123456";
+
+function login(){
+  const user = document.getElementById("loginUser").value.trim();
+  const pass = document.getElementById("loginPass").value;
+
+  if(user === ADMIN_USER && pass === ADMIN_PASS){
+    sessionStorage.setItem("popLearningAdmin", "1");
+    document.getElementById("loginScreen").style.display = "none";
+    document.getElementById("adminApp").style.display = "block";
+    loadCourses();
+  }else{
+    document.getElementById("loginError").style.display = "block";
+  }
+}
+
+function logout(){
+  sessionStorage.removeItem("popLearningAdmin");
+  location.reload();
+}
+
+document.addEventListener("keydown", e=>{
+  if(e.key === "Enter" && document.getElementById("loginScreen").style.display !== "none"){
+    login();
+  }
+});
+
+if(sessionStorage.getItem("popLearningAdmin") === "1"){
+  document.getElementById("loginScreen").style.display = "none";
+  document.getElementById("adminApp").style.display = "block";
+} else {
+  document.getElementById("adminApp").style.display = "none";
+}
+
+if(sessionStorage.getItem('popLearningAdmin') === '1') loadCourses();
+  }catch(err){
+    showMessage("formMessage", "儲存失敗：" + err.message, "err");
+  }
+});
+
+async function deleteCourse(id){
+  if(!confirm("確定要刪除這門課程嗎？")) return;
+
+  try{
+    const res = await fetch(`${API}/${encodeURIComponent(id)}`, {method:"DELETE"});
+    const text = await res.text();
+    let data = {};
+    try{ data = text ? JSON.parse(text) : {}; }catch{}
+
+    if(!res.ok) throw new Error(data.message || text || ("HTTP " + res.status));
+
+    showMessage("listMessage", "課程已刪除。", "ok");
+    
+const ADMIN_USER = "admin";
+const ADMIN_PASS = "123456";
+
+function login(){
+  const user = document.getElementById("loginUser").value.trim();
+  const pass = document.getElementById("loginPass").value;
+
+  if(user === ADMIN_USER && pass === ADMIN_PASS){
+    sessionStorage.setItem("popLearningAdmin", "1");
+    document.getElementById("loginScreen").style.display = "none";
+    document.getElementById("adminApp").style.display = "block";
+    loadCourses();
+  }else{
+    document.getElementById("loginError").style.display = "block";
+  }
+}
+
+function logout(){
+  sessionStorage.removeItem("popLearningAdmin");
+  location.reload();
+}
+
+document.addEventListener("keydown", e=>{
+  if(e.key === "Enter" && document.getElementById("loginScreen").style.display !== "none"){
+    login();
+  }
+});
+
+if(sessionStorage.getItem("popLearningAdmin") === "1"){
+  document.getElementById("loginScreen").style.display = "none";
+  document.getElementById("adminApp").style.display = "block";
+} else {
+  document.getElementById("adminApp").style.display = "none";
+}
+
+if(sessionStorage.getItem('popLearningAdmin') === '1') loadCourses();
+  }catch(err){
+    showMessage("listMessage", "刪除失敗：" + err.message, "err");
+  }
+}
+
+
+const ADMIN_USER = "admin";
+const ADMIN_PASS = "123456";
+
+function login(){
+  const user = document.getElementById("loginUser").value.trim();
+  const pass = document.getElementById("loginPass").value;
+
+  if(user === ADMIN_USER && pass === ADMIN_PASS){
+    sessionStorage.setItem("popLearningAdmin", "1");
+    document.getElementById("loginScreen").style.display = "none";
+    document.getElementById("adminApp").style.display = "block";
+    loadCourses();
+  }else{
+    document.getElementById("loginError").style.display = "block";
+  }
+}
+
+function logout(){
+  sessionStorage.removeItem("popLearningAdmin");
+  location.reload();
+}
+
+document.addEventListener("keydown", e=>{
+  if(e.key === "Enter" && document.getElementById("loginScreen").style.display !== "none"){
+    login();
+  }
+});
+
+if(sessionStorage.getItem("popLearningAdmin") === "1"){
+  document.getElementById("loginScreen").style.display = "none";
+  document.getElementById("adminApp").style.display = "block";
+} else {
+  document.getElementById("adminApp").style.display = "none";
+}
+
+if(sessionStorage.getItem('popLearningAdmin') === '1') loadCourses();
+</script>
+</body>
+</html>

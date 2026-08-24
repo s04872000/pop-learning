@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-Hant"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>老師管理中心｜Pop! Learning</title>
+<style>
+:root{--p:#d95791;--d:#b94d70;--l:#fff0f6;--bg:#fff8fc;--bd:#f2cddd;--t:#614f59;--m:#8d7180}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;color:var(--t)}
+header{background:#fff;border-bottom:2px solid var(--bd);position:sticky;top:0;z-index:2}.nav{max-width:1100px;margin:auto;padding:14px 20px;display:flex;justify-content:space-between;align-items:center}.brand{font-size:20px;font-weight:900;color:var(--d)}.nav a{color:var(--d);text-decoration:none;background:var(--l);padding:8px 14px;border-radius:999px;font-weight:800;font-size:13px}
+main{max-width:1100px;margin:auto;padding:40px 20px 70px}.hero,.panel,.card{background:#fff;border:2px solid var(--bd);border-radius:22px;box-shadow:0 7px 18px rgba(217,87,145,.08)}.hero{padding:28px;margin-bottom:22px}.hero small{color:var(--p);font-weight:900;letter-spacing:.12em}.hero h1{margin:7px 0;color:var(--d);font-size:30px}.hero p{margin:0;color:var(--m);line-height:1.8}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{padding:21px}.icon{font-size:30px}.card h2{font-size:19px;color:var(--d);margin:8px 0}.card p{font-size:13px;color:var(--m);line-height:1.7}.btn{display:inline-block;border:0;text-decoration:none;background:var(--p);color:#fff;border-radius:11px;padding:9px 13px;font-weight:900;font-size:12px;cursor:pointer}.btn.soft{background:var(--l);color:var(--d)}
+section{margin-top:25px}.title{color:var(--d);font-size:21px;margin:0 0 12px}.panel{padding:20px}.student{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px dashed #ecd4df;gap:12px}.student:last-child{border-bottom:0}.tag{font-size:11px;font-weight:900;color:var(--d);background:var(--l);padding:5px 9px;border-radius:999px}
+@media(max-width:800px){.grid{grid-template-columns:1fr 1fr}}@media(max-width:560px){.grid{grid-template-columns:1fr}.nav{padding:12px 15px}main{padding:28px 15px}}
+</style></head><body>
+<header><div class="nav"><div class="brand">🌸 Pop! Learning｜老師管理</div><a href="../index.html">回首頁</a></div></header>
+<main>
+<div class="hero"><small>TEACHER CENTER</small><h1>👩‍🏫 老師管理中心</h1><p>集中整理學生、課程、作業與學習提醒。這一版先建立管理介面，之後可再接真正的資料儲存功能。</p></div>
+<div class="grid">
+<article class="card"><div class="icon">👥</div><h2>學生管理</h2><p>查看學生基本學習資訊與目前學習階段。</p><button class="btn" onclick="document.getElementById('students').scrollIntoView({behavior:'smooth'})">查看學生</button></article>
+<article class="card"><div class="icon">📚</div><h2>課程管理</h2><p>整理各學生目前的科目與課程安排。</p><button class="btn soft" onclick="alert('課程管理介面已建立，之後可接實際課程資料。')">進入管理</button></article>
+<article class="card"><div class="icon">📝</div><h2>作業管理</h2><p>之後可在這裡指定作業、查看完成狀況。</p><button class="btn soft" onclick="alert('作業管理介面已建立，之後可接實際作業資料。')">進入管理</button></article>
+<article class="card"><div class="icon">📌</div><h2>老師提醒</h2><p>整理課前提醒、段考提醒與學習習慣提醒。</p><button class="btn soft" onclick="document.getElementById('reminders').scrollIntoView({behavior:'smooth'})">查看提醒</button></article>
+<article class="card"><div class="icon">📊</div><h2>學習狀況</h2><p>之後可查看學生練習量、正確率與作業完成度。</p><button class="btn soft" onclick="document.getElementById('records').scrollIntoView({behavior:'smooth'})">查看紀錄</button></article>
+<article class="card"><div class="icon">📝</div><h2>錯題精選</h2><p>使用目前已整理好的錯題題庫，不與學生個人錯題混淆。</p><a class="btn" href="my-mistakes.html">查看錯題</a></article>
+</div>
+<section id="students"><h2 class="title">👥 學生</h2><div class="panel">
+<div class="student"><div><strong>目前學生</strong><br><span style="color:#8d7180;font-size:13px">可依實際學生名單後續建立</span></div><span class="tag">待建立</span></div>
+</div></section>
+<section id="reminders"><h2 class="title">📌 老師提醒</h2><div class="panel">
+<div class="student"><div>上課前確認學生精神與學習狀態</div><span class="tag">課前</span></div>
+<div class="student"><div>完成作業後主動對答案並檢討錯題</div><span class="tag">課後</span></div>
+<div class="student"><div>不理解的題目可於課堂或 LINE 群組提出</div><span class="tag">提問</span></div>
+</div></section>
+<section id="records"><h2 class="title">📊 學習狀況</h2><div class="panel"><div class="student"><div><strong>學習紀錄</strong><br><span style="color:#8d7180;font-size:13px">目前先保留管理版面，尚未填入虛構數據。</span></div><span class="tag">待接資料</span></div></div></section>
+</main></body></html>

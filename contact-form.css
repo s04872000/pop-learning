@@ -1,0 +1,97 @@
+
+/* Pop! Learning｜線上詢問課程表單美化 */
+.contact-form-box {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 28px 32px;
+  background: rgba(255,255,255,.92);
+  border: 1px solid #f3d5e2;
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(180, 80, 120, .08);
+}
+
+.contact-form-box h3 {
+  margin: 0 0 6px;
+  text-align: center;
+  color: #c74376;
+  font-size: 24px;
+}
+
+.contact-form-box > p {
+  text-align: center;
+  color: #777;
+  margin: 0 0 22px;
+}
+
+#contactForm {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 16px;
+}
+
+#contactForm input,
+#contactForm select,
+#contactForm textarea {
+  width: 100%;
+  min-height: 46px;
+  padding: 11px 14px;
+  border: 1px solid #dfc8d2;
+  border-radius: 10px;
+  background: #fff;
+  color: #444;
+  font-size: 16px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color .2s, box-shadow .2s;
+}
+
+#contactForm input:focus,
+#contactForm select:focus,
+#contactForm textarea:focus {
+  border-color: #df6794;
+  box-shadow: 0 0 0 3px rgba(223,103,148,.12);
+}
+
+#contactForm textarea {
+  grid-column: 1 / -1;
+  min-height: 120px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+#contactForm button[type="submit"] {
+  grid-column: 1 / -1;
+  justify-self: center;
+  min-width: 150px;
+  min-height: 46px;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 24px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+#contactResult {
+  grid-column: 1 / -1;
+  text-align: center;
+  margin: 0;
+  min-height: 24px;
+}
+
+@media (max-width: 700px) {
+  .contact-form-box {
+    margin: 24px 12px;
+    padding: 22px 16px;
+  }
+
+  #contactForm {
+    grid-template-columns: 1fr;
+  }
+
+  #contactForm textarea,
+  #contactForm button[type="submit"],
+  #contactResult {
+    grid-column: 1;
+  }
+}

@@ -31,6 +31,12 @@
   th{color:#b83f73;background:#fff7fb}
   .mini{padding:7px 10px;font-size:14px;margin-right:5px}
   .empty{text-align:center;color:#888;padding:30px}
+
+  .contact-table td{font-size:14px}
+  .contact-message{white-space:pre-wrap;min-width:220px;max-width:360px;line-height:1.5}
+  .badge{display:inline-block;padding:5px 9px;border-radius:999px;font-size:13px}
+  .badge-new{background:#fff0f5;color:#c74376}
+  .badge-done{background:#eaf8ef;color:#267042}
   #loginScreen{position:fixed;inset:0;background:#fff7fb;display:flex;align-items:center;justify-content:center;z-index:100}
   .login-card{width:min(420px,92%);background:#fff;border:1px solid #efdce5;border-radius:20px;padding:30px;box-shadow:0 8px 30px rgba(100,45,70,.12);text-align:center}
   .login-card h2{color:#b83f73;margin-top:0}
@@ -155,6 +161,32 @@
       </table>
     </div>
   </section>
+
+  <section class="card">
+    <h2 class="title">📩 家長詢問</h2>
+    <div id="contactMessageBox" class="status"></div>
+
+    <div style="overflow-x:auto">
+      <table class="contact-table">
+        <thead>
+          <tr>
+            <th>姓名</th>
+            <th>電話</th>
+            <th>Email</th>
+            <th>詢問科目</th>
+            <th>留言</th>
+            <th>狀態</th>
+            <th>時間</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody id="contactList">
+          <tr><td colspan="8" class="empty">載入中……</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
 </main>
 
 </div>
@@ -292,6 +324,95 @@ document.getElementById("courseForm").addEventListener("submit", async (e)=>{
     showMessage("formMessage", id ? "課程修改成功！" : "課程新增成功！", "ok");
     resetForm();
     
+
+async function loadContacts(){
+  try{
+    const res = await fetch("/api/contacts");
+    if(!res.ok) throw new Error("HTTP " + res.status);
+
+    const data = await res.json();
+    const contacts = Array.isArray(data) ? data : (data.contacts || data.data || []);
+    const tbody = document.getElementById("contactList");
+
+    if(!contacts.length){
+      tbody.innerHTML = '<tr><td colspan="8" class="empty">目前沒有家長詢問</td></tr>';
+      return;
+    }
+
+    tbody.innerHTML = contacts.map(c => {
+      const id = c._id || c.id;
+      const status = c.status || "未處理";
+      const badgeClass = status === "已聯絡" ? "badge-done" : "badge-new";
+      const time = c.createdAt ? new Date(c.createdAt).toLocaleString("zh-TW") : "";
+
+      return `
+        <tr>
+          <td>${esc(c.name || "")}</td>
+          <td>${esc(c.phone || "")}</td>
+          <td>${esc(c.email || "")}</td>
+          <td>${esc(c.subject || "")}</td>
+          <td class="contact-message">${esc(c.message || "")}</td>
+          <td><span class="badge ${badgeClass}">${esc(status)}</span></td>
+          <td>${esc(time)}</td>
+          <td>
+            ${status !== "已聯絡"
+              ? `<button class="primary mini" onclick="markContactDone('${String(id).replace(/'/g,"\\'")}')">✅ 已聯絡</button>`
+              : ""}
+            <button class="danger mini" onclick="deleteContact('${String(id).replace(/'/g,"\\'")}')">🗑️ 刪除</button>
+          </td>
+        </tr>
+      `;
+    }).join("");
+  }catch(err){
+    const tbody = document.getElementById("contactList");
+    tbody.innerHTML = '<tr><td colspan="8" class="empty">無法讀取家長詢問</td></tr>';
+    showMessage("contactMessageBox", "讀取詢問失敗：" + err.message, "err");
+  }
+}
+
+async function markContactDone(id){
+  try{
+    const res = await fetch(`/api/contacts/${encodeURIComponent(id)}`, {
+      method: "PUT",
+      headers: {"Content-Type":"application/json"},
+      body: JSON.stringify({status:"已聯絡"})
+    });
+
+    const text = await res.text();
+    let data = {};
+    try{ data = text ? JSON.parse(text) : {}; }catch{}
+
+    if(!res.ok) throw new Error(data.message || text || ("HTTP " + res.status));
+
+    showMessage("contactMessageBox", "已標記為「已聯絡」。", "ok");
+    loadContacts();
+  }catch(err){
+    showMessage("contactMessageBox", "更新失敗：" + err.message, "err");
+  }
+}
+
+async function deleteContact(id){
+  if(!confirm("確定要刪除這筆家長詢問嗎？")) return;
+
+  try{
+    const res = await fetch(`/api/contacts/${encodeURIComponent(id)}`, {
+      method: "DELETE"
+    });
+
+    const text = await res.text();
+    let data = {};
+    try{ data = text ? JSON.parse(text) : {}; }catch{}
+
+    if(!res.ok) throw new Error(data.message || text || ("HTTP " + res.status));
+
+    showMessage("contactMessageBox", "詢問已刪除。", "ok");
+    loadContacts();
+  }catch(err){
+    showMessage("contactMessageBox", "刪除失敗：" + err.message, "err");
+  }
+}
+
+
 const ADMIN_USER = "admin";
 const ADMIN_PASS = "123456";
 
@@ -304,6 +425,7 @@ function login(){
     document.getElementById("loginScreen").style.display = "none";
     document.getElementById("adminApp").style.display = "block";
     loadCourses();
+    loadContacts();
   }else{
     document.getElementById("loginError").style.display = "block";
   }
@@ -346,6 +468,95 @@ async function deleteCourse(id){
 
     showMessage("listMessage", "課程已刪除。", "ok");
     
+
+async function loadContacts(){
+  try{
+    const res = await fetch("/api/contacts");
+    if(!res.ok) throw new Error("HTTP " + res.status);
+
+    const data = await res.json();
+    const contacts = Array.isArray(data) ? data : (data.contacts || data.data || []);
+    const tbody = document.getElementById("contactList");
+
+    if(!contacts.length){
+      tbody.innerHTML = '<tr><td colspan="8" class="empty">目前沒有家長詢問</td></tr>';
+      return;
+    }
+
+    tbody.innerHTML = contacts.map(c => {
+      const id = c._id || c.id;
+      const status = c.status || "未處理";
+      const badgeClass = status === "已聯絡" ? "badge-done" : "badge-new";
+      const time = c.createdAt ? new Date(c.createdAt).toLocaleString("zh-TW") : "";
+
+      return `
+        <tr>
+          <td>${esc(c.name || "")}</td>
+          <td>${esc(c.phone || "")}</td>
+          <td>${esc(c.email || "")}</td>
+          <td>${esc(c.subject || "")}</td>
+          <td class="contact-message">${esc(c.message || "")}</td>
+          <td><span class="badge ${badgeClass}">${esc(status)}</span></td>
+          <td>${esc(time)}</td>
+          <td>
+            ${status !== "已聯絡"
+              ? `<button class="primary mini" onclick="markContactDone('${String(id).replace(/'/g,"\\'")}')">✅ 已聯絡</button>`
+              : ""}
+            <button class="danger mini" onclick="deleteContact('${String(id).replace(/'/g,"\\'")}')">🗑️ 刪除</button>
+          </td>
+        </tr>
+      `;
+    }).join("");
+  }catch(err){
+    const tbody = document.getElementById("contactList");
+    tbody.innerHTML = '<tr><td colspan="8" class="empty">無法讀取家長詢問</td></tr>';
+    showMessage("contactMessageBox", "讀取詢問失敗：" + err.message, "err");
+  }
+}
+
+async function markContactDone(id){
+  try{
+    const res = await fetch(`/api/contacts/${encodeURIComponent(id)}`, {
+      method: "PUT",
+      headers: {"Content-Type":"application/json"},
+      body: JSON.stringify({status:"已聯絡"})
+    });
+
+    const text = await res.text();
+    let data = {};
+    try{ data = text ? JSON.parse(text) : {}; }catch{}
+
+    if(!res.ok) throw new Error(data.message || text || ("HTTP " + res.status));
+
+    showMessage("contactMessageBox", "已標記為「已聯絡」。", "ok");
+    loadContacts();
+  }catch(err){
+    showMessage("contactMessageBox", "更新失敗：" + err.message, "err");
+  }
+}
+
+async function deleteContact(id){
+  if(!confirm("確定要刪除這筆家長詢問嗎？")) return;
+
+  try{
+    const res = await fetch(`/api/contacts/${encodeURIComponent(id)}`, {
+      method: "DELETE"
+    });
+
+    const text = await res.text();
+    let data = {};
+    try{ data = text ? JSON.parse(text) : {}; }catch{}
+
+    if(!res.ok) throw new Error(data.message || text || ("HTTP " + res.status));
+
+    showMessage("contactMessageBox", "詢問已刪除。", "ok");
+    loadContacts();
+  }catch(err){
+    showMessage("contactMessageBox", "刪除失敗：" + err.message, "err");
+  }
+}
+
+
 const ADMIN_USER = "admin";
 const ADMIN_PASS = "123456";
 
@@ -358,6 +569,7 @@ function login(){
     document.getElementById("loginScreen").style.display = "none";
     document.getElementById("adminApp").style.display = "block";
     loadCourses();
+    loadContacts();
   }else{
     document.getElementById("loginError").style.display = "block";
   }
@@ -388,6 +600,95 @@ if(sessionStorage.getItem('popLearningAdmin') === '1') loadCourses();
 }
 
 
+
+async function loadContacts(){
+  try{
+    const res = await fetch("/api/contacts");
+    if(!res.ok) throw new Error("HTTP " + res.status);
+
+    const data = await res.json();
+    const contacts = Array.isArray(data) ? data : (data.contacts || data.data || []);
+    const tbody = document.getElementById("contactList");
+
+    if(!contacts.length){
+      tbody.innerHTML = '<tr><td colspan="8" class="empty">目前沒有家長詢問</td></tr>';
+      return;
+    }
+
+    tbody.innerHTML = contacts.map(c => {
+      const id = c._id || c.id;
+      const status = c.status || "未處理";
+      const badgeClass = status === "已聯絡" ? "badge-done" : "badge-new";
+      const time = c.createdAt ? new Date(c.createdAt).toLocaleString("zh-TW") : "";
+
+      return `
+        <tr>
+          <td>${esc(c.name || "")}</td>
+          <td>${esc(c.phone || "")}</td>
+          <td>${esc(c.email || "")}</td>
+          <td>${esc(c.subject || "")}</td>
+          <td class="contact-message">${esc(c.message || "")}</td>
+          <td><span class="badge ${badgeClass}">${esc(status)}</span></td>
+          <td>${esc(time)}</td>
+          <td>
+            ${status !== "已聯絡"
+              ? `<button class="primary mini" onclick="markContactDone('${String(id).replace(/'/g,"\\'")}')">✅ 已聯絡</button>`
+              : ""}
+            <button class="danger mini" onclick="deleteContact('${String(id).replace(/'/g,"\\'")}')">🗑️ 刪除</button>
+          </td>
+        </tr>
+      `;
+    }).join("");
+  }catch(err){
+    const tbody = document.getElementById("contactList");
+    tbody.innerHTML = '<tr><td colspan="8" class="empty">無法讀取家長詢問</td></tr>';
+    showMessage("contactMessageBox", "讀取詢問失敗：" + err.message, "err");
+  }
+}
+
+async function markContactDone(id){
+  try{
+    const res = await fetch(`/api/contacts/${encodeURIComponent(id)}`, {
+      method: "PUT",
+      headers: {"Content-Type":"application/json"},
+      body: JSON.stringify({status:"已聯絡"})
+    });
+
+    const text = await res.text();
+    let data = {};
+    try{ data = text ? JSON.parse(text) : {}; }catch{}
+
+    if(!res.ok) throw new Error(data.message || text || ("HTTP " + res.status));
+
+    showMessage("contactMessageBox", "已標記為「已聯絡」。", "ok");
+    loadContacts();
+  }catch(err){
+    showMessage("contactMessageBox", "更新失敗：" + err.message, "err");
+  }
+}
+
+async function deleteContact(id){
+  if(!confirm("確定要刪除這筆家長詢問嗎？")) return;
+
+  try{
+    const res = await fetch(`/api/contacts/${encodeURIComponent(id)}`, {
+      method: "DELETE"
+    });
+
+    const text = await res.text();
+    let data = {};
+    try{ data = text ? JSON.parse(text) : {}; }catch{}
+
+    if(!res.ok) throw new Error(data.message || text || ("HTTP " + res.status));
+
+    showMessage("contactMessageBox", "詢問已刪除。", "ok");
+    loadContacts();
+  }catch(err){
+    showMessage("contactMessageBox", "刪除失敗：" + err.message, "err");
+  }
+}
+
+
 const ADMIN_USER = "admin";
 const ADMIN_PASS = "123456";
 
@@ -400,6 +701,7 @@ function login(){
     document.getElementById("loginScreen").style.display = "none";
     document.getElementById("adminApp").style.display = "block";
     loadCourses();
+    loadContacts();
   }else{
     document.getElementById("loginError").style.display = "block";
   }

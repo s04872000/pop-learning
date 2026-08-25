@@ -25,6 +25,213 @@
 .contact-info-item small{color:#d95791;font-weight:800;font-size:11px;letter-spacing:.06em}
 .contact-bottom-note{max-width:760px;margin:25px auto 0;padding:14px 18px;border-radius:18px;background:#fff0f6;color:#8a6878;border:1px solid #f3d1df}
 @media(max-width:700px){.contact-people{grid-template-columns:1fr}.cute-contact-card{padding:18px}}
+
+/* ===== 首頁 Hero 視覺補強：
+<div class="pop-learning-orbit" aria-label="Pop Learning 學習主視覺">
+  <span class="float-item item-a">2²</span>
+  <span class="float-item item-b">ABC</span>
+  <span class="float-item item-c">√16</span>
+  <span class="float-item item-d">✓ 答對</span>
+  <span class="spark s1">✦</span>
+  <span class="spark s2">✦</span>
+  <span class="spark s3">＋</span>
+  <span class="main-popcorn">🍿</span>
+</div>
+＋數學＋英文學習漂浮元素 ===== */
+.pop-learning-orbit {
+  position: relative;
+  width: min(460px, 90vw);
+  min-height: 390px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pop-learning-orbit .main-popcorn {
+  font-size: clamp(110px, 15vw, 170px);
+  line-height: 1;
+  position: relative;
+  z-index: 3;
+  animation: popHeroFloat 4s ease-in-out infinite;
+  filter: drop-shadow(0 14px 18px rgba(190, 91, 135, .16));
+}
+.pop-learning-orbit .float-item {
+  position: absolute;
+  z-index: 2;
+  padding: 9px 15px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.9);
+  border: 1px solid #f1d5e2;
+  color: #a35f7c;
+  font-weight: 700;
+  font-size: 17px;
+  box-shadow: 0 8px 20px rgba(190,91,135,.09);
+  animation: itemFloat 4s ease-in-out infinite;
+}
+.pop-learning-orbit .item-a { top: 48px; left: 24px; animation-delay: -.5s; }
+.pop-learning-orbit .item-b { top: 92px; right: 22px; animation-delay: -1.3s; }
+.pop-learning-orbit .item-c { bottom: 72px; left: 40px; animation-delay: -2.1s; }
+.pop-learning-orbit .item-d { bottom: 46px; right: 38px; animation-delay: -.9s; }
+.pop-learning-orbit .spark {
+  position: absolute;
+  color: #e86b9c;
+  opacity: .6;
+  font-size: 24px;
+  animation: sparkleFloat 3s ease-in-out infinite;
+}
+.pop-learning-orbit .s1 { top: 24px; right: 120px; }
+.pop-learning-orbit .s2 { bottom: 20px; left: 145px; animation-delay: -1.1s; }
+.pop-learning-orbit .s3 { top: 165px; left: 4px; animation-delay: -.6s; }
+
+@keyframes popHeroFloat {
+  0%,100% { transform: translateY(0) rotate(-1deg); }
+  50% { transform: translateY(-11px) rotate(1.2deg); }
+}
+@keyframes itemFloat {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes sparkleFloat {
+  0%,100% { transform: translateY(0) scale(.85); opacity: .35; }
+  50% { transform: translateY(-8px) scale(1.08); opacity: .8; }
+}
+@media (max-width: 768px) {
+  .pop-learning-orbit {
+    min-height: 300px;
+    width: min(360px, 94vw);
+  }
+  .pop-learning-orbit .main-popcorn { font-size: 110px; }
+  .pop-learning-orbit .float-item {
+    font-size: 14px;
+    padding: 7px 11px;
+  }
+  .pop-learning-orbit .item-a { top: 30px; left: 5px; }
+  .pop-learning-orbit .item-b { top: 65px; right: 4px; }
+  .pop-learning-orbit .item-c { bottom: 52px; left: 10px; }
+  .pop-learning-orbit .item-d { bottom: 30px; right: 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pop-learning-orbit .main-popcorn,
+  .pop-learning-orbit .float-item,
+  .pop-learning-orbit .spark { animation: none !important; }
+}
+
+
+/* ===== POP! LEARNING 爆米花開場動畫 ===== */
+#popcornIntro {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  overflow: hidden;
+  background: #fff7fb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity .55s ease;
+}
+#popcornIntro.is-leaving {
+  opacity: 0;
+}
+#popcornIntro .intro-logo {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  opacity: 0;
+  transform: scale(.82);
+  animation: introLogo .7s ease-out 1.65s forwards;
+}
+#popcornIntro .intro-logo .pop {
+  font-size: clamp(44px, 7vw, 76px);
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: #df6c9e;
+}
+#popcornIntro .intro-logo .learning {
+  margin-top: 2px;
+  font-size: clamp(18px, 2.8vw, 30px);
+  letter-spacing: 5px;
+  color: #7c6570;
+}
+#popcornIntro .kernel {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  margin: -7px;
+  opacity: 0;
+  font-size: 30px;
+  line-height: 1;
+  animation: popcornBurst 1.55s cubic-bezier(.2,.75,.25,1) forwards;
+}
+#popcornIntro .k1 { animation-delay: .15s; --x:-310px; --y:-190px; --r:-28deg; }
+#popcornIntro .k2 { animation-delay: .25s; --x:-205px; --y:-250px; --r:24deg; }
+#popcornIntro .k3 { animation-delay: .35s; --x:-85px;  --y:-285px; --r:-18deg; }
+#popcornIntro .k4 { animation-delay: .45s; --x:70px;   --y:-270px; --r:30deg; }
+#popcornIntro .k5 { animation-delay: .55s; --x:205px;  --y:-230px; --r:-25deg; }
+#popcornIntro .k6 { animation-delay: .65s; --x:305px;  --y:-130px; --r:22deg; }
+#popcornIntro .k7 { animation-delay: .75s; --x:-330px; --y:-15px;  --r:18deg; }
+#popcornIntro .k8 { animation-delay: .85s; --x:330px;  --y:15px;   --r:-18deg; }
+#popcornIntro .k9 { animation-delay: .95s; --x:-275px; --y:125px;  --r:-25deg; }
+#popcornIntro .k10{ animation-delay: 1.05s;--x:-165px; --y:205px;  --r:28deg; }
+#popcornIntro .k11{ animation-delay: 1.15s;--x:-40px;  --y:245px;  --r:-16deg; }
+#popcornIntro .k12{ animation-delay: 1.25s;--x:90px;   --y:225px;  --r:24deg; }
+#popcornIntro .k13{ animation-delay: 1.35s;--x:210px;  --y:170px;  --r:-25deg; }
+#popcornIntro .k14{ animation-delay: 1.45s;--x:300px;  --y:95px;   --r:20deg; }
+
+@keyframes popcornBurst {
+  0% {
+    opacity: 0;
+    transform: translate(0,0) scale(.2) rotate(0deg);
+  }
+  15% { opacity: 1; }
+  55% {
+    opacity: 1;
+    transform: translate(calc(var(--x) * .65), calc(var(--y) * .65))
+               scale(1.15) rotate(var(--r));
+  }
+  100% {
+    opacity: .82;
+    transform: translate(var(--x), var(--y))
+               scale(.9) rotate(var(--r));
+  }
+}
+@keyframes introLogo {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@media (max-width: 600px) {
+  #popcornIntro .kernel { font-size: 25px; }
+  #popcornIntro .k1 { --x:-145px; --y:-210px; }
+  #popcornIntro .k2 { --x:-80px; --y:-255px; }
+  #popcornIntro .k3 { --x:0px; --y:-275px; }
+  #popcornIntro .k4 { --x:85px; --y:-250px; }
+  #popcornIntro .k5 { --x:155px; --y:-190px; }
+  #popcornIntro .k6 { --x:180px; --y:-75px; }
+  #popcornIntro .k7 { --x:-175px; --y:-100px; }
+  #popcornIntro .k8 { --x:175px; --y:80px; }
+  #popcornIntro .k9 { --x:-155px; --y:95px; }
+  #popcornIntro .k10{ --x:-100px; --y:190px; }
+  #popcornIntro .k11{ --x:-25px; --y:215px; }
+  #popcornIntro .k12{ --x:60px; --y:195px; }
+  #popcornIntro .k13{ --x:125px; --y:145px; }
+  #popcornIntro .k14{ --x:170px; --y:40px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #popcornIntro .kernel,
+  #popcornIntro .intro-logo {
+    animation: none !important;
+  }
+  #popcornIntro .intro-logo {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 </style>
 
 <style>
@@ -348,8 +555,107 @@
 @media(max-width:700px){
   .student-nav-btn{padding:7px 10px!important;font-size:13px!important}
 }
-</style></head>
+</style>
+<style>
+/* ===== POP! LEARNING 首頁真正精簡版 ===== */
+.navbar nav{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.navbar nav>a{display:inline-flex;align-items:center;justify-content:center;height:40px;min-height:40px;line-height:1;padding:0 14px;margin:0;box-sizing:border-box;vertical-align:middle;white-space:nowrap}
+.student-nav-btn{height:40px!important;min-height:40px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;padding:0 14px!important;border-radius:999px!important}
+
+/* Hero 不再佔滿整個視窗高度 */
+.hero{min-height:0!important;padding:68px 6vw 58px!important;align-items:center!important}
+.hero-character{transform:translateY(0)}
+.hero-character .popcorn{display:inline-block;animation:popFloat 3.8s ease-in-out infinite;filter:drop-shadow(0 10px 12px rgba(190,90,135,.14))}
+.hero-character:after{content:'✦   ＋1   ✓';display:block;margin-top:10px;color:#d95791;letter-spacing:9px;font-size:14px;opacity:.55;animation:spark 2.8s ease-in-out infinite}
+@keyframes popFloat{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-10px) rotate(1deg)}}
+@keyframes spark{0%,100%{opacity:.35;transform:translateY(0)}50%{opacity:.8;transform:translateY(-5px)}}
+
+/* 首頁保留核心內容，其他長內容收進「想了解更多」 */
+.features{padding:58px 20px!important}
+.features .cards{max-width:1000px;margin:0 auto;gap:16px}
+.features .card{border-radius:20px}
+.learning{padding:58px 20px!important}
+.learning .cards{max-width:1000px;margin:0 auto;grid-template-columns:repeat(4,1fr);gap:14px}
+.learning .resource-card{display:none}
+.learning .card{border-radius:20px}
+
+.more-info-section{padding:48px 20px 58px;background:#fff8fb;text-align:center}
+.more-info-section .section-kicker{color:#d95791;font-size:12px;font-weight:900;letter-spacing:.12em;margin-bottom:7px}
+.more-info-section h2{margin:0 0 10px;color:#b94d70}
+.more-info-section .section-lead{max-width:720px;margin:0 auto 22px;color:#8b7180;line-height:1.8}
+.info-accordion{max-width:900px;margin:auto;text-align:left}
+.info-accordion details{background:#fff;border:2px solid #f2cddd;border-radius:18px;margin:10px 0;box-shadow:0 5px 14px rgba(217,87,145,.08);overflow:hidden}
+.info-accordion summary{padding:17px 20px;cursor:pointer;color:#b94d70;font-weight:900;list-style:none}
+.info-accordion summary::-webkit-details-marker{display:none}
+.info-accordion summary:after{content:'＋';float:right;color:#d95791;font-size:20px}
+.info-accordion details[open] summary:after{content:'－'}
+.info-accordion .accordion-body{padding:0 20px 20px;color:#8b7180;line-height:1.8}
+.info-accordion .cute-section{padding:10px 0!important;max-width:none}
+.info-accordion .cute-section h2{font-size:22px}
+.info-accordion .section-lead{margin-bottom:16px}
+.info-accordion .fit-grid,.info-accordion .flow-grid,.info-accordion .case-grid{max-width:none}
+.info-accordion .service-cards{max-width:none}
+.info-accordion .learning-flow,.info-accordion .service-model{padding:10px 0!important}
+.info-accordion .faq-list{max-width:none}
+
+.about{padding:58px 20px!important}
+.courses{padding:58px 20px!important}
+.contact{padding:58px 20px!important}
+
+@media(max-width:900px){
+  .learning .cards{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:650px){
+  .navbar nav{gap:4px}
+  .navbar nav>a{padding:0 9px;font-size:13px}
+  .student-nav-btn{padding:0 10px!important;font-size:13px!important}
+  .hero{padding:46px 18px 40px!important}
+  .learning .cards{grid-template-columns:repeat(2,1fr)}
+  .features{padding:42px 15px!important}
+  .learning,.about,.courses,.contact{padding:42px 15px!important}
+}
+@media(prefers-reduced-motion:reduce){.hero-character .popcorn,.hero-character:after{animation:none!important}}
+.hero-orbit{display:flex;justify-content:center;gap:7px;flex-wrap:wrap;margin-top:12px}.hero-orbit span{background:rgba(255,255,255,.86);padding:6px 10px;border-radius:999px;color:#9a6177;font-size:12px;box-shadow:0 4px 12px rgba(180,90,130,.07)}
+</style>
+</head>
 <body>
+
+<div id="popcornIntro" aria-hidden="true">
+  <span class="kernel k1">🍿</span>
+  <span class="kernel k2">🍿</span>
+  <span class="kernel k3">🍿</span>
+  <span class="kernel k4">🍿</span>
+  <span class="kernel k5">🍿</span>
+  <span class="kernel k6">🍿</span>
+  <span class="kernel k7">🍿</span>
+  <span class="kernel k8">🍿</span>
+  <span class="kernel k9">🍿</span>
+  <span class="kernel k10">🍿</span>
+  <span class="kernel k11">🍿</span>
+  <span class="kernel k12">🍿</span>
+  <span class="kernel k13">🍿</span>
+  <span class="kernel k14">🍿</span>
+  <div class="intro-logo">
+    <div class="pop">POP!</div>
+    <div class="learning">LEARNING</div>
+  </div>
+</div>
+<script>
+(function () {
+  const intro = document.getElementById("popcornIntro");
+  if (!intro) return;
+  const seen = sessionStorage.getItem("popLearningIntroSeen");
+  if (seen) {
+    intro.remove();
+    return;
+  }
+  sessionStorage.setItem("popLearningIntroSeen", "1");
+  setTimeout(() => intro.classList.add("is-leaving"), 2850);
+  setTimeout(() => intro.remove(), 3450);
+})();
+</script>
+
+
 <header class="navbar">
 <a class="logo" href="#home">🍿 Pop! Learning</a>
 <nav>
@@ -365,17 +671,8 @@
 <a href="#courses" class="btn main-btn">看看課程</a>
 <a href="#contact" class="btn second-btn">聯絡老師</a>
 </div>
-<div class="hero-character"><div class="popcorn">🍿</div><div class="bubble">今天也一起<br>學一點點吧！</div></div>
-</section><section id="student-fit" class="cute-section"><div class="section-kicker">🌷 FIND YOUR FIT</div><h2>🎯 哪些孩子適合？</h2><p class="section-lead">如果孩子有下面這些情況，系統化的陪伴與練習會特別有幫助。</p><div class="fit-grid">
-<article class="fit-card"><div class="fit-icon">🧩</div><h3>觀念不穩</h3><p>常常會算，卻說不清楚為什麼，適合重新建立基礎觀念。</p></article>
-<article class="fit-card"><div class="fit-icon">🔎</div><h3>題目看懂卻不會解</h3><p>透過拆解題意、一步一步示範，建立解題方法。</p></article>
-<article class="fit-card"><div class="fit-icon">📚</div><h3>不知道怎麼複習</h3><p>從學校進度、作業與考試範圍整理出適合的練習方向。</p></article>
-<article class="fit-card"><div class="fit-icon">🌱</div><h3>需要培養學習習慣</h3><p>除了課堂理解，也逐步培養練題、對答案與檢討的習慣。</p></article></div></section><section id="tutoring-flow" class="cute-section"><div class="section-kicker">🏠 HOW IT WORKS</div><h2>🏠 家教合作流程</h2><p class="section-lead">從了解孩子的狀況開始，逐步建立適合的學習方式。</p><div class="flow-grid">
-<article class="flow-card"><span>①</span><div><h3>初步了解</h3><p>了解年級、科目、學校進度與目前遇到的問題。</p></div></article>
-<article class="flow-card"><span>②</span><div><h3>討論需求</h3><p>確認希望加強的是基礎、學校進度、段考或長期規劃。</p></div></article>
-<article class="flow-card"><span>③</span><div><h3>安排課程</h3><p>確認上課時間、地點與課程方式。</p></div></article>
-<article class="flow-card"><span>④</span><div><h3>開始學習</h3><p>依孩子的理解程度與學習狀況調整教學內容。</p></div></article>
-<article class="flow-card"><span>⑤</span><div><h3>持續追蹤</h3><p>透過作業、錯題與課後提問持續觀察學習狀況。</p></div></article></div></section>
+<div class="hero-character"><div class="popcorn">🍿</div><div class="bubble">今天也一起<br>學一點點吧！</div><div class="hero-orbit"><span>✏️ 互動練習</span><span>🎯 即時對答案</span><span>📊 學習紀錄</span></div></div>
+</section>
 
 <section class="features">
 <h2>我的教學方式</h2><p class="section-description">不只是把答案教給孩子，而是幫助孩子理解「為什麼」。</p>
@@ -386,7 +683,30 @@
 </div>
 </section>
 
-<section id="learning-flow" class="learning-flow">
+
+
+
+
+
+
+
+<section id="more-info" class="more-info-section">
+  <div class="section-kicker">🌷 MORE ABOUT LEARNING</div>
+  <h2>想了解更多？</h2>
+  <p class="section-lead">首頁先讓你快速了解教學特色，詳細的合作方式、學習流程與常見問題，點開即可查看。</p>
+  <div class="info-accordion">
+    <details><summary>🎯 哪些孩子適合？</summary><div class="accordion-body"><div class="section-kicker">🌷 FIND YOUR FIT</div><h2>🎯 哪些孩子適合？</h2><p class="section-lead">如果孩子有下面這些情況，系統化的陪伴與練習會特別有幫助。</p><div class="fit-grid">
+<article class="fit-card"><div class="fit-icon">🧩</div><h3>觀念不穩</h3><p>常常會算，卻說不清楚為什麼，適合重新建立基礎觀念。</p></article>
+<article class="fit-card"><div class="fit-icon">🔎</div><h3>題目看懂卻不會解</h3><p>透過拆解題意、一步一步示範，建立解題方法。</p></article>
+<article class="fit-card"><div class="fit-icon">📚</div><h3>不知道怎麼複習</h3><p>從學校進度、作業與考試範圍整理出適合的練習方向。</p></article>
+<article class="fit-card"><div class="fit-icon">🌱</div><h3>需要培養學習習慣</h3><p>除了課堂理解，也逐步培養練題、對答案與檢討的習慣。</p></article></div></div></details>
+    <details><summary>🏠 家教合作流程</summary><div class="accordion-body"><div class="section-kicker">🏠 HOW IT WORKS</div><h2>🏠 家教合作流程</h2><p class="section-lead">從了解孩子的狀況開始，逐步建立適合的學習方式。</p><div class="flow-grid">
+<article class="flow-card"><span>①</span><div><h3>初步了解</h3><p>了解年級、科目、學校進度與目前遇到的問題。</p></div></article>
+<article class="flow-card"><span>②</span><div><h3>討論需求</h3><p>確認希望加強的是基礎、學校進度、段考或長期規劃。</p></div></article>
+<article class="flow-card"><span>③</span><div><h3>安排課程</h3><p>確認上課時間、地點與課程方式。</p></div></article>
+<article class="flow-card"><span>④</span><div><h3>開始學習</h3><p>依孩子的理解程度與學習狀況調整教學內容。</p></div></article>
+<article class="flow-card"><span>⑤</span><div><h3>持續追蹤</h3><p>透過作業、錯題與課後提問持續觀察學習狀況。</p></div></article></div></div></details>
+    <details><summary>📚 學習流程與家教配合</summary><div class="accordion-body">
 <h2>📚 學習流程與家教配合</h2>
 <p class="section-description">完整的學習，不只是在課堂上聽老師講解，而是由四個環節形成一個循環。</p>
 
@@ -420,10 +740,8 @@
 <div class="flow-note">
 <strong>🌱 上課是老師的責任，練習與確認是學生的成長，檢討則是師生共同完成的學習循環。</strong>
 </div>
-</section>
-
-
-<section id="service-model" class="service-model">
+</div></details>
+    <details><summary>🌷 不只是上課｜完整學習管理</summary><div class="accordion-body">
 <h2>🌷 不只是上課｜完整學習管理</h2>
 <p class="section-description">除了實體教學，也提供完整的課前、課後與學習追蹤服務，讓家教不只是單次上課，而是陪伴孩子穩定學習。</p>
 
@@ -461,8 +779,18 @@
 <div class="service-position">
 相較於以單次上課為主的家教服務，我更重視<strong>長期、穩定且系統化的學習管理</strong>，除了教學本身，也同步關注孩子的學習習慣、作業完成度、課後追蹤與親師溝通。
 </div>
+</div></details>
+    <details><summary>🌟 學習案例</summary><div class="accordion-body"><div class="section-kicker">🌟 LEARNING STORIES</div><h2>🌟 學習案例</h2><div class="case-grid">
+<article class="case-card"><div class="case-tag">國中數學</div><h3>從觀念混亂到能一步一步解題</h3><p><b>原本：</b>基礎觀念容易混淆、遇到題目不知道從哪裡開始。</p><p><b>調整：</b>重新整理觀念 → 分步驟練習 → 錯題檢討。</p><p><b>方向：</b>讓學生逐漸建立自己的解題流程。</p></article>
+<article class="case-card"><div class="case-tag">英文學習</div><h3>從背單字到理解與實際運用</h3><p><b>原本：</b>看過單字卻容易忘記，拼字與句型不穩。</p><p><b>調整：</b>自然拼讀、字義、例句與小測驗搭配練習。</p><p><b>方向：</b>讓單字不只「背過」，也能在句子中看懂。</p></article></div></div></details>
+    <details><summary>💬 常見問題 FAQ</summary><div class="accordion-body"><div class="section-kicker">💬 FAQ</div><h2>❓ 常見問題</h2><div class="faq-list">
+<details><summary>課後可以提問嗎？</summary><p>可以。LINE 群組內的課後提問、解題與學習服務，皆為實體課程的附加服務，不另收費。</p></details>
+<details><summary>可以協助學校作業嗎？</summary><p>可以依課程狀況協助學生理解作業內容與錯題，但會以建立理解與解題能力為主，而不是單純代寫。</p></details>
+<details><summary>可以只加強段考嗎？</summary><p>可以依學生目前的需求討論課程安排，例如學校進度、段考複習或基礎補強。</p></details>
+<details><summary>國小、國中都可以嗎？</summary><p>網站目前提供小學與國中的數學、英文及國中理化相關學習資源，實際授課科目與年級可再聯絡確認。</p></details>
+<details><summary>課後服務需要另外收費嗎？</summary><p>LINE 群組內的課後服務為實體課程附加內容，不另收費。</p></details></div></div></details>
+  </div>
 </section>
-
 
 <section id="about" class="about">
 <div class="about-image about-teachers">
@@ -501,14 +829,7 @@
 </div>
 </section>
 
-<section id="learning-cases" class="cute-section"><div class="section-kicker">🌟 LEARNING STORIES</div><h2>🌟 學習案例</h2><div class="case-grid">
-<article class="case-card"><div class="case-tag">國中數學</div><h3>從觀念混亂到能一步一步解題</h3><p><b>原本：</b>基礎觀念容易混淆、遇到題目不知道從哪裡開始。</p><p><b>調整：</b>重新整理觀念 → 分步驟練習 → 錯題檢討。</p><p><b>方向：</b>讓學生逐漸建立自己的解題流程。</p></article>
-<article class="case-card"><div class="case-tag">英文學習</div><h3>從背單字到理解與實際運用</h3><p><b>原本：</b>看過單字卻容易忘記，拼字與句型不穩。</p><p><b>調整：</b>自然拼讀、字義、例句與小測驗搭配練習。</p><p><b>方向：</b>讓單字不只「背過」，也能在句子中看懂。</p></article></div></section><section id="faq" class="cute-section faq-section"><div class="section-kicker">💬 FAQ</div><h2>❓ 常見問題</h2><div class="faq-list">
-<details><summary>課後可以提問嗎？</summary><p>可以。LINE 群組內的課後提問、解題與學習服務，皆為實體課程的附加服務，不另收費。</p></details>
-<details><summary>可以協助學校作業嗎？</summary><p>可以依課程狀況協助學生理解作業內容與錯題，但會以建立理解與解題能力為主，而不是單純代寫。</p></details>
-<details><summary>可以只加強段考嗎？</summary><p>可以依學生目前的需求討論課程安排，例如學校進度、段考複習或基礎補強。</p></details>
-<details><summary>國小、國中都可以嗎？</summary><p>網站目前提供小學與國中的數學、英文及國中理化相關學習資源，實際授課科目與年級可再聯絡確認。</p></details>
-<details><summary>課後服務需要另外收費嗎？</summary><p>LINE 群組內的課後服務為實體課程附加內容，不另收費。</p></details></div></section><section id="contact" class="contact">
+<section id="contact" class="contact">
 <h2>📩 聯絡我</h2>
 <p class="contact-intro">有任何課程問題，歡迎和我們聯絡 💗</p>
 

@@ -617,6 +617,62 @@
 @media(prefers-reduced-motion:reduce){.hero-character .popcorn,.hero-character:after{animation:none!important}}
 .hero-orbit{display:flex;justify-content:center;gap:7px;flex-wrap:wrap;margin-top:12px}.hero-orbit span{background:rgba(255,255,255,.86);padding:6px 10px;border-radius:999px;color:#9a6177;font-size:12px;box-shadow:0 4px 12px rgba(180,90,130,.07)}
 </style>
+
+<style>
+/* ===== 首頁：開場後持續漂浮的爆米花 ===== */
+#floatingPopcorn{
+  position:fixed;
+  inset:0;
+  z-index:4;
+  pointer-events:none;
+  overflow:hidden;
+}
+.floating-kernel{
+  position:absolute;
+  left:50%;
+  top:50%;
+  font-size:var(--size,28px);
+  opacity:0;
+  filter:drop-shadow(0 5px 7px rgba(190,90,135,.10));
+  animation:popcornDrift var(--duration,7s) ease-out forwards;
+  will-change:transform,opacity;
+}
+@keyframes popcornDrift{
+  0%{
+    opacity:0;
+    transform:translate(var(--sx),var(--sy)) scale(.55) rotate(0deg);
+  }
+  12%{opacity:.78}
+  55%{
+    opacity:.72;
+    transform:translate(
+      calc(var(--sx) * .42 + var(--mx)),
+      calc(var(--sy) * .42 + var(--my))
+    ) scale(1) rotate(var(--r));
+  }
+  82%{
+    opacity:.62;
+    transform:translate(
+      calc(var(--mx) + var(--ex)),
+      calc(var(--my) + var(--ey))
+    ) scale(.92) rotate(calc(var(--r) * 1.5));
+  }
+  100%{
+    opacity:0;
+    transform:translate(
+      calc(var(--mx) + var(--ex) + var(--fx)),
+      calc(var(--my) + var(--ey) + var(--fy))
+    ) scale(.78) rotate(calc(var(--r) * 2));
+  }
+}
+@media(max-width:600px){
+  .floating-kernel{font-size:var(--size,22px)}
+}
+@media(prefers-reduced-motion:reduce){
+  #floatingPopcorn{display:none}
+}
+</style>
+
 </head>
 <body>
 
@@ -655,6 +711,56 @@
 })();
 </script>
 
+
+
+<div id="floatingPopcorn" aria-hidden="true"></div>
+<script>
+(function(){
+  const layer = document.getElementById("floatingPopcorn");
+  if(!layer) return;
+
+  function makePopcorn(){
+    const p = document.createElement("span");
+    p.className = "floating-kernel";
+    p.textContent = "🍿";
+
+    // 從畫面四周／外圍方向，飄向首頁中央附近。
+    const angle = Math.random() * Math.PI * 2;
+    const radius = 300 + Math.random() * 260;
+    const sx = Math.cos(angle) * radius;
+    const sy = Math.sin(angle) * radius;
+
+    const mx = (Math.random() - .5) * 130;
+    const my = (Math.random() - .5) * 100;
+    const ex = (Math.random() - .5) * 90;
+    const ey = (Math.random() - .5) * 80;
+    const fx = (Math.random() - .5) * 70;
+    const fy = (Math.random() - .5) * 60;
+
+    p.style.setProperty("--sx", sx + "px");
+    p.style.setProperty("--sy", sy + "px");
+    p.style.setProperty("--mx", mx + "px");
+    p.style.setProperty("--my", my + "px");
+    p.style.setProperty("--ex", ex + "px");
+    p.style.setProperty("--ey", ey + "px");
+    p.style.setProperty("--fx", fx + "px");
+    p.style.setProperty("--fy", fy + "px");
+    p.style.setProperty("--r", ((Math.random() - .5) * 45) + "deg");
+    p.style.setProperty("--size", (20 + Math.random() * 20) + "px");
+    p.style.setProperty("--duration", (6 + Math.random() * 4) + "s");
+
+    layer.appendChild(p);
+    setTimeout(() => p.remove(), 11000);
+  }
+
+  // 開場動畫仍照原本設定；約 3.6 秒後才開始持續飄，
+  // 避免和原本開場爆米花動畫重疊。
+  setTimeout(() => {
+    makePopcorn();
+    setInterval(makePopcorn, 1800);
+  }, 3600);
+})();
+</script>
 
 <header class="navbar">
 <a class="logo" href="#home">🍿 Pop! Learning</a>
@@ -817,12 +923,12 @@
 </section>
 
 <section id="learning" class="learning">
-<h2>📚 學習專區</h2><p class="section-description">目前提供英文、小學數學、國中數學互動題庫，以及國中理化實驗大全、教材圖解與國中升學指南。</p>
+<h2>📚 學習專區</h2><p class="section-description">目前提供英文、小學數學、國中數學互動題庫，以及國中自然、教材圖解與國中升學指南。</p>
 <div class="cards">
 <div class="card"><div class="icon">🔤</div><h3>英文題庫</h3><p>單字、文法、句型與閱讀練習。</p><a class="quiz-btn" href="quizzes/english.html">開始練習 →</a></div>
 <div class="card"><div class="icon">🔢</div><h3>小學數學</h3><p>從基礎觀念到應用題的互動練習。</p><a class="quiz-btn" href="quizzes/elementary-math.html">開始練習 →</a></div>
 <div class="card"><div class="icon">📐</div><h3>國中數學</h3><p>正負數、代數、方程式等互動題庫。</p><a class="quiz-btn" href="quizzes/junior-math.html">開始練習 →</a></div>
-<div class="card"><div class="icon">🔬</div><h3>國中理化實驗大全</h3><p>收錄 100 多個國中理化實驗，點擊即可搜尋 YouTube 實驗影片。</p><a class="quiz-btn" href="quizzes/4.國中理化實驗大全.html">查看實驗 →</a></div>
+<div class="card"><div class="icon">🔬</div><h3>國中自然</h3><p>整理國中自然科學習資源，點擊即可搜尋 YouTube 教學影片。</p><a class="quiz-btn" href="quizzes/4.國中自然.html">查看實驗 →</a></div>
 
 <div class="card resource-card"><div class="icon">🖼️</div><h3>教材圖解</h3><p>整理數學與英文觀念圖解，方便學生課後複習。</p><a class="quiz-btn" href="quizzes/教材圖解.html">查看教材 →</a></div>
 <div class="card resource-card"><div class="icon">🎓</div><h3>國中升學指南</h3><p>整理國中學習與升學相關資訊，提供學生與家長參考。</p><a class="quiz-btn" href="quizzes/國中升學指南.html">查看指南 →</a></div>

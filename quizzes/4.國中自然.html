@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>國中理化實驗大全｜YouTube 搜尋</title>
+<title>國中自然科 YouTube 關鍵字｜理化・生物・地球科學</title>
 <style>
 
 /* ===== Pop! Learning 統一粉紅網站風格 ===== */
@@ -175,19 +175,238 @@ footer{
   .yt{padding:8px 11px}
 }
 
+
+.tabs{max-width:1100px;margin:18px auto 0;padding:0 14px;display:flex;gap:10px;justify-content:center;flex-wrap:nowrap;overflow-x:auto}
+.tab{border:1px solid var(--pink-border);background:#fff;color:var(--pink-dark);padding:9px 18px;border-radius:999px;font-weight:800;cursor:pointer;box-shadow:0 3px 10px var(--shadow)}
+.tab.active{background:var(--pink);color:#fff}
+.subject{display:none}
+.subject.active{display:block}
+
+
+.subject-toolbar{
+  max-width:1100px;
+  margin:18px auto 0;
+  padding:0 14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:nowrap;
+}
+.subject-toolbar .tabs{
+  margin:0;
+  padding:0;
+  display:flex;
+  gap:8px;
+  flex-wrap:nowrap;
+  flex:none;
+  overflow:visible;
+}
+.subject-toolbar .tab{
+  padding:9px 16px;
+  white-space:nowrap;
+}
+.subject-toolbar .toolbar{
+  margin:0;
+  max-width:520px;
+  flex:1;
+  display:flex;
+  gap:8px;
+  flex-wrap:nowrap;
+}
+.subject-toolbar .toolbar input{
+  min-width:180px;
+}
+@media(max-width:850px){
+  .subject-toolbar{
+    overflow-x:auto;
+    justify-content:flex-start;
+  }
+  .subject-toolbar .toolbar{
+    flex:none;
+    width:400px;
+  }
+}
+
+
+
+
+
+/* ===== 控制列：科目標籤＋搜尋＋數量全部同一行 ===== */
+.subject-toolbar{
+  max-width:1100px!important;
+  margin:18px auto 0!important;
+  padding:0 14px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:10px!important;
+  flex-wrap:nowrap!important;
+  overflow-x:auto!important;
+  box-sizing:border-box!important;
+}
+.subject-toolbar .tabs{
+  margin:0!important;
+  padding:0!important;
+  display:flex!important;
+  align-items:center!important;
+  gap:7px!important;
+  flex:0 0 auto!important;
+  flex-wrap:nowrap!important;
+  overflow:visible!important;
+}
+.subject-toolbar .tab{
+  padding:8px 13px!important;
+  white-space:nowrap!important;
+  flex:0 0 auto!important;
+}
+.subject-toolbar .toolbar{
+  margin:0!important;
+  padding:0!important;
+  display:flex!important;
+  align-items:center!important;
+  gap:7px!important;
+  flex:0 1 420px!important;
+  min-width:300px!important;
+  max-width:500px!important;
+  flex-wrap:nowrap!important;
+}
+.subject-toolbar .toolbar input{
+  min-width:0!important;
+  width:100%!important;
+  flex:1 1 auto!important;
+  box-sizing:border-box!important;
+}
+
+@media(max-width:700px){
+  .subject-toolbar{
+    justify-content:flex-start!important;
+  }
+}
+
+
+/* ===== YouTube 關鍵字頁：頂部精簡版 ===== */
+header{
+  padding-top:10px!important;
+  padding-bottom:6px!important;
+  margin-bottom:0!important;
+}
+.subject-toolbar{
+  max-width:1100px!important;
+  margin:6px auto 10px!important;
+  padding:0 14px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:8px!important;
+  flex-wrap:nowrap!important;
+  overflow-x:auto!important;
+  box-sizing:border-box!important;
+}
+.subject-toolbar .tabs{
+  margin:0!important;
+  padding:0!important;
+  display:flex!important;
+  align-items:center!important;
+  gap:6px!important;
+  flex:0 0 auto!important;
+  flex-wrap:nowrap!important;
+}
+.subject-toolbar .tab{
+  padding:7px 12px!important;
+  white-space:nowrap!important;
+  flex:0 0 auto!important;
+}
+.subject-toolbar .toolbar{
+  margin:0!important;
+  padding:0!important;
+  display:flex!important;
+  align-items:center!important;
+  gap:6px!important;
+  flex:0 1 430px!important;
+  min-width:320px!important;
+  max-width:500px!important;
+  flex-wrap:nowrap!important;
+}
+.subject-toolbar .toolbar input{
+  min-width:0!important;
+  width:100%!important;
+  flex:1 1 auto!important;
+  box-sizing:border-box!important;
+}
+
+
+
+/* ===== 科目標籤：按下／聚焦時文字保持清楚 ===== */
+.subject-toolbar .tab,
+.subject-toolbar .tab:hover,
+.subject-toolbar .tab:focus,
+.subject-toolbar .tab:active{
+  color:#d95791!important;
+  -webkit-text-fill-color:#d95791!important;
+  opacity:1!important;
+  visibility:visible!important;
+}
+.subject-toolbar .tab.active,
+.subject-toolbar .tab.active:hover,
+.subject-toolbar .tab.active:focus,
+.subject-toolbar .tab.active:active{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  opacity:1!important;
+  visibility:visible!important;
+}
+.subject-toolbar .tab:focus{
+  outline:2px solid #f2cddd!important;
+  outline-offset:2px;
+}
+
+
+/* FINAL FIX: tab text never fades on hover/focus/active */
+.subject-toolbar .tab,
+.subject-toolbar .tab:hover,
+.subject-toolbar .tab:focus,
+.subject-toolbar .tab:active,
+.subject-toolbar .tab.active,
+.subject-toolbar .tab.active:hover,
+.subject-toolbar .tab.active:focus,
+.subject-toolbar .tab.active:active{
+  opacity:1 !important;
+  filter:none !important;
+  color:#d95791 !important;
+  -webkit-text-fill-color:#d95791 !important;
+  background:#fff !important;
+}
+.subject-toolbar .tab.active,
+.subject-toolbar .tab.active:hover,
+.subject-toolbar .tab.active:focus,
+.subject-toolbar .tab.active:active{
+  color:#fff !important;
+  -webkit-text-fill-color:#fff !important;
+  background:#d95791 !important;
+}
 </style>
 </head>
 <body>
+
 <header>
-<h1>🔬 國中理化實驗大全</h1>
-<p class="subtitle">共 139 個實驗｜點擊即可開啟 YouTube 搜尋</p>
-<div class="toolbar">
-<input id="search" type="search" placeholder="搜尋實驗，例如：密度、浮力、歐姆定律…">
-<button id="clear">清除搜尋</button>
-</div>
-<p class="count" id="count">顯示 139 個實驗</p>
+<div class="subject-toolbar">
+  <div class="subject-toolbar">
+  <div class="tabs">
+    <button class="tab active" data-subject="physics">⚗️ 理化</button>
+    <button class="tab" data-subject="biology">🧬 生物</button>
+    <button class="tab" data-subject="earth">🌍 地球科學</button>
+  </div>
+  <div class="toolbar">
+    <input id="search" type="search" placeholder="搜尋關鍵字，例如：密度、光合作用、板塊運動…">
+    <button id="clear">清除搜尋</button>
+  </div>
+</div></div>
 </header>
+
+
 <main>
+<section class="subject active" data-subject="physics">
 <section class="unit"><h2>一、基本測量</h2><div class="grid"><article class="card" data-search="一、基本測量 長度的測量">
           <div class="num">1</div>
           <div class="info"><h3>長度的測量</h3><p>一 · 基本測量</p></div>
@@ -738,33 +957,66 @@ footer{
 <article class="card" data-search="十六、顯微鏡與科學探究 解剖顯微鏡 顯微鏡"><div class="num">138</div><div class="info"><h3>解剖顯微鏡</h3><p>十六 · 顯微鏡與科學探究</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%90%86%E5%8C%96+%E8%A7%A3%E5%89%96%E9%A1%AF%E5%BE%AE%E9%8F%A1+%E5%AF%A6%E9%A9%97" target="_blank" rel="noopener">▶ YouTube</a></article>
 <article class="card" data-search="十六、顯微鏡與科學探究 科學方法 科學探究"><div class="num">139</div><div class="info"><h3>科學方法</h3><p>十六 · 顯微鏡與科學探究</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%90%86%E5%8C%96+%E7%A7%91%E5%AD%B8%E6%96%B9%E6%B3%95+%E5%AF%A6%E9%A9%97" target="_blank" rel="noopener">▶ YouTube</a></article>
 </div></section>
-<div class="empty" id="empty">找不到符合的實驗 😅</div>
+</section>
+<section class="subject" data-subject="biology">
+<section class="unit"><h2>一、生物與細胞</h2><div class="grid"><article class="card" data-search="一、生物與細胞 生物的基本特徵"><div class="num">1</div><div class="info"><h3>生物的基本特徵</h3><p>一、生物與細胞</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E7%94%9F%E7%89%A9%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%89%B9%E5%BE%B5" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="一、生物與細胞 生物分類"><div class="num">2</div><div class="info"><h3>生物分類</h3><p>一、生物與細胞</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E7%94%9F%E7%89%A9%E5%88%86%E9%A1%9E" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="一、生物與細胞 細胞構造"><div class="num">3</div><div class="info"><h3>細胞構造</h3><p>一、生物與細胞</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E7%B4%B0%E8%83%9E%E6%A7%8B%E9%80%A0" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="一、生物與細胞 植物細胞與動物細胞"><div class="num">4</div><div class="info"><h3>植物細胞與動物細胞</h3><p>一、生物與細胞</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E6%A4%8D%E7%89%A9%E7%B4%B0%E8%83%9E%E8%88%87%E5%8B%95%E7%89%A9%E7%B4%B0%E8%83%9E" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="一、生物與細胞 細胞功能"><div class="num">5</div><div class="info"><h3>細胞功能</h3><p>一、生物與細胞</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E7%B4%B0%E8%83%9E%E5%8A%9F%E8%83%BD" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="一、生物與細胞 細胞分裂"><div class="num">6</div><div class="info"><h3>細胞分裂</h3><p>一、生物與細胞</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E7%B4%B0%E8%83%9E%E5%88%86%E8%A3%82" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="一、生物與細胞 有絲分裂"><div class="num">7</div><div class="info"><h3>有絲分裂</h3><p>一、生物與細胞</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E6%9C%89%E7%B5%B2%E5%88%86%E8%A3%82" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="一、生物與細胞 顯微鏡操作"><div class="num">8</div><div class="info"><h3>顯微鏡操作</h3><p>一、生物與細胞</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E9%A1%AF%E5%BE%AE%E9%8F%A1%E6%93%8D%E4%BD%9C" target="_blank" rel="noopener">▶ YouTube</a></article></div></section><section class="unit"><h2>二、生物的營養</h2><div class="grid"><article class="card" data-search="二、生物的營養 六大營養素"><div class="num">9</div><div class="info"><h3>六大營養素</h3><p>二、生物的營養</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E5%85%AD%E5%A4%A7%E7%87%9F%E9%A4%8A%E7%B4%A0" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="二、生物的營養 食物中的養分"><div class="num">10</div><div class="info"><h3>食物中的養分</h3><p>二、生物的營養</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E9%A3%9F%E7%89%A9%E4%B8%AD%E7%9A%84%E9%A4%8A%E5%88%86" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="二、生物的營養 消化作用"><div class="num">11</div><div class="info"><h3>消化作用</h3><p>二、生物的營養</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E6%B6%88%E5%8C%96%E4%BD%9C%E7%94%A8" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="二、生物的營養 消化系統"><div class="num">12</div><div class="info"><h3>消化系統</h3><p>二、生物的營養</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E6%B6%88%E5%8C%96%E7%B3%BB%E7%B5%B1" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="二、生物的營養 消化酵素"><div class="num">13</div><div class="info"><h3>消化酵素</h3><p>二、生物的營養</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E6%B6%88%E5%8C%96%E9%85%B5%E7%B4%A0" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="二、生物的營養 營養素吸收"><div class="num">14</div><div class="info"><h3>營養素吸收</h3><p>二、生物的營養</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E7%87%9F%E9%A4%8A%E7%B4%A0%E5%90%B8%E6%94%B6" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="二、生物的營養 光合作用"><div class="num">15</div><div class="info"><h3>光合作用</h3><p>二、生物的營養</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E5%85%89%E5%90%88%E4%BD%9C%E7%94%A8" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="二、生物的營養 光合作用實驗"><div class="num">16</div><div class="info"><h3>光合作用實驗</h3><p>二、生物的營養</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E5%85%89%E5%90%88%E4%BD%9C%E7%94%A8%E5%AF%A6%E9%A9%97" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="二、生物的營養 呼吸作用"><div class="num">17</div><div class="info"><h3>呼吸作用</h3><p>二、生物的營養</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E5%91%BC%E5%90%B8%E4%BD%9C%E7%94%A8" target="_blank" rel="noopener">▶ YouTube</a></article></div></section><section class="unit"><h2>三、人體生理</h2><div class="grid"><article class="card" data-search="三、人體生理 消化系統"><div class="num">18</div><div class="info"><h3>消化系統</h3><p>三、人體生理</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E6%B6%88%E5%8C%96%E7%B3%BB%E7%B5%B1" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="三、人體生理 呼吸系統"><div class="num">19</div><div class="info"><h3>呼吸系統</h3><p>三、人體生理</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E5%91%BC%E5%90%B8%E7%B3%BB%E7%B5%B1" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="三、人體生理 循環系統"><div class="num">20</div><div class="info"><h3>循環系統</h3><p>三、人體生理</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E5%BE%AA%E7%92%B0%E7%B3%BB%E7%B5%B1" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="三、人體生理 泌尿系統"><div class="num">21</div><div class="info"><h3>泌尿系統</h3><p>三、人體生理</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E6%B3%8C%E5%B0%BF%E7%B3%BB%E7%B5%B1" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="三、人體生理 神經系統"><div class="num">22</div><div class="info"><h3>神經系統</h3><p>三、人體生理</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E7%A5%9E%E7%B6%93%E7%B3%BB%E7%B5%B1" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="三、人體生理 內分泌系統"><div class="num">23</div><div class="info"><h3>內分泌系統</h3><p>三、人體生理</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E5%85%A7%E5%88%86%E6%B3%8C%E7%B3%BB%E7%B5%B1" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="三、人體生理 免疫系統"><div class="num">24</div><div class="info"><h3>免疫系統</h3><p>三、人體生理</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E5%85%8D%E7%96%AB%E7%B3%BB%E7%B5%B1" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="三、人體生理 生殖系統"><div class="num">25</div><div class="info"><h3>生殖系統</h3><p>三、人體生理</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E7%94%9F%E6%AE%96%E7%B3%BB%E7%B5%B1" target="_blank" rel="noopener">▶ YouTube</a></article></div></section><section class="unit"><h2>四、人體調節</h2><div class="grid"><article class="card" data-search="四、人體調節 神經傳導"><div class="num">26</div><div class="info"><h3>神經傳導</h3><p>四、人體調節</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E7%A5%9E%E7%B6%93%E5%82%B3%E5%B0%8E" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="四、人體調節 反射作用"><div class="num">27</div><div class="info"><h3>反射作用</h3><p>四、人體調節</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E5%8F%8D%E5%B0%84%E4%BD%9C%E7%94%A8" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="四、人體調節 反射弧"><div class="num">28</div><div class="info"><h3>反射弧</h3><p>四、人體調節</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E5%8F%8D%E5%B0%84%E5%BC%A7" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="四、人體調節 感覺器官"><div class="num">29</div><div class="info"><h3>感覺器官</h3><p>四、人體調節</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E6%84%9F%E8%A6%BA%E5%99%A8%E5%AE%98" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="四、人體調節 荷爾蒙"><div class="num">30</div><div class="info"><h3>荷爾蒙</h3><p>四、人體調節</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E8%8D%B7%E7%88%BE%E8%92%99" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="四、人體調節 血糖調節"><div class="num">31</div><div class="info"><h3>血糖調節</h3><p>四、人體調節</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E8%A1%80%E7%B3%96%E8%AA%BF%E7%AF%80" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="四、人體調節 體溫調節"><div class="num">32</div><div class="info"><h3>體溫調節</h3><p>四、人體調節</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E9%AB%94%E6%BA%AB%E8%AA%BF%E7%AF%80" target="_blank" rel="noopener">▶ YouTube</a></article></div></section><section class="unit"><h2>五、生殖與遺傳</h2><div class="grid"><article class="card" data-search="五、生殖與遺傳 有性生殖"><div class="num">33</div><div class="info"><h3>有性生殖</h3><p>五、生殖與遺傳</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E6%9C%89%E6%80%A7%E7%94%9F%E6%AE%96" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="五、生殖與遺傳 無性生殖"><div class="num">34</div><div class="info"><h3>無性生殖</h3><p>五、生殖與遺傳</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E7%84%A1%E6%80%A7%E7%94%9F%E6%AE%96" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="五、生殖與遺傳 受精"><div class="num">35</div><div class="info"><h3>受精</h3><p>五、生殖與遺傳</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E5%8F%97%E7%B2%BE" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="五、生殖與遺傳 遺傳"><div class="num">36</div><div class="info"><h3>遺傳</h3><p>五、生殖與遺傳</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E9%81%BA%E5%82%B3" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="五、生殖與遺傳 基因"><div class="num">37</div><div class="info"><h3>基因</h3><p>五、生殖與遺傳</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E5%9F%BA%E5%9B%A0" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="五、生殖與遺傳 DNA"><div class="num">38</div><div class="info"><h3>DNA</h3><p>五、生殖與遺傳</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+DNA" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="五、生殖與遺傳 染色體"><div class="num">39</div><div class="info"><h3>染色體</h3><p>五、生殖與遺傳</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E6%9F%93%E8%89%B2%E9%AB%94" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="五、生殖與遺傳 顯性與隱性"><div class="num">40</div><div class="info"><h3>顯性與隱性</h3><p>五、生殖與遺傳</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E9%A1%AF%E6%80%A7%E8%88%87%E9%9A%B1%E6%80%A7" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="五、生殖與遺傳 遺傳圖解"><div class="num">41</div><div class="info"><h3>遺傳圖解</h3><p>五、生殖與遺傳</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E9%81%BA%E5%82%B3%E5%9C%96%E8%A7%A3" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="五、生殖與遺傳 孟德爾遺傳"><div class="num">42</div><div class="info"><h3>孟德爾遺傳</h3><p>五、生殖與遺傳</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E5%AD%9F%E5%BE%B7%E7%88%BE%E9%81%BA%E5%82%B3" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="五、生殖與遺傳 遺傳題"><div class="num">43</div><div class="info"><h3>遺傳題</h3><p>五、生殖與遺傳</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E9%81%BA%E5%82%B3%E9%A1%8C" target="_blank" rel="noopener">▶ YouTube</a></article></div></section><section class="unit"><h2>六、演化</h2><div class="grid"><article class="card" data-search="六、演化 演化"><div class="num">44</div><div class="info"><h3>演化</h3><p>六、演化</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E6%BC%94%E5%8C%96" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="六、演化 天擇"><div class="num">45</div><div class="info"><h3>天擇</h3><p>六、演化</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E5%A4%A9%E6%93%87" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="六、演化 自然選擇"><div class="num">46</div><div class="info"><h3>自然選擇</h3><p>六、演化</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E8%87%AA%E7%84%B6%E9%81%B8%E6%93%87" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="六、演化 適應"><div class="num">47</div><div class="info"><h3>適應</h3><p>六、演化</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E9%81%A9%E6%87%89" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="六、演化 突變"><div class="num">48</div><div class="info"><h3>突變</h3><p>六、演化</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E7%AA%81%E8%AE%8A" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="六、演化 化石"><div class="num">49</div><div class="info"><h3>化石</h3><p>六、演化</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E5%8C%96%E7%9F%B3" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="六、演化 演化證據"><div class="num">50</div><div class="info"><h3>演化證據</h3><p>六、演化</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E6%BC%94%E5%8C%96%E8%AD%89%E6%93%9A" target="_blank" rel="noopener">▶ YouTube</a></article></div></section><section class="unit"><h2>七、生態</h2><div class="grid"><article class="card" data-search="七、生態 生態系"><div class="num">51</div><div class="info"><h3>生態系</h3><p>七、生態</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E7%94%9F%E6%85%8B%E7%B3%BB" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="七、生態 族群與群集"><div class="num">52</div><div class="info"><h3>族群與群集</h3><p>七、生態</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E6%97%8F%E7%BE%A4%E8%88%87%E7%BE%A4%E9%9B%86" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="七、生態 生產者消費者分解者"><div class="num">53</div><div class="info"><h3>生產者消費者分解者</h3><p>七、生態</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E7%94%9F%E7%94%A2%E8%80%85%E6%B6%88%E8%B2%BB%E8%80%85%E5%88%86%E8%A7%A3%E8%80%85" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="七、生態 食物鏈"><div class="num">54</div><div class="info"><h3>食物鏈</h3><p>七、生態</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E9%A3%9F%E7%89%A9%E9%8F%88" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="七、生態 食物網"><div class="num">55</div><div class="info"><h3>食物網</h3><p>七、生態</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E9%A3%9F%E7%89%A9%E7%B6%B2" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="七、生態 能量流動"><div class="num">56</div><div class="info"><h3>能量流動</h3><p>七、生態</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E8%83%BD%E9%87%8F%E6%B5%81%E5%8B%95" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="七、生態 物質循環"><div class="num">57</div><div class="info"><h3>物質循環</h3><p>七、生態</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E7%89%A9%E8%B3%AA%E5%BE%AA%E7%92%B0" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="七、生態 生態平衡"><div class="num">58</div><div class="info"><h3>生態平衡</h3><p>七、生態</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E7%94%9F%E6%85%8B%E5%B9%B3%E8%A1%A1" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="七、生態 生物多樣性"><div class="num">59</div><div class="info"><h3>生物多樣性</h3><p>七、生態</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E7%94%9F%E7%89%A9%E5%A4%9A%E6%A8%A3%E6%80%A7" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="七、生態 生態保育"><div class="num">60</div><div class="info"><h3>生態保育</h3><p>七、生態</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E7%94%9F%E7%89%A9+%E7%94%9F%E6%85%8B%E4%BF%9D%E8%82%B2" target="_blank" rel="noopener">▶ YouTube</a></article></div></section>
+<div class="empty">找不到符合的關鍵字 😅</div>
+</section>
+<section class="subject" data-subject="earth">
+<section class="unit"><h2>一、地球構造與地質</h2><div class="grid"><article class="card" data-search="一、地球構造與地質 地球內部構造"><div class="num">1</div><div class="info"><h3>地球內部構造</h3><p>一、地球構造與地質</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E5%9C%B0%E7%90%83%E5%85%A7%E9%83%A8%E6%A7%8B%E9%80%A0" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="一、地球構造與地質 地殼地函地核"><div class="num">2</div><div class="info"><h3>地殼地函地核</h3><p>一、地球構造與地質</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E5%9C%B0%E6%AE%BC%E5%9C%B0%E5%87%BD%E5%9C%B0%E6%A0%B8" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="一、地球構造與地質 地震波"><div class="num">3</div><div class="info"><h3>地震波</h3><p>一、地球構造與地質</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E5%9C%B0%E9%9C%87%E6%B3%A2" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="一、地球構造與地質 板塊運動"><div class="num">4</div><div class="info"><h3>板塊運動</h3><p>一、地球構造與地質</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E6%9D%BF%E5%A1%8A%E9%81%8B%E5%8B%95" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="一、地球構造與地質 大陸漂移"><div class="num">5</div><div class="info"><h3>大陸漂移</h3><p>一、地球構造與地質</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E5%A4%A7%E9%99%B8%E6%BC%82%E7%A7%BB" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="一、地球構造與地質 海底擴張"><div class="num">6</div><div class="info"><h3>海底擴張</h3><p>一、地球構造與地質</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E6%B5%B7%E5%BA%95%E6%93%B4%E5%BC%B5" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="一、地球構造與地質 板塊邊界"><div class="num">7</div><div class="info"><h3>板塊邊界</h3><p>一、地球構造與地質</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E6%9D%BF%E5%A1%8A%E9%82%8A%E7%95%8C" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="一、地球構造與地質 地震"><div class="num">8</div><div class="info"><h3>地震</h3><p>一、地球構造與地質</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E5%9C%B0%E9%9C%87" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="一、地球構造與地質 火山"><div class="num">9</div><div class="info"><h3>火山</h3><p>一、地球構造與地質</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E7%81%AB%E5%B1%B1" target="_blank" rel="noopener">▶ YouTube</a></article></div></section><section class="unit"><h2>二、岩石與地形</h2><div class="grid"><article class="card" data-search="二、岩石與地形 礦物"><div class="num">10</div><div class="info"><h3>礦物</h3><p>二、岩石與地形</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E7%A4%A6%E7%89%A9" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="二、岩石與地形 岩石"><div class="num">11</div><div class="info"><h3>岩石</h3><p>二、岩石與地形</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E5%B2%A9%E7%9F%B3" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="二、岩石與地形 火成岩"><div class="num">12</div><div class="info"><h3>火成岩</h3><p>二、岩石與地形</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E7%81%AB%E6%88%90%E5%B2%A9" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="二、岩石與地形 沉積岩"><div class="num">13</div><div class="info"><h3>沉積岩</h3><p>二、岩石與地形</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E6%B2%89%E7%A9%8D%E5%B2%A9" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="二、岩石與地形 變質岩"><div class="num">14</div><div class="info"><h3>變質岩</h3><p>二、岩石與地形</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E8%AE%8A%E8%B3%AA%E5%B2%A9" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="二、岩石與地形 岩石循環"><div class="num">15</div><div class="info"><h3>岩石循環</h3><p>二、岩石與地形</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E5%B2%A9%E7%9F%B3%E5%BE%AA%E7%92%B0" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="二、岩石與地形 風化"><div class="num">16</div><div class="info"><h3>風化</h3><p>二、岩石與地形</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E9%A2%A8%E5%8C%96" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="二、岩石與地形 侵蝕"><div class="num">17</div><div class="info"><h3>侵蝕</h3><p>二、岩石與地形</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E4%BE%B5%E8%9D%95" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="二、岩石與地形 沉積"><div class="num">18</div><div class="info"><h3>沉積</h3><p>二、岩石與地形</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E6%B2%89%E7%A9%8D" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="二、岩石與地形 地層"><div class="num">19</div><div class="info"><h3>地層</h3><p>二、岩石與地形</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E5%9C%B0%E5%B1%A4" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="二、岩石與地形 化石"><div class="num">20</div><div class="info"><h3>化石</h3><p>二、岩石與地形</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E5%8C%96%E7%9F%B3" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="二、岩石與地形 河流地形"><div class="num">21</div><div class="info"><h3>河流地形</h3><p>二、岩石與地形</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E6%B2%B3%E6%B5%81%E5%9C%B0%E5%BD%A2" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="二、岩石與地形 海岸地形"><div class="num">22</div><div class="info"><h3>海岸地形</h3><p>二、岩石與地形</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E6%B5%B7%E5%B2%B8%E5%9C%B0%E5%BD%A2" target="_blank" rel="noopener">▶ YouTube</a></article></div></section><section class="unit"><h2>三、大氣與天氣</h2><div class="grid"><article class="card" data-search="三、大氣與天氣 大氣組成"><div class="num">23</div><div class="info"><h3>大氣組成</h3><p>三、大氣與天氣</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E5%A4%A7%E6%B0%A3%E7%B5%84%E6%88%90" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="三、大氣與天氣 氣壓"><div class="num">24</div><div class="info"><h3>氣壓</h3><p>三、大氣與天氣</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E6%B0%A3%E5%A3%93" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="三、大氣與天氣 氣溫"><div class="num">25</div><div class="info"><h3>氣溫</h3><p>三、大氣與天氣</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E6%B0%A3%E6%BA%AB" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="三、大氣與天氣 濕度"><div class="num">26</div><div class="info"><h3>濕度</h3><p>三、大氣與天氣</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E6%BF%95%E5%BA%A6" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="三、大氣與天氣 雲"><div class="num">27</div><div class="info"><h3>雲</h3><p>三、大氣與天氣</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E9%9B%B2" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="三、大氣與天氣 降水"><div class="num">28</div><div class="info"><h3>降水</h3><p>三、大氣與天氣</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E9%99%8D%E6%B0%B4" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="三、大氣與天氣 風"><div class="num">29</div><div class="info"><h3>風</h3><p>三、大氣與天氣</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E9%A2%A8" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="三、大氣與天氣 海陸風"><div class="num">30</div><div class="info"><h3>海陸風</h3><p>三、大氣與天氣</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E6%B5%B7%E9%99%B8%E9%A2%A8" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="三、大氣與天氣 季風"><div class="num">31</div><div class="info"><h3>季風</h3><p>三、大氣與天氣</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E5%AD%A3%E9%A2%A8" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="三、大氣與天氣 氣團"><div class="num">32</div><div class="info"><h3>氣團</h3><p>三、大氣與天氣</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E6%B0%A3%E5%9C%98" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="三、大氣與天氣 鋒面"><div class="num">33</div><div class="info"><h3>鋒面</h3><p>三、大氣與天氣</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E9%8B%92%E9%9D%A2" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="三、大氣與天氣 冷鋒暖鋒滯留鋒"><div class="num">34</div><div class="info"><h3>冷鋒暖鋒滯留鋒</h3><p>三、大氣與天氣</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E5%86%B7%E9%8B%92%E6%9A%96%E9%8B%92%E6%BB%AF%E7%95%99%E9%8B%92" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="三、大氣與天氣 天氣圖"><div class="num">35</div><div class="info"><h3>天氣圖</h3><p>三、大氣與天氣</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E5%A4%A9%E6%B0%A3%E5%9C%96" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="三、大氣與天氣 等壓線"><div class="num">36</div><div class="info"><h3>等壓線</h3><p>三、大氣與天氣</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E7%AD%89%E5%A3%93%E7%B7%9A" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="三、大氣與天氣 颱風"><div class="num">37</div><div class="info"><h3>颱風</h3><p>三、大氣與天氣</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E9%A2%B1%E9%A2%A8" target="_blank" rel="noopener">▶ YouTube</a></article></div></section><section class="unit"><h2>四、海洋</h2><div class="grid"><article class="card" data-search="四、海洋 海水"><div class="num">38</div><div class="info"><h3>海水</h3><p>四、海洋</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E6%B5%B7%E6%B0%B4" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="四、海洋 鹽度"><div class="num">39</div><div class="info"><h3>鹽度</h3><p>四、海洋</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E9%B9%BD%E5%BA%A6" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="四、海洋 海流"><div class="num">40</div><div class="info"><h3>海流</h3><p>四、海洋</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E6%B5%B7%E6%B5%81" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="四、海洋 暖流與寒流"><div class="num">41</div><div class="info"><h3>暖流與寒流</h3><p>四、海洋</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E6%9A%96%E6%B5%81%E8%88%87%E5%AF%92%E6%B5%81" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="四、海洋 黑潮"><div class="num">42</div><div class="info"><h3>黑潮</h3><p>四、海洋</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E9%BB%91%E6%BD%AE" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="四、海洋 潮汐"><div class="num">43</div><div class="info"><h3>潮汐</h3><p>四、海洋</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E6%BD%AE%E6%B1%90" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="四、海洋 海浪"><div class="num">44</div><div class="info"><h3>海浪</h3><p>四、海洋</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E6%B5%B7%E6%B5%AA" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="四、海洋 海洋資源"><div class="num">45</div><div class="info"><h3>海洋資源</h3><p>四、海洋</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E6%B5%B7%E6%B4%8B%E8%B3%87%E6%BA%90" target="_blank" rel="noopener">▶ YouTube</a></article></div></section><section class="unit"><h2>五、地球、月球與太陽</h2><div class="grid"><article class="card" data-search="五、地球、月球與太陽 地球自轉"><div class="num">46</div><div class="info"><h3>地球自轉</h3><p>五、地球、月球與太陽</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E5%9C%B0%E7%90%83%E8%87%AA%E8%BD%89" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="五、地球、月球與太陽 地球公轉"><div class="num">47</div><div class="info"><h3>地球公轉</h3><p>五、地球、月球與太陽</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E5%9C%B0%E7%90%83%E5%85%AC%E8%BD%89" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="五、地球、月球與太陽 晝夜"><div class="num">48</div><div class="info"><h3>晝夜</h3><p>五、地球、月球與太陽</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E6%99%9D%E5%A4%9C" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="五、地球、月球與太陽 四季"><div class="num">49</div><div class="info"><h3>四季</h3><p>五、地球、月球與太陽</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E5%9B%9B%E5%AD%A3" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="五、地球、月球與太陽 太陽高度角"><div class="num">50</div><div class="info"><h3>太陽高度角</h3><p>五、地球、月球與太陽</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E5%A4%AA%E9%99%BD%E9%AB%98%E5%BA%A6%E8%A7%92" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="五、地球、月球與太陽 月相"><div class="num">51</div><div class="info"><h3>月相</h3><p>五、地球、月球與太陽</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E6%9C%88%E7%9B%B8" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="五、地球、月球與太陽 日食"><div class="num">52</div><div class="info"><h3>日食</h3><p>五、地球、月球與太陽</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E6%97%A5%E9%A3%9F" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="五、地球、月球與太陽 月食"><div class="num">53</div><div class="info"><h3>月食</h3><p>五、地球、月球與太陽</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E6%9C%88%E9%A3%9F" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="五、地球、月球與太陽 潮汐"><div class="num">54</div><div class="info"><h3>潮汐</h3><p>五、地球、月球與太陽</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E6%BD%AE%E6%B1%90" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="五、地球、月球與太陽 時區"><div class="num">55</div><div class="info"><h3>時區</h3><p>五、地球、月球與太陽</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E6%99%82%E5%8D%80" target="_blank" rel="noopener">▶ YouTube</a></article></div></section><section class="unit"><h2>六、太陽系與宇宙</h2><div class="grid"><article class="card" data-search="六、太陽系與宇宙 太陽系"><div class="num">56</div><div class="info"><h3>太陽系</h3><p>六、太陽系與宇宙</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E5%A4%AA%E9%99%BD%E7%B3%BB" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="六、太陽系與宇宙 行星"><div class="num">57</div><div class="info"><h3>行星</h3><p>六、太陽系與宇宙</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E8%A1%8C%E6%98%9F" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="六、太陽系與宇宙 太陽"><div class="num">58</div><div class="info"><h3>太陽</h3><p>六、太陽系與宇宙</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E5%A4%AA%E9%99%BD" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="六、太陽系與宇宙 月球"><div class="num">59</div><div class="info"><h3>月球</h3><p>六、太陽系與宇宙</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E6%9C%88%E7%90%83" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="六、太陽系與宇宙 恆星"><div class="num">60</div><div class="info"><h3>恆星</h3><p>六、太陽系與宇宙</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E6%81%86%E6%98%9F" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="六、太陽系與宇宙 星座"><div class="num">61</div><div class="info"><h3>星座</h3><p>六、太陽系與宇宙</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E6%98%9F%E5%BA%A7" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="六、太陽系與宇宙 銀河系"><div class="num">62</div><div class="info"><h3>銀河系</h3><p>六、太陽系與宇宙</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E9%8A%80%E6%B2%B3%E7%B3%BB" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="六、太陽系與宇宙 星系"><div class="num">63</div><div class="info"><h3>星系</h3><p>六、太陽系與宇宙</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E6%98%9F%E7%B3%BB" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="六、太陽系與宇宙 宇宙"><div class="num">64</div><div class="info"><h3>宇宙</h3><p>六、太陽系與宇宙</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E5%AE%87%E5%AE%99" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="六、太陽系與宇宙 光年"><div class="num">65</div><div class="info"><h3>光年</h3><p>六、太陽系與宇宙</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E5%85%89%E5%B9%B4" target="_blank" rel="noopener">▶ YouTube</a></article></div></section><section class="unit"><h2>七、全球環境</h2><div class="grid"><article class="card" data-search="七、全球環境 溫室效應"><div class="num">66</div><div class="info"><h3>溫室效應</h3><p>七、全球環境</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E6%BA%AB%E5%AE%A4%E6%95%88%E6%87%89" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="七、全球環境 全球暖化"><div class="num">67</div><div class="info"><h3>全球暖化</h3><p>七、全球環境</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E5%85%A8%E7%90%83%E6%9A%96%E5%8C%96" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="七、全球環境 氣候變遷"><div class="num">68</div><div class="info"><h3>氣候變遷</h3><p>七、全球環境</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E6%B0%A3%E5%80%99%E8%AE%8A%E9%81%B7" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="七、全球環境 臭氧層"><div class="num">69</div><div class="info"><h3>臭氧層</h3><p>七、全球環境</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E8%87%AD%E6%B0%A7%E5%B1%A4" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="七、全球環境 空氣污染"><div class="num">70</div><div class="info"><h3>空氣污染</h3><p>七、全球環境</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E7%A9%BA%E6%B0%A3%E6%B1%A1%E6%9F%93" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="七、全球環境 酸雨"><div class="num">71</div><div class="info"><h3>酸雨</h3><p>七、全球環境</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E9%85%B8%E9%9B%A8" target="_blank" rel="noopener">▶ YouTube</a></article><article class="card" data-search="七、全球環境 水循環"><div class="num">72</div><div class="info"><h3>水循環</h3><p>七、全球環境</p></div><a class="yt" href="https://www.youtube.com/results?search_query=%E5%9C%8B%E4%B8%AD%E5%9C%B0%E7%90%83%E7%A7%91%E5%AD%B8+%E6%B0%B4%E5%BE%AA%E7%92%B0" target="_blank" rel="noopener">▶ YouTube</a></article></div></section>
+<div class="empty">找不到符合的關鍵字 😅</div>
+</section>
 </main>
-<footer>YouTube 按鈕會直接搜尋「國中理化＋實驗名稱」，不固定指定單一影片。</footer>
+
+<footer>點擊 YouTube 按鈕會依「國中＋科目＋主題」直接搜尋，不固定指定單一影片。</footer>
+
 <script>
 const input=document.getElementById('search');
-const cards=[...document.querySelectorAll('.card')];
-const units=[...document.querySelectorAll('.unit')];
-const count=document.getElementById('count');
-const empty=document.getElementById('empty');
+const tabs=[...document.querySelectorAll('.tab')];
+const subjects=[...document.querySelectorAll('.subject')];
+
+let current='physics';
 
 function filter(){
- const q=input.value.trim().toLowerCase();
- let visible=0;
- cards.forEach(c=>{
-   const ok=c.dataset.search.toLowerCase().includes(q);
-   c.style.display=ok?'flex':'none';
-   if(ok) visible++;
- });
- units.forEach(u=>{
-   const any=[...u.querySelectorAll('.card')].some(c=>c.style.display!=='none');
-   u.style.display=any?'block':'none';
- });
- count.textContent=`顯示 ${visible} / 139 個實驗`;
- empty.style.display=visible?'none':'block';
+  const q=input.value.trim().toLowerCase();
+  const box=document.querySelector('.subject.active');
+  const cards=[...box.querySelectorAll('.card')];
+  const units=[...box.querySelectorAll('.unit')];
+  let visible=0;
+
+  cards.forEach(c=>{
+    const ok=c.dataset.search.toLowerCase().includes(q);
+    c.style.display=ok?'flex':'none';
+    if(ok) visible++;
+  });
+
+  units.forEach(u=>{
+    const any=[...u.querySelectorAll('.card')].some(c=>c.style.display!=='none');
+    u.style.display=any?'block':'none';
+  });
+
+  const total=cards.length;
 }
+
+tabs.forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    current=tab.dataset.subject;
+    tabs.forEach(t=>t.classList.toggle('active',t===tab));
+    subjects.forEach(s=>s.classList.toggle('active',s.dataset.subject===current));
+    input.value='';
+    filter();
+  });
+});
+
 input.addEventListener('input',filter);
-document.getElementById('clear').addEventListener('click',()=>{input.value='';filter();input.focus();});
+document.getElementById('clear').addEventListener('click',()=>{
+  input.value='';
+  filter();
+  input.focus();
+});
+
+filter();
 </script>
+
 </body>
 </html>

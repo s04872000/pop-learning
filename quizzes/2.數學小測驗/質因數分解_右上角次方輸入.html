@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>質因數分解練習</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    background: #fff5fa;
+    color: #4a3b43;
+  }
+  .app {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 24px 16px 40px;
+  }
+  h1 {
+    text-align: center;
+    color: #d85b91;
+    margin: 8px 0 6px;
+    font-size: 32px;
+  }
+  .subtitle {
+    text-align: center;
+    color: #8b747e;
+    margin-bottom: 20px;
+  }
+  .card {
+    background: white;
+    border-radius: 20px;
+    padding: 22px;
+    margin: 16px 0;
+    box-shadow: 0 5px 18px rgba(180, 110, 145, .12);
+  }
+  .mode-row, .difficulty-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .difficulty-title {
+    text-align: center;
+    font-weight: 700;
+    margin: 4px 0 10px;
+    color: #7b5d69;
+  }
+  button {
+    border: 0;
+    border-radius: 12px;
+    padding: 11px 18px;
+    font-size: 16px;
+    cursor: pointer;
+    background: #f2d5e2;
+    color: #684b59;
+  }
+  button:hover { filter: brightness(.97); }
+  button.primary {
+    background: #df6c9e;
+    color: white;
+    font-weight: 700;
+  }
+  button.small { padding: 8px 13px; font-size: 14px; }
+  .active { background: #df6c9e; color: white; }
+  .problem {
+    text-align: center;
+    font-size: 42px;
+    font-weight: 800;
+    color: #5d4650;
+    margin: 12px 0 20px;
+  }
+  .input-row {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .factor-answer-area {
+    margin: 8px auto 12px;
+    max-width: 760px;
+    padding: 16px;
+    border: 2px solid #f0d5e1;
+    border-radius: 16px;
+    background: #fffafd;
+  }
+  .factor-answer {
+    min-height: 66px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .factor-group {
+    display: inline-flex;
+    align-items: flex-start;
+    position: relative;
+  }
+  .factor-base {
+    width: 58px;
+    height: 48px;
+    padding: 4px 6px;
+    border: 2px solid #e8c8d7;
+    border-radius: 10px;
+    background: white;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    color: #5d4650;
+    outline: none;
+  }
+  .factor-base:focus,
+  .factor-exp:focus {
+    border-color: #df6c9e;
+  }
+  .factor-exp {
+    width: 30px;
+    height: 27px;
+    margin-left: 3px;
+    margin-top: -5px;
+    padding: 1px 3px;
+    border: 2px solid #e8c8d7;
+    border-radius: 7px;
+    background: white;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 700;
+    color: #5d4650;
+    outline: none;
+  }
+  .factor-times {
+    font-size: 25px;
+    font-weight: 700;
+    color: #b78b9d;
+  }
+  .factor-remove {
+    position: absolute;
+    right: -7px;
+    top: -11px;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    border-radius: 50%;
+    background: #f4dce6;
+    color: #9b6579;
+    font-size: 12px;
+    line-height: 20px;
+  }
+  .factor-answer-actions {
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  input {
+    width: 280px;
+    max-width: 100%;
+    padding: 13px 15px;
+    border: 2px solid #e8c8d7;
+    border-radius: 12px;
+    font-size: 18px;
+    outline: none;
+  }
+  input:focus { border-color: #df6c9e; }
+  .result {
+    min-height: 58px;
+    margin-top: 18px;
+    padding: 15px;
+    border-radius: 14px;
+    background: #fff4f8;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 700;
+  }
+  .correct { color: #3b8b61; background: #eefaf2; }
+  .wrong { color: #c54e65; background: #fff0f3; }
+  .steps {
+    margin-top: 16px;
+    line-height: 1.9;
+    font-size: 18px;
+  }
+  .step {
+    padding: 8px 12px;
+    margin: 6px 0;
+    background: #fff8fb;
+    border-left: 4px solid #df6c9e;
+    border-radius: 8px;
+  }
+  .factor-box {
+    text-align: center;
+    padding: 18px;
+    margin-top: 15px;
+    background: #fff0f7;
+    border-radius: 14px;
+    font-size: 25px;
+    font-weight: 800;
+    color: #c84f86;
+  }
+  .stats {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+    text-align: center;
+  }
+  .stat b {
+    display: block;
+    font-size: 27px;
+    color: #d85b91;
+  }
+  .timer {
+    text-align: center;
+    margin: 4px 0 18px;
+    font-size: 28px;
+    font-weight: 800;
+    color: #d85b91;
+  }
+  .timer.warning { color: #d9536f; }
+  .timer-controls {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+  }
+  .hint {
+    color: #8b747e;
+    font-size: 14px;
+    margin-top: 8px;
+  }
+  .practice-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    gap: 8px;
+    margin-top: 14px;
+  }
+  .number-btn { background: #faf0f5; }
+  @media (max-width: 500px) {
+    h1 { font-size: 27px; }
+    .problem { font-size: 34px; }
+    .card { padding: 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <h1>🌸 質因數分解練習</h1>
+  <div class="subtitle">把一個數分解成「質數 × 質數 × ……」，依程度循序練習</div>
+
+  <div class="card">
+    <div class="mode-row">
+      <button id="modePractice" class="active" onclick="setMode('practice')">✏️ 練習模式</button>
+      <button id="modeLearn" onclick="setMode('learn')">📖 學習模式</button>
+    </div>
+    <div style="height:14px"></div>
+    <div class="difficulty-title">🎯 選擇難易度</div>
+    <div class="difficulty-row">
+      <button id="easyBtn" class="active" onclick="setDifficulty('easy')">🌱 簡單</button>
+      <button id="mediumBtn" onclick="setDifficulty('medium')">🌼 中等</button>
+      <button id="hardBtn" onclick="setDifficulty('hard')">🔥 困難</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="problem" id="problem">60</div>
+
+    <div class="timer" id="timer">⏱️ 01:00</div>
+    <div class="timer-controls">
+      <button class="small" onclick="setTimer(30)">30秒</button>
+      <button class="small" onclick="setTimer(60)">60秒</button>
+      <button class="small" onclick="setTimer(90)">90秒</button>
+      <button class="small" onclick="setTimer(120)">120秒</button>
+    </div>
+
+    <div class="factor-answer-area">
+      <div class="factor-answer" id="factorAnswer"></div>
+      <div class="factor-answer-actions">
+        <button class="small" onclick="addFactor()">＋增加質因數</button>
+        <button class="small" onclick="clearFactors()">清空</button>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <button class="primary" onclick="checkAnswer()">對答案</button>
+      <button onclick="newQuestion()">下一題</button>
+    </div>
+
+    <div class="hint">
+      次方可以直接輸入在數字右上角，例如：2² × 3 × 5。
+    </div>
+
+    <div id="result" class="result">請輸入你的答案</div>
+    <div id="steps" class="steps"></div>
+  </div>
+
+  <div class="card">
+    <h3>📖 快速選題</h3>
+    <div class="practice-grid" id="numberGrid"></div>
+  </div>
+
+  <div class="card">
+    <h3>📊 練習紀錄</h3>
+    <div class="stats">
+      <div class="stat">答對<b id="correctCount">0</b></div>
+      <div class="stat">答錯<b id="wrongCount">0</b></div>
+      <div class="stat">正確率<b id="accuracy">0%</b></div>
+    </div>
+    <div style="text-align:center;margin-top:18px">
+      <button class="small" onclick="resetStats()">清除紀錄</button>
+    </div>
+  </div>
+</div>
+
+<script>
+let currentNumber = 60;
+let correctCount = Number(localStorage.getItem("pf_correct") || 0);
+let wrongCount = Number(localStorage.getItem("pf_wrong") || 0);
+let mode = "practice";
+let timerSeconds = 60;
+let timerRemaining = 60;
+let timerId = null;
+let timerStarted = false;
+
+const questionPools = {
+  easy: [
+    12, 15, 18, 20, 21, 24, 25, 27, 30, 32, 35, 36, 40, 42, 45, 48,
+    49, 50, 54, 56, 60, 63
+  ],
+  medium: [
+    72, 75, 80, 84, 90, 96, 100, 108, 120, 126, 135, 140, 144, 150,
+    160, 168, 180, 189, 196, 200, 216, 225, 240, 250, 270, 288, 300,
+    315, 320, 324, 336, 360, 378, 400, 420, 432, 450, 480, 500
+  ],
+  hard: [
+    504, 540, 560, 576, 600, 630, 672, 720, 756, 768, 800, 840, 864,
+    900, 960, 980, 1000, 1080, 1120, 1152, 1200, 1260, 1296, 1350,
+    1440, 1500, 1536, 1600, 1680, 1728, 1800, 1890, 1920, 2000, 2160,
+    2250, 2400, 2500, 2700, 2880, 3000
+  ]
+};
+let difficulty = "easy";
+
+function setDifficulty(level) {
+  difficulty = level;
+
+  document.getElementById("easyBtn").classList.toggle("active", level === "easy");
+  document.getElementById("mediumBtn").classList.toggle("active", level === "medium");
+  document.getElementById("hardBtn").classList.toggle("active", level === "hard");
+
+  buildNumberGrid();
+  newQuestion();
+}
+
+function buildNumberGrid() {
+  const pool = questionPools[difficulty];
+  document.getElementById("numberGrid").innerHTML =
+    pool.map(n => `<button class="number-btn" onclick="chooseNumber(${n})">${n}</button>`).join("");
+}
+
+function primeFactorization(n) {
+  const original = n;
+  const factors = [];
+  const steps = [];
+  let divisor = 2;
+
+  while (n > 1) {
+    if (n % divisor === 0) {
+      const next = n / divisor;
+      factors.push(divisor);
+      steps.push(`${n} ÷ ${divisor} = ${next}`);
+      n = next;
+    } else {
+      divisor++;
+    }
+  }
+  return { original, factors, steps };
+}
+
+function factorText(factors) {
+  const counts = {};
+  factors.forEach(f => counts[f] = (counts[f] || 0) + 1);
+  return Object.entries(counts)
+    .map(([base, exp]) => exp === 1 ? base : `${base}<sup>${exp}</sup>`)
+    .join(" × ");
+}
+
+function addFactor(base = "", exp = "") {
+  const box = document.getElementById("factorAnswer");
+  const group = document.createElement("span");
+  group.className = "factor-group";
+
+  const baseInput = document.createElement("input");
+  baseInput.className = "factor-base";
+  baseInput.inputMode = "numeric";
+  baseInput.maxLength = 4;
+  baseInput.placeholder = "數";
+  baseInput.value = base;
+
+  const expInput = document.createElement("input");
+  expInput.className = "factor-exp";
+  expInput.inputMode = "numeric";
+  expInput.maxLength = 2;
+  expInput.placeholder = "次";
+  expInput.value = exp;
+
+  const remove = document.createElement("button");
+  remove.className = "factor-remove";
+  remove.type = "button";
+  remove.textContent = "×";
+  remove.title = "刪除";
+  remove.onclick = () => {
+    group.remove();
+    refreshTimes();
+  };
+
+  group.appendChild(baseInput);
+  group.appendChild(expInput);
+  group.appendChild(remove);
+  box.appendChild(group);
+  refreshTimes();
+  baseInput.focus();
+}
+
+function refreshTimes() {
+  const box = document.getElementById("factorAnswer");
+  [...box.querySelectorAll(".factor-times")].forEach(e => e.remove());
+  const groups = [...box.querySelectorAll(".factor-group")];
+  groups.forEach((g, i) => {
+    if (i < groups.length - 1) {
+      const times = document.createElement("span");
+      times.className = "factor-times";
+      times.textContent = "×";
+      g.after(times);
+    }
+  });
+}
+
+function clearFactors() {
+  document.getElementById("factorAnswer").innerHTML = "";
+  addFactor();
+}
+
+function getUserFactors() {
+  const groups = [...document.querySelectorAll("#factorAnswer .factor-group")];
+  const factors = [];
+  for (const group of groups) {
+    const base = Number(group.querySelector(".factor-base").value);
+    const expText = group.querySelector(".factor-exp").value.trim();
+    const exp = expText === "" ? 1 : Number(expText);
+
+    if (!Number.isInteger(base) || base < 2 || !Number.isInteger(exp) || exp < 1) {
+      return null;
+    }
+    for (let i = 0; i < exp; i++) factors.push(base);
+  }
+  return factors.sort((a,b) => a-b);
+}
+
+function normalizeAnswer(text) {
+  return (text.match(/\d+/g) || []).map(Number).sort((a,b)=>a-b);
+}
+
+function sameArray(a,b) {
+  return a.length === b.length && a.every((v,i)=>v === b[i]);
+}
+
+function formatTime(seconds) {
+  const m = Math.floor(seconds / 60).toString().padStart(2, "0");
+  const s = (seconds % 60).toString().padStart(2, "0");
+  return `${m}:${s}`;
+}
+
+function renderTimer() {
+  const el = document.getElementById("timer");
+  el.textContent = `⏱️ ${formatTime(timerRemaining)}`;
+  el.classList.toggle("warning", timerRemaining <= 10);
+}
+
+function startTimer() {
+  clearInterval(timerId);
+  timerStarted = true;
+  timerRemaining = timerSeconds;
+  renderTimer();
+
+  timerId = setInterval(() => {
+    timerRemaining--;
+    renderTimer();
+
+    if (timerRemaining <= 0) {
+      clearInterval(timerId);
+      timerId = null;
+      timerStarted = false;
+
+      const data = primeFactorization(currentNumber);
+      const result = document.getElementById("result");
+      result.className = "result wrong";
+      result.innerHTML = `⏰ 時間到！正確答案是：<b>${factorText(data.factors)}</b>`;
+      showSteps(data);
+      wrongCount++;
+      localStorage.setItem("pf_wrong", wrongCount);
+      updateStats();
+    }
+  }, 1000);
+}
+
+function setTimer(seconds) {
+  timerSeconds = seconds;
+  timerRemaining = seconds;
+  renderTimer();
+  startTimer();
+}
+
+function checkAnswer() {
+  if (!timerStarted) startTimer();
+  if (timerRemaining <= 0) return;
+
+  clearInterval(timerId);
+  timerId = null;
+  timerStarted = false;
+  const result = document.getElementById("result");
+  const data = primeFactorization(currentNumber);
+  const userFactors = getUserFactors();
+
+  if (!userFactors || userFactors.length === 0) {
+    result.className = "result wrong";
+    result.textContent = "請先輸入質因數喔！";
+    return;
+  }
+
+  if (sameArray(userFactors, data.factors)) {
+    correctCount++;
+    localStorage.setItem("pf_correct", correctCount);
+    result.className = "result correct";
+    result.innerHTML = "🎉 答對了！";
+
+    showSteps(data);
+    updateStats();
+
+    // 答對後稍停一下，再自動進入下一題
+    setTimeout(() => {
+      newQuestion();
+    }, 800);
+  } else {
+    wrongCount++;
+    localStorage.setItem("pf_wrong", wrongCount);
+    result.className = "result wrong";
+    result.innerHTML = `❌ 再想想看！正確答案是：<b>${factorText(data.factors)}</b>`;
+
+    showSteps(data);
+    updateStats();
+  }
+}
+
+function showSteps(data) {
+  const box = document.getElementById("steps");
+  box.innerHTML = "<h3>🔍 分解過程</h3>" +
+    data.steps.map((s,i)=>`<div class="step">${i+1}. ${s}</div>`).join("") +
+    `<div class="factor-box">${data.original} = ${factorText(data.factors)}</div>`;
+}
+
+function newQuestion() {
+  const pool = questionPools[difficulty];
+  currentNumber = pool[Math.floor(Math.random() * pool.length)];
+  startTimer();
+  document.getElementById("problem").textContent = currentNumber;
+  clearFactors();
+  document.getElementById("result").className = "result";
+  document.getElementById("result").textContent = "請輸入你的答案";
+  document.getElementById("steps").innerHTML = "";
+}
+
+function chooseNumber(n) {
+  currentNumber = n;
+  startTimer();
+  document.getElementById("problem").textContent = n;
+  clearFactors();
+  document.getElementById("result").className = "result";
+  document.getElementById("result").textContent = "請輸入你的答案";
+  document.getElementById("steps").innerHTML = "";
+  if (mode === "learn") showSteps(primeFactorization(n));
+}
+
+function setMode(newMode) {
+  mode = newMode;
+  document.getElementById("modePractice").classList.toggle("active", mode === "practice");
+  document.getElementById("modeLearn").classList.toggle("active", mode === "learn");
+  if (mode === "learn") showSteps(primeFactorization(currentNumber));
+  else document.getElementById("steps").innerHTML = "";
+}
+
+function updateStats() {
+  const total = correctCount + wrongCount;
+  document.getElementById("correctCount").textContent = correctCount;
+  document.getElementById("wrongCount").textContent = wrongCount;
+  document.getElementById("accuracy").textContent =
+    total ? Math.round(correctCount / total * 100) + "%" : "0%";
+}
+
+function resetStats() {
+  correctCount = 0;
+  wrongCount = 0;
+  localStorage.removeItem("pf_correct");
+  localStorage.removeItem("pf_wrong");
+  updateStats();
+}
+
+
+buildNumberGrid();
+clearFactors();
+
+updateStats();
+renderTimer();
+startTimer();
+</script>
+</body>
+</html>

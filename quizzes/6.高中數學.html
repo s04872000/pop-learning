@@ -1,0 +1,1628 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>有限小數與循環小數化分數｜教材＋題庫</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;background:#fff7fb;color:#3d3540;line-height:1.7}
+header{background:linear-gradient(135deg,#ff9fc4,#c9a7ff);color:white;padding:28px 18px;text-align:center}
+header h1{margin:0;font-size:30px} header p{margin:5px 0 0}
+.container{max-width:1050px;margin:auto;padding:18px}
+.tabs{display:flex;gap:8px;position:sticky;top:0;background:#fff7fb;padding:10px 0;z-index:5}
+.tab{border:0;border-radius:14px;padding:12px 22px;font-size:16px;font-weight:bold;background:#eadff0;cursor:pointer}
+.tab.active{background:#ff8fba;color:#fff}
+.panel{display:none}.panel.active{display:block}
+.card{background:white;border-radius:20px;padding:22px;margin:16px 0;box-shadow:0 5px 18px #00000010;border:1px solid #f0e3ec}
+h2{color:#df5f91;margin-top:0} h3{color:#815fa8}
+.formula{background:#fff1f7;border-left:5px solid #ff8fba;padding:15px 18px;border-radius:12px;margin:12px 0;font-size:18px}
+.example{background:#faf7ff;border-radius:15px;padding:15px;margin:12px 0}
+.steps{padding-left:22px}
+.badge{display:inline-block;background:#ffe0ec;color:#b73e6d;padding:3px 10px;border-radius:20px;font-size:13px;font-weight:bold}
+.repeat{ text-decoration:overline; text-decoration-thickness:2px; }
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.q{border:1px solid #eee0e9;border-radius:16px;padding:16px;background:#fff}
+.qnum{font-weight:bold;color:#875fa4}.ans{display:flex;gap:8px;margin-top:10px}
+input{flex:1;padding:10px 12px;border:2px solid #eadde7;border-radius:10px;font-size:16px;outline:none}
+input:focus{border-color:#ff8fba}
+button{border:0;border-radius:10px;padding:10px 15px;background:#ff8fba;color:white;font-weight:bold;cursor:pointer}
+button.secondary{background:#8e78a8}
+button.green{background:#68ae91}
+.feedback{margin-top:8px;font-weight:bold}
+.correct{color:#2d8b63}.wrong{color:#d34c68}
+.scorebox{display:flex;gap:12px;flex-wrap:wrap;align-items:center;background:#fff1f7;padding:14px;border-radius:14px;margin-bottom:15px}
+.big{font-size:22px;font-weight:bold;color:#d94f88}
+.explain{display:none;background:#f7f4ff;padding:12px;border-radius:12px;margin-top:10px}
+.note{background:#fff9dc;border:1px solid #f0df91;padding:12px;border-radius:12px}
+table{border-collapse:collapse;width:100%;margin:10px 0}th,td{border:1px solid #eadde7;padding:9px;text-align:center}th{background:#fff0f6}
+footer{text-align:center;color:#8b7b88;padding:25px}
+@media(max-width:600px){header h1{font-size:24px}.ans{flex-direction:column}.tabs{overflow:auto}.tab{white-space:nowrap}}
+
+.precise-line{position:relative;height:105px;margin:20px 8px 10px;background:#faf7ff;border-radius:14px;padding:0 25px}
+.precise-line .axis{position:absolute;left:25px;right:25px;top:45px;height:3px;background:#815fa8}
+.precise-line .tick{position:absolute;top:35px;width:2px;height:23px;background:#815fa8;transform:translateX(-1px)}
+.precise-line .label{position:absolute;top:60px;transform:translateX(-50%);font-weight:bold}
+.precise-line .point{position:absolute;top:37px;width:18px;height:18px;border-radius:50%;background:#ff8fba;transform:translateX(-50%);border:3px solid white;box-shadow:0 0 0 2px #ff8fba}
+.precise-line .point-label{position:absolute;top:5px;transform:translateX(-50%);font-weight:bold;color:#d94f88}
+.step-svg{width:100%;max-width:760px;display:block;margin:12px auto;background:#faf7ff;border-radius:15px}
+
+.frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;line-height:1.05;margin:0 3px;min-width:24px}
+.frac .top{border-bottom:2px solid currentColor;padding:0 5px 2px}
+.frac .bottom{padding:2px 5px 0}
+
+.sqrt{display:inline-flex;align-items:flex-start;vertical-align:middle;line-height:1;margin:0 2px}
+.sqrt .radicand{display:inline-block;border-top:2px solid currentColor;padding:2px 2px 0 1px;margin-left:-1px}
+
+.triangle-box{background:#faf7ff;border-radius:15px;padding:12px;margin-top:12px}
+.triangle-box svg{display:block;width:100%;max-width:620px;margin:auto;color:#815fa8}
+
+.calc-area{margin:18px 0;padding:16px;border:2px dashed #f3a1bd;border-radius:14px;background:#fffafd}
+.calc-area h3{margin:0 0 10px;color:#d94f82;font-size:18px}
+.calc-area textarea{width:100%;min-height:180px;box-sizing:border-box;border:1px solid #e6c5d2;border-radius:10px;padding:12px;font-size:16px;line-height:1.7;resize:vertical;background:#fff}
+.calc-actions{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.calc-actions button{border:0;border-radius:9px;padding:9px 14px;cursor:pointer;background:#f58ab0;color:white;font-weight:700}
+.calc-actions button.secondary{background:#f2e8ed;color:#7b5262}
+</style>
+</head>
+<body>
+<header>
+<h1>📚 有限小數與循環小數化分數</h1>
+<p>教材＋例題＋互動題庫｜一個 HTML 檔即可使用</p>
+</header>
+
+<div class="container">
+<div class="tabs">
+<button class="tab active" onclick="showTab('lesson',this)">📘 有限/循環小數</button>
+<button class="tab" onclick="showTab('quiz',this)">📝 題庫測驗</button>
+<button class="tab" onclick="showTab('rational',this)">📍 有理數</button>
+<button class="tab" onclick="showTab('triangle',this)">📐 分數數線</button>
+<button class="tab" onclick="showTab('irrational',this)">♾️ 無理數</button>
+<button class="tab" onclick="showTab('pythagorean',this)">📐 畢氏定理</button>
+<button class="tab" onclick="showTab('sqrt_property',this)">🔢 根號2性質</button>
+<button class="tab" onclick="showTab('simultaneous',this)">🧮 二元一次</button>
+<button class="tab" onclick="showTab('sqrt_approx',this)">📏 十分逼近法</button>
+<button class="tab" onclick="showTab('real_numbers',this)">🔵 實數</button>
+<button class="tab" onclick="showTab('multiplication_formulas',this)">✖️ 乘法公式</button>
+</div>
+
+<section id="lesson" class="panel">
+<div class="card">
+<h2>一、先分清楚：有限小數 vs. 循環小數</h2>
+<div class="grid">
+<div class="example"><span class="badge">有限小數</span><h3>小數會結束</h3>
+<p>例如：0.28、0.732</p>
+<p>0.28 = 28 ÷ 100 = <b><span class="frac"><span class="top">7</span><span class="bottom">25</span></span></b></p></div>
+<div class="example"><span class="badge">循環小數</span><h3>某些數字會一直重複</h3>
+<p>例如：0.<span class="repeat">32</span> = 0.323232…</p>
+<p>重複的數字叫做「循環節」。</p></div>
+</div>
+</div>
+
+<div class="card">
+<h2>二、有限小數 → 分數</h2>
+<div class="formula"><b>核心：</b>有幾位小數，分母就先放幾個 0。</div>
+<p>① 先去掉小數點 → 當分子<br>② 分母放 1 後面接小數位數個 0<br>③ 最後約分成最簡分數</p>
+<div class="example">
+<b>例：0.28</b><br>
+0.28 = 28 ÷ 100 = <span class="frac"><span class="top">7</span><span class="bottom">25</span></span>
+</div>
+<div class="example">
+<b>例：0.732</b><br>
+0.732 = 732 ÷ 1000 = <span class="frac"><span class="top">183</span><span class="bottom">250</span></span>
+</div>
+</div>
+
+<div class="card">
+<h2>三、循環小數 → 分數：先把循環「對齊」</h2>
+<div class="note">💡 <b>不要先背公式！</b><br>真正要做的事情只有一件：<b>把循環對齊，再相減，讓重複的部分消失。</b></div>
+<div class="example">
+<h3>🌟 例題 1：0.<span class="repeat">32</span></h3>
+<p><b>① 找循環：</b>32 一直重複，而且 32 有 2 位。</p>
+<p><b>② 乘 100：</b>讓第一個 32 跑到小數點前。</p>
+<table><tr><th>原本</th><td>0.323232……</td></tr><tr><th>×100</th><td><b>32.323232……</b></td></tr></table>
+<p>這時候兩個式子的 <b>323232……完全一樣</b>。</p>
+<p><b>③ 相減：</b></p>
+<div class="formula"><b>32.323232……<br>− 0.323232……<br>────────────<br>= 32</b></div>
+<p>🎉 循環部分一樣，所以相減後就消失了！</p>
+<p>如果把原本的數叫做 <b>x</b>：</p>
+<div class="formula"><b>100x − x = 32<br>99x = 32<br>x = <span class="frac"><span class="top">32</span><span class="bottom">99</span></span></b></div>
+<div class="formula">🎯 <b>所以：0.323232…… = <span class="frac"><span class="top">32</span><span class="bottom">99</span></span></b></div>
+</div>
+<div class="example">
+<h3>🧠 為什麼可以設 x？</h3>
+<p>因為我們還不知道 0.323232…… 是多少，所以先幫它取一個名字。</p>
+<div class="formula"><b>x = 0.323232……</b></div>
+<p>👉 x 沒有特殊意思，只是代表「這個不知道的數」，方便我們計算。</p>
+</div>
+<div class="example">
+<h3>🌟 例題 2：0.<span class="repeat">7</span></h3>
+<p>循環是 7，只有 1 位，所以乘 10。</p>
+<table><tr><th>原本</th><td>0.7777……</td></tr><tr><th>×10</th><td><b>7.7777……</b></td></tr></table>
+<p>相減：</p><div class="formula"><b>7.7777…… − 0.7777…… = 7</b></div>
+<div class="formula"><b>10x − x = 7<br>9x = 7<br>x = <span class="frac"><span class="top">7</span><span class="bottom">9</span></span></b></div>
+</div>
+<div class="example">
+<h3>🌟 如果循環前面還有數字呢？</h3>
+<p>例如：<b>1.45555……</b></p>
+<p>想法一樣：先讓循環對齊，再相減。</p>
+<ol class="steps"><li>先 ×10：10x = 14.5555……</li><li>再 ×100：100x = 145.5555……</li><li>相減：100x − 10x = 131</li><li>90x = 131</li><li><b>x = <span class="frac"><span class="top">131</span><span class="bottom">90</span></span></b></li></ol>
+</div>
+<div class="formula">🧠 <b>核心不是背 99、999，而是讓循環對齊，再相減把它消掉。</b></div>
+</div>
+<div class="card">
+<h2>四、快速判斷乘幾倍</h2>
+<table>
+<tr><th>形式</th><th>主要操作</th><th>原因</th></tr>
+<tr><td>0.<span class="repeat">32</span></td><td>×100</td><td>循環節 2 位</td></tr>
+<tr><td>1.4<span class="repeat">5</span></td><td>先 ×10，再 ×100</td><td>前面有 1 位非循環＋1 位循環</td></tr>
+<tr><td>0.15<span class="repeat">8</span></td><td>先 ×100，再 ×1000</td><td>前面有 2 位非循環＋1 位循環</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h2>五、這一單元最重要的三句話</h2>
+<ol>
+<li>✅ <b>有限小數：</b>直接寫成「整數／10、100、1000…」，再約分。</li>
+<li>✅ <b>循環小數：</b>設 x，乘適當的 10 的次方，讓循環部分對齊。</li>
+<li>✅ <b>最後一定要約分：</b>題目要求「最簡分數」時，分子分母不能再有公因數。</li>
+</ol>
+</div>
+</section>
+
+
+<section id="rational" class="panel">
+<div class="card">
+<h2>📍 有理數的成員</h2>
+<div class="formula"><b>有理數包含：</b>整數、有限小數、循環小數。</div>
+<div class="grid">
+<div class="example">
+<h3>① 整數</h3>
+<p>例如：−3、0、5</p>
+<p>整數都可以寫成分數：</p>
+<p><b>5 = 5 ÷ 1</b></p>
+</div>
+<div class="example">
+<h3>② 有限小數</h3>
+<p>例如：0.25、1.2</p>
+<p>都可以變成分數：</p>
+<p><b>0.25 = 1 ÷ 4</b></p>
+</div>
+<div class="example">
+<h3>③ 循環小數</h3>
+<p>例如：0.3333……</p>
+<p>可以變成分數：</p>
+<p><b>0.3333…… = 1 ÷ 3</b></p>
+</div>
+</div>
+<div class="note">🧠 <b>一句話：</b>能寫成「整數 ÷ 整數」的數，就是有理數。</div>
+</div>
+
+<div class="card">
+<h2>📏 什麼是數線？</h2>
+<p>數線就是把數字按照大小、固定間隔標在一條直線上。</p>
+<div class="numberline">
+<span>−2</span><span>−1</span><span>0</span><span>1</span><span>2</span><span>3</span>
+</div>
+<p>數線上每一個位置，都代表一個數。</p>
+<ul>
+<li>往右 → 數字越大</li>
+<li>往左 → 數字越小</li>
+<li>0 是很常用的基準點</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>📍 有理點：有理數在數線上的位置</h2>
+<p>任何一個有理數，都可以在數線上找到它對應的位置。</p>
+<p>這個位置就叫做<strong>有理點</strong>。</p>
+
+<div class="example">
+<h3>例如：4 ÷ 3 在哪裡？</h3>
+<p>先想成：</p>
+<div class="formula"><b>4 ÷ 3 = 1又1 ÷ 3</b></div>
+<p>所以它的位置會在 <b>1 和 2 之間</b>，而且把 1 到 2 分成 3 等份，從 1 往右走 1 份。</p>
+<div class="numberline">
+<span>0</span><span>1</span><span class="mark">4 ÷ 3</span><span>2</span><span>3</span>
+</div>
+</div>
+
+<div class="example">
+<h3>再例如：−3 ÷ 5</h3>
+<p>−3 ÷ 5 = −0.6，所以它在 <b>−1 和 0</b> 之間。</p>
+<div class="numberline">
+<span>−1</span><span class="mark">−3 ÷ 5</span><span>0</span><span>1</span>
+</div>
+</div>
+</div>
+
+<div class="card">
+<h2>✏️ 怎麼把分數放到數線上？</h2>
+<ol class="steps">
+<li><b>先看整數部分在哪裡。</b><br>例如 4 ÷ 3 在 1 和 2 之間。</li>
+<li><b>看分母。</b><br>分母是 3 → 把 1 到 2 分成 3 等份。</li>
+<li><b>看分子。</b><br>4 ÷ 3 = 1又1 ÷ 3，所以從 1 往右走 1 格。</li>
+</ol>
+<div class="formula">🎯 <b>分母決定「分幾等份」，分子決定「走幾份」。</b></div>
+</div>
+
+<div class="card">
+<h2>🔎 為什麼兩個有理點中間還能找到其他有理點？</h2>
+<p>因為只要兩個有理數不同，我們就可以找它們的<strong>中點</strong>。</p>
+<div class="example">
+<p>例如 1 和 2 的中點：</p>
+<div class="formula"><b>(1 + 2) ÷ 2 = 3 ÷ 2</b></div>
+<p>所以 1 和 2 中間有 <b>3 ÷ 2</b>。</p>
+</div>
+<div class="example">
+<p>再找一次：</p>
+<div class="formula">
+1 和 3 ÷ 2 的中點 = 5 ÷ 4<br>
+3 ÷ 2 和 2 的中點 = 7 ÷ 4
+</div>
+<p>因此 1 和 2 之間不只有一個有理數，而是可以一直找到更多。</p>
+</div>
+<div class="note">🧠 <b>重點：</b>數線上的兩個有理點之間，一定還可以找到其他有理點。</div>
+</div>
+
+<div class="card">
+<h2>🌟 本頁重點</h2>
+<table>
+<tr><th>觀念</th><th>簡單理解</th></tr>
+<tr><td>有理數</td><td>可以寫成分數的數</td></tr>
+<tr><td>數線</td><td>把數字依大小標在直線上</td></tr>
+<tr><td>有理點</td><td>有理數在數線上的位置</td></tr>
+<tr><td>分母</td><td>決定分成幾等份</td></tr>
+<tr><td>分子</td><td>決定取幾份</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h2>🔎 有理數的稠密性</h2>
+
+<div class="formula">
+<b>有理數的稠密性：</b><br>
+任兩個相異有理數之間，至少存在一個有理數。
+</div>
+
+<p>因為任意兩個有理點之間，一定還可以找到其他有理點，所以任意兩個相異的有理數
+<b>a</b> 和 <b>b</b> 之間，都至少存在一個有理數。</p>
+
+<div class="example">
+<p>例如：在 <span class="frac"><span class="top">3</span><span class="bottom">2</span></span>
+和 <span class="frac"><span class="top">5</span><span class="bottom">3</span></span> 之間找一個有理數。</p>
+
+<p>可以取兩數的中點：</p>
+
+<div class="formula">
+<b>
+<span class="frac"><span class="top">3</span><span class="bottom">2</span></span>
+＋
+<span class="frac"><span class="top">5</span><span class="bottom">3</span></span>
+再除以 2
+＝
+<span class="frac"><span class="top">19</span><span class="bottom">12</span></span>
+</b>
+</div>
+
+<p>所以
+<span class="frac"><span class="top">19</span><span class="bottom">24</span></span>
+就是一個介於
+<span class="frac"><span class="top">3</span><span class="bottom">2</span></span>
+和
+<span class="frac"><span class="top">5</span><span class="bottom">3</span></span>
+之間的有理數。</p>
+</div>
+
+<div class="note">
+🧠 <b>簡單理解：</b>兩個不同的有理數中間，不會「空空的沒有數」，一定還能找到其他有理數。
+</div>
+</div>
+
+<div class="card">
+<h2>📝 隨堂練習（含解答）</h2>
+
+<div class="example">
+<p><b>題目：</b>試找出一個介於
+<span class="frac"><span class="top">3</span><span class="bottom">2</span></span>
+和
+<span class="frac"><span class="top">5</span><span class="bottom">3</span></span>
+之間的有理數。</p>
+</div>
+
+<div class="card" style="background:#fffafd">
+<h3>✏️ 解答：取兩數的中點</h3>
+
+<p>兩個數的中點可以用「相加後除以 2」求得：</p>
+
+<div class="formula">
+<b>
+<span class="frac"><span class="top">3</span><span class="bottom">2</span></span>
+＋
+<span class="frac"><span class="top">5</span><span class="bottom">3</span></span>
+＝
+<span class="frac"><span class="top">9</span><span class="bottom">6</span></span>
+＋
+<span class="frac"><span class="top">10</span><span class="bottom">6</span></span>
+＝
+<span class="frac"><span class="top">19</span><span class="bottom">6</span></span>
+<br>
+再除以 2：
+<span class="frac"><span class="top">19</span><span class="bottom">12</span></span>
+</b>
+</div>
+
+<p>再檢查位置：</p>
+
+<div class="formula">
+<b>
+<span class="frac"><span class="top">3</span><span class="bottom">2</span></span>
+＝
+<span class="frac"><span class="top">18</span><span class="bottom">12</span></span>
+，
+<span class="frac"><span class="top">5</span><span class="bottom">3</span></span>
+＝
+<span class="frac"><span class="top">20</span><span class="bottom">12</span></span>
+</b>
+<br><br>
+<b>
+<span class="frac"><span class="top">18</span><span class="bottom">12</span></span>
+＜
+<span class="frac"><span class="top">19</span><span class="bottom">12</span></span>
+＜
+<span class="frac"><span class="top">20</span><span class="bottom">12</span></span>
+</b>
+</div>
+
+<div class="note">
+🎯 <b>答案：</b>
+<span class="frac"><span class="top">19</span><span class="bottom">12</span></span>
+</div>
+</div>
+
+<div class="formula">
+⭐ <b>重點：</b>要在兩個有理數之間找另一個有理數，可以直接找它們的「中點」。
+</div>
+</div>
+
+</section>
+<section id="triangle" class="panel">
+<div class="card">
+<h2>📐 分數定位作圖：把 <span class="frac"><span class="top">4</span><span class="bottom">3</span></span> 精確放到數線上</h2>
+<div class="note">💡 這個方法的重點不是三角形畫得多漂亮，而是利用「<b>等分＋平行線</b>」把比例精確搬到數線上。</div>
+</div>
+
+<div class="card">
+<h2>① 先畫數線</h2>
+<p>先畫一條水平數線，標出 0、1、2、3、4。這裡把刻度畫成<strong>等距</strong>。</p>
+<div class="precise-line">
+  <div class="axis"></div>
+  <div class="tick" style="left:8%"></div><div class="label" style="left:8%">0</div>
+  <div class="tick" style="left:29%"></div><div class="label" style="left:29%">1</div>
+  <div class="tick" style="left:50%"></div><div class="label" style="left:50%">2</div>
+  <div class="tick" style="left:71%"></div><div class="label" style="left:71%">3</div>
+  <div class="tick" style="left:92%"></div><div class="label" style="left:92%">4</div>
+</div>
+<div class="formula"><b>數線的每一格距離都相等。</b></div>
+</div>
+
+<div class="card">
+<h2>② 從 O 往右上方畫一條斜線</h2>
+<p>這條斜線<strong>沒有規定固定角度</strong>。</p>
+<ul>
+<li>✅ 往右上方即可</li>
+<li>✅ 不一定要 45°</li>
+<li>✅ 不需要固定斜率</li>
+<li>⭐ 重要的是下一步要把它分成 3 個相等的部分</li>
+</ul>
+<div class="formula"><b>斜線怎麼斜不是重點；等分才是重點。</b></div>
+</div>
+
+<div class="card">
+<h2>③ 把斜線分成 3 個相等的部分</h2>
+<p>從 O 往右上畫到 C，標出 A、B，使：</p>
+<div class="formula"><b>OA = AB = BC</b></div>
+<p>因此 OA 是 OC 的 <span class="frac"><span class="top">1</span><span class="bottom">3</span></span>：</p>
+<div class="formula"><b>OA / OC = <span class="frac"><span class="top">1</span><span class="bottom">3</span></span></b></div>
+
+<svg class="step-svg" viewBox="0 0 760 300" aria-label="斜線分成三等份">
+  <line x1="100" y1="250" x2="400" y2="70" stroke="currentColor" stroke-width="4"/>
+  <circle cx="100" cy="250" r="6"/><circle cx="200" cy="190" r="6"/><circle cx="300" cy="130" r="6"/><circle cx="400" cy="70" r="6"/>
+  <text x="88" y="278" font-size="22">O</text>
+  <text x="192" y="180" font-size="22">A</text>
+  <text x="292" y="120" font-size="22">B</text>
+  <text x="392" y="60" font-size="22">C</text>
+  <text x="135" y="145" font-size="20">OA</text>
+  <text x="235" y="85" font-size="20">AB</text>
+  <text x="335" y="25" font-size="20">BC</text>
+</svg>
+</div>
+
+<div class="card">
+<h2>④ 把 C 和數線上的 4 連起來</h2>
+<p>設數線上的 4 為 P，所以：</p>
+<div class="formula"><b>OP = 4</b></div>
+<p>再從 A 畫一條<strong>平行 CP</strong>的線，碰到數線的位置叫 Q。</p>
+
+<svg class="step-svg" viewBox="0 0 760 340" aria-label="利用平行線找出四分之三的位置">
+  <!-- number line -->
+  <line x1="70" y1="275" x2="690" y2="275" stroke="currentColor" stroke-width="4"/>
+  <!-- ticks at 0,1,2,3,4 -->
+  <g stroke="currentColor" stroke-width="3">
+    <line x1="70" y1="262" x2="70" y2="288"/>
+    <line x1="225" y1="262" x2="225" y2="288"/>
+    <line x1="380" y1="262" x2="380" y2="288"/>
+    <line x1="535" y1="262" x2="535" y2="288"/>
+    <line x1="690" y1="262" x2="690" y2="288"/>
+  </g>
+  <g font-size="22">
+    <text x="62" y="315">0</text><text x="217" y="315">1</text>
+    <text x="372" y="315">2</text><text x="527" y="315">3</text><text x="682" y="315">4</text>
+  </g>
+  <!-- slanted ray, 3 equal sections -->
+  <line x1="70" y1="275" x2="340" y2="55" stroke="currentColor" stroke-width="4"/>
+  <circle cx="70" cy="275" r="6"/><circle cx="160" cy="202" r="6"/><circle cx="250" cy="128" r="6"/><circle cx="340" cy="55" r="6"/>
+  <g font-size="21">
+    <text x="55" y="265">O</text><text x="150" y="193">A</text><text x="240" y="119">B</text><text x="333" y="47">C</text>
+  </g>
+  <!-- CP -->
+  <line x1="340" y1="55" x2="690" y2="275" stroke="currentColor" stroke-width="4"/>
+  <!-- AQ parallel to CP: same slope, meets x-axis at Q -->
+  <line x1="160" y1="202" x2="276" y2="275" stroke="currentColor" stroke-width="4"/>
+  <circle cx="276" cy="275" r="8" fill="currentColor"/>
+  <text x="267" y="258" font-size="21">Q</text>
+  <text x="262" y="338" font-size="20"><span class="frac"><span class="top">4</span><span class="bottom">3</span></span></text>
+  <text x="681" y="255" font-size="21">P</text>
+</svg>
+</div>
+
+<div class="card">
+<h2>⑤ 為什麼 Q 是 <span class="frac"><span class="top">4</span><span class="bottom">3</span></span>？</h2>
+<p>因為 <b>AQ ∥ CP</b>，所以小三角形和大三角形形狀相同，只是大小不同。</p>
+<div class="formula">
+斜線縮小比例：<b>OA / OC = <span class="frac"><span class="top">1</span><span class="bottom">3</span></span></b><br><br>
+數線也縮小 <span class="frac"><span class="top">1</span><span class="bottom">3</span></span>：<b>OQ / OP = <span class="frac"><span class="top">1</span><span class="bottom">3</span></span></b>
+</div>
+<p>而 OP = 4：</p>
+<div class="formula"><b>OQ = 4 × <span class="frac"><span class="top">1</span><span class="bottom">3</span></span> = <span class="frac"><span class="top">4</span><span class="bottom">3</span></span></b></div>
+<div class="note">🎯 所以 Q 就是數線上的 <b><span class="frac"><span class="top">4</span><span class="bottom">3</span></span></b>。</div>
+</div>
+
+<div class="card">
+<h2>🧠 最簡單的記法</h2>
+<ol class="steps">
+<li>畫數線。</li>
+<li>從 O 往右上畫斜線，<strong>角度沒有固定規定</strong>。</li>
+<li>把斜線分成 3 個<strong>相等</strong>部分。</li>
+<li>把最上面的 C 連到數線上的 4。</li>
+<li>從第一個分點 A 畫<strong>平行線</strong>。</li>
+<li>碰到數線的位置就是 <b><span class="frac"><span class="top">4</span><span class="bottom">3</span></span></b>。</li>
+</ol>
+<div class="formula">⭐ <b>記住：斜線不重要，等分＋平行才重要。</b></div>
+</div>
+
+<div class="card">
+<h2>📝 隨堂練習（含解答）</h2>
+
+<div class="example">
+<p><b>題目：</b>仿照上述的作圖法，在數線上分別標出
+<span class="frac"><span class="top">3</span><span class="bottom">5</span></span>
+及
+<span class="frac"><span class="top">−3</span><span class="bottom">5</span></span>
+所代表的點。</p>
+</div>
+
+<div class="card" style="background:#fffafd">
+<h3>① <span class="frac"><span class="top">3</span><span class="bottom">5</span></span> 的作圖解答</h3>
+<ol class="steps">
+<li>先在數線上找到 <b>0</b> 和 <b>1</b>。</li>
+<li>從 0 往右上方畫一條斜線。</li>
+<li>把斜線分成 <b>5 個相等的部分</b>。</li>
+<li>把最上方的點連到數線上的 <b>1</b>。</li>
+<li>從斜線上第 <b>3 個分點</b> 畫一條與剛才連線<strong>平行</strong>的線，與數線交於一點。</li>
+<li>這個交點就是 <b><span class="frac"><span class="top">3</span><span class="bottom">5</span></span></b>。</li>
+</ol>
+<div class="formula">
+<b>答案：</b>
+<span class="frac"><span class="top">3</span><span class="bottom">5</span></span>
+位於 <b>0 和 1 之間</b>，從 0 往右數第 3 個五等分的位置。
+</div>
+</div>
+
+<div class="card" style="background:#fffafd">
+<h3>② <span class="frac"><span class="top">−3</span><span class="bottom">5</span></span> 的作圖解答</h3>
+<ol class="steps">
+<li>先在數線上找到 <b>0</b> 和 <b>−1</b>。</li>
+<li>在 0 的另一側（左上方）畫一條斜線。</li>
+<li>把斜線分成 <b>5 個相等的部分</b>。</li>
+<li>把最上方的點連到數線上的 <b>−1</b>。</li>
+<li>從斜線上第 <b>3 個分點</b> 畫一條與剛才連線<strong>平行</strong>的線，與數線交於一點。</li>
+<li>這個交點就是 <b><span class="frac"><span class="top">−3</span><span class="bottom">5</span></span></b>。</li>
+</ol>
+<div class="formula">
+<b>答案：</b>
+<span class="frac"><span class="top">−3</span><span class="bottom">5</span></span>
+位於 <b>−1 和 0 之間</b>，從 0 往左數第 3 個五等分的位置。
+</div>
+</div>
+
+<div class="note">
+🎯 <b>快速判斷：</b><br>
+正分數
+<span class="frac"><span class="top">3</span><span class="bottom">5</span></span>
+→ 在 0 的<b>右邊</b>；<br>
+負分數
+<span class="frac"><span class="top">−3</span><span class="bottom">5</span></span>
+→ 在 0 的<b>左邊</b>。<br>
+兩者離 0 的距離都相同，都是
+<span class="frac"><span class="top">3</span><span class="bottom">5</span></span>。
+</div>
+</div>
+
+</section>
+
+
+
+<section id="irrational" class="panel">
+<div class="card">
+<h2>♾️ 無理數與 <span class="sqrt">√<span class="radicand">2</span></span></h2>
+<div class="note">💡 這一頁最重要的問題只有一個：<b>為什麼 <span class="sqrt">√<span class="radicand">2</span></span> 是無理數？</b></div>
+</div>
+
+<div class="card">
+<h2>① 先搞懂「無理數」</h2>
+<p><b>有理數：</b>能表示成「兩個整數相除」的數，其中除數不能是 0。</p>
+<p><b>無理數：</b><b>不能</b>表示成「兩個整數相除」的數。</p>
+<div class="note">🧠 <b>注意：</b>有限小數、循環小數本身不是整數；只是它們可以表示成「整數 ÷ 整數」，所以屬於有理數。</div>
+<div class="example"><b>例如：</b>2、1 ÷ 2、0.75、0.333……都是有理數。</div>
+<div class="example"><b><span class="sqrt">√<span class="radicand">2</span></span>、π</b>則是無理數。</div>
+</div>
+
+<div class="card">
+<h2>② 為什麼一直證明 <span class="sqrt">√<span class="radicand">2</span></span>？</h2>
+<p>因為不能只說「<span class="sqrt">√<span class="radicand">2</span></span> 看起來不能變成分數」。</p>
+<p>我們要<strong>證明</strong>它真的不能寫成分數。</p>
+<div class="note">🧠 所以用了「<b>反證法</b>」：<br>
+先故意假設「<span class="sqrt">√<span class="radicand">2</span></span> 可以寫成分數」，如果最後發現這個假設會造成不可能的事情，就知道原本的假設是錯的。</div>
+</div>
+
+<div class="card">
+<h2>③ 先假裝 <span class="sqrt">√<span class="radicand">2</span></span> 是有理數</h2>
+<p>假設 <span class="sqrt">√<span class="radicand">2</span></span> 可以寫成最簡分數：</p>
+<div class="formula">
+<span class="sqrt">√<span class="radicand">2</span></span>
+＝
+<span class="frac"><span class="top">q</span><span class="bottom">p</span></span>
+</div>
+<p>「最簡分數」就是：<b>p 和 q 已經不能再一起約分。</b></p>
+<div class="note">這裡的 p、q 不用先想得太複雜，你只要知道它們是整數，而且這個分數已經最簡就好。</div>
+</div>
+
+<div class="card">
+<h2>④ 兩邊平方</h2>
+<div class="formula">
+<span class="sqrt">√<span class="radicand">2</span></span>
+＝
+<span class="frac"><span class="top">q</span><span class="bottom">p</span></span>
+<br>
+↓ 兩邊平方
+<br>
+<b>2 ＝ <span class="frac"><span class="top">q²</span><span class="bottom">p²</span></span></b>
+<br>
+↓ 兩邊乘 p²
+<br>
+<b>2p² ＝ q²</b>
+</div>
+<div class="note">⭐ 這一步的目的只是把 <span class="sqrt">√<span class="radicand">2</span></span> 消掉，讓我們比較容易繼續推理。</div>
+</div>
+
+<div class="card">
+<h2>⑤ 為什麼 q 一定是偶數？</h2>
+<p>我們知道：</p>
+<div class="formula"><b>2p² ＝ q²</b></div>
+<p>左邊有一個「2」，所以左邊一定是<strong>偶數</strong>。</p>
+<p>因此右邊的 q² 也是偶數。</p>
+<p>如果 q 是奇數，那麼「奇數 × 奇數」會是奇數，不可能得到偶數。</p>
+<div class="note">🎯 所以：<b>q 一定是偶數。</b></div>
+</div>
+
+<div class="card">
+<h2>⑥ q 是偶數，接著會怎樣？</h2>
+<p>因為 q 是偶數，可以把它寫成：</p>
+<div class="formula"><b>q ＝ 2k</b></div>
+<p>把它放回：</p>
+<div class="formula">
+<b>2p² ＝ q²</b><br>
+<b>2p² ＝ (2k)²</b><br>
+<b>2p² ＝ 4k²</b><br>
+<b>p² ＝ 2k²</b>
+</div>
+<p>所以 p² 也是偶數。</p>
+<div class="note">🎯 因此 <b>p 也是偶數。</b></div>
+</div>
+
+<div class="card">
+<h2>⑦ 問題來了！產生矛盾</h2>
+<p>現在我們得到：</p>
+<div class="formula"><b>p 是偶數，而且 q 也是偶數。</b></div>
+<p>也就是 p、q 都可以除以 2。</p>
+<div class="formula">
+<span class="frac"><span class="top">q</span><span class="bottom">p</span></span>
+可以再約分
+</div>
+<p>可是我們一開始明明說：</p>
+<div class="note"><b>「q ÷ p 已經是最簡分數。」</b></div>
+<p>兩件事情互相衝突，這就是<strong>矛盾</strong>。</p>
+</div>
+
+<div class="card">
+<h2>⑧ 反證法的結論</h2>
+<div class="formula">
+假設：<b><span class="sqrt">√<span class="radicand">2</span></span> 是有理數</b><br>
+↓<br>
+結果：<b>p、q 都是偶數，可以再約分</b><br>
+↓<br>
+❌ 和「最簡分數」矛盾<br>
+↓<br>
+🎯 <b>所以 <span class="sqrt">√<span class="radicand">2</span></span> 不是有理數。</b>
+</div>
+<div class="note">⭐ 不是我們「算不出 <span class="sqrt">√<span class="radicand">2</span></span> 的分數」，而是我們證明了：<b>根本不存在那個分數。</b></div>
+</div>
+
+<div class="card">
+<h2>⑨ 這就是「反證法」</h2>
+<div class="formula"><b>先假設 → 一直推理 → 發現矛盾 → 原本假設錯誤</b></div>
+<p>你可以把它想成：</p>
+<div class="example">「我先假裝它是真的，結果走到最後發現不可能，那就代表一開始是假設錯了。」</div>
+</div>
+
+<div class="card">
+<h2>⑩ 延伸</h2>
+<p>既然 <span class="sqrt">√<span class="radicand">2</span></span> 是無理數，那麼：</p>
+<div class="formula"><b>3<span class="sqrt">√<span class="radicand">2</span></span>、5<span class="sqrt">√<span class="radicand">2</span></span></b></div>
+<p>也都是無理數。</p>
+<p>例如如果 3<span class="sqrt">√<span class="radicand">2</span></span> 是有理數，那麼再 <b>÷ 3</b>，就會變成 <span class="sqrt">√<span class="radicand">2</span></span> 是有理數，和前面矛盾。</p>
+</div>
+
+<div class="card">
+<h2>⑪ 有理數＋<span class="sqrt">√<span class="radicand">2</span></span></h2>
+<div class="formula"><b>3 ＋ <span class="sqrt">√<span class="radicand">2</span></span></b></div>
+<p>也是無理數。</p>
+<p>如果 3＋<span class="sqrt">√<span class="radicand">2</span></span> 是有理數，再減掉 3，就會得到 <span class="sqrt">√<span class="radicand">2</span></span> 是有理數，這又矛盾了。</p>
+</div>
+
+<div class="card">
+<h2>🧠 超簡單版：你真正要記什麼？</h2>
+<div class="formula"><b><span class="sqrt">√<span class="radicand">2</span></span> 不能寫成分數 → <span class="sqrt">√<span class="radicand">2</span></span> 是無理數</b></div>
+<p>證明的方法：</p>
+<ol class="steps">
+<li>先假設 <span class="sqrt">√<span class="radicand">2</span></span> 可以寫成最簡分數。</li>
+<li>算一算後，發現分子、分母都變成偶數。</li>
+<li>那就表示這個分數還可以約分。</li>
+<li>可是它一開始明明是最簡分數。</li>
+<li>產生矛盾。</li>
+<li>所以原本的假設錯了。</li>
+</ol>
+<div class="note">🎯 <b>最重要一句：假設它是有理數 → 推出矛盾 → 所以 <span class="sqrt">√<span class="radicand">2</span></span> 是無理數。</b></div>
+</div>
+
+<div class="card">
+<h2>📖 從有理點認識無理數</h2>
+
+<p>有理點在數線上的分布雖然是密密麻麻的，但仍有許多點對應的數無法用有理數的形式表示。</p>
+
+<p>例如邊長是 1 的正方形，其對角線的長是
+<span class="sqrt">√<span class="radicand">2</span></span>，
+對應到數線上的點就不是有理點。我們將這些數線上不是有理點所對應的數稱為<b>無理數</b>。</p>
+
+<div class="triangle-box">
+<svg class="step-svg" viewBox="0 0 760 300" aria-label="邊長為1的正方形與根號2">
+  <line x1="170" y1="220" x2="390" y2="220" stroke="currentColor" stroke-width="4"/>
+  <line x1="390" y1="220" x2="390" y2="60" stroke="currentColor" stroke-width="4"/>
+  <line x1="390" y1="60" x2="170" y2="60" stroke="currentColor" stroke-width="4"/>
+  <line x1="170" y1="60" x2="170" y2="220" stroke="currentColor" stroke-width="4"/>
+  <line x1="170" y1="220" x2="390" y2="60" stroke="currentColor" stroke-width="4"/>
+  <text x="270" y="245" font-size="22">1</text>
+  <text x="405" y="145" font-size="22">1</text>
+  <text x="265" y="125" font-size="22">√2</text>
+
+  <line x1="500" y1="220" x2="700" y2="220" stroke="currentColor" stroke-width="3"/>
+  <line x1="500" y1="210" x2="500" y2="230" stroke="currentColor" stroke-width="3"/>
+  <line x1="600" y1="210" x2="600" y2="230" stroke="currentColor" stroke-width="3"/>
+  <line x1="700" y1="210" x2="700" y2="230" stroke="currentColor" stroke-width="3"/>
+  <text x="492" y="255" font-size="20">0</text>
+  <text x="592" y="255" font-size="20">1</text>
+  <text x="692" y="255" font-size="20">2</text>
+  <text x="612" y="190" font-size="21">√2</text>
+  <line x1="641" y1="195" x2="641" y2="220" stroke="currentColor" stroke-width="3" stroke-dasharray="6 5"/>
+</svg>
+</div>
+
+<div class="note">
+🎯 <b>重點：</b>數線上的數不一定都是有理數；不是有理點所對應的數，就是無理數。
+</div>
+</div>
+
+<div class="card">
+<h2>🔍 例子：為什麼會出現 √2？</h2>
+
+<p>邊長是 1 的正方形，畫出對角線後，可以得到一個直角三角形。</p>
+
+<div class="formula">
+<b>1² ＋ 1² ＝ 對角線²</b><br>
+<b>1 ＋ 1 ＝ 對角線²</b><br>
+<b>2 ＝ 對角線²</b><br>
+<b>對角線 ＝ <span class="sqrt">√<span class="radicand">2</span></span></b>
+</div>
+
+<p>因此，正方形的對角線長度就是
+<span class="sqrt">√<span class="radicand">2</span></span>。</p>
+
+<p>把這個長度搬到數線上，就可以在數線上找到
+<span class="sqrt">√<span class="radicand">2</span></span> 所對應的位置。</p>
+</div>
+
+<div class="card">
+<h2>📌 有理數與無理數</h2>
+
+<table>
+<tr><th>種類</th><th>意思</th><th>例子</th></tr>
+<tr><td>有理數</td><td>可以表示成兩個整數相除的數</td><td>2、<span class="frac"><span class="top">1</span><span class="bottom">2</span></span>、0.75</td></tr>
+<tr><td>無理數</td><td>不能表示成兩個整數相除的數</td><td><span class="sqrt">√<span class="radicand">2</span></span>、π</td></tr>
+</table>
+
+<div class="formula">
+⭐ <b>記住：</b><br>
+有理數 → 可以寫成「整數 ÷ 整數」<br>
+無理數 → 不可以寫成「整數 ÷ 整數」
+</div>
+</div>
+
+</section>
+
+
+
+<section id="pythagorean" class="panel">
+<div class="card">
+<h2>📐 畢氏定理（勾股定理）</h2>
+<div class="note">💡 畢氏定理是在說：<b>直角三角形的三條邊有固定的關係。</b></div>
+</div>
+
+<div class="card">
+<h2>① 先認識直角三角形</h2>
+<p>有一個角是 <b>90°</b> 的三角形，就叫做<strong>直角三角形</strong>。</p>
+<p>其中最長的那一邊，叫做<strong>斜邊</strong>，而且它一定在 90° 的對面。</p>
+<div class="triangle-box">
+<svg viewBox="0 0 620 300" aria-label="直角三角形示意圖">
+<polygon points="130,240 130,70 500,240" fill="none" stroke="currentColor" stroke-width="4"/>
+<polyline points="130,215 155,215 155,240" fill="none" stroke="currentColor" stroke-width="3"/>
+<text x="102" y="258" font-size="22">A</text>
+<text x="103" y="62" font-size="22">B</text>
+<text x="505" y="258" font-size="22">C</text>
+<text x="105" y="160" font-size="20">a</text>
+<text x="310" y="265" font-size="20">b</text>
+<text x="315" y="140" font-size="20">c（斜邊）</text>
+<text x="155" y="208" font-size="18">90°</text>
+</svg>
+</div>
+</div>
+
+<div class="card">
+<h2>② 畢氏定理公式</h2>
+<div class="formula"><b>a² ＋ b² ＝ c²</b></div>
+<p><b>a、b</b> 是兩條直角邊，<b>c</b> 是最長的斜邊。</p>
+<div class="note">🧠 記法：<b>兩條短邊的平方相加 ＝ 最長邊的平方</b>。</div>
+</div>
+
+<div class="card">
+<h2>③ 最經典的 3、4、5</h2>
+<p>如果兩條直角邊是 3 和 4：</p>
+<div class="formula"><b>3² ＋ 4² ＝ 9 ＋ 16 ＝ 25 ＝ 5²</b></div>
+<p>所以斜邊就是 <b>5</b>。</p>
+<div class="formula">🎯 <b>3、4、5 是一組常見的畢氏數。</b></div>
+</div>
+
+<div class="card">
+<h2>④ 為什麼 <span class="sqrt">√<span class="radicand">2</span></span> 會出現在高中這一章？</h2>
+<p>用「邊長都是 1 的正方形」來介紹 <span class="sqrt">√<span class="radicand">2</span></span>。</p>
+<p>正方形的對角線會把正方形切成一個直角三角形：</p>
+<div class="formula"><b>1² ＋ 1² ＝ 對角線²</b></div>
+<div class="formula"><b>2 ＝ 對角線²</b></div>
+<div class="formula"><b>對角線 ＝ <span class="sqrt">√<span class="radicand">2</span></span></b></div>
+<p>所以：</p>
+<div class="note">⭐ <b>國中學畢氏定理 → 高中用它得到 <span class="sqrt">√<span class="radicand">2</span></span> → 再用 <span class="sqrt">√<span class="radicand">2</span></span> 介紹無理數。</b></div>
+</div>
+
+<div class="card">
+<h2>⑤ 怎麼用畢氏定理求邊長？</h2>
+<p><b>已知兩條直角邊：</b></p>
+<div class="formula"><b>a² ＋ b² ＝ c²</b></div>
+<p>例如 a＝6、b＝8：</p>
+<div class="formula"><b>6² ＋ 8² ＝ c²</b><br><b>36 ＋ 64 ＝ c²</b><br><b>100 ＝ c²</b><br><b>c ＝ 10</b></div>
+<p><b>如果已知斜邊和一條直角邊：</b></p>
+<div class="formula"><b>a² ＝ c² − b²</b></div>
+<div class="note">⚠️ <b>先確認哪一條是斜邊！</b>斜邊一定是直角的對面，而且一定是最長的那一邊。</div>
+</div>
+
+<div class="card">
+<h2>🏫 什麼時候學？</h2>
+<div class="formula"><b>國中八年級 → 畢氏定理</b></div>
+<p>高中「實數、無理數」這一章會再次用到它，尤其是用來說明 <b><span class="sqrt">√<span class="radicand">2</span></span></b> 可以出現在數線上。</p>
+</div>
+
+<div class="card">
+<h2>🌟 一句話記住</h2>
+<div class="formula"><b>直角三角形：兩條直角邊平方相加 ＝ 斜邊平方。</b></div>
+</div>
+</section>
+
+
+
+<section id="sqrt_approx" class="panel">
+<div class="card">
+<h2>📏 <span class="sqrt">√<span class="radicand">2</span></span> 的近似值</h2>
+<div class="note">💡 <b><span class="sqrt">√<span class="radicand">2</span></span> 是無理數，不能用有限小數或分數精確表示，但我們可以一步一步找出它的近似值。</b></div>
+</div>
+
+<div class="card">
+<h2>① <span class="sqrt">√<span class="radicand">2</span></span> 大約在哪裡？</h2>
+<p>事實上，對任意正整數 <b>n</b>，當 <b>n</b> 不是完全平方數時，<span class="sqrt">√<span class="radicand">n</span></span> 都是無理數。</p>
+<p>例如 <span class="sqrt">√<span class="radicand">2</span></span>、<span class="sqrt">√<span class="radicand">3</span></span>、<span class="sqrt">√<span class="radicand">5</span></span>、<span class="sqrt">√<span class="radicand">6</span></span> 等都是無理數。</p>
+<p>我們先利用平方來判斷 <span class="sqrt">√<span class="radicand">2</span></span> 的範圍。</p>
+<div class="formula"><b>1² ＝ 1　　2² ＝ 4</b></div>
+<p>因為：</p>
+<div class="formula"><b>1² ＜ 2 ＜ 2²</b></div>
+<p>所以：</p>
+<div class="formula"><b>1 ＜ <span class="sqrt">√<span class="radicand">2</span></span> ＜ 2</b></div>
+</div>
+
+<div class="card">
+<h2>② 再縮小範圍：找到小數第 1 位</h2>
+<p>已經知道 <span class="sqrt">√<span class="radicand">2</span></span> 在 1 和 2 之間後，可以繼續比較小數的平方。</p>
+<table>
+<tr><th>判斷 <span class="sqrt">√<span class="radicand">2</span></span> 所在的範圍</th><th><span class="sqrt">√<span class="radicand">2</span></span> 的範圍</th></tr>
+<tr>
+<td><b>1.1²＝1.21、1.2²＝1.44、1.3²＝1.69、1.4²＝1.96、1.5²＝2.25</b><br><br><b>1.4² ＜ 2 ＜ 1.5²</b></td>
+<td><b>1.4 ＜ <span class="sqrt">√<span class="radicand">2</span></span> ＜ 1.5</b></td>
+</tr>
+</table>
+<div class="note">🧠 範圍從 <b>1～2</b> 縮小成 <b>1.4～1.5</b>，就知道 <span class="sqrt">√<span class="radicand">2</span></span> 的小數第 1 位是 <b>4</b>。</div>
+</div>
+
+<div class="card">
+<h2>③ 再縮小：找到小數第 2 位</h2>
+<table>
+<tr><th>判斷 <span class="sqrt">√<span class="radicand">2</span></span> 所在的範圍</th><th><span class="sqrt">√<span class="radicand">2</span></span> 的範圍</th></tr>
+<tr>
+<td><b>1.41²＝1.9881、1.42²＝2.0164</b><br><br><b>1.41² ＜ 2 ＜ 1.42²</b></td>
+<td><b>1.41 ＜ <span class="sqrt">√<span class="radicand">2</span></span> ＜ 1.42</b></td>
+</tr>
+</table>
+<p>所以可以知道：</p>
+<div class="formula"><b>1.41 ＜ <span class="sqrt">√<span class="radicand">2</span></span> ＜ 1.42</b></div>
+</div>
+
+<div class="card">
+<h2>④ 再縮小：找到小數第 3 位</h2>
+<table>
+<tr><th>判斷 <span class="sqrt">√<span class="radicand">2</span></span> 所在的範圍</th><th><span class="sqrt">√<span class="radicand">2</span></span> 的範圍</th></tr>
+<tr>
+<td>
+<b>1.411²＝1.990921、1.412²＝1.993744</b><br>
+<b>1.413²＝1.996569、1.414²＝1.999396</b><br>
+<b>1.415²＝2.002225</b><br><br>
+<b>1.414² ＜ 2 ＜ 1.415²</b>
+</td>
+<td><b>1.414 ＜ <span class="sqrt">√<span class="radicand">2</span></span> ＜ 1.415</b></td>
+</tr>
+</table>
+<div class="note">🎯 目前已經可以很精確地知道 <span class="sqrt">√<span class="radicand">2</span></span> 落在 <b>1.414 和 1.415</b> 之間。</div>
+</div>
+
+<div class="card">
+<h2>⑤ 為什麼這樣就可以找到近似值？</h2>
+<p>我們不是直接把 <span class="sqrt">√<span class="radicand">2</span></span> 算成一個有限小數，而是一直把它的範圍縮小：</p>
+<table>
+<tr><th>步驟</th><th>平方比較</th><th>得到的範圍</th></tr>
+<tr><td>第 1 步</td><td>1² ＜ 2 ＜ 2²</td><td><b>1 ＜ <span class="sqrt">√<span class="radicand">2</span></span> ＜ 2</b></td></tr>
+<tr><td>第 2 步</td><td>1.4² ＜ 2 ＜ 1.5²</td><td><b>1.4 ＜ <span class="sqrt">√<span class="radicand">2</span></span> ＜ 1.5</b></td></tr>
+<tr><td>第 3 步</td><td>1.41² ＜ 2 ＜ 1.42²</td><td><b>1.41 ＜ <span class="sqrt">√<span class="radicand">2</span></span> ＜ 1.42</b></td></tr>
+<tr><td>第 4 步</td><td>1.414² ＜ 2 ＜ 1.415²</td><td><b>1.414 ＜ <span class="sqrt">√<span class="radicand">2</span></span> ＜ 1.415</b></td></tr>
+</table>
+<div class="formula">🎯 <b>範圍越縮越小，就能得到越精確的近似值。</b></div>
+</div>
+
+<div class="card">
+<h2>⑥ 目前得到的近似值</h2>
+<div class="formula">
+<b>1.414 ＜ <span class="sqrt">√<span class="radicand">2</span></span> ＜ 1.415</b>
+</div>
+<p>所以我們知道 <span class="sqrt">√<span class="radicand">2</span></span> 約為：</p>
+<div class="formula"><b><span class="sqrt">√<span class="radicand">2</span></span> ＝ 1.414……</b></div>
+<p>如果只需要取到小數第 2 位，可以寫成：</p>
+<div class="formula"><b><span class="sqrt">√<span class="radicand">2</span></span> ≈ 1.41</b></div>
+<div class="note">⚠️ <b>「≈」表示「約等於、近似於」</b>。因為 <span class="sqrt">√<span class="radicand">2</span></span> 是無理數，小數會一直延伸下去，不會剛好結束。</div>
+</div>
+
+<div class="card">
+<h2>🧠 超簡單記法</h2>
+<ol class="steps">
+<li>先找兩個整數，讓 <b>平方夾住 2</b>。</li>
+<li>再用小數逐步縮小範圍。</li>
+<li>平方小的數和平方大的數，把 2 夾在中間。</li>
+<li>範圍越小，<span class="sqrt">√<span class="radicand">2</span></span> 的近似值就越精確。</li>
+</ol>
+<div class="formula"><b>1 ＜ <span class="sqrt">√<span class="radicand">2</span></span> ＜ 2</b><br>↓<br><b>1.4 ＜ <span class="sqrt">√<span class="radicand">2</span></span> ＜ 1.5</b><br>↓<br><b>1.41 ＜ <span class="sqrt">√<span class="radicand">2</span></span> ＜ 1.42</b><br>↓<br><b>1.414 ＜ <span class="sqrt">√<span class="radicand">2</span></span> ＜ 1.415</b></div>
+</div>
+
+
+<div class="card">
+<h2>⑦ 隨堂練習：用十分逼近法求 <span class="sqrt">√<span class="radicand">3</span></span></h2>
+<div class="note">✏️ <b>題目：</b>以十分逼近法求 <span class="sqrt">√<span class="radicand">3</span></span> 的近似值，無條件捨去到小數點後第 2 位。</div>
+<p>做法和前面的 <span class="sqrt">√<span class="radicand">2</span></span> 完全一樣：先用平方夾住 3，再逐步縮小範圍。</p>
+<div class="formula"><b>1²＝1　　2²＝4</b><br><b>1² ＜ 3 ＜ 2²</b><br>所以：<b>1 ＜ <span class="sqrt">√<span class="radicand">3</span></span> ＜ 2</b></div>
+<p>接著繼續比較小數的平方，逐步把 <span class="sqrt">√<span class="radicand">3</span></span> 的範圍縮小。</p>
+<div class="example">
+<h3>① 找到小數第 1 位</h3>
+<div class="formula"><b>1.7²＝2.89　　1.8²＝3.24</b><br><b>1.7² ＜ 3 ＜ 1.8²</b><br>所以：<b>1.7 ＜ <span class="sqrt">√<span class="radicand">3</span></span> ＜ 1.8</b></div>
+</div>
+<div class="example">
+<h3>② 找到小數第 2 位</h3>
+<div class="formula"><b>1.73²＝2.9929　　1.74²＝3.0276</b><br><b>1.73² ＜ 3 ＜ 1.74²</b><br>所以：<b>1.73 ＜ <span class="sqrt">√<span class="radicand">3</span></span> ＜ 1.74</b></div>
+</div>
+<div class="formula">🎯 <b>答案：<span class="sqrt">√<span class="radicand">3</span></span> ≈ 1.73</b></div>
+<div class="note">💡 題目要求「無條件捨去到小數點後第 2 位」，所以直接取 <b>1.73</b>，不看第 3 位是否大於或等於 5。</div>
+<div class="example">
+<h3>🧠 提醒</h3>
+<p>「十分逼近法」就是<b>一直試、一直平方、一直縮小範圍</b>，直到得到題目要求的位數。</p>
+</div>
+</div>
+
+<div class="card">
+<h2>⑧ 用計算機快速得到 <span class="sqrt">√<span class="radicand">2</span></span> 的近似值</h2>
+<p>除了十分逼近法之外，也可以使用計算機快速求出近似值。</p>
+<div class="formula">
+<b>① 按「2」</b><br>
+↓<br>
+<b>② 按「SHIFT」</b><br>
+↓<br>
+<b>③ 按「√」鍵</b>
+</div>
+<p>計算機會顯示：</p>
+<div class="formula"><b><span class="sqrt">√<span class="radicand">2</span></span> ≈ 1.414213562</b></div>
+<div class="note">💡 不同廠牌、型號的計算機，按鍵順序可能略有差異，實際操作時可以參考計算機的使用說明書。</div>
+</div>
+
+<div class="card">
+<h2>⑨ 為什麼計算機顯示的是「≈」？</h2>
+<p><span class="sqrt">√<span class="radicand">2</span></span> 是無理數，所以它的小數會<b>一直延伸，不會結束</b>：</p>
+<div class="formula"><b><span class="sqrt">√<span class="radicand">2</span></span> ＝ 1.414213562373095……</b></div>
+<p>但計算機的螢幕只能顯示有限位數，所以畫面上的結果只是近似值。</p>
+<div class="note">🎯 <b>重點：</b>計算機顯示的數字不是 <span class="sqrt">√<span class="radicand">2</span></span> 的完整值，只是把它顯示到有限位數的近似值。</div>
+</div>
+
+<div class="card">
+<h2>⑩ 十分逼近法 vs. 計算機</h2>
+<table>
+<tr><th>方法</th><th>在做什麼？</th><th>特色</th></tr>
+<tr><td><b>十分逼近法</b></td><td>一直試小數、平方，再縮小範圍</td><td>了解「近似值怎麼找出來」</td></tr>
+<tr><td><b>計算機 √ 鍵</b></td><td>直接計算平方根</td><td>快速得到近似值</td></tr>
+</table>
+<div class="note">🧠 <b>一句話：</b>十分逼近法是「自己一步一步找」，計算機是「快速算出近似值」。</div>
+</div>
+
+</section>
+
+<section id="real_numbers" class="panel">
+<div class="card">
+<h2>🔵 實數</h2>
+<div class="note">💡 <b>核心觀念：</b>有理數和無理數統稱為「實數」。</div>
+</div>
+
+<div class="card">
+<h2>① 實數的組成</h2>
+<div class="formula"><b>實數 ＝ 有理數 ＋ 無理數</b></div>
+<div class="grid">
+<div class="example">
+<h3>🟣 有理數</h3>
+<p>可以寫成「整數 ÷ 整數」的數。</p>
+<p>包括：</p>
+<ul>
+<li>整數</li>
+<li>有限小數</li>
+<li>循環小數</li>
+</ul>
+<p>例如：<b>1.5、<span class="frac"><span class="top">2</span><span class="bottom">3</span></span>、0.<span class="repeat">67</span>、−4</b></p>
+</div>
+<div class="example">
+<h3>🟢 無理數</h3>
+<p>不能寫成「整數 ÷ 整數」的數。</p>
+<p>小數表示為<b>不循環的無限小數</b>。</p>
+<p>例如：<b><span class="sqrt">√<span class="radicand">2</span></span>、<span class="sqrt">√<span class="radicand">5</span></span>、π</b></p>
+</div>
+</div>
+<div class="example">
+<h3>📦 整數是有理數的一部分</h3>
+<p>整數包含：正整數、0、負整數。</p>
+<p>例如：<b>3、0、−2</b> 都是整數，也都是有理數，因此也都是實數。</p>
+</div>
+</div>
+
+<div class="card">
+<h2>② 實數的運算性質</h2>
+<p>任意兩個實數做<b>加、減、乘、除</b>運算後，結果仍然是實數。</p>
+<div class="note">⚠️ <b>例外：</b>除法的除數不能是 0。</div>
+<div class="grid">
+<div class="example"><h3>交換律</h3><p><b>a＋b＝b＋a</b></p><p><b>ab＝ba</b></p></div>
+<div class="example"><h3>結合律</h3><p><b>(a＋b)＋c＝a＋(b＋c)</b></p><p><b>(ab)c＝a(bc)</b></p></div>
+<div class="example"><h3>分配律</h3><p><b>a(b＋c)＝ab＋ac</b></p></div>
+<div class="example"><h3>消去律</h3><p>若 <b>a＋c＝b＋c</b>，則 <b>a＝b</b>。</p><p>若 <b>ac＝bc</b> 且 <b>c≠0</b>，則 <b>a＝b</b>。</p></div>
+</div>
+</div>
+
+<div class="card">
+<h2>③ 實數與數線</h2>
+<p>任何實數都可以在數線上找到對應的點。</p>
+<div class="precise-line">
+<div class="axis"></div>
+<div class="tick" style="left:25%"></div><div class="tick" style="left:50%"></div><div class="tick" style="left:75%"></div>
+<div class="label" style="left:25%">−1</div><div class="label" style="left:50%">0</div><div class="label" style="left:75%">1</div>
+</div>
+<p>而且數線越往右的點，所對應的實數越大。</p>
+</div>
+
+<div class="card">
+<h2>④ 實數的次序關係</h2>
+<p>設 <b>a、b、c</b> 是任意實數。</p>
+<div class="example">
+<h3>⑴ 三一律</h3>
+<p>「<b>a＜b</b>、<b>a＝b</b>、<b>a＞b</b>」三式中恰有一個成立。</p>
+</div>
+<div class="example">
+<h3>⑵ 遞移律</h3>
+<p>若 <b>a＜b</b> 且 <b>b＜c</b>，則 <b>a＜c</b>。</p>
+</div>
+<div class="example">
+<h3>⑶ 不等量加法</h3>
+<p>若 <b>a＜b</b>，則 <b>a＋c＜b＋c</b>。</p>
+</div>
+<div class="example">
+<h3>⑷ 不等量乘法</h3>
+<p>若 <b>a＜b</b> 且 <b>c＞0</b>，則 <b>ac＜bc</b>。</p>
+<p>若 <b>a＜b</b> 且 <b>c＜0</b>，則 <b>ac＞bc</b>。</p>
+<div class="note">🧠 <b>重點：</b>不等式兩邊乘以負數時，不等號方向要改變。</div>
+</div>
+<div class="example">
+<h3>⑸ 平方非負</h3>
+<p>對任一實數 <b>a</b>，都有 <b>a²≥0</b>。</p>
+<p><b>a²＝0</b> 僅在 <b>a＝0</b> 時成立。</p>
+</div>
+</div>
+
+<div class="card">
+<h2>⭐ 學習順序整理</h2>
+<div class="formula"><b>有限／循環小數 → 有理數 → 數線 → 畢氏定理 → 無理數 → 十分逼近法 → 實數 → 乘法公式 → <span class="sqrt">√<span class="radicand">2</span></span> 的性質</b></div>
+<p>這一頁的重點是把前面學過的<b>有理數＋無理數</b>整合成「實數」，再學習實數的運算與大小關係。</p>
+</div>
+</section>
+
+<section id="multiplication_formulas" class="panel">
+<div class="card">
+<h2>✖️ 乘法公式</h2>
+<div class="note">💡 這一頁整理國中學過的三個二次乘法公式，以及三數和的平方公式。</div>
+</div>
+
+<div class="card">
+<h2>① 三個重要的乘法公式</h2>
+<p>國中時，我們曾學過以下三個二次乘法公式：</p>
+<div class="grid">
+<div class="example">
+<h3>【和的平方公式】</h3>
+<div class="formula"><b>(a＋b)²＝a²＋2ab＋b²</b></div>
+</div>
+<div class="example">
+<h3>【差的平方公式】</h3>
+<div class="formula"><b>(a－b)²＝a²－2ab＋b²</b></div>
+</div>
+<div class="example">
+<h3>【平方差公式】</h3>
+<div class="formula"><b>(a＋b)(a－b)＝a²－b²</b></div>
+</div>
+</div>
+</div>
+
+<div class="card">
+<h2>② 三數和的平方公式</h2>
+<p>利用分配律可以得到：</p>
+<div class="formula"><b>(a＋b＋c)²＝(a＋b＋c)(a＋b＋c)</b></div>
+<p>整理後：</p>
+<div class="formula"><b>(a＋b＋c)²＝a²＋b²＋c²＋2ab＋2bc＋2ac</b></div>
+<div class="note">🧠 可以把它記成：<b>三個平方＋三個兩兩相乘再乘 2。</b></div>
+</div>
+
+<div class="card">
+<h2>③ 例題 4：利用乘法公式展開</h2>
+<p>利用乘法公式，展開下列各式：</p>
+<div class="example">
+<h3>(1) (a－2b)²＋(2a＋b)²</h3>
+<div class="steps">
+<p>(a－2b)²＋(2a＋b)²</p>
+<p>＝(a²－4ab＋4b²)＋(4a²＋4ab＋b²)</p>
+<p>＝<b>5a²＋5b²</b></p>
+</div>
+</div>
+<div class="example">
+<h3>(2) (a－b＋1)(a－b－1)</h3>
+<div class="steps">
+<p>＝[(a－b)＋1][(a－b)－1]</p>
+<p>＝(a－b)²－1²</p>
+<p>＝<b>a²－2ab＋b²－1</b></p>
+</div>
+</div>
+<div class="example">
+<h3>(3) (a－2b＋3c)²</h3>
+<div class="steps">
+<p>＝[a＋(－2b)＋(3c)]²</p>
+<p>＝a²＋(－2b)²＋(3c)²＋2a(－2b)＋2(－2b)(3c)＋2a(3c)</p>
+<p>＝<b>a²＋4b²＋9c²－4ab－12bc＋6ac</b></p>
+</div>
+</div>
+</div>
+
+<div class="card">
+<h2>④ 隨堂練習</h2>
+<p>利用乘法公式，展開下列各式：</p>
+<div class="grid">
+<div class="example">
+<h3>（1）</h3>
+<div class="formula"><b>(a＋1)²＋(a－1)²</b></div>
+</div>
+<div class="example">
+<h3>（2）</h3>
+<div class="formula"><b>(a－b－c)(a＋b＋c)</b></div>
+</div>
+<div class="example">
+<h3>（3）</h3>
+<div class="formula"><b>(a－b＋2)²</b></div>
+</div>
+</div>
+<div class="note">🧠 做題時先觀察式子的外型，再判斷要使用哪一個乘法公式。</div>
+
+<h3>💡 解答</h3>
+<div class="example">
+<h3>（1）(a＋1)²＋(a－1)²</h3>
+<div class="steps">
+<p>＝(a²＋2a＋1)＋(a²－2a＋1)</p>
+<p>＝a²＋2a＋1＋a²－2a＋1</p>
+<p>＝<b>2a²＋2</b></p>
+</div>
+</div>
+
+<div class="example">
+<h3>（2）(a－b－c)(a＋b＋c)</h3>
+<div class="steps">
+<p>＝[a－(b＋c)][a＋(b＋c)]</p>
+<p>＝a²－(b＋c)²</p>
+<p>＝a²－(b²＋2bc＋c²)</p>
+<p>＝<b>a²－b²－2bc－c²</b></p>
+</div>
+</div>
+
+<div class="example">
+<h3>（3）(a－b＋2)²</h3>
+<div class="steps">
+<p>＝[a＋(－b)＋2]²</p>
+<p>＝a²＋(－b)²＋2²＋2a(－b)＋2a(2)＋2(－b)(2)</p>
+<p>＝<b>a²＋b²＋4－2ab＋4a－4b</b></p>
+</div>
+</div>
+
+<div class="note">🎯 <b>答案：</b>（1）2a²＋2　（2）a²－b²－2bc－c²　（3）a²＋b²＋4－2ab＋4a－4b</div>
+</div>
+
+<div class="card">
+<h2>⑤ 和與差的立方公式</h2>
+<div class="note">💡 <b>這裡不要直接背最後答案！</b><br>先把「立方」看成「同一個式子乘自己」，再一步一步利用平方公式與分配律展開。</div>
+
+<div class="example">
+<h3>🌟 和的立方公式：一步一步展開</h3>
+<p>先把立方改寫成「一次式 × 平方」：</p>
+<div class="formula"><b>(a＋b)³＝(a＋b)(a＋b)²</b></div>
+<p>再使用和的平方公式：</p>
+<div class="formula"><b>(a＋b)²＝a²＋2ab＋b²</b></div>
+<p>所以：</p>
+<div class="formula"><b>(a＋b)³＝(a＋b)(a²＋2ab＋b²)</b></div>
+<p>利用分配律，把前面的 <b>a</b> 和 <b>b</b> 分別乘進去：</p>
+<div class="formula"><b>＝a(a²＋2ab＋b²)＋b(a²＋2ab＋b²)</b></div>
+<p>繼續乘開：</p>
+<div class="formula"><b>＝a³＋2a²b＋ab²＋a²b＋2ab²＋b³</b></div>
+<p>合併同類項：</p>
+<div class="formula"><b>2a²b＋a²b＝3a²b</b><br><b>ab²＋2ab²＝3ab²</b></div>
+<div class="formula"><b>所以 (a＋b)³＝a³＋3a²b＋3ab²＋b³</b></div>
+</div>
+
+<div class="example">
+<h3>🌟 差的立方公式：不要跳步驟</h3>
+<p>這裡會直接說「把和的立方公式中的 <b>b</b> 換成 <b>－b</b>」，所以看起來好像跳了很多步。我們把它完整寫出來：</p>
+<p>先把 <b>(a－b)</b> 看成 <b>[a＋(－b)]</b>：</p>
+<div class="formula"><b>(a－b)³＝[a＋(－b)]³</b></div>
+<p>套用剛剛的和的立方公式：</p>
+<div class="formula"><b>[a＋(－b)]³＝a³＋3a²(－b)＋3a(－b)²＋(－b)³</b></div>
+<p>接著分別計算：</p>
+<div class="formula"><b>3a²(－b)＝－3a²b</b><br><b>(－b)²＝b²</b><br><b>3a(－b)²＝3ab²</b><br><b>(－b)³＝－b³</b></div>
+<p>全部代回去：</p>
+<div class="formula"><b>(a－b)³＝a³－3a²b＋3ab²－b³</b></div>
+</div>
+
+<div class="grid">
+<div class="example">
+<h3>【和的立方公式】</h3>
+<div class="formula"><b>(a＋b)³＝a³＋3a²b＋3ab²＋b³</b></div>
+</div>
+<div class="example">
+<h3>【差的立方公式】</h3>
+<div class="formula"><b>(a－b)³＝a³－3a²b＋3ab²－b³</b></div>
+</div>
+</div>
+<div class="note">🎯 <b>記法：</b>和的立方「＋、＋、＋」；差的立方「＋、－、＋、－」。但第一次學習時，建議先看懂上面的推導，不要只背符號。</div>
+</div>
+
+<div class="card">
+<h2>⑥ 超簡單記法</h2>
+<div class="grid">
+<div class="example">
+<h3>和的平方</h3>
+<div class="formula"><b>前平方＋2×前×後＋後平方</b></div>
+<p>(a＋b)² → a²＋2ab＋b²</p>
+</div>
+<div class="example">
+<h3>差的平方</h3>
+<div class="formula"><b>前平方－2×前×後＋後平方</b></div>
+<p>(a－b)² → a²－2ab＋b²</p>
+</div>
+<div class="example">
+<h3>平方差</h3>
+<div class="formula"><b>平方減平方</b></div>
+<p>(a＋b)(a－b) → a²－b²</p>
+</div>
+</div>
+<div class="note">🎯 看到公式的外型，就先判斷是哪一個公式，再代入計算。</div>
+</div>
+</section>
+
+<section id="sqrt_property" class="panel">
+<div class="card">
+<h2>🔢 根號2性質</h2>
+<div class="note">💡 這一頁的核心：<b>有理數＋有理數×<span class="sqrt">√<span class="radicand">2</span></span>＝0 時，兩個有理數都必須是 0。</b></div>
+</div>
+
+<div class="card">
+<h2>① 先看最重要的性質</h2>
+<p>如果 a、b 都是有理數，而且：</p>
+<div class="formula"><b>a ＋ b<span class="sqrt">√<span class="radicand">2</span></span> ＝ 0</b></div>
+<p>那麼一定有：</p>
+<div class="formula"><b>a ＝ 0　、　b ＝ 0</b></div>
+</div>
+
+<div class="card">
+<h2>② 為什麼？超簡單理解</h2>
+<p>假設 b 不等於 0。</p>
+<p>把 b<span class="sqrt">√<span class="radicand">2</span></span> 移到另一邊：</p>
+<div class="formula"><b>a ＝ −b<span class="sqrt">√<span class="radicand">2</span></span></b></div>
+<p>再除以 b：</p>
+<div class="formula"><b><span class="sqrt">√<span class="radicand">2</span></span> ＝ −a ÷ b</b></div>
+<p>因為 a、b 都是有理數，所以右邊也會是有理數。</p>
+<div class="note">⚠️ 但 <span class="sqrt">√<span class="radicand">2</span></span> 是無理數，所以矛盾！因此 b 只能是 0，再得到 a 也是 0。</div>
+</div>
+
+<div class="card">
+<h2>③ 看到「普通數＋<span class="sqrt">√<span class="radicand">2</span></span>」要怎麼辦？</h2>
+<p>例如：</p>
+<div class="formula"><b>A ＋ B<span class="sqrt">√<span class="radicand">2</span></span> ＝ 0</b></div>
+<p>如果 A、B 都是有理數，就可以直接比較：</p>
+<div class="formula"><b>A ＝ 0　、　B ＝ 0</b></div>
+<div class="note">🧠 這裡不是把 <span class="sqrt">√<span class="radicand">2</span></span> 算成 1.414，而是把「普通數」和「<span class="sqrt">√<span class="radicand">2</span></span> 的係數」分開。</div>
+</div>
+
+<div class="card">
+<h2>④ 例題 3</h2>
+<p>已知 a、b 是有理數，而且：</p>
+<div class="formula"><b>(3＋5<span class="sqrt">√<span class="radicand">2</span></span>)a ＋ (2−<span class="sqrt">√<span class="radicand">2</span></span>)b ＝ −1＋7<span class="sqrt">√<span class="radicand">2</span></span></b></div>
+<p><b>第一步：全部整理到左邊。</b></p>
+<div class="formula"><b>3a＋5a<span class="sqrt">√<span class="radicand">2</span></span>＋2b−b<span class="sqrt">√<span class="radicand">2</span></span>＋1−7<span class="sqrt">√<span class="radicand">2</span></span>＝0</b></div>
+<p><b>第二步：把普通數和 <span class="sqrt">√<span class="radicand">2</span></span> 部分分開。</b></p>
+<div class="formula"><b>(3a＋2b＋1) ＋ (5a−b−7)<span class="sqrt">√<span class="radicand">2</span></span> ＝ 0</b></div>
+<p>因為 a、b 都是有理數，所以兩部分都必須是 0：</p>
+<div class="formula"><b>3a＋2b＋1＝0</b><br><b>5a−b−7＝0</b></div>
+<p>解聯立方程式：</p>
+<div class="formula"><b>a＝1，b＝−2</b></div>
+</div>
+
+<div class="card">
+<h2>⑤ 隨堂練習</h2>
+<p>已知 a、b 是有理數，而且：</p>
+<div class="formula"><b>(3＋2<span class="sqrt">√<span class="radicand">2</span></span>)a ＋ (2−<span class="sqrt">√<span class="radicand">2</span></span>)b ＝ 7<span class="sqrt">√<span class="radicand">2</span></span></b></div>
+<div class="calc-area">
+<h3>✏️ 計算區</h3>
+<textarea placeholder="可以在這裡寫你的計算過程……"></textarea>
+<div class="calc-actions">
+<button type="button" class="calc-clear">清空計算區</button>
+</div>
+</div>
+
+
+<h3>💡 解答</h3>
+<p><b>第一步：先展開。</b></p>
+<div class="formula">
+<b>3a＋2a<span class="sqrt">√<span class="radicand">2</span></span>＋2b−b<span class="sqrt">√<span class="radicand">2</span></span>＝7<span class="sqrt">√<span class="radicand">2</span></span></b>
+</div>
+
+<p><b>第二步：把普通數和 <span class="sqrt">√<span class="radicand">2</span></span> 的部分分開。</b></p>
+<div class="formula">
+<b>(3a＋2b) ＋ (2a−b)<span class="sqrt">√<span class="radicand">2</span></span>＝7<span class="sqrt">√<span class="radicand">2</span></span></b>
+</div>
+
+<p>把右邊的 7<span class="sqrt">√<span class="radicand">2</span></span> 移到左邊：</p>
+<div class="formula">
+<b>(3a＋2b) ＋ (2a−b−7)<span class="sqrt">√<span class="radicand">2</span></span>＝0</b>
+</div>
+
+<p>所以兩部分分別等於 0：</p>
+<div class="formula">
+<b>3a＋2b＝0</b><br>
+<b>2a−b−7＝0</b>
+</div>
+
+<p><b>第三步：用消去法。</b></p>
+<p>第一式乘 1、第二式乘 2：</p>
+<div class="formula">
+<b>3a＋2b＝0</b><br>
+<b>4a−2b＝14</b>
+</div>
+
+<p>兩式相加：</p>
+<div class="formula">
+<b>7a＝14</b><br>
+<b>a＝2</b>
+</div>
+
+<p><b>第四步：代回去找 b。</b></p>
+<div class="formula">
+<b>2(2)−b−7＝0</b><br>
+<b>4−b−7＝0</b><br>
+<b>−b＝3</b><br>
+<b>b＝−3</b>
+</div>
+
+<div class="note">🎯 <b>答案：a＝2、b＝−3</b></div>
+</div>
+</section>
+
+
+<section id="simultaneous" class="panel">
+<div class="card">
+<h2>🧮 二元一次：消去法</h2>
+<div class="note">💡 這一頁只學一件事：<b>兩個方程式一起解，先消掉一個未知數。</b></div>
+</div>
+
+<div class="card">
+<h2>① 題目</h2>
+<div class="formula">
+<b>3a＋2b＋1＝0</b><br>
+<b>5a−b−7＝0</b>
+</div>
+<p>我們要找出 <b>a</b> 和 <b>b</b> 各是多少。</p>
+</div>
+
+<div class="card">
+<h2>② 先把數字移到右邊</h2>
+<p>第一條：</p>
+<div class="formula"><b>3a＋2b＋1＝0</b><br>↓<br><b>3a＋2b＝−1</b></div>
+
+<p>第二條：</p>
+<div class="formula"><b>5a−b−7＝0</b><br>↓<br><b>5a−b＝7</b></div>
+
+<div class="note">🧠 先整理成「未知數在左邊、數字在右邊」，會比較好算。</div>
+</div>
+
+<div class="card">
+<h2>③ 想辦法消掉 b</h2>
+<p>現在是：</p>
+<div class="formula">
+<b>3a＋2b＝−1</b><br>
+<b>5a−b＝7</b>
+</div>
+
+<p>第一條有 <b>＋2b</b>，第二條有 <b>−b</b>。</p>
+<p>所以把第二條<strong>全部乘 2</strong>：</p>
+<div class="formula">
+<b>5a−b＝7</b><br>
+↓ ×2<br>
+<b>10a−2b＝14</b>
+</div>
+</div>
+
+<div class="card">
+<h2>④ 兩條方程式相加</h2>
+<div class="formula">
+<b>3a＋2b＝−1</b><br>
+<b>10a−2b＝14</b>
+</div>
+
+<p>上下相加：</p>
+<div class="formula">
+<b>3a＋10a＝13a</b><br>
+<b>2b−2b＝0</b><br>
+<b>−1＋14＝13</b>
+</div>
+
+<p>所以：</p>
+<div class="formula"><b>13a＝13</b></div>
+<p>兩邊除以 13：</p>
+<div class="formula"><b>a＝1</b></div>
+</div>
+
+<div class="card">
+<h2>⑤ 找出 b</h2>
+<p>現在已經知道：</p>
+<div class="formula"><b>a＝1</b></div>
+
+<p>把 a＝1 放回第二條：</p>
+<div class="formula">
+<b>5a−b＝7</b><br>
+↓<br>
+<b>5(1)−b＝7</b><br>
+<b>5−b＝7</b>
+</div>
+
+<p>移項：</p>
+<div class="formula"><b>−b＝2</b></div>
+
+<p>所以：</p>
+<div class="formula"><b>b＝−2</b></div>
+</div>
+
+<div class="card">
+<h2>⑥ 最後答案</h2>
+<div class="formula">
+<b>a＝1</b><br>
+<b>b＝−2</b>
+</div>
+</div>
+
+<div class="card">
+<h2>⑦ 為什麼叫「消去法」？</h2>
+<p>因為我們故意讓：</p>
+<div class="formula">
+<b>＋2b</b> 和 <b>−2b</b>
+</div>
+<p>相加後變成：</p>
+<div class="formula"><b>2b−2b＝0</b></div>
+<p><strong>b 就被消掉了。</strong></p>
+<div class="note">🎯 所以「消去法」就是：<b>想辦法讓其中一個未知數消失。</b></div>
+</div>
+
+<div class="card">
+<h2>⑧ 超簡單記法</h2>
+<div class="formula">
+<b>① 整理方程式</b><br>
+↓<br>
+<b>② 找一個未知數消掉</b><br>
+↓<br>
+<b>③ 算出第一個未知數</b><br>
+↓<br>
+<b>④ 代回去算第二個未知數</b>
+</div>
+<div class="note">⭐ 這題就是：<b>先消 b → 算 a＝1 → 代回 → 算 b＝−2。</b></div>
+</div>
+</section>
+
+<section id="quiz" class="panel">
+<div class="card">
+<h2>📝 題庫測驗</h2>
+<div class="scorebox">
+<span>目前答對：<span id="score" class="big">0</span> 題</span>
+<span>已作答：<span id="done">0</span> 題</span>
+<button onclick="newQuiz()">🔄 重新出題</button>
+<button class="secondary" onclick="showAll()">📋 顯示全部答案</button>
+</div>
+<p>共 12 題（包含本次新增的 2 題循環節題目）。請依題目要求輸入答案。例如分數輸入 <b><span class="frac"><span class="top">7</span><span class="bottom">25</span></span></b>；若題目問循環節，就輸入循環的數字。輸入後按「對答案」，也可以直接按 Enter。</p>
+<div id="quizList" class="grid"></div>
+</div>
+</section>
+</div>
+<footer>有限小數與循環小數化分數｜互動教材</footer>
+
+<script>
+const questions = [
+ {q:'5.<span class="repeat">12</span>',a:'169/33',e:'5.121212…… 中 12 循環。設 x=5.121212……，100x=512.121212……，相減得 99x=507，所以 x=507/99=169/33。'},
+ {q:'0.1<span class="repeat">58</span>',a:'157/990',e:'0.158585858…… 中 58 循環。設 x=0.158585858……，1000x=158.585858……，10x=1.585858……，相減得 990x=157，所以 x=157/990。'},
+ {q:'0.28',a:'7/25',e:'0.28 = 28/100 = 7/25。'},
+ {q:'0.732',a:'183/250',e:'0.732 = 732/1000 = 183/250。'},
+ {q:'0.45',a:'9/20',e:'0.45 = 45/100 = 9/20。'},
+ {q:'1.25',a:'5/4',e:'1.25 = 125/100 = 5/4。'},
+ {q:'2.375',a:'19/8',e:'2.375 = 2375/1000 = 19/8。'},
+ {q:'0.125',a:'1/8',e:'0.125 = 125/1000 = 1/8。'},
+ {q:'0.06',a:'3/50',e:'0.06 = 6/100 = 3/50。'},
+ {q:'3.2',a:'16/5',e:'3.2 = 32/10 = 16/5。'},
+ {q:'0.<span class="repeat">32</span>',a:'32/99',e:'令 x=0.323232…。100x=32.323232…。相減得 99x=32，所以 x=32/99。'},
+ {q:'0.<span class="repeat">45</span>',a:'5/11',e:'令 x=0.454545…。100x−x=45，所以 99x=45，約分得 5/11。'},
+ {q:'0.<span class="repeat">7</span>',a:'7/9',e:'令 x=0.7777…。10x−x=7，所以 9x=7，得 7/9。'},
+ {q:'1.<span class="repeat">6</span>',a:'5/3',e:'令 x=1.6666…。10x−x=15，所以 9x=15，約分得 5/3。'},
+ {q:'2.<span class="repeat">3</span>',a:'7/3',e:'令 x=2.3333…。10x−x=21，所以 9x=21，約分得 7/3。'},
+ {q:'1.4<span class="repeat">5</span>',a:'131/90',e:'令 x=1.4555…。100x−10x=145.555…−14.555…=131，所以 90x=131，得 131/90。'},
+ {q:'0.15<span class="repeat">8</span>',a:'143/900',e:'令 x=0.158888…。1000x−100x=158.888…−15.888…=143，所以 900x=143，得 143/900。'},
+ {q:'0.2<span class="repeat">7</span>',a:'5/18',e:'令 x=0.2777…。10x−x=2.5？更直接：10x=2.777…，相減得 9x=2.5，不方便；寫成 0.2+0.0777…，可得 5/18。'},
+ {q:'0.1<span class="repeat">6</span>',a:'1/6',e:'令 x=0.1666…。10x−x=1.5，所以 9x=1.5，x=1/6。'},
+ {q:'0.08<span class="repeat">3</span>',a:'1/12',e:'0.08333… = 1/12。'},
+ {q:'4.<span class="repeat">2</span>',a:'38/9',e:'令 x=4.2222…。10x−x=38，所以 9x=38，得 38/9。'}
+];
+
+let score=0, done=0;
+function showTab(id,btn){
+ document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+ btn.classList.add('active');
+ if(id==='quiz' && !document.getElementById('quizList').children.length) newQuiz();
+}
+function normalize(s){
+ return s.replace(/\s/g,'').replace('／','/').toLowerCase();
+}
+function newQuiz(){
+ score=0;done=0; updateScore();
+ const special=questions.slice(0,2); const others=questions.slice(2).sort(()=>Math.random()-0.5).slice(0,10); const pool=[...special,...others].sort(()=>Math.random()-0.5);
+ document.getElementById('quizList').innerHTML=pool.map((x,i)=>{
+   const ans=x.fix||x.a;
+   return `<div class="q">
+   <div class="qnum">第 ${i+1} 題</div>
+   <div style="font-size:22px;margin-top:5px">${x.q} = ?</div>
+   <div class="ans"><input data-answer="${ans}" placeholder="例如 7/25" onkeydown="if(event.key==='Enter')check(this)"><button onclick="check(this.previousElementSibling)">對答案</button></div>
+   <div class="feedback"></div>
+   <div class="explain">💡 ${x.e}</div>
+   </div>`;
+ }).join('');
+}
+function check(input){
+ const q=input.closest('.q');
+ if(q.dataset.done==='1') return;
+ const feedback=q.querySelector('.feedback');
+ const exp=q.querySelector('.explain');
+ const user=normalize(input.value);
+ const answer=normalize(input.dataset.answer);
+ if(!user){feedback.textContent='請先輸入答案。';feedback.className='feedback wrong';return;}
+ q.dataset.done='1';done++;
+ if(user===answer){
+   score++;feedback.textContent='✅ 答對了！';feedback.className='feedback correct';
+ }else{
+   feedback.textContent='❌ 再想一下，答案是 '+input.dataset.answer;feedback.className='feedback wrong';
+ }
+ exp.style.display='block'; updateScore();
+}
+function showAll(){
+ document.querySelectorAll('.q').forEach(q=>{
+   const input=q.querySelector('input');
+   const exp=q.querySelector('.explain');
+   const feedback=q.querySelector('.feedback');
+   feedback.textContent='答案：'+input.dataset.answer;
+   feedback.className='feedback';
+   exp.style.display='block';
+ });
+}
+function updateScore(){
+ document.getElementById('score').textContent=score;
+ document.getElementById('done').textContent=done;
+}
+newQuiz();
+</script>
+</body>
+</html>
+<script>
+document.querySelectorAll('.calc-clear').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var area = btn.closest('.calc-area').querySelector('textarea');
+    area.value = '';
+    area.focus();
+  });
+});
+</script>
